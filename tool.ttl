@@ -1,21 +1,21 @@
-@prefix : <https://quangis.github.io/tool#> .
-@prefix ccd: <https://quangis.github.io/ccd#> .
+@prefix : <https://quangis.github.io/tool/vocab#> .
 @prefix cct: <https://quangis.github.io/cct#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 :Implementation a rdfs:Class;
-    rdfs:comment "A concrete implementation of a tool.".
+    rdfs:comment """Something that implements a tool signature, like a concrete 
+    tool or a collection of such tools.""".
 
 :Tool a rdfs:Class; rdfs:subClassOf :Implementation;
-    rdfs:comment "A reference to a concrete tool, as implemented in programs 
-    like ArcGIS or QGIS.".
+    rdfs:comment """A reference to a concrete tool, as implemented in programs 
+    like ArcGIS or QGIS.""".
 
-:Workflow a rdfs:Class; rdfs:subClassOf :Implementation;
-    rdfs:comment """A workflow, or more properly, a workflow schema: an 
-    ensemble of concrete tools that *collectively* acts as an implementation 
-    for something. This is sometimes also referred to as a supertool.""";
+:Supertool a rdfs:Class; rdfs:subClassOf :Implementation;
+    rdfs:comment """A supertool is a workflow, or more properly, a workflow 
+    schema: an ensemble of concrete tools that *collectively* acts as an 
+    implementation for something.""";
     rdfs:subClassOf [
         a owl:Restriction; owl:onProperty :input;
         owl:minQualifiedCardinality 1; owl:maxQualifiedCardinality 1
@@ -85,5 +85,5 @@
     rdfs:range :Signature.
 
 :action a rdfs:Property;
-    rdfs:domain :Workflow;
+    rdfs:domain :Supertool;
     rdfs:range :Action.
