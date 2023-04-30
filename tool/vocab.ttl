@@ -64,25 +64,36 @@
     rdfs:comment """A single set of data: either source data or data that is 
     the output of an action. Can be either schematic or concrete.""".
 
-:input a rdfs:Property;
-    rdfs:domain :Signature, :Action, :Implementation;
-    rdfs:range :Artefact.
+:Artefacts a rdfs:Class;
+    rdfs:subClassOf rdf:List, [
+        a owl:Restriction; owl:onProperty rdf:first;
+        owl:allValuesFrom :Artefact
+    ], [
+        a owl:Restriction; owl:onProperty rdf:rest;
+        owl:allValuesFrom :Artefacts
+    ].
 
-:output a rdfs:Property;
+:inputs a rdfs:Property;
     rdfs:domain :Signature, :Action, :Implementation;
-    rdfs:range :Artefact.
+    rdfs:range :Artefacts.
 
-:id a rdfs:Property;
-    rdfs:domain :Artefact;
-    rdfs:range rdf:Literal.
+:outputs a rdfs:Property;
+    rdfs:domain :Signature, :Action, :Implementation;
+    rdfs:range :Artefacts.
 
 :apply a rdfs:Property;
     rdfs:domain :Action;
     rdfs:range :Tool.
 
-:implements a rdfs:Property;
+:implementation a rdfs:Property;
+    rdfs:domain :Signature;
+    rdfs:range :Implementation;
+    owl:inverseOf :signature.
+
+:signature a rdfs:Property;
     rdfs:domain :Implementation;
-    rdfs:range :Signature.
+    rdfs:range :Signature;
+    owl:inverseOf :implementation.
 
 :action a rdfs:Property;
     rdfs:domain :Supertool;
