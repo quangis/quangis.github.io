@@ -1,50 +1,55 @@
-@prefix : <https://quangis.github.io/tool/vocab#> .
+@prefix : <https://quangis.github.io/vocab/tool#> .
 @prefix cct: <https://quangis.github.io/cct#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
-:Implementation a rdfs:Class;
-    rdfs:comment """Something that implements a tool signature, like a concrete 
-    tool or a collection of such tools.""".
+:Tool a rdfs:Class;
+    rdfs:comment """In the present context, a tool can refer both to actual 
+    implementations of tools and to their abstractions, because both can be 
+    used as tools in an abstract sense.""".
 
-:Tool a rdfs:Class; rdfs:subClassOf :Implementation;
-    rdfs:comment """A reference to a concrete tool, as implemented in programs 
-    like ArcGIS or QGIS.""".
+:Implementation a rdfs:Class; rdfs:subClassOf :Tool;
+    rdfs:comment """An implementation of a concrete tool or a collection of 
+    such tools.""".
 
-:Supertool a rdfs:Class; rdfs:subClassOf :Implementation;
-    rdfs:comment """A supertool is a workflow, or more properly, a workflow 
-    schema: an ensemble of concrete tools that *collectively* acts as an 
-    implementation for something.""";
+:Unit a rdfs:Class; rdfs:subClassOf :Implementation;
+    owl:equivalentClass :ConcreteTool;
+    rdfs:comment """A tool unit is a reference to a concrete tool, as actually 
+    implemented in programs like ArcGIS or QGIS.""".
+
+:Composite a rdfs:Class; rdfs:subClassOf :Implementation;
+    owl:equivalentClass :Supertool;
+    rdfs:comment """A composite tool (also known as a supertool) is a workflow, 
+    or more properly, a workflow schema: an ensemble of concrete tools that can 
+    only *collectively* act as an implementation for an abstraction.""";
     rdfs:subClassOf [
-        a owl:Restriction; owl:onProperty :input;
-        owl:minQualifiedCardinality 1; owl:maxQualifiedCardinality 1
-    ], [
-        a owl:Restriction; owl:onProperty :output;
-        owl:minQualifiedCardinality 1; owl:maxQualifiedCardinality 1
-    ], [
         a owl:Restriction; owl:onProperty :action;
-        owl:minQualifiedCardinality 1
+        owl:minQualifiedCardinality 2
     ].
 
-:Signature a rdfs:Class;
-    rdfs:comment """A signature is an abstract specification of a tool or 
-    workflow. It may be implemented by multiple tools or workflows, because, 
-    for example, a tool could be implemented in both QGIS and ArcGIS. 
-    Conversely, multiple signatures may be implemented by the same tool, if it 
-    can be used in multiple contexts, in the same way that a hammer can be used 
-    both to drive a nail into a plank of wood or to break a piggy bank.
+:Abstraction a rdfs:Class; rdfs:subClassOf :Tool;
+    rdfs:comment """A tool abstraction contains a syntactic and semantic 
+    signature of a tool, to be associated with an implementation of such a 
+    tool. These signatures contain information on the format of the input and 
+    output (in terms of core concept datatypes), and information on the purpose 
+    (in terms of a CCT expression).
 
-    A signature contains information on the format of the input and output, in 
-    terms of core concept datatypes, and information on the purpose, in terms 
-    of a `transforge` term.
+    A single abstraction may have multiple implementations, because, for 
+    example, a tool could be implemented in both QGIS and ArcGIS. Conversely, 
+    multiple abstractions may have the same implementation, if it can be used 
+    in multiple contexts, in the same way that a hammer can be used both to 
+    drive a nail into a plank of wood or to break a piggy bank.
 
-    If a signature is given an rdfs:comment, this must be in the abstract, ie. 
-    without reference to the specific data that may have been used in an 
+    An abstraction can itself be used as an abstract 'tool' of sorts, to be 
+    used in workflow synthesis.
+
+    If an abstraction is given an rdfs:comment, this must be in the abstract, 
+    ie. without reference to the specific data that may have been used in an 
     action.""";
     rdfs:subClassOf [
         a owl:Restriction; owl:onProperty :input;
-        owl:minQualifiedCardinality 1; owl:maxQualifiedCardinality 1
+        owl:minQualifiedCardinality 1
     ], [
         a owl:Restriction; owl:onProperty :implementation;
         owl:minQualifiedCardinality 1
@@ -57,44 +62,61 @@
     ].
 
 :Action a rdfs:Class;
-    rdfs:comment """An action is an *application* of an implementation, either 
-    schematic (as in a workflow schema) or concrete (as in a workflow).""".
-
-:Artefact a rdfs:Class;
-    rdfs:comment """A single set of data: either source data or data that is 
-    the output of an action. Can be either schematic or concrete.""".
-
-:Artefacts a rdfs:Class;
-    rdfs:subClassOf rdf:List, [
-        a owl:Restriction; owl:onProperty rdf:first;
-        owl:allValuesFrom :Artefact
+    rdfs:comment """An action is an *application* of an implementation. In the 
+    context of a composite tool (ie. a supertool), these applications are not 
+    yet actualized.""";
+    rdfs:subClassOf [
+        a owl:Restriction; owl:onProperty :apply;
+        owl:minQualifiedCardinality 1; owl:maxQualifiedCardinality 1
     ], [
-        a owl:Restriction; owl:onProperty rdf:rest;
-        owl:allValuesFrom :Artefacts
+        a owl:Restriction; owl:onProperty :input;
+        owl:minQualifiedCardinality 1;
+    ], [
+        a owl:Restriction; owl:onProperty :output;
+        owl:minQualifiedCardinality 1; owl:maxQualifiedCardinality 1
     ].
 
-:inputs a rdfs:Property;
-    rdfs:domain :Signature, :Action, :Implementation;
-    rdfs:range :Artefacts.
+:Artefact a rdfs:Class;
+    rdfs:comment """A single unit of data: either source data or data that is 
+    the output of an action. In the context of tool descriptions, an artefact 
+    is 'schematic': it doesn't refer to actualized data, but should be 
+    interpreted like a variable (as opposed to the context of a workflow, in 
+    which an artefact really is concrete).
 
-:outputs a rdfs:Property;
-    rdfs:domain :Signature, :Action, :Implementation;
-    rdfs:range :Artefacts.
+    When used in tool abstractions, artefacts should be associated with one or 
+    more types from the `ccd:` namespace as their `rdf:type`. This provides the 
+    CCD signature.
+
+    Artefacts that are input to a tool must be labeled with an `:id`. Artefacts 
+    that are outputs, or that occur as intermediates in a composite tool, must 
+    not be.""".
+
+:id a rdfs:Property;
+    rdfs:domain :Artefact;
+    rdfs:range rdfs:Literal.
+
+:input a rdfs:Property;
+    rdfs:domain :Tool, :Action;
+    rdfs:range :Artefact.
+
+:output a rdfs:Property;
+    rdfs:domain :Tool, :Action;
+    rdfs:range :Artefact.
+
+:action a rdfs:Property;
+    rdfs:domain :Composite;
+    rdfs:range :Action.
 
 :apply a rdfs:Property;
     rdfs:domain :Action;
-    rdfs:range :Tool.
+    rdfs:range :Unit.
 
 :implementation a rdfs:Property;
-    rdfs:domain :Signature;
+    rdfs:domain :Abstraction;
     rdfs:range :Implementation;
-    owl:inverseOf :signature.
+    owl:inverseOf :specification.
 
-:signature a rdfs:Property;
+:specification a rdfs:Property;
     rdfs:domain :Implementation;
-    rdfs:range :Signature;
+    rdfs:range :Abstraction;
     owl:inverseOf :implementation.
-
-:action a rdfs:Property;
-    rdfs:domain :Supertool;
-    rdfs:range :Action.
