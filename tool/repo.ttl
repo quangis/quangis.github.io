@@ -55,7 +55,7 @@ abstr:Buffer a :Abstraction ;
     :implementation arcgis:Buffer ;
     :input [ a ccd:LineA,
                 ccd:ObjectQ ;
-            rdfs:comment "all-season roads in Shikoku, Japan (line)" ] ;
+            :id "1" ] ;
     :output [ a ccd:BooleanA,
                 ccd:FieldQ,
                 ccd:PlainVectorRegionA ] .
@@ -66,7 +66,7 @@ abstr:BufferDissolve a :Abstraction ;
     :input [ a ccd:LineA,
                 ccd:NominalA,
                 ccd:ObjectQ ;
-            rdfs:comment "Vector line segments representing the A2 highway in the Netherlands" ] ;
+            :id "1" ] ;
     :output [ a ccd:BooleanA,
                 ccd:FieldQ,
                 ccd:PlainVectorRegionA ] .
@@ -90,11 +90,11 @@ abstr:CalculateCountAmountRatio a :Abstraction ;
     :input [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:VectorRegionA ;
-            :id "1" ],
+            :id "2" ],
         [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:VectorRegionA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:AmountQ,
                 ccd:IRA,
                 ccd:VectorRegionA ] .
@@ -104,10 +104,12 @@ abstr:CalculateCountAmountRatio2 a :Abstraction ;
     :implementation multi:CalculateCountAmountRatio ;
     :input [ a ccd:AmountQ,
                 ccd:CountA,
-                ccd:PlainVectorRegionA ],
+                ccd:PlainVectorRegionA ;
+            :id "1" ],
         [ a ccd:AmountQ,
                 ccd:CountA,
-                ccd:PlainVectorRegionA ] ;
+                ccd:PlainVectorRegionA ;
+            :id "2" ] ;
     :output [ a ccd:AmountQ,
                 ccd:IRA,
                 ccd:PlainVectorRegionA ] .
@@ -123,7 +125,8 @@ abstr:CalculateDensityonObject a :Abstraction ;
     :implementation multi:CalculateDensityonObject ;
     :input [ a ccd:CountA,
                 ccd:ObjectQ,
-                ccd:PlainVectorRegionA ] ;
+                ccd:PlainVectorRegionA ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PlainVectorRegionA,
                 ccd:RatioA ] .
@@ -164,16 +167,20 @@ abstr:CalculateDiversity4onObjectVector a :Abstraction ;
     :implementation multi:CalculateDiversity4onObjectVector ;
     :input [ a ccd:ObjectQ,
                 ccd:RatioA,
-                ccd:VectorTessellationA ],
+                ccd:VectorTessellationA ;
+            :id "1" ],
         [ a ccd:ObjectQ,
                 ccd:RatioA,
-                ccd:VectorTessellationA ],
+                ccd:VectorTessellationA ;
+            :id "3" ],
         [ a ccd:ObjectQ,
                 ccd:RatioA,
-                ccd:VectorTessellationA ],
+                ccd:VectorTessellationA ;
+            :id "4" ],
         [ a ccd:ObjectQ,
                 ccd:RatioA,
-                ccd:VectorTessellationA ] ;
+                ccd:VectorTessellationA ;
+            :id "2" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorTessellationA ] .
@@ -192,11 +199,11 @@ abstr:CalculateObjectAttrRatio a :Abstraction ;
     :input [ a ccd:ERA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ;
-            :id "1" ],
+            :id "2" ],
         [ a ccd:ERA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:IRA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ] .
@@ -228,12 +235,14 @@ abstr:CalculateObjectVectorAmountRatio a :Abstraction ;
             (get_attrL 1)
             (apply2 ratio (get_attrR 1) (get_attrR 2))""" ;
     :implementation multi:CalculateObjectVectorAmountRatio ;
-    :input [ a ccd:CountA,
-                ccd:ObjectQ,
-                ccd:VectorTessellationA ],
-        [ a ccd:ObjectQ,
+    :input [ a ccd:ObjectQ,
                 ccd:RatioA,
-                ccd:VectorTessellationA ] ;
+                ccd:VectorTessellationA ;
+            :id "2" ],
+        [ a ccd:CountA,
+                ccd:ObjectQ,
+                ccd:VectorTessellationA ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorTessellationA ] .
@@ -252,11 +261,11 @@ abstr:CalculateObjectVectorCountAmountRatio a :Abstraction ;
     :input [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ;
-            :id "2" ],
+            :id "1" ],
         [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ;
-            :id "1" ] ;
+            :id "2" ] ;
     :output [ a ccd:IRA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ] .
@@ -272,7 +281,8 @@ abstr:CalculateObjectVectorDensity a :Abstraction ;
     :implementation multi:CalculateObjectVectorDensity ;
     :input [ a ccd:CountA,
                 ccd:ObjectQ,
-                ccd:VectorTessellationA ] ;
+                ccd:VectorTessellationA ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorTessellationA ] .
@@ -290,14 +300,14 @@ abstr:CalculatePartialAmountsfromObjects a :Abstraction ;
             ) in)))
         """ ;
     :implementation multi:CalculatePartialAmounts ;
-    :input [ a ccd:CountA,
-                ccd:ObjectQ,
-                ccd:VectorRegionA ;
-            :id "1" ],
-        [ a ccd:BooleanA,
+    :input [ a ccd:BooleanA,
                 ccd:FieldQ,
                 ccd:VectorRegionA ;
-            :id "2" ] ;
+            :id "2" ],
+        [ a ccd:CountA,
+                ccd:ObjectQ,
+                ccd:VectorRegionA ;
+            :id "1" ] ;
     :output [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:VectorRegionA ] .
@@ -314,10 +324,12 @@ abstr:CalculatePartialAmountsfromObjects2 a :Abstraction ;
     :implementation multi:CalculatePartialAmountsfromObjects ;
     :input [ a ccd:BooleanA,
                 ccd:FieldQ,
-                ccd:PlainVectorRegionA ],
+                ccd:PlainVectorRegionA ;
+            :id "2" ],
         [ a ccd:CountA,
                 ccd:ObjectQ,
-                ccd:PlainVectorRegionA ] ;
+                ccd:PlainVectorRegionA ;
+            :id "1" ] ;
     :output [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:PlainVectorRegionA ] .
@@ -397,26 +409,6 @@ abstr:CalculateVectorFieldPartialArea a :Abstraction ;
                 ccd:ERA,
                 ccd:VectorRegionA ] .
 
-abstr:Clip a :Abstraction ;
-    cct:expression """        1: ObjectInfo(Count);
-        2: ObjectInfo(Nom);
-        subset
-            1
-            (pi1 (select eq
-                (oTopo (get_attrL 1) (get_attrL 2))
-                in
-            ))""" ;
-    :implementation arcgis:Clip ;
-    :input [ a ccd:CountA,
-                ccd:ObjectQ,
-                ccd:PlainVectorRegionA ;
-            rdfs:comment "Cho-cho-moku ((SCCM, small administrative regions) in Shikoku, Japan (Polygon) with population number" ],
-        [ a ccd:ObjectQ,
-                ccd:PlainVectorRegionA ] ;
-    :output [ a ccd:CountA,
-                ccd:ObjectQ,
-                ccd:PlainVectorRegionA ] .
-
 abstr:ClipBoolFieldVector2Extent a :Abstraction ;
     rdfs:comment "Clips some boolean field vector to the region where a boolean field vector is true." ;
     cct:expression "subset (1: Field(Bool)) (fcover (2: Field(Bool)) (nest true))" ;
@@ -444,11 +436,11 @@ abstr:ClipFieldRaster2ObjectExtent a :Abstraction ;
         ))
         """ ;
     :implementation arcgis:Clip ;
-    :input [ a ccd:FieldRaster,
+    :input [ a ccd:ObjectVector ;
+            :id "2" ],
+        [ a ccd:FieldRaster,
                 ccd:OrdinalA ;
-            :id "1" ],
-        [ a ccd:ObjectVector ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:FieldRaster,
                 ccd:OrdinalA ] .
 
@@ -502,19 +494,19 @@ abstr:ClosestFacilityAnalysis a :Abstraction ;
             (get_attrL 2)
             (groupbyL min (nDist (get_attrL 2) (get_attrL 3) 1))
         """ ;
-    :input [ a ccd:LineA,
-                ccd:NetworkQ,
-                ccd:RatioA ;
-            rdfs:comment "roads" ;
-            :id "1" ],
+    :input [ a ccd:ObjectQ,
+                ccd:PointA ;
+            rdfs:comment "goals" ;
+            :id "2" ],
         [ a ccd:ObjectQ,
                 ccd:PointA ;
             rdfs:comment "origins" ;
             :id "3" ],
-        [ a ccd:ObjectQ,
-                ccd:PointA ;
-            rdfs:comment "goals" ;
-            :id "2" ] ;
+        [ a ccd:LineA,
+                ccd:NetworkQ,
+                ccd:RatioA ;
+            rdfs:comment "roads" ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA,
                 ccd:RatioA ] .
@@ -528,12 +520,14 @@ abstr:ClostestFacilityAnalysis a :Abstraction ;
             (groupbyL min (nDist (get_attrL 2) (get_attrL 3) 1))""" ;
     :implementation multi:ClostestFacilityAnalysis ;
     :input [ a ccd:ObjectQ,
-                ccd:PointA ],
-        [ a ccd:ObjectQ,
-                ccd:PointA ],
+                ccd:PointA ;
+            :id "3" ],
         [ a ccd:LineA,
                 ccd:ObjectQ ;
-            rdfs:comment "Line dataset representing roads in the Netherlands" ] ;
+            :id "1" ],
+        [ a ccd:ObjectQ,
+                ccd:PointA ;
+            :id "2" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA,
                 ccd:RatioA ] .
@@ -549,7 +543,8 @@ abstr:ComputeCountDensityonObject a :Abstraction ;
     :implementation multi:ComputeCountDensityonObject ;
     :input [ a ccd:CountA,
                 ccd:ObjectQ,
-                ccd:VectorTessellationA ] ;
+                ccd:VectorTessellationA ;
+            :id "1" ] ;
     :output [ a ccd:IRA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -572,11 +567,10 @@ abstr:ConvertDist2TravelTimeonObjects a :Abstraction ;
     :input [ a ccd:ObjectQ,
                 ccd:PointA,
                 ccd:RatioA ;
-            rdfs:comment "Vector points representing residential dwellings in the centrum neighborhood of amsterdam with the distance to the nearest waste container as an attribute" ] ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA,
-                ccd:RatioA ;
-            rdfs:comment "Vector points representing residential dwellings in the Centrum neighborhood of Amsterdam with the travel time to the nearest waste container as an attribute" ] .
+                ccd:RatioA ] .
 
 abstr:CoverageToNominalFieldRaster a :Abstraction ;
     rdfs:comment "Converts Field polygons to nominal field Rasters" ;
@@ -594,7 +588,7 @@ abstr:CreateAndBuildNetwork a :Abstraction ;
     :input [ a ccd:LineA,
                 ccd:ObjectQ,
                 ccd:RatioA ;
-            rdfs:comment "A line dataset representing roads in Amsterdam" ] ;
+            :id "1" ] ;
     :output [ a ccd:LineA,
                 ccd:NetworkQ,
                 ccd:RatioA ] .
@@ -612,7 +606,8 @@ abstr:CreateNetwork a :Abstraction ;
     :implementation multi:CreateNetwork ;
     :input [ a ccd:LineA,
                 ccd:NominalA,
-                ccd:ObjectQ ] ;
+                ccd:ObjectQ ;
+            :id "1" ] ;
     :output [ a ccd:LineA,
                 ccd:NetworkQ,
                 ccd:RatioA ] .
@@ -622,7 +617,8 @@ abstr:CreateRandomPoints a :Abstraction ;
     :implementation arcgis:CreateRandomPoints ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ] ;
+                ccd:PointA ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ] .
@@ -652,10 +648,12 @@ abstr:DerivePartsOfPopCenters a :Abstraction ;
     :implementation multi:DerivePartsOfPopCenters ;
     :input [ a ccd:BooleanA,
                 ccd:FieldQ,
-                ccd:PlainVectorRegionA ],
+                ccd:PlainVectorRegionA ;
+            :id "2" ],
         [ a ccd:ObjectQ,
                 ccd:PlainVectorRegionA,
-                ccd:RatioA ] ;
+                ccd:RatioA ;
+            :id "1" ] ;
     :output [ a ccd:AmountQ,
                 ccd:PlainVectorRegionA,
                 ccd:RatioA ] .
@@ -690,7 +688,7 @@ abstr:ExportFeatures a :Abstraction ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            rdfs:comment "The administrative areas of the Netherlands at municipal, provincial, and national levels as vector polygons" ] ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -699,12 +697,12 @@ abstr:ExtractByMask a :Abstraction ;
     rdfs:comment "Extract raster by the extent of another (field) raster." ;
     cct:expression "subset (1: Field(Loc)) (pi1 (2: Field(Nom)))" ;
     :implementation arcgis:ExtractByMask ;
-    :input [ a ccd:FieldRaster ;
-            :id "2" ],
-        [ a ccd:FieldRaster,
+    :input [ a ccd:FieldRaster,
                 ccd:RatioA ;
             rdfs:comment "Flow directions by watershed mask" ;
-            :id "1" ] ;
+            :id "1" ],
+        [ a ccd:FieldRaster ;
+            :id "2" ] ;
     :output [ a ccd:FieldRaster,
                 ccd:RatioA ] .
 
@@ -726,7 +724,7 @@ abstr:FeatureClassToFeatureClass a :Abstraction ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ;
-            rdfs:comment "Buildings with functions" ] ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
@@ -736,7 +734,7 @@ abstr:FeatureClassToFeatureClass2 a :Abstraction ;
     :implementation arcgis:FeatureClassToFeatureClass ;
     :input [ a ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            rdfs:comment "The boundaries of the Amsterdam district as vector polygons" ] ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
 
@@ -775,12 +773,12 @@ abstr:FlowLength a :Abstraction ;
     :implementation arcgis:FlowLength ;
     :input [ a ccd:FieldRaster,
                 ccd:RatioA ;
-            rdfs:comment "Impedance Weight raster (e.g. 1/velocity raster)" ;
-            :id "1" ],
+            rdfs:comment "Flow direction raster;" ;
+            :id "2" ],
         [ a ccd:FieldRaster,
                 ccd:RatioA ;
-            rdfs:comment "Flow direction raster;" ;
-            :id "2" ] ;
+            rdfs:comment "Impedance Weight raster (e.g. 1/velocity raster)" ;
+            :id "1" ] ;
     :output [ a ccd:FieldRaster,
                 ccd:RatioA ;
             rdfs:comment "Flow time raster" ] .
@@ -797,7 +795,8 @@ abstr:GenerateIntersections a :Abstraction ;
     :implementation multi:GenerateIntersections ;
     :input [ a ccd:LineA,
                 ccd:NominalA,
-                ccd:ObjectQ ] ;
+                ccd:ObjectQ ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ] .
@@ -812,15 +811,14 @@ abstr:GenerateNearTable a :Abstraction ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ;
-            rdfs:comment "Point locations of waste containers in Amsterdam" ],
+            :id "2" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ;
-            rdfs:comment "Vector points representing residential dwellings in the Centrum neighborhood of Amsterdam" ] ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA,
-                ccd:RatioA ;
-            rdfs:comment "Vector points representing residential dwellings in the centrum neighborhood of amsterdam with the distance to the nearest waste container as an attribute" ] .
+                ccd:RatioA ] .
 
 abstr:IDWInterval a :Abstraction ;
     rdfs:comment "Standard point interpolation for interval measurements." ;
@@ -842,10 +840,11 @@ arealinterpol
     :input [ a ccd:LineA,
                 ccd:NominalA,
                 ccd:ObjectQ ;
-            rdfs:comment "A custom-generated route through Amsterdam" ],
+            :id "2" ],
         [ a ccd:IRA,
                 ccd:ObjectQ,
-                ccd:VectorTessellationA ] ;
+                ccd:VectorTessellationA ;
+            :id "1" ] ;
     :output [ a ccd:IRA,
                 ccd:LineA,
                 ccd:ObjectQ ] .
@@ -864,12 +863,12 @@ abstr:IntersectDissolveField2Object a :Abstraction ;
             ) in))
         """ ;
     :implementation multi:IntersectDissolve ;
-    :input [ a ccd:FieldQ,
+    :input [ a ccd:ObjectQ,
                 ccd:VectorRegionA ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
+            :id "2" ],
+        [ a ccd:FieldQ,
                 ccd:VectorRegionA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:ERA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ] .
@@ -879,12 +878,12 @@ abstr:JoinCountAttribute a :Abstraction ;
 2: ObjectExtent; 
 join_attr 2 1""" ;
     :implementation multi:JoinCountAttribute ;
-    :input [ a ccd:ObjectQ,
-                ccd:VectorTessellationA ;
-            rdfs:comment "Vector polygons representing neighborhoods in Amsterdam" ],
-        [ a ccd:CountA,
+    :input [ a ccd:CountA,
                 ccd:ObjectQ ;
-            rdfs:comment "Table with counts of crime for each neighborhood in Amsterdam" ] ;
+            :id "1" ],
+        [ a ccd:ObjectQ,
+                ccd:VectorTessellationA ;
+            :id "2" ] ;
     :output [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -894,12 +893,13 @@ abstr:JoinObjectRatios a :Abstraction ;
     2:ObjectInfo(Ratio);
     join_attr (get_attrL 1) (get_attrR 2)""" ;
     :implementation multi:JoinObjectRatios ;
-    :input [ a ccd:NominalA,
+    :input [ a ccd:ObjectQ,
+                ccd:RatioA ;
+            :id "2" ],
+        [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ;
-            rdfs:comment "Utrecht neighborhoods " ],
-        [ a ccd:ObjectQ,
-                ccd:RatioA ] ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PlainVectorRegionA,
                 ccd:RatioA ] .
@@ -912,7 +912,8 @@ abstr:KernelDensity a :Abstraction ;
     :implementation arcgis:KernelDensity ;
     :input [ a ccd:ERA,
                 ccd:ObjectQ,
-                ccd:PointA ] ;
+                ccd:PointA ;
+            :id "1" ] ;
     :output [ a ccd:FieldQ,
                 ccd:RasterA,
                 ccd:RatioA ] .
@@ -950,12 +951,13 @@ abstr:LoadCountAmounts a :Abstraction ;
         2: ObjectInfo(_);
         join_attr (get_attrL 2) 1""" ;
     :implementation multi:LoadCountAmounts ;
-    :input [ a ccd:CountA,
-                ccd:ObjectQ ],
-        [ a ccd:NominalA,
+    :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            rdfs:comment "Vector polygons representing neighborhoods in Amsterdam" ] ;
+            :id "2" ],
+        [ a ccd:CountA,
+                ccd:ObjectQ ;
+            :id "1" ] ;
     :output [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -1023,13 +1025,16 @@ abstr:Merge a :Abstraction ;
     :implementation arcgis:Merge ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ],
+                ccd:PointA ;
+            :id "1" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ],
+                ccd:PointA ;
+            :id "2" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ] ;
+                ccd:PointA ;
+            :id "3" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ] .
@@ -1138,13 +1143,14 @@ abstr:RouteAnalysis a :Abstraction ;
     :implementation multi:RouteAnalysis ;
     :input [ a ccd:ObjectQ,
                 ccd:PointA ;
-            rdfs:comment "Points representing work, sport and store locations" ],
+            :id "2" ],
         [ a ccd:ObjectQ,
                 ccd:PointA ;
-            rdfs:comment "Point location of a home address" ],
+            :id "3" ],
         [ a ccd:LineA,
                 ccd:NetworkQ,
-                ccd:RatioA ] ;
+                ccd:RatioA ;
+            :id "1" ] ;
     :output [ a ccd:LineA,
                 ccd:NominalA,
                 ccd:ObjectQ ] .
@@ -1174,7 +1180,7 @@ abstr:SelectLayerByAttribute a :Abstraction ;
     :input [ a ccd:FieldQ,
                 ccd:NominalA,
                 ccd:VectorTessellationA ;
-            rdfs:comment "Land use dataset of Amsterdam" ] ;
+            :id "1" ] ;
     :output [ a ccd:FieldQ,
                 ccd:NominalA,
                 ccd:PlainVectorRegionA ] .
@@ -1185,11 +1191,10 @@ abstr:SelectLayerByAttribute2 a :Abstraction ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ;
-            rdfs:comment "Point locations of dwellings in the Netherlands" ] ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ;
-            rdfs:comment "Point locations of dwellings with a residential function" ] .
+                ccd:PointA ] .
 
 abstr:SelectLayerByAttribute3 a :Abstraction ;
     cct:expression "subset (1: ObjectInfo(Nom)) (-: C(Nom))" ;
@@ -1197,11 +1202,10 @@ abstr:SelectLayerByAttribute3 a :Abstraction ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            rdfs:comment "Amsterdam city neighborhoods" ] ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PlainVectorRegionA ;
-            rdfs:comment "A vector polygon representing the Centrum neighborhood of Amsterdam" ] .
+                ccd:PlainVectorRegionA ] .
 
 abstr:SelectLayerByAttributeLineObjects a :Abstraction ;
     cct:expression "subset (1: ObjectInfo(Nom)) (-: C(Nom))" ;
@@ -1253,7 +1257,7 @@ abstr:SelectLayerByAttributeTessObjects2 a :Abstraction ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            rdfs:comment "MetropolitanEmploymentAreas: Urbanization levels in Shikoku, Japan (Polygon)" ] ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
 
@@ -1270,16 +1274,15 @@ abstr:SelectLayerByLocation a :Abstraction ;
     :implementation arcgis:SelectLayerByLocation ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ;
-            rdfs:comment "Point locations of dwellings with a residential function" ],
+                ccd:PlainVectorRegionA ;
+            :id "2" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PlainVectorRegionA ;
-            rdfs:comment "A vector polygon representing the Centrum neighborhood of Amsterdam" ] ;
+                ccd:PointA ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ;
-            rdfs:comment "Vector points representing residential dwellings in the Centrum neighborhood of Amsterdam" ] .
+                ccd:PointA ] .
 
 abstr:SelectLayerByLocationDistTessObject a :Abstraction ;
     cct:expression """        1: ObjectInfo(Nom);
@@ -1295,10 +1298,11 @@ abstr:SelectLayerByLocationDistTessObject a :Abstraction ;
     :input [ a ccd:LineA,
                 ccd:NominalA,
                 ccd:ObjectQ ;
-            rdfs:comment "Vector line segments representing the A2 highway in the Netherlands" ],
+            :id "2" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:VectorTessellationA ] ;
+                ccd:VectorTessellationA ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
@@ -1427,10 +1431,11 @@ abstr:SelectLayerByLocationPointObjects1 a :Abstraction ;
             ))""" ;
     :implementation multi:SelectLayerByLocationPointObjects1 ;
     :input [ a ccd:ObjectQ,
-                ccd:PlainVectorRegionA ],
+                ccd:PlainVectorRegionA ;
+            :id "2" ],
         [ a ccd:ObjectQ,
                 ccd:PointA ;
-            rdfs:comment "Point locations representing supermarkets" ] ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA ] .
 
@@ -1446,9 +1451,11 @@ abstr:SelectLayerByLocationPointObjects2 a :Abstraction ;
             ))""" ;
     :implementation multi:SelectLayerByLocationPointObjects2 ;
     :input [ a ccd:ObjectQ,
-                ccd:PlainVectorRegionA ],
+                ccd:PlainVectorRegionA ;
+            :id "2" ],
         [ a ccd:ObjectQ,
-                ccd:PointA ] ;
+                ccd:PointA ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA ] .
 
@@ -1463,13 +1470,14 @@ abstr:SelectLayerByLocationTessObject a :Abstraction ;
                 in
             ))""" ;
     :implementation multi:SelectLayerByLocationTessObject ;
-    :input [ a ccd:CountA,
+    :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ;
-            rdfs:comment "Vector polygons showing where population centers are in the Netherlands" ],
-        [ a ccd:NominalA,
+            :id "2" ],
+        [ a ccd:CountA,
                 ccd:ObjectQ,
-                ccd:PlainVectorRegionA ] ;
+                ccd:PlainVectorRegionA ;
+            :id "1" ] ;
     :output [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
@@ -1621,7 +1629,7 @@ abstr:SelectNeighborhoodsByAttributeTessObjects a :Abstraction ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            rdfs:comment "Vector polygons representing neighborhoods in the Netherlands" ] ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
@@ -1639,10 +1647,12 @@ abstr:SelectNeighborhoodsByLocationDistPointObject a :Abstraction ;
     :implementation multi:SelectNeighborhoodsByLocationDistPointObject ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PlainVectorRegionA ],
+                ccd:PlainVectorRegionA ;
+            :id "2" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ] ;
+                ccd:PointA ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
@@ -1652,7 +1662,8 @@ abstr:SelectNeighborhoodsByRatioObjects a :Abstraction ;
     :implementation multi:SelectNeighborhoodsByRatioObjects ;
     :input [ a ccd:ObjectQ,
                 ccd:PlainVectorRegionA,
-                ccd:RatioA ] ;
+                ccd:RatioA ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PlainVectorRegionA,
                 ccd:RatioA ] .
@@ -1687,11 +1698,12 @@ abstr:SelectSchoolsByLocationPointObject a :Abstraction ;
     :implementation multi:SelectSchoolsByLocationPointObject ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PlainVectorRegionA ],
+                ccd:PointA ;
+            :id "1" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ;
-            rdfs:comment "Vector points representing schools in the Netherlands" ] ;
+                ccd:PlainVectorRegionA ;
+            :id "2" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ] .
@@ -1701,7 +1713,7 @@ abstr:SelectWOZByRatioObjects a :Abstraction ;
     :implementation multi:SelectWOZByRatioObjects ;
     :input [ a ccd:ObjectQ,
                 ccd:RatioA ;
-            rdfs:comment "Table with average WOZ data per neigborhood" ] ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:RatioA ] .
 
@@ -1724,13 +1736,13 @@ abstr:SnapPourPoint a :Abstraction ;
         join (revert (get_attrL 1)) (get_attrR 1)
         """ ;
     :implementation arcgis:SnapPourPoint ;
-    :input [ a ccd:FieldRaster,
+    :input [ a ccd:ObjectQ,
+                ccd:PointA ;
+            :id "1" ],
+        [ a ccd:FieldRaster,
                 ccd:RatioA ;
             rdfs:comment "flow accumulation raster" ;
-            :id "2" ],
-        [ a ccd:ObjectQ,
-                ccd:PointA ;
-            :id "1" ] ;
+            :id "2" ] ;
     :output [ a ccd:FieldQ,
                 ccd:PlainNominalA,
                 ccd:RasterA ] .
@@ -1751,11 +1763,11 @@ abstr:SpatialJoin a :Abstraction ;
     :input [ a ccd:ObjectQ,
                 ccd:PointA,
                 ccd:RatioA ;
-            rdfs:comment "Vector points representing residential dwellings in the Centrum neighborhood of Amsterdam with the travel time to the nearest waste container as an attribute" ],
+            :id "1" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ;
-            rdfs:comment "A vector polygon representing the Centrum neighborhood of Amsterdam" ] ;
+            :id "2" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PlainVectorRegionA,
                 ccd:RatioA ] .
@@ -1781,13 +1793,13 @@ abstr:SpatialJoinAmountSumTessCount a :Abstraction ;
             )
         """ ;
     :implementation arcgis:SpatialJoin ;
-    :input [ a ccd:AmountQ,
+    :input [ a ccd:ObjectQ,
+                ccd:VectorTessellationA ;
+            :id "2" ],
+        [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:VectorRegionA ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
-                ccd:VectorTessellationA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -1839,11 +1851,11 @@ abstr:SpatialJoinCountTess a :Abstraction ;
         """ ;
     :implementation arcgis:SpatialJoin ;
     :input [ a ccd:ObjectQ,
-                ccd:VectorA ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            :id "2" ] ;
+            :id "2" ],
+        [ a ccd:ObjectQ,
+                ccd:VectorA ;
+            :id "1" ] ;
     :output [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -1894,13 +1906,13 @@ abstr:SpatialJoinMeanTessInterval a :Abstraction ;
             )
         """ ;
     :implementation arcgis:SpatialJoin ;
-    :input [ a ccd:IntervalA,
+    :input [ a ccd:ObjectQ,
+                ccd:VectorTessellationA ;
+            :id "2" ],
+        [ a ccd:IntervalA,
                 ccd:ObjectQ,
                 ccd:VectorA ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
-                ccd:VectorTessellationA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:IntervalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -1923,12 +1935,12 @@ abstr:SpatialJoinMeanTessRatio a :Abstraction ;
         """ ;
     :implementation arcgis:SpatialJoin ;
     :input [ a ccd:ObjectQ,
-                ccd:VectorTessellationA ;
-            :id "2" ],
-        [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorA ;
-            :id "1" ] ;
+            :id "1" ],
+        [ a ccd:ObjectQ,
+                ccd:VectorTessellationA ;
+            :id "2" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorTessellationA ] .
@@ -1979,13 +1991,13 @@ abstr:SpatialJoinSumTessRatio a :Abstraction ;
             )))
         """ ;
     :implementation arcgis:SpatialJoin ;
-    :input [ a ccd:ERA,
+    :input [ a ccd:ObjectQ,
+                ccd:VectorTessellationA ;
+            :id "2" ],
+        [ a ccd:ERA,
                 ccd:ObjectQ,
                 ccd:VectorA ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
-                ccd:VectorTessellationA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:ERA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -2003,10 +2015,11 @@ abstr:SummarizeWithin a :Abstraction ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            rdfs:comment "vector polygons representing buurten of Amsterdam to local file" ],
+            :id "2" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ] ;
+                ccd:PointA ;
+            :id "1" ] ;
     :output [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -2024,13 +2037,14 @@ abstr:SummarizeWithin2 a :Abstraction ;
                 )
             )""" ;
     :implementation arcgis:SummarizeWithin ;
-    :input [ a ccd:FieldQ,
-                ccd:NominalA,
-                ccd:PlainVectorRegionA ],
-        [ a ccd:NominalA,
+    :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            rdfs:comment "Vector polygons representing neighborhoods in Amsterdam" ] ;
+            :id "2" ],
+        [ a ccd:FieldQ,
+                ccd:NominalA,
+                ccd:PlainVectorRegionA ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorTessellationA ] .
@@ -2040,7 +2054,8 @@ abstr:SummaryStatistics a :Abstraction ;
     :implementation arcgis:SummaryStatistics ;
     :input [ a ccd:CountA,
                 ccd:ObjectQ,
-                ccd:PlainVectorRegionA ] ;
+                ccd:PlainVectorRegionA ;
+            :id "1" ] ;
     :output [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:PlainVectorRegionA ] .
@@ -2050,7 +2065,8 @@ abstr:SummaryStatistics2 a :Abstraction ;
     :implementation arcgis:SummaryStatistics ;
     :input [ a ccd:AmountQ,
                 ccd:CountA,
-                ccd:PlainVectorRegionA ] ;
+                ccd:PlainVectorRegionA ;
+            :id "1" ] ;
     :output [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:PlainVectorRegionA ] .
@@ -2063,7 +2079,8 @@ abstr:SummaryStatistics3 a :Abstraction ;
     :implementation arcgis:SummaryStatistics ;
     :input [ a ccd:ObjectQ,
                 ccd:PointA,
-                ccd:RatioA ] ;
+                ccd:RatioA ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PlainVectorRegionA,
                 ccd:RatioA ] .
@@ -2086,17 +2103,18 @@ abstr:TSPRouting a :Abstraction ;
 3: ObjectInfo(Nom);        
            nRoutes (get_attrL 2) (get_attrL 3) 1""" ;
     :implementation multi:TSPRouting ;
-    :input [ a ccd:NominalA,
-                ccd:ObjectQ,
-                ccd:PointA ;
-            rdfs:comment "Point location of waste facilityin Amsterdam" ],
-        [ a ccd:LineA,
+    :input [ a ccd:LineA,
                 ccd:NetworkQ,
-                ccd:RatioA ],
+                ccd:RatioA ;
+            :id "1" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ;
-            rdfs:comment "Point locations of waste containers in Amsterdam" ] ;
+            :id "2" ],
+        [ a ccd:NominalA,
+                ccd:ObjectQ,
+                ccd:PointA ;
+            :id "3" ] ;
     :output [ a ccd:LineA,
                 ccd:NetworkQ ] .
 
@@ -2106,12 +2124,12 @@ abstr:VelocityFieldDEM a :Abstraction ;
     :implementation multi:VelocityField ;
     :input [ a ccd:FieldRaster,
                 ccd:RatioA ;
-            rdfs:comment "accumulation area" ;
-            :id "2" ],
+            rdfs:comment "slope" ;
+            :id "1" ],
         [ a ccd:FieldRaster,
                 ccd:RatioA ;
-            rdfs:comment "slope" ;
-            :id "1" ] ;
+            rdfs:comment "accumulation area" ;
+            :id "2" ] ;
     :output [ a ccd:FieldRaster,
                 ccd:RatioA ;
             rdfs:comment "velocity" ] .
@@ -2195,12 +2213,12 @@ abstr:ZonalStatisticsSize a :Abstraction ;
             ) in))
         """ ;
     :implementation multi:ZonalStatistics ;
-    :input [ a ccd:FieldRaster,
-                ccd:NominalA ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
+    :input [ a ccd:ObjectQ,
                 ccd:VectorRegionA ;
-            :id "2" ] ;
+            :id "2" ],
+        [ a ccd:FieldRaster,
+                ccd:NominalA ;
+            :id "1" ] ;
     :output [ a ccd:ERA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ] .
@@ -2218,13 +2236,13 @@ abstr:ZonalStatisticsSumCount a :Abstraction ;
             )
         """ ;
     :implementation multi:ZonalStatistics ;
-    :input [ a ccd:AmountQ,
+    :input [ a ccd:ObjectQ,
+                ccd:VectorRegionA ;
+            :id "2" ],
+        [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:RasterA ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
-                ccd:VectorRegionA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ] .
@@ -2239,13 +2257,14 @@ abstr:ZonalStatisticsSumField a :Abstraction ;
             1
         )) """ ;
     :implementation multi:ZonalStatisticsSumField ;
-    :input [ a ccd:FieldQ,
-                ccd:RasterA,
-                ccd:RatioA ],
-        [ a ccd:NominalA,
+    :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ;
-            rdfs:comment "A vector polygon representing the Centrum neighborhood of Amsterdam" ] ;
+            :id "2" ],
+        [ a ccd:FieldQ,
+                ccd:RasterA,
+                ccd:RatioA ;
+            :id "1" ] ;
     :output [ a ccd:ERA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
@@ -2256,7 +2275,8 @@ abstr:addObjectCapacity a :Abstraction ;
     :implementation multi:addObjectCapacity ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ] ;
+                ccd:PointA ;
+            :id "1" ] ;
     :output [ a ccd:ERA,
                 ccd:ObjectQ,
                 ccd:PointA ] .
@@ -2278,12 +2298,12 @@ abstr:con2 a :Abstraction ;
     :implementation arcgis:Con ;
     :input [ a ccd:FieldRaster,
                 ccd:RatioA ;
-            rdfs:comment "field raster to be cut" ;
-            :id "2" ],
+            rdfs:comment "conditional raster, less than some value" ;
+            :id "1" ],
         [ a ccd:FieldRaster,
                 ccd:RatioA ;
-            rdfs:comment "conditional raster, less than some value" ;
-            :id "1" ] ;
+            rdfs:comment "field raster to be cut" ;
+            :id "2" ] ;
     :output [ a ccd:FieldRaster,
                 ccd:RatioA ] .
 
@@ -2303,12 +2323,12 @@ abstr:con3 a :Abstraction ;
     :implementation arcgis:Con ;
     :input [ a ccd:FieldRaster,
                 ccd:RatioA ;
-            rdfs:comment "field raster to be cut for inside" ;
-            :id "2" ],
-        [ a ccd:FieldRaster,
-                ccd:RatioA ;
             rdfs:comment "field raster to be cut for outside" ;
             :id "3" ],
+        [ a ccd:FieldRaster,
+                ccd:RatioA ;
+            rdfs:comment "field raster to be cut for inside" ;
+            :id "2" ],
         [ a ccd:FieldRaster,
                 ccd:RatioA ;
             rdfs:comment "conditional raster, less than some value" ;
@@ -2321,7 +2341,7 @@ abstr:convert2PointObjects a :Abstraction ;
     :implementation multi:convert2PointObjects ;
     :input [ a ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            rdfs:comment "Vector polygon data of buildings with their functions as attributes" ] ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA ] .
 
@@ -2330,29 +2350,30 @@ abstr:makePointObjects a :Abstraction ;
     :implementation multi:makePointObjects ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PlainVectorRegionA ] ;
+                ccd:PlainVectorRegionA ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ] .
 
 multi:ClosestFacilityAnalysis a :Multi ;
-    :action [ :apply arcgis:MakeClosestFacilityAnalysisLayer ;
-            :input [ rdfs:comment "roads" ;
-                    :id "1" ] ;
-            :output _:Ncd36b13bce4542a2a44bfdfc5c464079 ],
-        [ :apply arcgis:AddLocations ;
+    :action [ :apply arcgis:AddLocations ;
             :input [ rdfs:comment "goals" ;
                     :id "2" ],
-                _:Ncd36b13bce4542a2a44bfdfc5c464079 ;
-            :output _:Nf45791050f744c6f96fa37806c27e3a2 ],
+                _:N62ef45a8383540e49c42ff90dcd91a8b ;
+            :output _:N6ac30ac3675f4710b21360e518ab76d5 ],
+        [ :apply arcgis:MakeClosestFacilityAnalysisLayer ;
+            :input [ rdfs:comment "roads" ;
+                    :id "1" ] ;
+            :output _:N62ef45a8383540e49c42ff90dcd91a8b ],
         [ :apply arcgis:Solve ;
-            :input _:N730e7bc910d4492fb5829001103b692b ;
+            :input _:N5b4a5e517ae44b6f9c7c6c07c56a4416 ;
             :output [ ] ],
         [ :apply arcgis:AddLocations ;
             :input [ rdfs:comment "origins" ;
                     :id "3" ],
-                _:Nf45791050f744c6f96fa37806c27e3a2 ;
-            :output _:N730e7bc910d4492fb5829001103b692b ] .
+                _:N6ac30ac3675f4710b21360e518ab76d5 ;
+            :output _:N5b4a5e517ae44b6f9c7c6c07c56a4416 ] .
 
 arcgis:AddGeometryAttributes a :Unit ;
     rdfs:seeAlso arcdm:add-geometry-attributes.htm .
@@ -2435,414 +2456,414 @@ arcgis:Watershed a :Unit ;
     rdfs:seeAlso arcsa:watershed.htm .
 
 multi:BufferDissolve a :Multi ;
-    :action [ :apply arcgis:Buffer ;
-            :input [ ] ;
-            :output _:N4815882cd1054a8bbc97c5db63a043b7 ],
-        [ :apply arcgis:Dissolve ;
-            :input _:N4815882cd1054a8bbc97c5db63a043b7 ;
-            :output [ ] ] .
+    :action [ :apply arcgis:Dissolve ;
+            :input _:N4d663a175d3647c0acb5c70874f2239d ;
+            :output [ ] ],
+        [ :apply arcgis:Buffer ;
+            :input [ :id "1" ] ;
+            :output _:N4d663a175d3647c0acb5c70874f2239d ] .
 
 multi:CalculateCountAmountRatio a :Multi ;
-    :action [ :apply arcgis:CalculateField ;
-            :input _:Ne9f65cb96d934de4b59e4831bcf9ee64 ;
-            :output [ ] ],
-        [ :apply arcgis:JoinField ;
-            :input _:N383005d8ca314dd8b84903a52051ad71,
-                _:Nc8b643406dc34e7b8219061141f56b6d ;
-            :output _:Ne9f65cb96d934de4b59e4831bcf9ee64 ],
+    :action [ :apply arcgis:AddFields ;
+            :input [ :id "2" ] ;
+            :output _:N6ed9bd2649a149d3ad69cdc40cef3add ],
+        [ :apply arcgis:CalculateField ;
+            :input _:N5a031938014b418d94a309cdba899fda ;
+            :output _:N6f04345031214deb9f0c643aab772601 ],
         [ :apply arcgis:AddField ;
-            :input [ ] ;
-            :output _:N7c1b6060859a4a658356b0497115d475 ],
-        [ :apply arcgis:AddFields ;
-            :input [ ] ;
-            :output _:N0e6605fa3b0a44deac8e62eea35c2429 ],
+            :input [ :id "1" ] ;
+            :output _:N5a031938014b418d94a309cdba899fda ],
+        [ :apply arcgis:JoinField ;
+            :input _:N65c0d736947c42019f8071cd83939fa9,
+                _:N6f04345031214deb9f0c643aab772601 ;
+            :output _:N2cc09164109a47319da01c62064c07d8 ],
         [ :apply arcgis:CalculateField ;
-            :input _:N7c1b6060859a4a658356b0497115d475 ;
-            :output _:Nc8b643406dc34e7b8219061141f56b6d ],
+            :input _:N2cc09164109a47319da01c62064c07d8 ;
+            :output [ ] ],
         [ :apply arcgis:CalculateField ;
-            :input _:N0e6605fa3b0a44deac8e62eea35c2429 ;
-            :output _:N383005d8ca314dd8b84903a52051ad71 ] .
+            :input _:N6ed9bd2649a149d3ad69cdc40cef3add ;
+            :output _:N65c0d736947c42019f8071cd83939fa9 ] .
 
 multi:CalculateDensityonObject a :Multi ;
     :action [ :apply arcgis:AddField ;
-            :input _:N179b324c86084df5894e820aafe03a7c ;
-            :output _:Nc50687ee023d4a2197eeb9db0bfd3fdc ],
-        [ :apply arcgis:CalculateGeometryAttributes ;
-            :input _:Nc50687ee023d4a2197eeb9db0bfd3fdc ;
-            :output _:N3ca18247e0e14165be582e7c6d05bb3e ],
-        [ :apply arcgis:AddField ;
-            :input [ ] ;
-            :output _:N179b324c86084df5894e820aafe03a7c ],
+            :input _:N07d6dd277a414d0f8b318bc04cd25dd5 ;
+            :output _:N679708aae2794bcaa5dd5186ac08d89a ],
         [ :apply arcgis:CalculateField ;
-            :input _:N3ca18247e0e14165be582e7c6d05bb3e ;
-            :output [ ] ] .
+            :input _:Nd9c280e51916444994fac1ad5e7d1eeb ;
+            :output [ ] ],
+        [ :apply arcgis:AddField ;
+            :input [ :id "1" ] ;
+            :output _:N07d6dd277a414d0f8b318bc04cd25dd5 ],
+        [ :apply arcgis:CalculateGeometryAttributes ;
+            :input _:N679708aae2794bcaa5dd5186ac08d89a ;
+            :output _:Nd9c280e51916444994fac1ad5e7d1eeb ] .
 
 multi:CalculateDiversity4onObjectVector a :Multi ;
     :action [ :apply arcgis:CalculateField ;
-            :input _:N153636ee6fd641bbac8223da11989fd9,
-                [ ],
-                [ ],
-                [ ] ;
+            :input [ :id "3" ],
+                _:N2e5d2cccba574108b57e8a63c0fdd2cb,
+                [ :id "1" ],
+                [ :id "2" ] ;
             :output [ ] ],
         [ :apply arcgis:AddField ;
-            :input [ ] ;
-            :output _:N153636ee6fd641bbac8223da11989fd9 ] .
+            :input [ :id "4" ] ;
+            :output _:N2e5d2cccba574108b57e8a63c0fdd2cb ] .
 
 multi:CalculateObjectVectorAmountRatio a :Multi ;
-    :action [ :apply arcgis:CalculateField ;
-            :input _:N169f0259a8564fc687fd7506e96fec1a,
-                [ ] ;
-            :output [ ] ],
-        [ :apply arcgis:AddField ;
-            :input [ ] ;
-            :output _:N169f0259a8564fc687fd7506e96fec1a ] .
+    :action [ :apply arcgis:AddField ;
+            :input [ :id "2" ] ;
+            :output _:N085f8a9516f047ffb5bb893860ac01ff ],
+        [ :apply arcgis:CalculateField ;
+            :input _:N085f8a9516f047ffb5bb893860ac01ff,
+                [ :id "1" ] ;
+            :output [ ] ] .
 
 multi:CalculateObjectVectorDensity a :Multi ;
-    :action [ :apply arcgis:AddGeometryAttributes ;
-            :input [ ] ;
-            :output _:N1bb8ab256d3543d68142c5282473ea2c ],
+    :action [ :apply arcgis:CalculateField ;
+            :input _:N8bc5a58ad7ae4a05a93e47a7a7286c6b ;
+            :output [ ] ],
+        [ :apply arcgis:AddGeometryAttributes ;
+            :input [ :id "1" ] ;
+            :output _:Nd8c005f88b724e8f9da1e04f5a448ec4 ],
         [ :apply arcgis:AddField ;
-            :input _:N1bb8ab256d3543d68142c5282473ea2c ;
-            :output _:N689f44cd471848fabe3d4a6a5493b34b ],
-        [ :apply arcgis:CalculateField ;
-            :input _:N689f44cd471848fabe3d4a6a5493b34b ;
-            :output [ ] ] .
+            :input _:Nd8c005f88b724e8f9da1e04f5a448ec4 ;
+            :output _:N8bc5a58ad7ae4a05a93e47a7a7286c6b ] .
 
 multi:CalculatePartialAmounts a :Multi ;
     rdfs:comment "Calculates a set of portions from a set of object based count amounts using some boolean vector field. Only the portions that are within the true value of the boolean field are considered. This is an areal interpolation problem, which is solved by first generating area proportions and then multiplying them with the count amount." ;
+    :action [ :apply arcgis:CalculateField ;
+            :input _:Nf7706f846ada4c6b887b195d9a908b52 ;
+            :output _:N3063f3f3033b491e86679b0ef62442c7 ],
+        [ :apply arcgis:Clip ;
+            :input [ :id "1" ],
+                [ :id "2" ] ;
+            :output _:N6857320ae0d548358b3bd10c71658505 ],
+        [ :apply arcgis:CalculateField ;
+            :input _:N3063f3f3033b491e86679b0ef62442c7 ;
+            :output [ ] ],
+        [ :apply arcgis:AddFields ;
+            :input _:N6857320ae0d548358b3bd10c71658505 ;
+            :output _:Nf7706f846ada4c6b887b195d9a908b52 ] .
+
+multi:CalculatePartialAmountsfromObjects a :Multi ;
     :action [ :apply arcgis:Clip ;
             :input [ :id "1" ],
                 [ :id "2" ] ;
-            :output _:N7cfbf75012b2495a88d12e4fc4478829 ],
+            :output _:N25035eec75db4b8096fc192ffc24d55c ],
         [ :apply arcgis:CalculateField ;
-            :input _:N9c61fd3ea5cd4ed9bfd0f46d018d2a49 ;
-            :output _:N75b8b97dc8d9473186ea9afa1945abbb ],
-        [ :apply arcgis:AddFields ;
-            :input _:N7cfbf75012b2495a88d12e4fc4478829 ;
-            :output _:N9c61fd3ea5cd4ed9bfd0f46d018d2a49 ],
+            :input _:N531532b66eee4ba097e3d364a61e8492 ;
+            :output _:N7773212508104bf9b3e1ff4c1a1fc194 ],
         [ :apply arcgis:CalculateField ;
-            :input _:N75b8b97dc8d9473186ea9afa1945abbb ;
-            :output [ ] ] .
-
-multi:CalculatePartialAmountsfromObjects a :Multi ;
-    :action [ :apply arcgis:CalculateField ;
-            :input _:N34c88b891eda4acebe947dc3e9f1d243 ;
-            :output _:N9f036abefb974db8a828856deb498f11 ],
-        [ :apply arcgis:CalculateField ;
-            :input _:N9f036abefb974db8a828856deb498f11 ;
+            :input _:N7773212508104bf9b3e1ff4c1a1fc194 ;
             :output [ ] ],
         [ :apply arcgis:AddFields ;
-            :input _:N287f0ebe83974539893c4a93ba1e362e ;
-            :output _:N34c88b891eda4acebe947dc3e9f1d243 ],
-        [ :apply arcgis:Clip ;
-            :input [ ],
-                [ ] ;
-            :output _:N287f0ebe83974539893c4a93ba1e362e ] .
+            :input _:N25035eec75db4b8096fc192ffc24d55c ;
+            :output _:N531532b66eee4ba097e3d364a61e8492 ] .
 
 multi:ClostestFacilityAnalysis a :Multi ;
     :action [ :apply arcgis:AddLocations ;
-            :input [ ],
-                _:Nb6010c2e8c1f49d982ae0ff1ab3fbfa9 ;
-            :output _:N562faf4883104fd198b805dfb8f44dd3 ],
-        [ :apply arcgis:AddLocations ;
-            :input [ ],
-                _:N562faf4883104fd198b805dfb8f44dd3 ;
-            :output _:N5ddfb7edb85143ac928fd2dbfc316358 ],
+            :input _:N21f1d6d530444feea69f1c9096dbe921,
+                [ :id "2" ] ;
+            :output _:N13807649eb5c4cae8b3a2301bb59f4fa ],
         [ :apply arcgis:Solve ;
-            :input _:N5ddfb7edb85143ac928fd2dbfc316358 ;
+            :input _:Na552711751f64e74a7a013b57081beb0 ;
             :output [ ] ],
+        [ :apply arcgis:AddLocations ;
+            :input [ :id "3" ],
+                _:N13807649eb5c4cae8b3a2301bb59f4fa ;
+            :output _:Na552711751f64e74a7a013b57081beb0 ],
         [ :apply arcgis:MakeClosestFacilityAnalysisLayer ;
-            :input [ ] ;
-            :output _:Nb6010c2e8c1f49d982ae0ff1ab3fbfa9 ] .
+            :input [ :id "1" ] ;
+            :output _:N21f1d6d530444feea69f1c9096dbe921 ] .
 
 multi:ComputeCountDensityonObject a :Multi ;
-    :action [ :apply arcgis:CalculateField ;
-            :input _:N43a6650c9b89496caf5a3b40863050ff ;
-            :output _:N36008d7de82a459987010909bcdbbd9a ],
-        [ :apply arcgis:CalculateGeometryAttributes ;
-            :input _:N0c1dff94ccb84394b3523acfa05bee25 ;
-            :output _:Nadf7b14444524316baf9cd7b3894464d ],
-        [ :apply arcgis:AddField ;
-            :input [ ] ;
-            :output _:N0c1dff94ccb84394b3523acfa05bee25 ],
+    :action [ :apply arcgis:AddField ;
+            :input _:Nf4b5eb3d17ac487080b633dea2c28717 ;
+            :output _:N9500bf7caced4adca309e5362f566bb9 ],
         [ :apply arcgis:CalculateField ;
-            :input _:N76921631530a4825b00c08b5d682deb8 ;
+            :input _:Naaeb90e204944e5392ee92bd05d2dc7a ;
             :output [ ] ],
+        [ :apply arcgis:CalculateField ;
+            :input _:N9500bf7caced4adca309e5362f566bb9 ;
+            :output _:N6c8f457a70c3476dba9d3965a1670696 ],
         [ :apply arcgis:AddField ;
-            :input _:N36008d7de82a459987010909bcdbbd9a ;
-            :output _:N76921631530a4825b00c08b5d682deb8 ],
+            :input [ :id "1" ] ;
+            :output _:Na970980dcede4614a7f432c384d8a36b ],
+        [ :apply arcgis:CalculateGeometryAttributes ;
+            :input _:Na970980dcede4614a7f432c384d8a36b ;
+            :output _:Nf4b5eb3d17ac487080b633dea2c28717 ],
         [ :apply arcgis:AddField ;
-            :input _:Nadf7b14444524316baf9cd7b3894464d ;
-            :output _:N43a6650c9b89496caf5a3b40863050ff ] .
+            :input _:N6c8f457a70c3476dba9d3965a1670696 ;
+            :output _:Naaeb90e204944e5392ee92bd05d2dc7a ] .
 
 multi:ConvertDist2TravelTimeonObjects a :Multi ;
     :action [ :apply arcgis:CalculateField ;
-            :input _:Ne472584cb7b34b398f2cf27ab96fb110 ;
+            :input _:Na5193bcb29be41a8904c1c91fd87cdf8 ;
             :output [ ] ],
         [ :apply arcgis:AddField ;
-            :input [ ] ;
-            :output _:Ne472584cb7b34b398f2cf27ab96fb110 ] .
+            :input [ :id "1" ] ;
+            :output _:Na5193bcb29be41a8904c1c91fd87cdf8 ] .
 
 multi:CreateAndBuildNetwork a :Multi ;
     :action [ :apply arcgis:CreateNetworkDataset ;
-            :input [ ] ;
-            :output _:Nac81b63010a74d999243990d6d5a6200 ],
+            :input [ :id "1" ] ;
+            :output _:N98fe308fcba54c769768e09b503a7e61 ],
         [ :apply arcgis:BuildNetwork ;
-            :input _:Nac81b63010a74d999243990d6d5a6200 ;
+            :input _:N98fe308fcba54c769768e09b503a7e61 ;
             :output [ ] ] .
 
 multi:CreateNetwork a :Multi ;
-    :action [ :apply arcgis:BuildNetwork ;
-            :input _:Nd94ae9a01dde485aa3105053bc1cd8c4 ;
-            :output [ ] ],
-        [ :apply arcgis:CreateNetworkDataset ;
-            :input [ ] ;
-            :output _:Nd94ae9a01dde485aa3105053bc1cd8c4 ] .
-
-multi:DerivePartsOfPopCenters a :Multi ;
-    :action [ :apply arcgis:Clip ;
-            :input [ ],
-                [ ] ;
-            :output _:N9060018c38e2402fa6c35f7a1253ae8a ],
-        [ :apply arcgis:CalculateGeometryAttributes ;
-            :input _:N9060018c38e2402fa6c35f7a1253ae8a ;
-            :output _:N36108685f792480697c779d2cd543e09 ],
-        [ :apply arcgis:AddField ;
-            :input _:N36108685f792480697c779d2cd543e09 ;
-            :output _:N0d14c4a0e14f431eb3c5b402b0f7b46b ],
-        [ :apply arcgis:CalculateField ;
-            :input _:N0d14c4a0e14f431eb3c5b402b0f7b46b ;
+    :action [ :apply arcgis:CreateNetworkDataset ;
+            :input [ :id "1" ] ;
+            :output _:N90a05bdb55814b7ea8b201cafb74763e ],
+        [ :apply arcgis:BuildNetwork ;
+            :input _:N90a05bdb55814b7ea8b201cafb74763e ;
             :output [ ] ] .
 
-multi:GenerateIntersections a :Multi ;
-    :action [ :apply arcgis:CollectEvents ;
-            :input _:N71da904cba7744508db21a93890bca92 ;
-            :output _:N06d340d2905949c4bc65e9e09e6912e3 ],
-        [ :apply arcgis:SelectLayerByAttribute ;
-            :input _:N06d340d2905949c4bc65e9e09e6912e3 ;
+multi:DerivePartsOfPopCenters a :Multi ;
+    :action [ :apply arcgis:CalculateField ;
+            :input _:N956eb7e8b6a643ceb47d34b205baea34 ;
             :output [ ] ],
-        [ :apply arcgis:FeatureVerticesToPoints ;
-            :input [ ] ;
-            :output _:N71da904cba7744508db21a93890bca92 ] .
+        [ :apply arcgis:Clip ;
+            :input [ :id "2" ],
+                [ :id "1" ] ;
+            :output _:N912f2c63fac245cc96a74e33a98cc8b8 ],
+        [ :apply arcgis:AddField ;
+            :input _:N4bcbfc59b55e4946ab1dd3ec3d7122ab ;
+            :output _:N956eb7e8b6a643ceb47d34b205baea34 ],
+        [ :apply arcgis:CalculateGeometryAttributes ;
+            :input _:N912f2c63fac245cc96a74e33a98cc8b8 ;
+            :output _:N4bcbfc59b55e4946ab1dd3ec3d7122ab ] .
+
+multi:GenerateIntersections a :Multi ;
+    :action [ :apply arcgis:FeatureVerticesToPoints ;
+            :input [ :id "1" ] ;
+            :output _:N252fbfd90c4743bf8cd220a8e4929c17 ],
+        [ :apply arcgis:CollectEvents ;
+            :input _:N252fbfd90c4743bf8cd220a8e4929c17 ;
+            :output _:Nfeefe970808e4824b84ab1672eb85103 ],
+        [ :apply arcgis:SelectLayerByAttribute ;
+            :input _:Nfeefe970808e4824b84ab1672eb85103 ;
+            :output [ ] ] .
 
 multi:InterpolateDensityonObjects2LineObject a :Multi ;
-    :action [ :apply arcgis:SummaryStatistics ;
-            :input _:N4d62998ad4ad49228314ad71fc9ab7b5 ;
-            :output [ ] ],
-        [ :apply arcgis:Intersect ;
-            :input [ ],
-                [ ] ;
-            :output _:N4d62998ad4ad49228314ad71fc9ab7b5 ] .
+    :action [ :apply arcgis:Intersect ;
+            :input [ :id "2" ],
+                [ :id "1" ] ;
+            :output _:N5027db52e9184d0286b0cd7799309df7 ],
+        [ :apply arcgis:SummaryStatistics ;
+            :input _:N5027db52e9184d0286b0cd7799309df7 ;
+            :output [ ] ] .
 
 multi:IntersectDissolve a :Multi ;
     rdfs:comment "this tool computes the coverage of a field inside object region by first intersecting and then dissolving  and joining, to obtain the area covered by the field inside the object region" ;
-    :action [ :apply arcgis:JoinField ;
-            :input _:Nce9c5b11219240d2ad3f21f6e64fad05,
-                _:Nd6b0cfd3cc1a4581a8f680bb45b091fa ;
-            :output [ ] ],
-        [ :apply arcgis:MergeObjects ;
-            :input _:Nb4eff30d2e84476087970ff02a225d3b ;
-            :output _:Nce9c5b11219240d2ad3f21f6e64fad05 ],
+    :action [ :apply arcgis:MergeObjects ;
+            :input _:Nbabf447c3d064ca387f85a91984aac45 ;
+            :output _:N07a409a027fe4832a9081a01ddddfe64 ],
         [ :apply arcgis:Intersect ;
             :input [ :id "1" ],
-                _:Nd6b0cfd3cc1a4581a8f680bb45b091fa ;
-            :output _:Nb4eff30d2e84476087970ff02a225d3b ] .
+                _:Nf5534e7c33d84a3bb0016608a09f2f87 ;
+            :output _:Nbabf447c3d064ca387f85a91984aac45 ],
+        [ :apply arcgis:JoinField ;
+            :input _:N07a409a027fe4832a9081a01ddddfe64,
+                _:Nf5534e7c33d84a3bb0016608a09f2f87 ;
+            :output [ ] ] .
 
 multi:JoinCountAttribute a :Multi ;
-    :action [ :apply arcgis:CopyFeatures ;
-            :input _:N37367d415a3e47e8a3507982a42ce81f ;
-            :output [ ] ],
-        [ :apply arcgis:JoinField ;
-            :input [ ],
-                [ ] ;
-            :output _:N37367d415a3e47e8a3507982a42ce81f ] .
+    :action [ :apply arcgis:JoinField ;
+            :input [ :id "1" ],
+                [ :id "2" ] ;
+            :output _:N567bfb6459324d568c16a231fed16f4f ],
+        [ :apply arcgis:CopyFeatures ;
+            :input _:N567bfb6459324d568c16a231fed16f4f ;
+            :output [ ] ] .
 
 multi:JoinFromTable a :Multi ;
     rdfs:comment "Make table from Excel" ;
-    :action [ :apply arcgis:ExcelToTable ;
+    :action [ :apply arcgis:JoinField ;
+            :input _:N0b84be35dcd0436a89219952cdc2d617,
+                [ :id "2" ] ;
+            :output [ ] ],
+        [ :apply arcgis:ExcelToTable ;
             :input [ :id "1" ] ;
-            :output _:N8ca0dbcf384b4c74ba33ff44f3c0ca27 ],
-        [ :apply arcgis:JoinField ;
-            :input [ :id "2" ],
-                _:N8ca0dbcf384b4c74ba33ff44f3c0ca27 ;
-            :output [ ] ] .
+            :output _:N0b84be35dcd0436a89219952cdc2d617 ] .
 
 multi:JoinObjectRatios a :Multi ;
     :action [ :apply arcgis:ExportFeatures ;
-            :input _:Nbb15dd82907f4ffb97bfe8492b8040e8 ;
+            :input _:Nfa4a8cee82f145fd930b1b70a74fafe7 ;
             :output [ ] ],
         [ :apply arcgis:AddJoin ;
-            :input [ ],
-                [ ] ;
-            :output _:Nbb15dd82907f4ffb97bfe8492b8040e8 ] .
+            :input [ :id "2" ],
+                [ :id "1" ] ;
+            :output _:Nfa4a8cee82f145fd930b1b70a74fafe7 ] .
 
 multi:LoadCountAmounts a :Multi ;
-    :action [ :apply arcgis:AddField ;
-            :input _:N9115b8ab29b74a1e818dcd5d9680a2f4 ;
-            :output _:N3b846555bb9b46f59634d2d6254e614e ],
+    :action [ :apply arcgis:CalculateField ;
+            :input _:Nd2eda5881a0f4edeaca8f236d3c2e5a2 ;
+            :output [ ] ],
         [ :apply arcgis:CopyFeatures ;
-            :input [ ] ;
-            :output _:Naf6fdaea41c14d6683a613a0860167be ],
+            :input [ :id "2" ] ;
+            :output _:N1a2291155cf84fdfbc2618dda91c2c95 ],
         [ :apply arcgis:JoinField ;
-            :input [ ],
-                _:Naf6fdaea41c14d6683a613a0860167be ;
-            :output _:N9115b8ab29b74a1e818dcd5d9680a2f4 ],
-        [ :apply arcgis:CalculateField ;
-            :input _:N3b846555bb9b46f59634d2d6254e614e ;
-            :output [ ] ] .
+            :input _:N1a2291155cf84fdfbc2618dda91c2c95,
+                [ :id "1" ] ;
+            :output _:N1c585005446c425f915272b00bf79f89 ],
+        [ :apply arcgis:AddField ;
+            :input _:N1c585005446c425f915272b00bf79f89 ;
+            :output _:Nd2eda5881a0f4edeaca8f236d3c2e5a2 ] .
 
 multi:MakeLayerFromTable a :Multi ;
-    :action [ :apply arcgis:Project ;
-            :input _:N75708b7b746542c68d96f73ab8db7c6e ;
-            :output _:N111be6aa4ba241bdbcfd08edc50444e4 ],
+    :action [ :apply arcgis:ExcelToTable ;
+            :input _:N9c7d0893c72946a8a08a159f76c022bc ;
+            :output _:N6f1c67c78dff46f3915d6a74f0d95bba ],
         [ :apply arcgis:MakeXyEventLayer ;
-            :input _:Nb3208ae72ffc472d9394a5e5b4291382 ;
-            :output _:N75708b7b746542c68d96f73ab8db7c6e ],
+            :input _:N9c7d0893c72946a8a08a159f76c022bc ;
+            :output _:N6ea64780f75f499d8221d746e8dee82b ],
+        [ :apply arcgis:Project ;
+            :input _:N6ea64780f75f499d8221d746e8dee82b ;
+            :output _:Na3f340ba630d40749e13481cdb37112b ],
         [ :apply arcgis:JoinField ;
-            :input _:N111be6aa4ba241bdbcfd08edc50444e4,
-                _:Nbf3ff37076f44b8d80af80d97c64f9a4 ;
-            :output [ ] ],
-        [ :apply arcgis:ExcelToTable ;
-            :input _:Nb3208ae72ffc472d9394a5e5b4291382 ;
-            :output _:Nbf3ff37076f44b8d80af80d97c64f9a4 ] .
+            :input _:N6f1c67c78dff46f3915d6a74f0d95bba,
+                _:Na3f340ba630d40749e13481cdb37112b ;
+            :output [ ] ] .
 
 multi:RasterCoverage a :Multi ;
     rdfs:comment "Computes coverage (size) from a raster table for each raster value" ;
-    :action [ :apply arcgis:TableToTable ;
-            :input [ :id "1" ] ;
-            :output _:Nec3527a0c6784a4c83645ac988af94f7 ],
-        [ :apply arcgis:AddField ;
-            :input _:Nec3527a0c6784a4c83645ac988af94f7 ;
-            :output _:N437531b01e854bbcbf8ab5bba942c20c ],
+    :action [ :apply arcgis:AddField ;
+            :input _:N4f4f5080745841c7b6437cfa39a178e4 ;
+            :output _:N290f071c648a4577b47e9f476cb4f9ac ],
         [ :apply arcgis:CalculateField ;
-            :input _:N437531b01e854bbcbf8ab5bba942c20c ;
-            :output [ ] ] .
+            :input _:N290f071c648a4577b47e9f476cb4f9ac ;
+            :output [ ] ],
+        [ :apply arcgis:TableToTable ;
+            :input [ :id "1" ] ;
+            :output _:N4f4f5080745841c7b6437cfa39a178e4 ] .
 
 multi:RasterToContour a :Multi ;
-    :action [ :apply arcgis:RasterToIsoRaster ;
+    :action [ :apply arcgis:RegionFromRasterExtent ;
+            :input _:Ne8efcdfab2134532b1c49a9f9da470ea ;
+            :output [ ] ],
+        [ :apply arcgis:RasterToIsoRaster ;
             :input [ :id "1" ] ;
-            :output _:Nd44e5ff6a2cd430fa201bdf4f983d34f ],
-        [ :apply arcgis:RegionFromRasterExtent ;
-            :input _:Nd44e5ff6a2cd430fa201bdf4f983d34f ;
-            :output [ ] ] .
+            :output _:Ne8efcdfab2134532b1c49a9f9da470ea ] .
 
 multi:RouteAnalysis a :Multi ;
     :action [ :apply arcgis:Solve ;
-            :input _:N829bade4254d49148dd500f2a9790a47 ;
+            :input _:N20cdbd2bf82245e2927c7d633d898706 ;
             :output [ ] ],
         [ :apply arcgis:MakeRouteAnalysisLayer ;
-            :input [ ] ;
-            :output _:N34cb746b7a1a4da997440520b9d63b96 ],
+            :input [ :id "1" ] ;
+            :output _:Ne7a2361eec564c559d4d0b5b67c507a9 ],
         [ :apply arcgis:AddLocations ;
-            :input _:N34cb746b7a1a4da997440520b9d63b96,
-                [ ] ;
-            :output _:Na1250dbc71f7436c8c06fd5c4c4a142d ],
+            :input [ :id "2" ],
+                _:Ne7a2361eec564c559d4d0b5b67c507a9 ;
+            :output _:N7502f796f587461cb7261cdf10cab9ad ],
         [ :apply arcgis:AddLocations ;
-            :input [ ],
-                _:Na1250dbc71f7436c8c06fd5c4c4a142d ;
-            :output _:N829bade4254d49148dd500f2a9790a47 ] .
+            :input [ :id "3" ],
+                _:N7502f796f587461cb7261cdf10cab9ad ;
+            :output _:N20cdbd2bf82245e2927c7d633d898706 ] .
 
 multi:SelectLayerByAttributeTessObjects a :Multi ;
     :action [ :apply arcgis:FeatureClassToFeatureClass ;
-            :input _:N58a1f8dec2864cbaa6553706b8395fad ;
+            :input _:Nfdc4417ca2ac4a14bf88faa473a180be ;
             :output [ ] ],
         [ :apply arcgis:SelectLayerByAttribute ;
-            :input [ ] ;
-            :output _:N58a1f8dec2864cbaa6553706b8395fad ] .
+            :input [ :id "1" ] ;
+            :output _:Nfdc4417ca2ac4a14bf88faa473a180be ] .
 
 multi:SelectLayerByLocationDistTessObject a :Multi ;
-    :action [ :apply arcgis:SelectLayerByLocation ;
-            :input [ ],
-                [ ] ;
-            :output _:Nc7126c2565e940f8b43e2fc116d2885b ],
-        [ :apply arcgis:ExportFeatures ;
-            :input _:Nc7126c2565e940f8b43e2fc116d2885b ;
-            :output [ ] ] .
+    :action [ :apply arcgis:ExportFeatures ;
+            :input _:Nc716a0d1f9a043da826c1062db1e3ca6 ;
+            :output [ ] ],
+        [ :apply arcgis:SelectLayerByLocation ;
+            :input [ :id "2" ],
+                [ :id "1" ] ;
+            :output _:Nc716a0d1f9a043da826c1062db1e3ca6 ] .
 
 multi:SelectLayerByLocationPointObjects1 a :Multi ;
     :action [ :apply arcgis:CopyFeatures ;
-            :input _:Nb28ba37700464deeb8e2d3b7884e5cd6 ;
+            :input _:Nb1e4329dabb245a78ebaacdedb7b781e ;
             :output [ ] ],
         [ :apply arcgis:SelectLayerByLocation ;
-            :input [ ],
-                [ ] ;
-            :output _:Nb28ba37700464deeb8e2d3b7884e5cd6 ] .
+            :input [ :id "2" ],
+                [ :id "1" ] ;
+            :output _:Nb1e4329dabb245a78ebaacdedb7b781e ] .
 
 multi:SelectLayerByLocationPointObjects2 a :Multi ;
     :action [ :apply arcgis:CopyFeatures ;
-            :input _:N2abe2952734f4146b74e985589832272 ;
+            :input _:N70bed7b0512048f389781e75335aa09d ;
             :output [ ] ],
         [ :apply arcgis:SelectLayerByLocation ;
-            :input [ ],
-                [ ] ;
-            :output _:N2abe2952734f4146b74e985589832272 ] .
+            :input [ :id "1" ],
+                [ :id "2" ] ;
+            :output _:N70bed7b0512048f389781e75335aa09d ] .
 
 multi:SelectLayerByLocationTessObject a :Multi ;
-    :action [ :apply arcgis:SelectLayerByLocation ;
-            :input [ ],
-                [ ] ;
-            :output _:Nc95c2ebbefe647f694e7ce3d9c58c3ef ],
-        [ :apply arcgis:ExportFeatures ;
-            :input _:Nc95c2ebbefe647f694e7ce3d9c58c3ef ;
-            :output [ ] ] .
+    :action [ :apply arcgis:ExportFeatures ;
+            :input _:Nabb19552fb1f4343a861d3f853c6cd1d ;
+            :output [ ] ],
+        [ :apply arcgis:SelectLayerByLocation ;
+            :input [ :id "2" ],
+                [ :id "1" ] ;
+            :output _:Nabb19552fb1f4343a861d3f853c6cd1d ] .
 
 multi:SelectNeighborhoodsByAttributeTessObjects a :Multi ;
     :action [ :apply arcgis:ExportFeatures ;
-            :input _:N90affb47e04849bf9f8930a51b605c73 ;
+            :input _:N23ecae5906a64339baedf1907b624b6a ;
             :output [ ] ],
         [ :apply arcgis:SelectLayerByAttribute ;
-            :input [ ] ;
-            :output _:N90affb47e04849bf9f8930a51b605c73 ] .
+            :input [ :id "1" ] ;
+            :output _:N23ecae5906a64339baedf1907b624b6a ] .
 
 multi:SelectNeighborhoodsByLocationDistPointObject a :Multi ;
     :action [ :apply arcgis:ExportFeatures ;
-            :input _:N57f1f5d835a44d4b99549b96e42c2009 ;
+            :input _:Nbc7f21f7ce244d5f95c3f3bad93fc7f0 ;
             :output [ ] ],
         [ :apply arcgis:SelectLayerByLocation ;
-            :input [ ],
-                [ ] ;
-            :output _:N57f1f5d835a44d4b99549b96e42c2009 ] .
+            :input [ :id "1" ],
+                [ :id "2" ] ;
+            :output _:Nbc7f21f7ce244d5f95c3f3bad93fc7f0 ] .
 
 multi:SelectNeighborhoodsByRatioObjects a :Multi ;
     :action [ :apply arcgis:SelectLayerByAttribute ;
-            :input [ ] ;
-            :output _:Ned1ad830b20243e8bcd33ff59eea0f95 ],
+            :input [ :id "1" ] ;
+            :output _:Nfcb05b248fd24e2aacc754e06bdbfe5b ],
         [ :apply arcgis:ExportFeatures ;
-            :input _:Ned1ad830b20243e8bcd33ff59eea0f95 ;
+            :input _:Nfcb05b248fd24e2aacc754e06bdbfe5b ;
             :output [ ] ] .
 
 multi:SelectSchoolsByLocationPointObject a :Multi ;
-    :action [ :apply arcgis:ExportFeatures ;
-            :input _:N472ac7d17c1c4facb767721a5ee46bca ;
-            :output [ ] ],
-        [ :apply arcgis:SelectLayerByLocation ;
-            :input [ ],
-                [ ] ;
-            :output _:N472ac7d17c1c4facb767721a5ee46bca ] .
+    :action [ :apply arcgis:SelectLayerByLocation ;
+            :input [ :id "1" ],
+                [ :id "2" ] ;
+            :output _:N018057f8b4714d79bf019f2043aa78d4 ],
+        [ :apply arcgis:ExportFeatures ;
+            :input _:N018057f8b4714d79bf019f2043aa78d4 ;
+            :output [ ] ] .
 
 multi:SelectWOZByRatioObjects a :Multi ;
     :action [ :apply arcgis:SelectLayerByAttribute ;
-            :input [ ] ;
-            :output _:Na1b70949443d4affb77c1a12d969af69 ],
+            :input [ :id "1" ] ;
+            :output _:N8068d9012c4a4eaa9bd14ddbeecc69df ],
         [ :apply arcgis:ExportTable ;
-            :input _:Na1b70949443d4affb77c1a12d969af69 ;
+            :input _:N8068d9012c4a4eaa9bd14ddbeecc69df ;
             :output [ ] ] .
 
 multi:TSPRouting a :Multi ;
     :action [ :apply arcgis:AddLocations ;
-            :input _:N4cf27e1c8b7049d1bd959391d629b464,
-                [ ] ;
-            :output _:N11b2300a58134986a44cdf7f350ed5a6 ],
-        [ :apply arcgis:MakeRouteAnalysisLayer ;
-            :input [ ] ;
-            :output _:N36fa53c193e54fd2a99aa7fd564d71a3 ],
-        [ :apply arcgis:AddLocations ;
-            :input _:N36fa53c193e54fd2a99aa7fd564d71a3,
-                [ ] ;
-            :output _:N4cf27e1c8b7049d1bd959391d629b464 ],
+            :input [ :id "2" ],
+                _:Nc56e6dc5ff3c49a5ad232a0956596430 ;
+            :output _:N992e0ae4ad994ed6b6c9744176734090 ],
         [ :apply arcgis:Solve ;
-            :input _:N11b2300a58134986a44cdf7f350ed5a6 ;
-            :output [ ] ] .
+            :input _:N8350d1e95c434e78a94d90776270362b ;
+            :output [ ] ],
+        [ :apply arcgis:AddLocations ;
+            :input [ :id "3" ],
+                _:N992e0ae4ad994ed6b6c9744176734090 ;
+            :output _:N8350d1e95c434e78a94d90776270362b ],
+        [ :apply arcgis:MakeRouteAnalysisLayer ;
+            :input [ :id "1" ] ;
+            :output _:Nc56e6dc5ff3c49a5ad232a0956596430 ] .
 
 multi:VelocityField a :Multi ;
     rdfs:comment """Computes a water flow velocity raster from slope * accumulation area
@@ -2850,50 +2871,50 @@ multi:VelocityField a :Multi ;
     # Select by attribute is always followed by copying features
     # This computes SquareRoot("slope") * SquareRoot("flow_accumulation")
     """ ;
-    :action [ rdfs:comment "This second step computes 0.1 * (Stowe_slope_area_term / [Mean slope-area term]). It needs looking up of parameter [Mean slope-area term]." ;
+    :action [ :apply arcgis:RasterCalculator ;
+            :input [ :id "1" ],
+                [ :id "2" ] ;
+            :output _:N46bf20d04b2a4ea5801076b07e46d634 ],
+        [ rdfs:comment "This second step computes 0.1 * (Stowe_slope_area_term / [Mean slope-area term]). It needs looking up of parameter [Mean slope-area term]." ;
             :apply arcgis:RasterCalculator1 ;
-            :input _:Nd1e4e1af82c64c7badfa092e0f776d04 ;
-            :output [ ] ],
-        [ :apply arcgis:RasterCalculator ;
-            :input [ :id "2" ],
-                [ :id "1" ] ;
-            :output _:Nd1e4e1af82c64c7badfa092e0f776d04 ] .
+            :input _:N46bf20d04b2a4ea5801076b07e46d634 ;
+            :output [ ] ] .
 
 multi:ZonalStatisticsSumField a :Multi ;
-    :action [ :apply arcgis:AlterField ;
-            :input _:N12221b8c728c4f6b9bc0f1df91d05f36 ;
-            :output _:Ne48b0b0c81a944889951178df2117693 ],
+    :action [ :apply arcgis:JoinField ;
+            :input _:N60e0ea0023904bb7baa3177ddca5a809,
+                _:Nb341dcb9024d4b37bb81aff5517c4a40 ;
+            :output [ ] ],
         [ :apply arcgis:ZonalStatisticsAsTable ;
-            :input [ ],
-                _:Neb25a00a438e4761a35afea6bb4ad6b8 ;
-            :output _:N12221b8c728c4f6b9bc0f1df91d05f36 ],
-        [ :apply arcgis:JoinField ;
-            :input _:Ne48b0b0c81a944889951178df2117693,
-                _:Neb25a00a438e4761a35afea6bb4ad6b8 ;
-            :output [ ] ] .
+            :input _:N60e0ea0023904bb7baa3177ddca5a809,
+                [ :id "1" ] ;
+            :output _:Ndddcab312f8649f7a1c5f4126b34d957 ],
+        [ :apply arcgis:AlterField ;
+            :input _:Ndddcab312f8649f7a1c5f4126b34d957 ;
+            :output _:Nb341dcb9024d4b37bb81aff5517c4a40 ] .
 
 multi:addObjectCapacity a :Multi ;
     :action [ :apply arcgis:AddField ;
-            :input [ ] ;
-            :output _:N3126091f82334b2aa0a067f7d325dae6 ],
+            :input [ :id "1" ] ;
+            :output _:N03d73df379d24fde9acd3fd5186d793b ],
         [ :apply arcgis:CalculateField ;
-            :input _:N3126091f82334b2aa0a067f7d325dae6 ;
+            :input _:N03d73df379d24fde9acd3fd5186d793b ;
             :output [ ] ] .
 
 multi:convert2PointObjects a :Multi ;
     :action [ :apply arcgis:SelectLayerByAttribute ;
-            :input [ ] ;
-            :output _:N7b41da75ce5445d39c1c39647730359b ],
+            :input [ :id "1" ] ;
+            :output _:Nc9dd80f4327b4ca993ab606a1f0729b5 ],
         [ :apply arcgis:FeatureToPoint ;
-            :input _:N7b41da75ce5445d39c1c39647730359b ;
+            :input _:Nc9dd80f4327b4ca993ab606a1f0729b5 ;
             :output [ ] ] .
 
 multi:makePointObjects a :Multi ;
     :action [ :apply arcgis:FeatureToPoint ;
-            :input [ ] ;
-            :output _:N7917048c4e1a4d9cb46b8119dc6ee0b0 ],
+            :input [ :id "1" ] ;
+            :output _:N6e8ba42d545643a8abe2202591e12f50 ],
         [ :apply arcgis:CreateRandomPoints ;
-            :input _:N7917048c4e1a4d9cb46b8119dc6ee0b0 ;
+            :input _:N6e8ba42d545643a8abe2202591e12f50 ;
             :output [ ] ] .
 
 arcgis:Buffer a :Unit ;
@@ -2945,13 +2966,13 @@ arcgis:ZonalStatisticsAsTable a :Unit ;
 
 multi:FullSelectFeatures a :Multi ;
     rdfs:comment "Query to select items from layers using attribut values" ;
-    :action [ rdfs:comment "Select by attribute is always followed by copying features" ;
+    :action [ :apply arcgis:FC2FCObjectTess ;
+            :input _:N35c0ece559b243ec9747cc63936141f3 ;
+            :output [ ] ],
+        [ rdfs:comment "Select by attribute is always followed by copying features" ;
             :apply arcgis:SelectLayerByAttribute ;
             :input [ :id "1" ] ;
-            :output _:Na95b1cef67184333b017c5b778b02723 ],
-        [ :apply arcgis:FC2FCObjectTess ;
-            :input _:Na95b1cef67184333b017c5b778b02723 ;
-            :output [ ] ] .
+            :output _:N35c0ece559b243ec9747cc63936141f3 ] .
 
 arcgis:AddFields a :Unit ;
     rdfs:seeAlso arcdm:add-fields.htm .
@@ -2969,9 +2990,9 @@ multi:AddandCalculateAttribute a :Multi ;
     rdfs:comment "Add an attribute and calculate value based on one other attribute" ;
     :action [ :apply arcgis:AddField ;
             :input [ :id "1" ] ;
-            :output _:N5acc114cf53248eca254d048161ff7f1 ],
+            :output _:N6717c2ed4e12426dab30da8700305b3c ],
         [ :apply arcgis:CalculateField ;
-            :input _:N5acc114cf53248eca254d048161ff7f1 ;
+            :input _:N6717c2ed4e12426dab30da8700305b3c ;
             :output [ ] ] .
 
 arcgis:Solve a :Unit ;
@@ -2979,13 +3000,13 @@ arcgis:Solve a :Unit ;
 
 multi:ZonalStatistics a :Multi ;
     :action [ :apply arcgis:JoinField ;
-            :input _:N318dc593cce84821b7769411e1203305,
-                _:Nf0ced3f298fd4df883e0f3f2e177fac4 ;
+            :input _:Nabd70f556ceb482fbeef2bd5cb25e3f4,
+                _:Ne90704518e5d4126a673462a94b8fc07 ;
             :output [ ] ],
         [ :apply arcgis:ZonalStatisticsAsTable ;
             :input [ :id "1" ],
-                _:Nf0ced3f298fd4df883e0f3f2e177fac4 ;
-            :output _:N318dc593cce84821b7769411e1203305 ] .
+                _:Nabd70f556ceb482fbeef2bd5cb25e3f4 ;
+            :output _:Ne90704518e5d4126a673462a94b8fc07 ] .
 
 arcgis:RasterCalculator a :Unit ;
     rdfs:seeAlso arcsa:raster-calculator.htm .
@@ -2993,12 +3014,12 @@ arcgis:RasterCalculator a :Unit ;
 multi:CalculateAreaMeasure a :Multi ;
     rdfs:comment "This is an abbreviated workflow for calculating area based measures with attributes" ;
     :action [ :apply arcgis:CalculateField2 ;
-            :input _:N7de36ff00eb0486f8d4ab79109dcc729,
-                [ :id "2" ] ;
+            :input [ :id "2" ],
+                _:Ne0d8ba9c32f44be2a3bba22e1bbd3aa5 ;
             :output [ ] ],
         [ :apply arcgis:AddField ;
             :input [ :id "1" ] ;
-            :output _:N7de36ff00eb0486f8d4ab79109dcc729 ] .
+            :output _:Ne0d8ba9c32f44be2a3bba22e1bbd3aa5 ] .
 
 arcgis:CopyFeatures a :Unit ;
     rdfs:seeAlso arcdm:copy-features .
@@ -3010,17 +3031,17 @@ multi:FullSelectLayerByLocation a :Multi ;
     :action [ :apply arcgis:SelectLayerByLocation ;
             :input [ :id "2" ],
                 [ :id "1" ] ;
-            :output _:N6cbeb26ac4484ab0af54337d022396e6 ],
+            :output _:Nb153927a5e99428ab2d709fbaf412357 ],
         [ :apply arcgis:CopyFeatures ;
-            :input _:N6cbeb26ac4484ab0af54337d022396e6 ;
+            :input _:Nb153927a5e99428ab2d709fbaf412357 ;
             :output [ ] ] .
-
-arcgis:AddLocations a :Unit ;
-    rdfs:seeAlso arcna:add-locations.htm .
 
 arcgis:Clip a :Unit ;
     rdfs:seeAlso arcan:clip.htm,
         arcdm:clip.htm .
+
+arcgis:AddLocations a :Unit ;
+    rdfs:seeAlso arcna:add-locations.htm .
 
 arcgis:ExportFeatures a :Unit ;
     rdfs:seeAlso arcco:export-features.htm .
@@ -3040,12 +3061,12 @@ arcgis:SelectLayerByAttribute a :Unit ;
 multi:FullSelectLayerByAttribute a :Multi ;
     rdfs:comment "Select by attribute is always followed by copy features (treated as one tool in the annotation",
         "a SQL query to select features matching a selection criterion. You build a query expression to generate the subset. You can query a dataset based on a field in a layer or a table. Using this selection a new Feature dataset is created with only the selected features using the 'Copy Features tool'. This feature dataset represents all the areas that fulfill the criterion" ;
-    :action [ :apply arcgis:SelectLayerByAttribute ;
+    :action [ :apply arcgis:CopyFeatures ;
+            :input _:Nb00b0d7425864299a68a67f5e31511fb ;
+            :output [ ] ],
+        [ :apply arcgis:SelectLayerByAttribute ;
             :input [ :id "1" ] ;
-            :output _:Nc755314b57124da4938207e2203529f2 ],
-        [ :apply arcgis:CopyFeatures ;
-            :input _:Nc755314b57124da4938207e2203529f2 ;
-            :output [ ] ] .
+            :output _:Nb00b0d7425864299a68a67f5e31511fb ] .
 
 arcgis:AddField a :Unit ;
     rdfs:seeAlso arcdm:add-field.htm .
@@ -3053,9 +3074,11 @@ arcgis:AddField a :Unit ;
 arcgis:CalculateField a :Unit ;
     rdfs:seeAlso arcdm:calculate-field.htm .
 
-_:Nb3208ae72ffc472d9394a5e5b4291382 :id "1" .
+_:N60e0ea0023904bb7baa3177ddca5a809 :id "2" .
 
-_:Nd6b0cfd3cc1a4581a8f680bb45b091fa :id "2" .
+_:N9c7d0893c72946a8a08a159f76c022bc :id "1" .
 
-_:Nf0ced3f298fd4df883e0f3f2e177fac4 :id "2" .
+_:Nabd70f556ceb482fbeef2bd5cb25e3f4 :id "2" .
+
+_:Nf5534e7c33d84a3bb0016608a09f2f87 :id "2" .
 
