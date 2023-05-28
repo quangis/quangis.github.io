@@ -1,0 +1,4596 @@
+@prefix cct: <https://quangis.github.io/cct#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tf: <https://github.com/quangis/transforge#> .
+
+cct:accumulate a tf:Operation ;
+    rdfs:label "accumulate" ;
+    rdfs:comment "finds all locations reachable from a given location" ;
+    cct:signature "R2(Loc, Loc) ** R2(Loc, R1(Loc))" .
+
+cct:add a tf:Operation ;
+    rdfs:label "add" ;
+    rdfs:comment "add value to unary relation" ;
+    cct:signature "R1(x) ** x ** R1(x)" .
+
+cct:addlist a tf:Operation ;
+    rdfs:label "addlist" ;
+    rdfs:comment "construct a list" ;
+    cct:signature "List(x) ** x ** List(x)" .
+
+cct:addlistrel a tf:Operation ;
+    rdfs:label "addlistrel" ;
+    rdfs:comment "add to list from relation" ;
+    cct:signature "R2(x, List(y)) ** R2(x, y) ** R2(x, List(y))" .
+
+cct:apply a tf:Operation ;
+    rdfs:label "apply" ;
+    rdfs:comment "applying a function to a collection" ;
+    cct:signature "(x ** y) ** R1(x) ** R2(x, y)" .
+
+cct:apply1 a tf:Operation ;
+    rdfs:label "apply1" ;
+    rdfs:comment "Join with unary function. Generates a unary concept from one other unary concept using a function" ;
+    cct:signature "(x1 ** x2) ** R2(y, x1) ** R2(y, x2)" .
+
+cct:apply2 a tf:Operation ;
+    rdfs:label "apply2" ;
+    rdfs:comment "Join with binary function. Generates a unary concept from two other unary concepts of the same type" ;
+    cct:signature "(x1 ** x2 ** x3) ** R2(y, x1) ** R2(y, x2) ** R2(y, x3)" .
+
+cct:arealinterpol a tf:Operation ;
+    rdfs:label "arealinterpol" ;
+    rdfs:comment "areal interpolation" ;
+    cct:signature "R2(Reg, x) ** R1(Reg) ** R2(Reg, x) [x <= Ratio]" .
+
+cct:aspect a tf:Operation ;
+    rdfs:label "aspect" ;
+    rdfs:comment "spatial aspect (cardinal direction) from DEM" ;
+    cct:signature "R2(Loc, Itv) ** R2(Loc, Ratio)" .
+
+cct:avg a tf:Operation ;
+    rdfs:label "avg" ;
+    rdfs:comment "average" ;
+    cct:signature "R2(Val, y) ** y [y <= Itv]" .
+
+cct:centroid a tf:Operation ;
+    rdfs:label "centroid" ;
+    rdfs:comment "measure centroid" ;
+    cct:signature "R1(Loc) ** Loc" .
+
+cct:classify a tf:Operation ;
+    rdfs:label "classify" ;
+    rdfs:comment "classification table" ;
+    cct:signature "Itv ** Ord" .
+
+cct:compose a tf:Operation ;
+    rdfs:label "compose" ;
+    rdfs:comment "compose unary functions" ;
+    cct:signature "(β ** γ) ** (α ** β) ** α ** γ" .
+
+cct:compose2 a tf:Operation ;
+    rdfs:label "compose2" ;
+    rdfs:comment "compose binary functions" ;
+    cct:signature "(β ** γ) ** (δ ** α ** β) ** δ ** α ** γ" .
+
+cct:conj a tf:Operation ;
+    rdfs:label "conj" ;
+    rdfs:comment "conjunction" ;
+    cct:signature "Bool ** Bool ** Bool" .
+
+cct:consIntersect a tf:Operation ;
+    rdfs:label "consIntersect" ;
+    rdfs:comment "constructs a quantified relation of intersections of object regions (excluding empty intersections)" ;
+    cct:signature "R2(Obj, Reg) ** R2(Obj, Reg) ** R3(Obj, Reg, Obj)" .
+
+cct:consTuple a tf:Operation ;
+    rdfs:label "consTuple" ;
+    rdfs:comment "put values in ternary relation" ;
+    cct:signature "R2(x, y) ** R2(x, z) ** R2(x, (y * z))" .
+
+cct:conslistrel a tf:Operation ;
+    rdfs:label "conslistrel" ;
+    rdfs:comment "construct list from relation" ;
+    cct:signature "R2(x, y) ** R2(x, List(y))" .
+
+cct:contentsum a tf:Operation ;
+    rdfs:label "contentsum" ;
+    rdfs:comment "summing up content amounts (regions and their values)" ;
+    cct:signature "R2(Reg, x) ** R2(Reg, x) [x <= Ratio]" .
+
+cct:count a tf:Operation ;
+    rdfs:label "count" ;
+    rdfs:comment "count objects" ;
+    cct:signature "R1(Obj) ** Count" .
+
+cct:coveragesum a tf:Operation ;
+    rdfs:label "coveragesum" ;
+    rdfs:comment "summing up nominal coverages" ;
+    cct:signature "R2(Nom, Reg) ** R2(Nom, Reg)" .
+
+cct:deify a tf:Operation ;
+    rdfs:label "deify" ;
+    rdfs:comment "make locations from a region" ;
+    cct:signature "Reg ** R1(Loc)" .
+
+cct:disj a tf:Operation ;
+    rdfs:label "disj" ;
+    rdfs:comment "disjunction" ;
+    cct:signature "Bool ** Bool ** Bool" .
+
+cct:diversity a tf:Operation ;
+    rdfs:label "diversity" ;
+    rdfs:comment "calculating diversity of values (entropy)" ;
+    cct:signature "R2(x, List(y)) ** R2(x, Ratio) [y <= Ratio]" .
+
+cct:empty a tf:Operation ;
+    rdfs:label "empty" ;
+    rdfs:comment "empty relation" ;
+    cct:signature "rel ** Bool" .
+
+cct:emptylist a tf:Operation ;
+    rdfs:label "emptylist" ;
+    rdfs:comment "empty list" ;
+    cct:signature "List(x)" .
+
+cct:eq a tf:Operation ;
+    rdfs:label "eq" ;
+    rdfs:comment "equal" ;
+    cct:signature "Val ** Val ** Bool" .
+
+cct:expression rdfs:subPropertyOf tf:expression .
+
+cct:extrapol a tf:Operation ;
+    rdfs:label "extrapol" ;
+    rdfs:comment "buffering, defined in terms of some distance (given as parameter)" ;
+    cct:signature "R2(Obj, Reg) ** R2(Loc, Bool)" .
+
+cct:fcont a tf:Operation ;
+    rdfs:label "fcont" ;
+    rdfs:comment "summarizes the content of a field within a region" ;
+    cct:signature "(R2(Val, x) ** y) ** R2(Loc, x) ** Reg ** y [y < Qlt, x < Qlt]" .
+
+cct:fcover a tf:Operation ;
+    rdfs:label "fcover" ;
+    rdfs:comment "measures the spatial coverage of a field that is constrained to certain field values" ;
+    cct:signature "R2(Loc, x) ** R1(x) ** R1(Loc) [x < Qlt]" .
+
+cct:flowdirgraph a tf:Operation ;
+    rdfs:label "flowdirgraph" ;
+    rdfs:comment "flow direction graph from DEM (location field)" ;
+    cct:signature "R2(Loc, Itv) ** R2(Loc, Loc)" .
+
+cct:generateobjects a tf:Operation ;
+    rdfs:label "generateobjects" ;
+    rdfs:comment "make objects from other objects (e.g. random points)" ;
+    cct:signature "R2(Obj, (Reg * x)) ** R2(Obj, (Reg * Nom))" .
+
+cct:generateobjectsfromrel a tf:Operation ;
+    rdfs:label "generateobjectsfromrel" ;
+    rdfs:comment "make objects from object relations (e.g. routes)" ;
+    cct:signature "R3(Obj, Reg, Obj) ** R2(Obj, (Reg * Nom))" .
+
+cct:get a tf:Operation ;
+    rdfs:label "get" ;
+    rdfs:comment "get some value from unary relation" ;
+    cct:signature "R1(x) ** x" .
+
+cct:get_attrL a tf:Operation ;
+    rdfs:label "get_attrL" ;
+    cct:signature "R2(x, (y * z)) ** R2(x, y)" .
+
+cct:get_attrR a tf:Operation ;
+    rdfs:label "get_attrR" ;
+    cct:signature "R2(x, (y * z)) ** R2(x, z)" .
+
+cct:getamounts a tf:Operation ;
+    rdfs:label "getamounts" ;
+    rdfs:comment "get amounts from object based amount qualities" ;
+    cct:signature "R2(Obj, (Reg * x)) ** R2(Reg, x) [x <= Ratio]" .
+
+cct:getobjectnames a tf:Operation ;
+    rdfs:label "getobjectnames" ;
+    rdfs:comment "make objects from names" ;
+    cct:signature "R1(Nom) ** R2(Obj, Nom)" .
+
+cct:gridgraph a tf:Operation ;
+    rdfs:label "gridgraph" ;
+    rdfs:comment "build a gridgraph using some location field and some impedance field" ;
+    cct:signature "R2(Loc, Loc) ** R2(Loc, Ratio) ** R3(Loc, Ratio, Loc)" .
+
+cct:groupby a tf:Operation ;
+    rdfs:label "groupby" ;
+    rdfs:comment "Group by qualities of binary relations" ;
+    cct:signature "(R1(l) ** q) ** R2(l, y) ** R2(y, q)" .
+
+cct:groupbyL a tf:Operation ;
+    rdfs:label "groupbyL" ;
+    rdfs:comment "Group quantified relations by the left key, summarizing lists of quality values with the same key value into a new value per key, resulting in a unary concept." ;
+    cct:signature "(rel ** q2) ** R3(l, q1, r) ** R2(l, q2) [rel << (R2(r, q1), R1(r))]" .
+
+cct:groupbyR a tf:Operation ;
+    rdfs:label "groupbyR" ;
+    rdfs:comment "Group quantified relations by the right key, summarizing lists of quality values with the same key value into a new value per key, resulting in a unary concept." ;
+    cct:signature "(rel ** q2) ** R3(l, q1, r) ** R2(r, q2) [rel << (R2(l, q1), R1(l))]" .
+
+cct:id a tf:Operation ;
+    rdfs:label "id" ;
+    rdfs:comment "identity" ;
+    cct:signature "α ** α" .
+
+cct:in a tf:Operation ;
+    rdfs:label "in" ;
+    cct:signature "Nom" .
+
+cct:inrel a tf:Operation ;
+    rdfs:label "inrel" ;
+    rdfs:comment "whether some value is in a relation" ;
+    cct:signature "x ** R1(x) ** Bool" .
+
+cct:interpol a tf:Operation ;
+    rdfs:label "interpol" ;
+    rdfs:comment "spatial point interpolation" ;
+    cct:signature "R2(Reg, x) ** R1(Loc) ** R2(Loc, x) [x <= Itv]" .
+
+cct:intersect a tf:Operation ;
+    rdfs:label "intersect" ;
+    rdfs:comment "intersect two regions" ;
+    cct:signature "Reg ** Reg ** Reg" .
+
+cct:invert a tf:Operation ;
+    rdfs:label "invert" ;
+    rdfs:comment "invert a field, generating a coverage" ;
+    cct:signature "R2(Loc, x) ** R2(x, Reg) [x < Val]" .
+
+cct:join a tf:Operation ;
+    rdfs:label "join" ;
+    rdfs:comment "Join of two unary concepts, like a table join" ;
+    cct:signature "R2(x, y) ** R2(y, z) ** R2(x, z)" .
+
+cct:join_attr a tf:Operation ;
+    rdfs:label "join_attr" ;
+    cct:signature "R2(x, y) ** R2(x, z) ** R2(x, (y * z))" .
+
+cct:join_key a tf:Operation ;
+    rdfs:label "join_key" ;
+    rdfs:comment "Substitute the quality of a quantified relation to some quality of one of its keys." ;
+    cct:signature "R3(x, q1, y) ** rel ** R3(x, q2, y) [rel << (R2(x, q2), R2(y, q2))]" .
+
+cct:kernelDensity a tf:Operation ;
+    rdfs:label "kernelDensity" ;
+    rdfs:comment "computes a field of distance and attribute - weighted density of objects" ;
+    cct:signature "R2(Obj, (Reg * Ratio)) ** R2(Loc, Ratio)" .
+
+cct:lDist a tf:Operation ;
+    rdfs:label "lDist" ;
+    rdfs:comment "computes Euclidean distances between locations" ;
+    cct:signature "R1(Loc) ** R1(Loc) ** R3(Loc, Ratio, Loc)" .
+
+cct:lTopo a tf:Operation ;
+    rdfs:label "lTopo" ;
+    rdfs:comment "detects the topological position of locations on a region (in, out, boundary)" ;
+    cct:signature "R1(Loc) ** Reg ** R3(Loc, Nom, Reg)" .
+
+cct:lVis a tf:Operation ;
+    rdfs:label "lVis" ;
+    rdfs:comment "build a visibility relation between locations using a DEM" ;
+    cct:signature "R1(Loc) ** R1(Loc) ** R2(Loc, Itv) ** R3(Loc, Bool, Loc)" .
+
+cct:leq a tf:Operation ;
+    rdfs:label "leq" ;
+    rdfs:comment "less than or equal" ;
+    cct:signature "Ord ** Ord ** Bool" .
+
+cct:lgDist a tf:Operation ;
+    rdfs:label "lgDist" ;
+    rdfs:comment "compute gridgraph distances between locations" ;
+    cct:signature "R3(Loc, Ratio, Loc) ** R1(Loc) ** R1(Loc) ** R3(Loc, Ratio, Loc)" .
+
+cct:loDist a tf:Operation ;
+    rdfs:label "loDist" ;
+    rdfs:comment "computes Euclidean distances between locations and objects" ;
+    cct:signature "R1(Loc) ** R2(Obj, Reg) ** R3(Loc, Ratio, Obj)" .
+
+cct:loTopo a tf:Operation ;
+    rdfs:label "loTopo" ;
+    rdfs:comment "detects the topological position of locations on objects (in, out, boundary)" ;
+    cct:signature "R1(Loc) ** R2(Obj, Reg) ** R3(Loc, Nom, Obj)" .
+
+cct:lrTopo a tf:Operation ;
+    rdfs:label "lrTopo" ;
+    rdfs:comment "detects the topological position of locations on regions (in, out, boundary)" ;
+    cct:signature "R1(Loc) ** R1(Reg) ** R3(Loc, Nom, Reg)" .
+
+cct:max a tf:Operation ;
+    rdfs:label "max" ;
+    rdfs:comment "maximum" ;
+    cct:signature "R2(Val, y) ** y [y <= Ord]" .
+
+cct:merge a tf:Operation ;
+    rdfs:label "merge" ;
+    rdfs:comment "merge regions" ;
+    cct:signature "R1(Reg) ** Reg" .
+
+cct:min a tf:Operation ;
+    rdfs:label "min" ;
+    rdfs:comment "minimum" ;
+    cct:signature "R2(Val, y) ** y [y <= Ord]" .
+
+cct:nDist a tf:Operation ;
+    rdfs:label "nDist" ;
+    rdfs:comment "compute network distances between objects" ;
+    cct:signature "R2(Obj, Reg) ** R2(Obj, Reg) ** R3(Obj, Ratio, Obj) ** R3(Obj, Ratio, Obj)" .
+
+cct:nIntersections a tf:Operation ;
+    rdfs:label "nIntersections" ;
+    rdfs:comment "constructs intersection objects (of minimal cardinality) between object (line) regions" ;
+    cct:signature "R2(Obj, Reg) ** R2(Obj, Reg) ** R2(Obj, Reg)" .
+
+cct:nRoutes a tf:Operation ;
+    rdfs:label "nRoutes" ;
+    rdfs:comment "compute network routes (with distances) between objects" ;
+    cct:signature "R2(Obj, Reg) ** R2(Obj, Reg) ** R3(Obj, Ratio, Obj) ** R3(Obj, Reg, Obj)" .
+
+cct:name a tf:Operation ;
+    rdfs:label "name" ;
+    rdfs:comment "combine nominal values" ;
+    cct:signature "R1(x) ** x [x <= Nom]" .
+
+cct:nbuild a tf:Operation ;
+    rdfs:label "nbuild" ;
+    rdfs:comment "build a network from objects with impedance values" ;
+    cct:signature "R2(Obj, (Reg * Ratio)) ** R3(Obj, Ratio, Obj)" .
+
+cct:nest a tf:Operation ;
+    rdfs:label "nest" ;
+    rdfs:comment "put value in unary relation" ;
+    cct:signature "x ** R1(x)" .
+
+cct:nest2 a tf:Operation ;
+    rdfs:label "nest2" ;
+    rdfs:comment "put values in binary relation" ;
+    cct:signature "x ** y ** R2(x, y)" .
+
+cct:nest3 a tf:Operation ;
+    rdfs:label "nest3" ;
+    rdfs:comment "put values in ternary relation" ;
+    cct:signature "x ** y ** z ** R3(x, y, z)" .
+
+cct:nominalize a tf:Operation ;
+    rdfs:label "nominalize" ;
+    rdfs:comment "interpret an object as a name" ;
+    cct:signature "Obj ** Nom" .
+
+cct:notj a tf:Operation ;
+    rdfs:label "notj" ;
+    rdfs:comment "logical negation" ;
+    cct:signature "Bool ** Bool" .
+
+cct:oDist a tf:Operation ;
+    rdfs:label "oDist" ;
+    rdfs:comment "computes Euclidean distances between objects" ;
+    cct:signature "R2(Obj, Reg) ** R2(Obj, Reg) ** R3(Obj, Ratio, Obj)" .
+
+cct:oTopo a tf:Operation ;
+    rdfs:label "oTopo" ;
+    rdfs:comment "detects the topological relations between two sets of objects" ;
+    cct:signature "R2(Obj, Reg) ** R2(Obj, Reg) ** R3(Obj, Nom, Obj)" .
+
+cct:objectfromobjects a tf:Operation ;
+    rdfs:label "objectfromobjects" ;
+    rdfs:comment "make object from collection of objects" ;
+    cct:signature "R1(Obj) ** Obj" .
+
+cct:objectify a tf:Operation ;
+    rdfs:label "objectify" ;
+    rdfs:comment "interpet a name as an object" ;
+    cct:signature "Nom ** Obj" .
+
+cct:ocont a tf:Operation ;
+    rdfs:label "ocont" ;
+    rdfs:comment "counts the number of objects within a region" ;
+    cct:signature "R2(Obj, Reg) ** Reg ** Count" .
+
+cct:ocover a tf:Operation ;
+    rdfs:label "ocover" ;
+    rdfs:comment "measures the spatial coverage of a collection of objects" ;
+    cct:signature "R2(Obj, Reg) ** R1(Obj) ** Reg" .
+
+cct:orTopo a tf:Operation ;
+    rdfs:label "orTopo" ;
+    rdfs:comment "detects the topological relations between a set of objects and a set of regions" ;
+    cct:signature "R2(Obj, Reg) ** R1(Reg) ** R3(Obj, Nom, Reg)" .
+
+cct:out a tf:Operation ;
+    rdfs:label "out" ;
+    cct:signature "Nom" .
+
+cct:pi1 a tf:Operation ;
+    rdfs:label "pi1" ;
+    rdfs:comment "projects a given relation to the first attribute, resulting in a collection" ;
+    cct:signature "rel ** R1(x) [rel << (R1(x), R2(x, _), R3(x, _, _), R2(x, (_ * _)))]" .
+
+cct:pi12 a tf:Operation ;
+    rdfs:label "pi12" ;
+    rdfs:comment "projects a given ternary relation to the first two attributes" ;
+    cct:signature "R3(x, y, _) ** R2(x, y)" .
+
+cct:pi2 a tf:Operation ;
+    rdfs:label "pi2" ;
+    rdfs:comment "projects a given relation to the second attribute, resulting in a collection" ;
+    cct:signature "rel ** R1(x) [rel << (R2(_, x), R3(_, x, _), R2(_, (x * _)))]" .
+
+cct:pi23 a tf:Operation ;
+    rdfs:label "pi23" ;
+    rdfs:comment "projects a given ternary relation to the last two attributes" ;
+    cct:signature "R3(_, x, y) ** R2(x, y)" .
+
+cct:pi3 a tf:Operation ;
+    rdfs:label "pi3" ;
+    rdfs:comment "projects a given ternary relation to the third attribute, resulting in a collection" ;
+    cct:signature "R3(_, _, x) ** R1(x)" .
+
+cct:prod a tf:Operation ;
+    rdfs:label "prod" ;
+    rdfs:comment "A constructor for quantified relations. Prod generates a cartesian product of two relations as a nested binary relation." ;
+    cct:signature "(y ** z ** u) ** R2(x, y) ** R2(w, z) ** R2(x, R2(w, u))" .
+
+cct:prod3 a tf:Operation ;
+    rdfs:label "prod3" ;
+    rdfs:comment "prod3 generates a quantified relation from two nested binary relations. The keys of the nested relations become two keys of the quantified relation." ;
+    cct:signature "R2(z, R2(x, y)) ** R3(x, y, z)" .
+
+cct:prod_3 a tf:Operation ;
+    rdfs:label "prod_3" ;
+    rdfs:comment "prod_3 is the inverse of prod3." ;
+    cct:signature "R3(x, y, z) ** R2(z, R2(x, y))" .
+
+cct:product a tf:Operation ;
+    rdfs:label "product" ;
+    cct:signature "Ratio ** Ratio ** Ratio" .
+
+cct:rTopo a tf:Operation ;
+    rdfs:label "rTopo" ;
+    rdfs:comment "detects the topological relations between two sets of regions" ;
+    cct:signature "R1(Reg) ** R1(Reg) ** R3(Reg, Nom, Reg)" .
+
+cct:ratio a tf:Operation ;
+    rdfs:label "ratio" ;
+    cct:signature "Ratio ** Ratio ** Ratio" .
+
+cct:reify a tf:Operation ;
+    rdfs:label "reify" ;
+    rdfs:comment "make a region from locations" ;
+    cct:signature "R1(Loc) ** Reg" .
+
+cct:relunion a tf:Operation ;
+    rdfs:label "relunion" ;
+    rdfs:comment "union of a set of relations" ;
+    cct:signature "R1(rel) ** rel [rel << (R1(_), R3(_, _, _), R2(_, _))]" .
+
+cct:revert a tf:Operation ;
+    rdfs:label "revert" ;
+    rdfs:comment "invert a coverage to a field" ;
+    cct:signature "R2(x, Reg) ** R2(Loc, x) [x < Val]" .
+
+cct:select a tf:Operation ;
+    rdfs:label "select" ;
+    rdfs:comment "Selects a subset of a relation using a constraint on one attribute, like equality (eq) or order (leq)" ;
+    cct:signature "(x ** y ** Bool) ** rel ** y ** rel [rel << (R1(x), R2(x, _), R2(_, x), R3(x, _, _), R3(_, x, _), R3(_, _, x), R2(x, (_ * _)), R2(_, (x * _)), R2(_, (_ * x)))]" .
+
+cct:select2 a tf:Operation ;
+    rdfs:label "select2" ;
+    rdfs:comment "Selects a subset of a relation using a constraint on two attributes, like equality (eq) or order (leq)" ;
+    cct:signature "(x ** y ** Bool) ** rel ** rel [rel << (R1(x), R2(x, _), R2(_, x), R3(x, _, _), R3(_, x, _), R3(_, _, x), R2(x, (_ * _)), R2(_, (x * _)), R2(_, (_ * x))), rel << (R1(y), R2(y, _), R2(_, y), R3(y, _, _), R3(_, y, _), R3(_, _, y), R2(y, (_ * _)), R2(_, (y * _)), R2(_, (_ * y)))]" .
+
+cct:set_diff a tf:Operation ;
+    rdfs:label "set_diff" ;
+    rdfs:comment "difference of two relations" ;
+    cct:signature "rel ** rel ** rel" .
+
+cct:set_inters a tf:Operation ;
+    rdfs:label "set_inters" ;
+    rdfs:comment "intersection of two relations" ;
+    cct:signature "rel ** rel ** rel" .
+
+cct:set_union a tf:Operation ;
+    rdfs:label "set_union" ;
+    rdfs:comment "union of two relations" ;
+    cct:signature "rel ** rel ** rel" .
+
+cct:signature rdfs:subPropertyOf tf:signature .
+
+cct:size a tf:Operation ;
+    rdfs:label "size" ;
+    rdfs:comment "measure size" ;
+    cct:signature "R1(Loc) ** Ratio" .
+
+cct:slope a tf:Operation ;
+    rdfs:label "slope" ;
+    rdfs:comment "slope" ;
+    cct:signature "R2(Loc, Itv) ** R2(Loc, Ratio)" .
+
+cct:subset a tf:Operation ;
+    rdfs:label "subset" ;
+    rdfs:comment "Subset a relation to those tuples having an attribute value contained in a collection" ;
+    cct:signature "rel ** R1(x) ** rel [rel << (R1(x), R2(x, _), R2(_, x), R3(x, _, _), R3(_, x, _), R3(_, _, x), R2(x, (_ * _)), R2(_, (x * _)), R2(_, (_ * x)))]" .
+
+cct:sum a tf:Operation ;
+    rdfs:label "sum" ;
+    rdfs:comment "summing up values" ;
+    cct:signature "R2(Val, y) ** y [y <= Ratio]" .
+
+cct:swap a tf:Operation ;
+    rdfs:label "swap" ;
+    rdfs:comment "swap binary function inputs" ;
+    cct:signature "(α ** β ** γ) ** β ** α ** γ" .
+
+cct:true a tf:Operation ;
+    rdfs:label "true" ;
+    cct:signature "Bool" .
+
+cct:type rdfs:subPropertyOf tf:type .
+
+cct:via rdfs:subPropertyOf tf:via .
+
+cct:R1-Bool a tf:Type ;
+    rdfs:label "R1(Bool)" ;
+    rdf:_1 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Bool,
+        cct:R1-Nom,
+        cct:R1-Qlt,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R1-Count a tf:Type ;
+    rdfs:label "R1(Count)" ;
+    rdf:_1 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Count,
+        cct:R1-Itv,
+        cct:R1-Nom,
+        cct:R1-Ord,
+        cct:R1-Qlt,
+        cct:R1-Ratio,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R1-Loc a tf:Type ;
+    rdfs:label "R1(Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R1-Obj a tf:Type ;
+    rdfs:label "R1(Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Obj,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R1-Reg a tf:Type ;
+    rdfs:label "R1(Reg)" ;
+    rdf:_1 cct:Reg ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Reg,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R2-Bool-Bool a tf:Type ;
+    rdfs:label "R2(Bool, Bool)" ;
+    rdf:_1 cct:Bool ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Bool-Bool,
+        cct:R2-Bool-Nom,
+        cct:R2-Bool-Qlt,
+        cct:R2-Bool-Top,
+        cct:R2-Nom-Bool,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Bool,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Bool-Count a tf:Type ;
+    rdfs:label "R2(Bool, Count)" ;
+    rdf:_1 cct:Bool ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Bool-Count,
+        cct:R2-Bool-Itv,
+        cct:R2-Bool-Nom,
+        cct:R2-Bool-Ord,
+        cct:R2-Bool-Qlt,
+        cct:R2-Bool-Ratio,
+        cct:R2-Bool-Top,
+        cct:R2-Nom-Count,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Count,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Bool-Reg a tf:Type ;
+    rdfs:label "R2(Bool, Reg)" ;
+    rdf:_1 cct:Bool ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Bool-Reg,
+        cct:R2-Bool-Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top .
+
+cct:R2-Count-Bool a tf:Type ;
+    rdfs:label "R2(Count, Bool)" ;
+    rdf:_1 cct:Count ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Count-Bool,
+        cct:R2-Count-Nom,
+        cct:R2-Count-Qlt,
+        cct:R2-Count-Top,
+        cct:R2-Itv-Bool,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Bool,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Bool,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Bool,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Bool,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Count-Count a tf:Type ;
+    rdfs:label "R2(Count, Count)" ;
+    rdf:_1 cct:Count ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Count-Count,
+        cct:R2-Count-Itv,
+        cct:R2-Count-Nom,
+        cct:R2-Count-Ord,
+        cct:R2-Count-Qlt,
+        cct:R2-Count-Ratio,
+        cct:R2-Count-Top,
+        cct:R2-Itv-Count,
+        cct:R2-Itv-Itv,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Ratio,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Count,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Count,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Ratio,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Count,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Count,
+        cct:R2-Ratio-Itv,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Ord,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Ratio,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Count-Reg a tf:Type ;
+    rdfs:label "R2(Count, Reg)" ;
+    rdf:_1 cct:Count ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Count-Reg,
+        cct:R2-Count-Top,
+        cct:R2-Itv-Reg,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Reg,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Reg,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top .
+
+cct:R2-Loc-Bool a tf:Type ;
+    rdfs:label "R2(Loc, Bool)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Loc-Bool,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Loc-Count a tf:Type ;
+    rdfs:label "R2(Loc, Count)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Loc-Count,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Bool a tf:Type ;
+    rdfs:label "R2(Obj, Bool)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Bool,
+        cct:R2-Obj-Nom,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Count a tf:Type ;
+    rdfs:label "R2(Obj, Count)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Count,
+        cct:R2-Obj-Itv,
+        cct:R2-Obj-Nom,
+        cct:R2-Obj-Ord,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Ratio,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Reg-Bool a tf:Type ;
+    rdfs:label "R2(Obj, (Reg * Bool))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:Naed5af204cc749049a8189d44be26f7b ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Reg-Bool,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Bool,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Bool,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Bool,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Reg-Count a tf:Type ;
+    rdfs:label "R2(Obj, (Reg * Count))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:Ne85811ee3f834317b428328120e21123 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Reg-Count,
+        cct:R2-Obj-Product-Reg-Itv,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Ord,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Ratio,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Count,
+        cct:R2-Obj-Product-Top-Itv,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Ratio,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Count,
+        cct:R2-Top-Product-Reg-Itv,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Ratio,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Count,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Ratio,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Reg a tf:Type ;
+    rdfs:label "R2(Obj, Reg)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top .
+
+cct:R2-Reg-Bool a tf:Type ;
+    rdfs:label "R2(Reg, Bool)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Reg-Bool,
+        cct:R2-Reg-Nom,
+        cct:R2-Reg-Qlt,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Reg-Count a tf:Type ;
+    rdfs:label "R2(Reg, Count)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Reg-Count,
+        cct:R2-Reg-Itv,
+        cct:R2-Reg-Nom,
+        cct:R2-Reg-Ord,
+        cct:R2-Reg-Qlt,
+        cct:R2-Reg-Ratio,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Bool-Loc a tf:Type ;
+    rdfs:label "R3(Loc, Bool, Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Bool ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Bool-Loc,
+        cct:R3-Loc-Bool-Top,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Bool-Loc,
+        cct:R3-Top-Bool-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Bool-Obj a tf:Type ;
+    rdfs:label "R3(Loc, Bool, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Bool ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Bool-Obj,
+        cct:R3-Loc-Bool-Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Bool-Obj,
+        cct:R3-Top-Bool-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Count-Loc a tf:Type ;
+    rdfs:label "R3(Loc, Count, Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Count ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Count-Loc,
+        cct:R3-Loc-Count-Top,
+        cct:R3-Loc-Itv-Loc,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Loc,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Loc,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Count-Loc,
+        cct:R3-Top-Count-Top,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Loc,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Count-Obj a tf:Type ;
+    rdfs:label "R3(Loc, Count, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Count ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Count-Obj,
+        cct:R3-Loc-Count-Top,
+        cct:R3-Loc-Itv-Obj,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Obj,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Obj,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Count-Obj,
+        cct:R3-Top-Count-Top,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Obj,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Bool-Obj a tf:Type ;
+    rdfs:label "R3(Obj, Bool, Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Bool ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Bool-Obj,
+        cct:R3-Obj-Bool-Top,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Bool-Obj,
+        cct:R3-Top-Bool-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Count-Obj a tf:Type ;
+    rdfs:label "R3(Obj, Count, Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Count ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Count-Obj,
+        cct:R3-Obj-Count-Top,
+        cct:R3-Obj-Itv-Obj,
+        cct:R3-Obj-Itv-Top,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Ord-Obj,
+        cct:R3-Obj-Ord-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Ratio-Obj,
+        cct:R3-Obj-Ratio-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Count-Obj,
+        cct:R3-Top-Count-Top,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Obj,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Obj-Obj a tf:Type ;
+    rdfs:label "R3(Obj, Obj, Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Obj ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Obj-Obj,
+        cct:R3-Obj-Obj-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Obj-Obj,
+        cct:R3-Top-Obj-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R1-Ratio a tf:Type ;
+    rdfs:label "R1(Ratio)" ;
+    rdf:_1 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Itv,
+        cct:R1-Nom,
+        cct:R1-Ord,
+        cct:R1-Qlt,
+        cct:R1-Ratio,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R2-Bool-Ratio a tf:Type ;
+    rdfs:label "R2(Bool, Ratio)" ;
+    rdf:_1 cct:Bool ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Bool-Itv,
+        cct:R2-Bool-Nom,
+        cct:R2-Bool-Ord,
+        cct:R2-Bool-Qlt,
+        cct:R2-Bool-Ratio,
+        cct:R2-Bool-Top,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Count-Ratio a tf:Type ;
+    rdfs:label "R2(Count, Ratio)" ;
+    rdf:_1 cct:Count ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Count-Itv,
+        cct:R2-Count-Nom,
+        cct:R2-Count-Ord,
+        cct:R2-Count-Qlt,
+        cct:R2-Count-Ratio,
+        cct:R2-Count-Top,
+        cct:R2-Itv-Itv,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Ratio,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Ratio,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Itv,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Ord,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Ratio,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Loc-Ratio a tf:Type ;
+    rdfs:label "R2(Loc, Ratio)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Reg-Ratio a tf:Type ;
+    rdfs:label "R2(Obj, (Reg * Ratio))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:N918bd1b487e34f9aa798285fab7f31cd ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Reg-Itv,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Ord,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Ratio,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Itv,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Ratio,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Itv,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Ratio,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Ratio,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Top-Bool a tf:Type ;
+    rdfs:label "R2(Obj, (Top * Bool))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:N130e00a60b1e4b6897cfe78c00a0d295 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Top-Bool,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Bool,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Top-Count a tf:Type ;
+    rdfs:label "R2(Obj, (Top * Count))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:N8a845f23fc6d4fbb9b4fd49a881b1ed7 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Top-Count,
+        cct:R2-Obj-Product-Top-Itv,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Ratio,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Count,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Ratio,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Ratio a tf:Type ;
+    rdfs:label "R2(Obj, Ratio)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Itv,
+        cct:R2-Obj-Nom,
+        cct:R2-Obj-Ord,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Ratio,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Ratio-Bool a tf:Type ;
+    rdfs:label "R2(Ratio, Bool)" ;
+    rdf:_1 cct:Ratio ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Bool,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Bool,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Bool,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Bool,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Bool,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Ratio-Count a tf:Type ;
+    rdfs:label "R2(Ratio, Count)" ;
+    rdf:_1 cct:Ratio ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Count,
+        cct:R2-Itv-Itv,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Ratio,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Count,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Count,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Ratio,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Count,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Count,
+        cct:R2-Ratio-Itv,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Ord,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Ratio,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Ratio-Reg a tf:Type ;
+    rdfs:label "R2(Ratio, Reg)" ;
+    rdf:_1 cct:Ratio ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Reg,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Reg,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Reg,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top .
+
+cct:R2-Reg-Ratio a tf:Type ;
+    rdfs:label "R2(Reg, Ratio)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Reg-Itv,
+        cct:R2-Reg-Nom,
+        cct:R2-Reg-Ord,
+        cct:R2-Reg-Qlt,
+        cct:R2-Reg-Ratio,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Reg-Bool a tf:Type ;
+    rdfs:label "R2(Top, (Reg * Bool))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:Naed5af204cc749049a8189d44be26f7b ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Reg-Bool,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Bool,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Reg-Count a tf:Type ;
+    rdfs:label "R2(Top, (Reg * Count))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:Ne85811ee3f834317b428328120e21123 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Reg-Count,
+        cct:R2-Top-Product-Reg-Itv,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Ratio,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Count,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Ratio,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Ratio-Loc a tf:Type ;
+    rdfs:label "R3(Loc, Ratio, Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ratio ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Itv-Loc,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Loc,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Loc,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Loc,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Ratio-Obj a tf:Type ;
+    rdfs:label "R3(Loc, Ratio, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ratio ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Itv-Obj,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Obj,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Obj,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Obj,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Bool-Top a tf:Type ;
+    rdfs:label "R3(Obj, Bool, Top)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Bool ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Bool-Top,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Bool-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Count-Top a tf:Type ;
+    rdfs:label "R3(Obj, Count, Top)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Count ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Count-Top,
+        cct:R3-Obj-Itv-Top,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Ord-Top,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Ratio-Top,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Count-Top,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Obj-Top a tf:Type ;
+    rdfs:label "R3(Obj, Obj, Top)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Obj ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Obj-Top,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Obj-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Ratio-Obj a tf:Type ;
+    rdfs:label "R3(Obj, Ratio, Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Ratio ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Itv-Obj,
+        cct:R3-Obj-Itv-Top,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Ord-Obj,
+        cct:R3-Obj-Ord-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Ratio-Obj,
+        cct:R3-Obj-Ratio-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Obj,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Bool-Loc a tf:Type ;
+    rdfs:label "R3(Top, Bool, Loc)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Bool ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Bool-Loc,
+        cct:R3-Top-Bool-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Count-Loc a tf:Type ;
+    rdfs:label "R3(Top, Count, Loc)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Count ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Count-Loc,
+        cct:R3-Top-Count-Top,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Loc,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Obj-Obj a tf:Type ;
+    rdfs:label "R3(Top, Obj, Obj)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Obj ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Obj-Obj,
+        cct:R3-Top-Obj-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R1-Itv a tf:Type ;
+    rdfs:label "R1(Itv)" ;
+    rdf:_1 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Itv,
+        cct:R1-Nom,
+        cct:R1-Ord,
+        cct:R1-Qlt,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R2-Bool-Itv a tf:Type ;
+    rdfs:label "R2(Bool, Itv)" ;
+    rdf:_1 cct:Bool ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Bool-Itv,
+        cct:R2-Bool-Nom,
+        cct:R2-Bool-Ord,
+        cct:R2-Bool-Qlt,
+        cct:R2-Bool-Top,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Count-Itv a tf:Type ;
+    rdfs:label "R2(Count, Itv)" ;
+    rdf:_1 cct:Count ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Count-Itv,
+        cct:R2-Count-Nom,
+        cct:R2-Count-Ord,
+        cct:R2-Count-Qlt,
+        cct:R2-Count-Top,
+        cct:R2-Itv-Itv,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Itv,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Ord,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Itv-Bool a tf:Type ;
+    rdfs:label "R2(Itv, Bool)" ;
+    rdf:_1 cct:Itv ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Bool,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Bool,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Bool,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Bool,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Itv-Count a tf:Type ;
+    rdfs:label "R2(Itv, Count)" ;
+    rdf:_1 cct:Itv ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Count,
+        cct:R2-Itv-Itv,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Ratio,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Count,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Count,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Ratio,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Count,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Itv-Reg a tf:Type ;
+    rdfs:label "R2(Itv, Reg)" ;
+    rdf:_1 cct:Itv ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Reg,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Reg,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top .
+
+cct:R2-Loc-Itv a tf:Type ;
+    rdfs:label "R2(Loc, Itv)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Itv a tf:Type ;
+    rdfs:label "R2(Obj, Itv)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Itv,
+        cct:R2-Obj-Nom,
+        cct:R2-Obj-Ord,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Reg-Itv a tf:Type ;
+    rdfs:label "R2(Obj, (Reg * Itv))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:N8b60e094f3494e81ae0a7323802ad281 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Reg-Itv,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Ord,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Itv,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Itv,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Reg-Itv a tf:Type ;
+    rdfs:label "R2(Reg, Itv)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Reg-Itv,
+        cct:R2-Reg-Nom,
+        cct:R2-Reg-Ord,
+        cct:R2-Reg-Qlt,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Bool-Top a tf:Type ;
+    rdfs:label "R3(Loc, Bool, Top)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Bool ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Bool-Top,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Bool-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Count-Top a tf:Type ;
+    rdfs:label "R3(Loc, Count, Top)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Count ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Count-Top,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Count-Top,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Itv-Loc a tf:Type ;
+    rdfs:label "R3(Loc, Itv, Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Itv ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Itv-Loc,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Loc,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Itv-Obj a tf:Type ;
+    rdfs:label "R3(Loc, Itv, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Itv ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Itv-Obj,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Obj,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Itv-Obj a tf:Type ;
+    rdfs:label "R3(Obj, Itv, Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Itv ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Itv-Obj,
+        cct:R3-Obj-Itv-Top,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Ord-Obj,
+        cct:R3-Obj-Ord-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Bool-Obj a tf:Type ;
+    rdfs:label "R3(Top, Bool, Obj)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Bool ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Bool-Obj,
+        cct:R3-Top-Bool-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Count-Obj a tf:Type ;
+    rdfs:label "R3(Top, Count, Obj)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Count ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Count-Obj,
+        cct:R3-Top-Count-Top,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Obj,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R1-Ord a tf:Type ;
+    rdfs:label "R1(Ord)" ;
+    rdf:_1 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Nom,
+        cct:R1-Ord,
+        cct:R1-Qlt,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R2-Bool-Ord a tf:Type ;
+    rdfs:label "R2(Bool, Ord)" ;
+    rdf:_1 cct:Bool ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Bool-Nom,
+        cct:R2-Bool-Ord,
+        cct:R2-Bool-Qlt,
+        cct:R2-Bool-Top,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Count-Ord a tf:Type ;
+    rdfs:label "R2(Count, Ord)" ;
+    rdf:_1 cct:Count ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Count-Nom,
+        cct:R2-Count-Ord,
+        cct:R2-Count-Qlt,
+        cct:R2-Count-Top,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Ord,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Loc-Ord a tf:Type ;
+    rdfs:label "R2(Loc, Ord)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Ord a tf:Type ;
+    rdfs:label "R2(Obj, Ord)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Nom,
+        cct:R2-Obj-Ord,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Reg-Ord a tf:Type ;
+    rdfs:label "R2(Obj, (Reg * Ord))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:N59f6f8e78d6e4db088b258738cb5d47d ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Ord,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Top-Ratio a tf:Type ;
+    rdfs:label "R2(Obj, (Top * Ratio))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:Nfe7d8d10b5a24736bc9aade72cf0df0c ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Top-Itv,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Ratio,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Ratio,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Ord-Bool a tf:Type ;
+    rdfs:label "R2(Ord, Bool)" ;
+    rdf:_1 cct:Ord ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Bool,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Bool,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Bool,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Ord-Count a tf:Type ;
+    rdfs:label "R2(Ord, Count)" ;
+    rdf:_1 cct:Ord ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Count,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Count,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Ratio,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Count,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Ord-Reg a tf:Type ;
+    rdfs:label "R2(Ord, Reg)" ;
+    rdf:_1 cct:Ord ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Reg,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top .
+
+cct:R2-Ratio-Ratio a tf:Type ;
+    rdfs:label "R2(Ratio, Ratio)" ;
+    rdf:_1 cct:Ratio ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Itv,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Ratio,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Ratio,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Itv,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Ord,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Ratio,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Reg-Ord a tf:Type ;
+    rdfs:label "R2(Reg, Ord)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Reg-Nom,
+        cct:R2-Reg-Ord,
+        cct:R2-Reg-Qlt,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Reg-Ratio a tf:Type ;
+    rdfs:label "R2(Top, (Reg * Ratio))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:N918bd1b487e34f9aa798285fab7f31cd ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Reg-Itv,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Ratio,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Ratio,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Top-Bool a tf:Type ;
+    rdfs:label "R2(Top, (Top * Bool))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:N130e00a60b1e4b6897cfe78c00a0d295 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Top-Bool,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Top-Count a tf:Type ;
+    rdfs:label "R2(Top, (Top * Count))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:N8a845f23fc6d4fbb9b4fd49a881b1ed7 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Top-Count,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Ratio,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Ord-Loc a tf:Type ;
+    rdfs:label "R3(Loc, Ord, Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ord ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Loc,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Ord-Obj a tf:Type ;
+    rdfs:label "R3(Loc, Ord, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ord ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Obj,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Ord-Obj a tf:Type ;
+    rdfs:label "R3(Obj, Ord, Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Ord ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Ord-Obj,
+        cct:R3-Obj-Ord-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Ratio-Top a tf:Type ;
+    rdfs:label "R3(Obj, Ratio, Top)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Ratio ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Itv-Top,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Ord-Top,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Ratio-Top,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Obj-Top a tf:Type ;
+    rdfs:label "R3(Top, Obj, Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Obj ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Obj-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Ratio-Loc a tf:Type ;
+    rdfs:label "R3(Top, Ratio, Loc)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Ratio ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Loc,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R1-Nom a tf:Type ;
+    rdfs:label "R1(Nom)" ;
+    rdf:_1 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Nom,
+        cct:R1-Qlt,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R2-Bool-Nom a tf:Type ;
+    rdfs:label "R2(Bool, Nom)" ;
+    rdf:_1 cct:Bool ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Bool-Nom,
+        cct:R2-Bool-Qlt,
+        cct:R2-Bool-Top,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Count-Nom a tf:Type ;
+    rdfs:label "R2(Count, Nom)" ;
+    rdf:_1 cct:Count ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Count-Nom,
+        cct:R2-Count-Qlt,
+        cct:R2-Count-Top,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Itv-Ratio a tf:Type ;
+    rdfs:label "R2(Itv, Ratio)" ;
+    rdf:_1 cct:Itv ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Itv,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Ratio,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Ratio,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Loc-Nom a tf:Type ;
+    rdfs:label "R2(Loc, Nom)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Nom-Bool a tf:Type ;
+    rdfs:label "R2(Nom, Bool)" ;
+    rdf:_1 cct:Nom ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Bool,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Bool,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Nom-Count a tf:Type ;
+    rdfs:label "R2(Nom, Count)" ;
+    rdf:_1 cct:Nom ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Count,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Count,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Nom-Reg a tf:Type ;
+    rdfs:label "R2(Nom, Reg)" ;
+    rdf:_1 cct:Nom ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Nom a tf:Type ;
+    rdfs:label "R2(Obj, Nom)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Nom,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Reg-Nom a tf:Type ;
+    rdfs:label "R2(Obj, (Reg * Nom))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:N510b7b86751f47fdbc3918361c9a542e ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Top-Itv a tf:Type ;
+    rdfs:label "R2(Obj, (Top * Itv))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:Ne45430a7c35f4655bd0307351397d2a3 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Top-Itv,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Ratio-Itv a tf:Type ;
+    rdfs:label "R2(Ratio, Itv)" ;
+    rdf:_1 cct:Ratio ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Itv,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Itv,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Ord,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Reg-Nom a tf:Type ;
+    rdfs:label "R2(Reg, Nom)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Reg-Nom,
+        cct:R2-Reg-Qlt,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Reg-Itv a tf:Type ;
+    rdfs:label "R2(Top, (Reg * Itv))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:N8b60e094f3494e81ae0a7323802ad281 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Reg-Itv,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Nom-Loc a tf:Type ;
+    rdfs:label "R3(Loc, Nom, Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Nom-Obj a tf:Type ;
+    rdfs:label "R3(Loc, Nom, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Ratio-Top a tf:Type ;
+    rdfs:label "R3(Loc, Ratio, Top)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ratio ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Itv-Top a tf:Type ;
+    rdfs:label "R3(Obj, Itv, Top)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Itv ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Itv-Top,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Ord-Top,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Nom-Obj a tf:Type ;
+    rdfs:label "R3(Obj, Nom, Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Itv-Loc a tf:Type ;
+    rdfs:label "R3(Top, Itv, Loc)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Itv ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Ratio-Obj a tf:Type ;
+    rdfs:label "R3(Top, Ratio, Obj)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Ratio ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Obj,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R1-Qlt a tf:Type ;
+    rdfs:label "R1(Qlt)" ;
+    rdf:_1 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Qlt,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R2-Bool-Qlt a tf:Type ;
+    rdfs:label "R2(Bool, Qlt)" ;
+    rdf:_1 cct:Bool ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Bool-Qlt,
+        cct:R2-Bool-Top,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Count-Qlt a tf:Type ;
+    rdfs:label "R2(Count, Qlt)" ;
+    rdf:_1 cct:Count ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Count-Qlt,
+        cct:R2-Count-Top,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Loc-Qlt a tf:Type ;
+    rdfs:label "R2(Loc, Qlt)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Reg-Qlt a tf:Type ;
+    rdfs:label "R2(Obj, (Reg * Qlt))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:Na0ade83e1e484e5d9a7aa58d80641701 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Qlt a tf:Type ;
+    rdfs:label "R2(Obj, Qlt)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Qlt-Bool a tf:Type ;
+    rdfs:label "R2(Qlt, Bool)" ;
+    rdf:_1 cct:Qlt ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Qlt-Bool,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Qlt-Count a tf:Type ;
+    rdfs:label "R2(Qlt, Count)" ;
+    rdf:_1 cct:Qlt ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Qlt-Count,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Qlt-Reg a tf:Type ;
+    rdfs:label "R2(Qlt, Reg)" ;
+    rdf:_1 cct:Qlt ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top .
+
+cct:R2-Reg-Qlt a tf:Type ;
+    rdfs:label "R2(Reg, Qlt)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Reg-Qlt,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Qlt-Loc a tf:Type ;
+    rdfs:label "R3(Loc, Qlt, Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Qlt ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Qlt-Obj a tf:Type ;
+    rdfs:label "R3(Loc, Qlt, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Qlt ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Qlt-Obj a tf:Type ;
+    rdfs:label "R3(Obj, Qlt, Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Qlt ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Loc-Top a tf:Type ;
+    rdfs:label "R2(Loc, Top)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Reg-Top a tf:Type ;
+    rdfs:label "R2(Obj, (Reg * Top))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:Nad9acb7761554a878105687fc6f89bcf ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Top-Ord a tf:Type ;
+    rdfs:label "R2(Obj, (Top * Ord))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:N689e8ea282c1410fa867290d59a5159a ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Ord-Ratio a tf:Type ;
+    rdfs:label "R2(Ord, Ratio)" ;
+    rdf:_1 cct:Ord ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Ratio,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Ratio-Ord a tf:Type ;
+    rdfs:label "R2(Ratio, Ord)" ;
+    rdf:_1 cct:Ratio ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Ord,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Reg-Top a tf:Type ;
+    rdfs:label "R2(Reg, Top)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Reg-Ord a tf:Type ;
+    rdfs:label "R2(Top, (Reg * Ord))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:N59f6f8e78d6e4db088b258738cb5d47d ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Top-Ratio a tf:Type ;
+    rdfs:label "R2(Top, (Top * Ratio))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:Nfe7d8d10b5a24736bc9aade72cf0df0c ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Ratio,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Top-Loc a tf:Type ;
+    rdfs:label "R3(Loc, Top, Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 tf:Top ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Loc-Top-Obj a tf:Type ;
+    rdfs:label "R3(Loc, Top, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 tf:Top ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Ord-Top a tf:Type ;
+    rdfs:label "R3(Obj, Ord, Top)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Ord ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Ord-Top,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Bool-Top a tf:Type ;
+    rdfs:label "R3(Top, Bool, Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Bool ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Bool-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Count-Top a tf:Type ;
+    rdfs:label "R3(Top, Count, Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Count ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Count-Top,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Ord-Loc a tf:Type ;
+    rdfs:label "R3(Top, Ord, Loc)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Ord ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Bool-Top a tf:Type ;
+    rdfs:label "R2(Bool, Top)" ;
+    rdf:_1 cct:Bool ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Bool-Top,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Count-Top a tf:Type ;
+    rdfs:label "R2(Count, Top)" ;
+    rdf:_1 cct:Count ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Count-Top,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Itv-Itv a tf:Type ;
+    rdfs:label "R2(Itv, Itv)" ;
+    rdf:_1 cct:Itv ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Itv,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Reg a tf:Type ;
+    rdfs:label "R2(Top, Reg)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Itv-Top a tf:Type ;
+    rdfs:label "R3(Loc, Itv, Top)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Itv ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Top-Obj a tf:Type ;
+    rdfs:label "R3(Obj, Top, Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 tf:Top ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Itv-Obj a tf:Type ;
+    rdfs:label "R3(Top, Itv, Obj)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Itv ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R1-Val a tf:Type ;
+    rdfs:label "R1(Val)" ;
+    rdf:_1 cct:Val ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Top,
+        cct:R1-Val .
+
+cct:R2-Top-Bool a tf:Type ;
+    rdfs:label "R2(Top, Bool)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Bool,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Count a tf:Type ;
+    rdfs:label "R2(Top, Count)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Count,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R1-Top a tf:Type ;
+    rdfs:label "R1(Top)" ;
+    rdf:_1 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R1,
+        cct:R1-Top .
+
+cct:R2-Itv-Ord a tf:Type ;
+    rdfs:label "R2(Itv, Ord)" ;
+    rdf:_1 cct:Itv ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Ord,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Nom-Ratio a tf:Type ;
+    rdfs:label "R2(Nom, Ratio)" ;
+    rdf:_1 cct:Nom ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Top-Nom a tf:Type ;
+    rdfs:label "R2(Obj, (Top * Nom))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:N9e2b78d7f5bc440bad0a2b76709b894f ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Ord-Itv a tf:Type ;
+    rdfs:label "R2(Ord, Itv)" ;
+    rdf:_1 cct:Ord ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Ratio-Nom a tf:Type ;
+    rdfs:label "R2(Ratio, Nom)" ;
+    rdf:_1 cct:Ratio ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Nom,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Reg-Nom a tf:Type ;
+    rdfs:label "R2(Top, (Reg * Nom))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:N510b7b86751f47fdbc3918361c9a542e ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Top-Itv a tf:Type ;
+    rdfs:label "R2(Top, (Top * Itv))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:Ne45430a7c35f4655bd0307351397d2a3 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Ord-Top a tf:Type ;
+    rdfs:label "R3(Loc, Ord, Top)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ord ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Nom-Top a tf:Type ;
+    rdfs:label "R3(Obj, Nom, Top)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Nom-Loc a tf:Type ;
+    rdfs:label "R3(Top, Nom, Loc)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Ord-Obj a tf:Type ;
+    rdfs:label "R3(Top, Ord, Obj)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Ord ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:Val a tf:Type ;
+    rdfs:label "Val" ;
+    rdfs:subClassOf tf:Top,
+        cct:Val .
+
+cct:R2-Obj-Product-Top-Qlt a tf:Type ;
+    rdfs:label "R2(Obj, (Top * Qlt))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:N0917018ef4ab4a19b4cd7baf93a8cb26 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Qlt-Ratio a tf:Type ;
+    rdfs:label "R2(Qlt, Ratio)" ;
+    rdf:_1 cct:Qlt ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Ratio-Qlt a tf:Type ;
+    rdfs:label "R2(Ratio, Qlt)" ;
+    rdf:_1 cct:Ratio ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Qlt,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Reg-Qlt a tf:Type ;
+    rdfs:label "R2(Top, (Reg * Qlt))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:Na0ade83e1e484e5d9a7aa58d80641701 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Obj-Qlt-Top a tf:Type ;
+    rdfs:label "R3(Obj, Qlt, Top)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Qlt ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Qlt-Loc a tf:Type ;
+    rdfs:label "R3(Top, Qlt, Loc)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Qlt ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Obj-Product-Top-Top a tf:Type ;
+    rdfs:label "R2(Obj, (Top * Top))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 _:Nab0bd3b99cdd458f98b4be0395068b79 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Ord-Ord a tf:Type ;
+    rdfs:label "R2(Ord, Ord)" ;
+    rdf:_1 cct:Ord ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Reg-Top a tf:Type ;
+    rdfs:label "R2(Top, (Reg * Top))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:Nad9acb7761554a878105687fc6f89bcf ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Top-Ord a tf:Type ;
+    rdfs:label "R2(Top, (Top * Ord))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:N689e8ea282c1410fa867290d59a5159a ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Top-Ratio-Top a tf:Type ;
+    rdfs:label "R3(Top, Ratio, Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Ratio ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Top-Loc a tf:Type ;
+    rdfs:label "R3(Top, Top, Loc)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 tf:Top ;
+    rdf:_3 cct:Loc ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Itv-Nom a tf:Type ;
+    rdfs:label "R2(Itv, Nom)" ;
+    rdf:_1 cct:Itv ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Nom,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Nom-Itv a tf:Type ;
+    rdfs:label "R2(Nom, Itv)" ;
+    rdf:_1 cct:Nom ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Ratio-Top a tf:Type ;
+    rdfs:label "R2(Ratio, Top)" ;
+    rdf:_1 cct:Ratio ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Top,
+        cct:R2-Ratio-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Nom-Top a tf:Type ;
+    rdfs:label "R3(Loc, Nom, Top)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Top-Top a tf:Type ;
+    rdfs:label "R3(Obj, Top, Top)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 tf:Top ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Nom-Obj a tf:Type ;
+    rdfs:label "R3(Top, Nom, Obj)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Itv-Qlt a tf:Type ;
+    rdfs:label "R2(Itv, Qlt)" ;
+    rdf:_1 cct:Itv ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Qlt,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Qlt-Itv a tf:Type ;
+    rdfs:label "R2(Qlt, Itv)" ;
+    rdf:_1 cct:Qlt ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Qlt-Top a tf:Type ;
+    rdfs:label "R3(Loc, Qlt, Top)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Qlt ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Qlt-Obj a tf:Type ;
+    rdfs:label "R3(Top, Qlt, Obj)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Qlt ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Top-Ratio a tf:Type ;
+    rdfs:label "R2(Top, Ratio)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top .
+
+cct:R2-Nom-Ord a tf:Type ;
+    rdfs:label "R2(Nom, Ord)" ;
+    rdf:_1 cct:Nom ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Ord-Nom a tf:Type ;
+    rdfs:label "R2(Ord, Nom)" ;
+    rdf:_1 cct:Ord ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Top-Nom a tf:Type ;
+    rdfs:label "R2(Top, (Top * Nom))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:N9e2b78d7f5bc440bad0a2b76709b894f ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Loc-Top-Top a tf:Type ;
+    rdfs:label "R3(Loc, Top, Top)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 tf:Top ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R3-Top-Itv-Top a tf:Type ;
+    rdfs:label "R3(Top, Itv, Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Itv ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Obj-Top a tf:Type ;
+    rdfs:label "R2(Obj, Top)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Top-Top-Obj a tf:Type ;
+    rdfs:label "R3(Top, Top, Obj)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 tf:Top ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Itv-Top a tf:Type ;
+    rdfs:label "R2(Itv, Top)" ;
+    rdf:_1 cct:Itv ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Top .
+
+cct:Reg a tf:Type ;
+    rdfs:label "Reg" ;
+    rdfs:subClassOf tf:Top,
+        cct:Reg,
+        cct:Val .
+
+cct:R2-Ord-Qlt a tf:Type ;
+    rdfs:label "R2(Ord, Qlt)" ;
+    rdf:_1 cct:Ord ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Qlt-Ord a tf:Type ;
+    rdfs:label "R2(Qlt, Ord)" ;
+    rdf:_1 cct:Qlt ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Product-Top-Qlt a tf:Type ;
+    rdfs:label "R2(Top, (Top * Qlt))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:N0917018ef4ab4a19b4cd7baf93a8cb26 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:Bool a tf:Type ;
+    rdfs:label "Bool" ;
+    rdfs:subClassOf tf:Top,
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val .
+
+cct:Count a tf:Type ;
+    rdfs:label "Count" ;
+    rdfs:subClassOf tf:Top,
+        cct:Count,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val .
+
+cct:R2-Top-Product-Top-Top a tf:Type ;
+    rdfs:label "R2(Top, (Top * Top))" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 _:Nab0bd3b99cdd458f98b4be0395068b79 ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Top-Ord-Top a tf:Type ;
+    rdfs:label "R3(Top, Ord, Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Ord ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Top-Itv a tf:Type ;
+    rdfs:label "R2(Top, Itv)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:Ratio a tf:Type ;
+    rdfs:label "Ratio" ;
+    rdfs:subClassOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val .
+
+cct:Itv a tf:Type ;
+    rdfs:label "Itv" ;
+    rdfs:subClassOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Val .
+
+cct:Ord a tf:Type ;
+    rdfs:label "Ord" ;
+    rdfs:subClassOf tf:Top,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Val .
+
+cct:R2-Nom-Nom a tf:Type ;
+    rdfs:label "R2(Nom, Nom)" ;
+    rdf:_1 cct:Nom ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Ord-Top a tf:Type ;
+    rdfs:label "R2(Ord, Top)" ;
+    rdf:_1 cct:Ord ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Top .
+
+cct:Nom a tf:Type ;
+    rdfs:label "Nom" ;
+    rdfs:subClassOf tf:Top,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val .
+
+cct:Qlt a tf:Type ;
+    rdfs:label "Qlt" ;
+    rdfs:subClassOf tf:Top,
+        cct:Qlt,
+        cct:Val .
+
+cct:R2-Nom-Qlt a tf:Type ;
+    rdfs:label "R2(Nom, Qlt)" ;
+    rdf:_1 cct:Nom ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Qlt-Nom a tf:Type ;
+    rdfs:label "R2(Qlt, Nom)" ;
+    rdf:_1 cct:Qlt ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Ord a tf:Type ;
+    rdfs:label "R2(Top, Ord)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R3-Top-Nom-Top a tf:Type ;
+    rdfs:label "R3(Top, Nom, Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Qlt-Qlt a tf:Type ;
+    rdfs:label "R2(Qlt, Qlt)" ;
+    rdf:_1 cct:Qlt ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:Loc a tf:Type ;
+    rdfs:label "Loc" ;
+    rdfs:subClassOf tf:Top,
+        cct:Loc,
+        cct:Val .
+
+cct:R2-Nom-Top a tf:Type ;
+    rdfs:label "R2(Nom, Top)" ;
+    rdf:_1 cct:Nom ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Top .
+
+cct:R3-Top-Qlt-Top a tf:Type ;
+    rdfs:label "R3(Top, Qlt, Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Qlt ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Top .
+
+cct:R2-Qlt-Top a tf:Type ;
+    rdfs:label "R2(Qlt, Top)" ;
+    rdf:_1 cct:Qlt ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Nom a tf:Type ;
+    rdfs:label "R2(Top, Nom)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R3-Top-Top-Top a tf:Type ;
+    rdfs:label "R3(Top, Top, Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 tf:Top ;
+    rdf:_3 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R3,
+        cct:R3-Top-Top-Top .
+
+cct:Obj a tf:Type ;
+    rdfs:label "Obj" ;
+    rdfs:subClassOf tf:Top,
+        cct:Obj,
+        cct:Val .
+
+cct:R2-Top-Qlt a tf:Type ;
+    rdfs:label "R2(Top, Qlt)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top .
+
+cct:R2-Top-Top a tf:Type ;
+    rdfs:label "R2(Top, Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Top,
+        cct:R2,
+        cct:R2-Top-Top .
+
+tf:Top a tf:Type ;
+    rdfs:label "Top" ;
+    rdfs:subClassOf tf:Top .
+
+_:N0917018ef4ab4a19b4cd7baf93a8cb26 a tf:Type ;
+    rdfs:label "(Top * Qlt)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Product .
+
+_:N130e00a60b1e4b6897cfe78c00a0d295 a tf:Type ;
+    rdfs:label "(Top * Bool)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Product .
+
+_:N510b7b86751f47fdbc3918361c9a542e a tf:Type ;
+    rdfs:label "(Reg * Nom)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Product .
+
+_:N59f6f8e78d6e4db088b258738cb5d47d a tf:Type ;
+    rdfs:label "(Reg * Ord)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Product .
+
+_:N689e8ea282c1410fa867290d59a5159a a tf:Type ;
+    rdfs:label "(Top * Ord)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf tf:Product .
+
+_:N8a845f23fc6d4fbb9b4fd49a881b1ed7 a tf:Type ;
+    rdfs:label "(Top * Count)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Product .
+
+_:N8b60e094f3494e81ae0a7323802ad281 a tf:Type ;
+    rdfs:label "(Reg * Itv)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Product .
+
+_:N918bd1b487e34f9aa798285fab7f31cd a tf:Type ;
+    rdfs:label "(Reg * Ratio)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Product .
+
+_:N9e2b78d7f5bc440bad0a2b76709b894f a tf:Type ;
+    rdfs:label "(Top * Nom)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf tf:Product .
+
+_:Na0ade83e1e484e5d9a7aa58d80641701 a tf:Type ;
+    rdfs:label "(Reg * Qlt)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Qlt ;
+    rdfs:subClassOf tf:Product .
+
+_:Nab0bd3b99cdd458f98b4be0395068b79 a tf:Type ;
+    rdfs:label "(Top * Top)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Product .
+
+_:Nad9acb7761554a878105687fc6f89bcf a tf:Type ;
+    rdfs:label "(Reg * Top)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 tf:Top ;
+    rdfs:subClassOf tf:Product .
+
+_:Naed5af204cc749049a8189d44be26f7b a tf:Type ;
+    rdfs:label "(Reg * Bool)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf tf:Product .
+
+_:Ne45430a7c35f4655bd0307351397d2a3 a tf:Type ;
+    rdfs:label "(Top * Itv)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Itv ;
+    rdfs:subClassOf tf:Product .
+
+_:Ne85811ee3f834317b428328120e21123 a tf:Type ;
+    rdfs:label "(Reg * Count)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf tf:Product .
+
+_:Nfe7d8d10b5a24736bc9aade72cf0df0c a tf:Type ;
+    rdfs:label "(Top * Ratio)" ;
+    rdf:_1 tf:Top ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf tf:Product .
+
