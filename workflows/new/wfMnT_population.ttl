@@ -1,0 +1,30 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+
+[] a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:SelectLayerByLocationDistTessObject ;
+            wf:input1 _:out2 ;
+            wf:input2 _:in1 ;
+            wf:output _:out3 ],
+        [ wf:applicationOf abstr:BufferDissolve ;
+            wf:input1 _:in1 ;
+            wf:output _:out1 ],
+        [ wf:applicationOf abstr:DerivePartsOfPopCenters ;
+            wf:input1 _:out5 ;
+            wf:input2 _:out1 ;
+            wf:output _:out0 ],
+        [ wf:applicationOf abstr:ExportFeatures ;
+            wf:input1 _:in2 ;
+            wf:output _:out2 ],
+        [ wf:applicationOf abstr:CalculateDensityonObject ;
+            wf:input1 _:out4 ;
+            wf:output _:out5 ],
+        [ wf:applicationOf abstr:SelectLayerByLocationTessObject ;
+            wf:input1 _:in3 ;
+            wf:input2 _:out3 ;
+            wf:output _:out4 ] ;
+    wf:source _:in1,
+        _:in2,
+        _:in3 ;
+    wf:target _:out0 .
+

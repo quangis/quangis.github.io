@@ -1,0 +1,19 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+
+[] a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:SelectNeighborhoodsByAttributeTessObjects ;
+            wf:input1 _:in2 ;
+            wf:output _:out1 ],
+        [ wf:applicationOf abstr:SelectSchoolsByLocationPointObject ;
+            wf:input1 _:in1 ;
+            wf:input2 _:out1 ;
+            wf:output _:out2 ],
+        [ wf:applicationOf abstr:SelectNeighborhoodsByLocationDistPointObject ;
+            wf:input1 _:out2 ;
+            wf:input2 _:out1 ;
+            wf:output _:out0 ] ;
+    wf:source _:in1,
+        _:in2 ;
+    wf:target _:out0 .
+

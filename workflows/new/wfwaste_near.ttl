@@ -1,0 +1,30 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+
+[] a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:SelectLayerByAttribute2 ;
+            wf:input1 _:in2 ;
+            wf:output _:out1 ],
+        [ wf:applicationOf abstr:GenerateNearTable ;
+            wf:input1 _:out3 ;
+            wf:input2 _:in3 ;
+            wf:output _:out4 ],
+        [ wf:applicationOf abstr:ConvertDist2TravelTimeonObjects ;
+            wf:input1 _:out4 ;
+            wf:output _:out5 ],
+        [ wf:applicationOf abstr:SpatialJoin ;
+            wf:input1 _:out5 ;
+            wf:input2 _:out2 ;
+            wf:output _:out0 ],
+        [ wf:applicationOf abstr:SelectLayerByLocation ;
+            wf:input1 _:out1 ;
+            wf:input2 _:out2 ;
+            wf:output _:out3 ],
+        [ wf:applicationOf abstr:SelectLayerByAttribute ;
+            wf:input1 _:in1 ;
+            wf:output _:out2 ] ;
+    wf:source _:in1,
+        _:in2,
+        _:in3 ;
+    wf:target _:out0 .
+

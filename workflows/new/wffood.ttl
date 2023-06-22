@@ -1,0 +1,32 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+
+[] a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:FeatureClassToFeatureClass2 ;
+            wf:input1 _:in3 ;
+            wf:output _:out3 ],
+        [ wf:applicationOf abstr:convert2PointObjects ;
+            wf:input1 _:in4 ;
+            wf:output _:out2 ],
+        [ wf:applicationOf abstr:SummaryStatistics3 ;
+            wf:input1 _:out1 ;
+            wf:output _:out0 ],
+        [ wf:applicationOf abstr:ClostestFacilityAnalysis ;
+            wf:input1 _:in1 ;
+            wf:input2 _:out5 ;
+            wf:input3 _:out4 ;
+            wf:output _:out1 ],
+        [ wf:applicationOf abstr:SelectLayerByLocationPointObjects ;
+            wf:input1 _:out2 ;
+            wf:input2 _:out3 ;
+            wf:output _:out4 ],
+        [ wf:applicationOf abstr:SelectLayerByLocationPointObjects ;
+            wf:input1 _:in2 ;
+            wf:input2 _:out3 ;
+            wf:output _:out5 ] ;
+    wf:source _:in1,
+        _:in2,
+        _:in3,
+        _:in4 ;
+    wf:target _:out0 .
+
