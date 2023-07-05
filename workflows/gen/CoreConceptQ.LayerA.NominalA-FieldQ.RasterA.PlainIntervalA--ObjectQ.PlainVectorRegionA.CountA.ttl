@@ -1,0 +1,44 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.RasterA.PlainIntervalA--ObjectQ.PlainVectorRegionA.CountA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:Slope ;
+            wf:input1 _:na011a461cff444939f5a8f9e34ec0429b2 ;
+            wf:output _:na011a461cff444939f5a8f9e34ec0429b3 ],
+        [ wf:applicationOf abstr:SelectLayerByLocationTessObject ;
+            wf:input1 _:na011a461cff444939f5a8f9e34ec0429b5 ;
+            wf:input2 _:na011a461cff444939f5a8f9e34ec0429b6 ;
+            wf:output [ a ccd:CountA,
+                        ccd:ObjectQ,
+                        ccd:PlainVectorRegionA ;
+                    rdfs:label "ObjectQ, PlainVectorRegionA, CountA" ] ],
+        [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:na011a461cff444939f5a8f9e34ec0429b3 ;
+            wf:input2 _:na011a461cff444939f5a8f9e34ec0429b5 ;
+            wf:output _:na011a461cff444939f5a8f9e34ec0429b6 ] ;
+    wf:source _:na011a461cff444939f5a8f9e34ec0429b2,
+        _:na011a461cff444939f5a8f9e34ec0429b5 .
+
+_:na011a461cff444939f5a8f9e34ec0429b2 a ccd:FieldQ,
+        ccd:PlainIntervalA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainIntervalA" .
+
+_:na011a461cff444939f5a8f9e34ec0429b3 a ccd:FieldQ,
+        ccd:PlainRatioA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainRatioA" .
+
+_:na011a461cff444939f5a8f9e34ec0429b6 a ccd:IRA,
+        ccd:ObjectQ,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" .
+
+_:na011a461cff444939f5a8f9e34ec0429b5 a ccd:CountA,
+        ccd:ObjectQ,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, CountA" .
+

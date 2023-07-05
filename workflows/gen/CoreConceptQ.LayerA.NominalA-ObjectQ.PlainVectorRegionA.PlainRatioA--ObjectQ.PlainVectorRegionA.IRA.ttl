@@ -1,0 +1,27 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PlainVectorRegionA.PlainRatioA--ObjectQ.PlainVectorRegionA.IRA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:n5dc975de4d1c4265b3bab12803ec479bb2 ;
+            wf:input2 _:n5dc975de4d1c4265b3bab12803ec479bb3 ;
+            wf:output [ a ccd:IRA,
+                        ccd:ObjectQ,
+                        ccd:PlainVectorRegionA ;
+                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ] ;
+    wf:source _:n5dc975de4d1c4265b3bab12803ec479bb2,
+        _:n5dc975de4d1c4265b3bab12803ec479bb3 .
+
+_:n5dc975de4d1c4265b3bab12803ec479bb2 a ccd:FieldQ,
+        ccd:PlainRatioA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainRatioA" .
+
+_:n5dc975de4d1c4265b3bab12803ec479bb3 a ccd:ObjectQ,
+        ccd:PlainRatioA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainRatioA" .
+

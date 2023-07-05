@@ -1,0 +1,602 @@
+@prefix : <https://github.com/quangis/transforge#> .
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix cct: <https://quangis.github.io/vocab/cct#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfexpert1: <https://quangis.github.io/workflows/expert1/> .
+
+wfexpert1:DeforestationAmazon a wf:Workflow,
+        :Transformation ;
+    wf:edge [ wf:applicationOf abstr:SelectObjectbyExtent ;
+            wf:input1 <https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#roads> ;
+            wf:output _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+            rdfs:comment "select existing roads within window" ],
+        [ wf:applicationOf abstr:ObjectBuffer ;
+            wf:input1 _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+            wf:output _:nfc8f3a9230bb4b46b14292ab01883267b9 ;
+            rdfs:comment "generate buffers for existing roads" ],
+        [ wf:applicationOf abstr:ClipBoolFieldVector2Extent ;
+            wf:input1 <https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#deforested> ;
+            wf:input2 _:nfc8f3a9230bb4b46b14292ab01883267b9 ;
+            wf:output _:nfc8f3a9230bb4b46b14292ab01883267b10 ;
+            rdfs:comment "clip deforested area with roads buffer" ],
+        [ wf:applicationOf abstr:CalculateVectorFieldAreaPercentage ;
+            wf:input1 _:nfc8f3a9230bb4b46b14292ab01883267b9 ;
+            wf:input2 _:nfc8f3a9230bb4b46b14292ab01883267b10 ;
+            wf:output _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+            rdfs:comment "area percentage of current deforestation (summary of nominal field areas)" ],
+        [ wf:applicationOf abstr:ObjectBuffer ;
+            wf:input1 <https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#planned> ;
+            wf:output _:nfc8f3a9230bb4b46b14292ab01883267b12 ],
+        [ wf:applicationOf abstr:EraseFieldExtentfromFieldVector ;
+            wf:input1 _:nfc8f3a9230bb4b46b14292ab01883267b12 ;
+            wf:input2 <https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#deforested> ;
+            wf:output _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+            rdfs:comment "erase features" ],
+        [ wf:applicationOf abstr:CalculateVectorFieldPartialArea ;
+            wf:input1 _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+            wf:input2 _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+            wf:output _:nfc8f3a9230bb4b46b14292ab01883267b14 ;
+            rdfs:comment "area of predicted deforestation from buffers in deforested area" ] ;
+    wf:source <https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#deforested>,
+        <https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#planned>,
+        <https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#roads> ;
+    dcterms:subject "Out: Ratio, In: R(Obj, Reg), In: R(Obj, Reg), In: R(Loc, Bool)" ;
+    rdfs:comment "What area is potentially deforested within 5.5 km of a planned road in the Amazon rainforest?"@en ;
+    ns1:abstract "The Amazon rain forest spans nine countries and millions of square kilometers. Due to deforestation, current estimates indicate only about 80 percent of the original rain forest remains. In this lesson, you'll use ArcGIS Pro to create a map of deforestation in the Brazilian state of Rondonia. Then, you'll predict how much deforestation would be caused by a road proposed to be built across the state. Your workflow requires a wide variety of data, feature editing, and analysis tools. You'll also learn how to share your results as an informative print map." ;
+    :contains _:N2cafb556977a49a28e949c43e1999c21,
+        cct:Bool,
+        cct:Nom,
+        cct:R1-Bool,
+        cct:R1-Loc,
+        cct:R1-Obj,
+        cct:R2-Bool-Ratio,
+        cct:R2-Loc-Bool,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Reg,
+        cct:R3-Loc-Nom-Obj,
+        cct:Ratio,
+        cct:Reg,
+        cct:apply1,
+        cct:deify,
+        cct:eq,
+        cct:extrapol,
+        cct:fcover,
+        cct:get_attrL,
+        cct:lTopo,
+        cct:loTopo,
+        cct:nest,
+        cct:nest2,
+        cct:pi1,
+        cct:pi3,
+        cct:product,
+        cct:ratio,
+        cct:reify,
+        cct:select,
+        cct:size,
+        cct:subset ;
+    :input _:Nd3654bbfa798494f9a68769805a8fe0a,
+        _:Nec689c574bda4a1ab7d710661de22688,
+        _:Nfeccc41853b74a8fb5c36fda9713b4b7 ;
+    :output [ rdfs:label "R2(Bool, Ratio) via apply1" ;
+            :from _:N2f6f99b0b7334b18ac954ee04fc41c9b,
+                [ rdfs:label "Ratio via product" ;
+                    :from _:N9e781cf2cda24d6ba86966ec3b14b810,
+                        [ rdfs:label "Ratio via size" ;
+                            :from [ rdfs:label "R1(Loc) via pi1" ;
+                                    :from [ rdfs:label "R2(Loc, Bool) via subset" ;
+                                            :from _:N7550f13bbb4b42b89c4998bb31a929f4,
+                                                [ rdfs:label "R1(Loc) via pi1" ;
+                                                    :from [ rdfs:label "R3(Loc, Nom, Reg) via select" ;
+                                                            :from _:N481a2969a51c4598a82f5e0ebf7afc0a,
+                                                                [ rdfs:label "Bool via eq" ;
+                                                                    :from _:N5c1e10199462464f9303580e005ab41d ;
+                                                                    :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+                                                                    :type cct:Bool ;
+                                                                    :via cct:eq ],
+                                                                _:Nd889c9e44d0c47a1ae5c089f22306f30 ;
+                                                            :internal _:N5c1e10199462464f9303580e005ab41d ;
+                                                            :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+                                                            :type _:N2cafb556977a49a28e949c43e1999c21 ;
+                                                            :via cct:select ] ;
+                                                    :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+                                                    :type cct:R1-Loc ;
+                                                    :via cct:pi1 ] ;
+                                            :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+                                            :type cct:R2-Loc-Bool ;
+                                            :via cct:subset ] ;
+                                    :origin _:nfc8f3a9230bb4b46b14292ab01883267b14 ;
+                                    :type cct:R1-Loc ;
+                                    :via cct:pi1 ] ;
+                            :origin _:nfc8f3a9230bb4b46b14292ab01883267b14 ;
+                            :type cct:Ratio ;
+                            :via cct:size ] ;
+                    :origin _:nfc8f3a9230bb4b46b14292ab01883267b14 ;
+                    :type cct:Ratio ;
+                    :via cct:product ] ;
+            :internal _:N9e781cf2cda24d6ba86966ec3b14b810 ;
+            :origin _:nfc8f3a9230bb4b46b14292ab01883267b14 ;
+            :type cct:R2-Bool-Ratio ;
+            :via cct:apply1 ] .
+
+cct:Itv rdfs:subClassOf cct:Ord .
+
+cct:Ord rdfs:subClassOf cct:Nom .
+
+cct:Qlt rdfs:subClassOf cct:Val .
+
+cct:R1-Nom rdfs:subClassOf cct:R1-Qlt .
+
+cct:R1-Qlt rdfs:subClassOf cct:R1-Val .
+
+cct:R1-Top rdfs:subClassOf :Top .
+
+cct:R2-Bool-Itv rdfs:subClassOf cct:R2-Bool-Ord,
+        cct:R2-Nom-Itv .
+
+cct:R2-Bool-Nom rdfs:subClassOf cct:R2-Bool-Qlt,
+        cct:R2-Nom-Nom .
+
+cct:R2-Bool-Ord rdfs:subClassOf cct:R2-Bool-Nom,
+        cct:R2-Nom-Ord .
+
+cct:R2-Bool-Qlt rdfs:subClassOf cct:R2-Bool-Top,
+        cct:R2-Nom-Qlt .
+
+cct:R2-Bool-Top rdfs:subClassOf cct:R2-Nom-Top .
+
+cct:R2-Loc-Nom rdfs:subClassOf cct:R2-Loc-Qlt,
+        cct:R2-Top-Nom .
+
+cct:R2-Loc-Qlt rdfs:subClassOf cct:R2-Loc-Top,
+        cct:R2-Top-Qlt .
+
+cct:R2-Loc-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Nom-Ratio rdfs:subClassOf cct:R2-Nom-Itv,
+        cct:R2-Qlt-Ratio .
+
+cct:R2-Obj-Product-Reg-Qlt rdfs:subClassOf cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Top-Product-Reg-Qlt .
+
+cct:R2-Obj-Product-Reg-Top rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
+        cct:R2-Top-Product-Reg-Top .
+
+cct:R2-Obj-Product-Top-Nom rdfs:subClassOf cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Nom .
+
+cct:R2-Qlt-Ratio rdfs:subClassOf cct:R2-Qlt-Itv,
+        cct:R2-Top-Ratio .
+
+cct:R2-Top-Bool rdfs:subClassOf cct:R2-Top-Nom .
+
+cct:R2-Top-Product-Reg-Nom rdfs:subClassOf cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Top-Nom .
+
+cct:R2-Top-Ratio rdfs:subClassOf cct:R2-Top-Itv .
+
+cct:R2-Top-Reg rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R3-Loc-Nom-Top rdfs:subClassOf cct:R3-Loc-Qlt-Top,
+        cct:R3-Top-Nom-Top .
+
+cct:R3-Loc-Qlt-Obj rdfs:subClassOf cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Top-Qlt-Obj .
+
+cct:R3-Loc-Top-Obj rdfs:subClassOf cct:R3-Loc-Top-Top,
+        cct:R3-Top-Top-Obj .
+
+cct:R3-Top-Nom-Obj rdfs:subClassOf cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj .
+
+cct:R1-Obj a :Type ;
+    rdfs:label "R1(Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Val .
+
+cct:R2-Nom-Itv rdfs:subClassOf cct:R2-Nom-Ord,
+        cct:R2-Qlt-Itv .
+
+cct:R2-Nom-Nom rdfs:subClassOf cct:R2-Nom-Qlt,
+        cct:R2-Qlt-Nom .
+
+cct:R2-Nom-Ord rdfs:subClassOf cct:R2-Nom-Nom,
+        cct:R2-Qlt-Ord .
+
+cct:R2-Nom-Qlt rdfs:subClassOf cct:R2-Nom-Top,
+        cct:R2-Qlt-Qlt .
+
+cct:R2-Nom-Top rdfs:subClassOf cct:R2-Qlt-Top .
+
+cct:R2-Obj-Product-Top-Qlt rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
+        cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Obj-Product-Top-Top rdfs:subClassOf cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Top .
+
+cct:R2-Obj-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Qlt-Itv rdfs:subClassOf cct:R2-Qlt-Ord,
+        cct:R2-Top-Itv .
+
+cct:R2-Qlt-Nom rdfs:subClassOf cct:R2-Qlt-Qlt,
+        cct:R2-Top-Nom .
+
+cct:R2-Qlt-Ord rdfs:subClassOf cct:R2-Qlt-Nom,
+        cct:R2-Top-Ord .
+
+cct:R2-Qlt-Qlt rdfs:subClassOf cct:R2-Qlt-Top,
+        cct:R2-Top-Qlt .
+
+cct:R2-Qlt-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Top-Itv rdfs:subClassOf cct:R2-Top-Ord .
+
+cct:R2-Top-Ord rdfs:subClassOf cct:R2-Top-Nom .
+
+cct:R2-Top-Product-Reg-Qlt rdfs:subClassOf cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Top-Product-Reg-Top rdfs:subClassOf cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Top-Nom rdfs:subClassOf cct:R2-Top-Product-Top-Qlt .
+
+cct:R3-Loc-Qlt-Top rdfs:subClassOf cct:R3-Loc-Top-Top,
+        cct:R3-Top-Qlt-Top .
+
+cct:R3-Loc-Top-Top rdfs:subClassOf cct:R3-Top-Top-Top .
+
+cct:R3-Top-Nom-Top rdfs:subClassOf cct:R3-Top-Qlt-Top .
+
+cct:R3-Top-Qlt-Obj rdfs:subClassOf cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj .
+
+cct:R3-Top-Top-Obj rdfs:subClassOf cct:R3-Top-Top-Top .
+
+<https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#planned> rdfs:label "Planned road"@en ;
+    rdfs:comment "A planned road in the Amazon Forest Region"@en .
+
+<https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#roads> rdfs:label "Current roads"@en ;
+    rdfs:comment "Road network in the Amazon Forest Region"@en .
+
+cct:R1-Val rdfs:subClassOf cct:R1-Top .
+
+cct:R2-Bool-Ratio a :Type ;
+    rdfs:label "R2(Bool, Ratio)" ;
+    rdf:_1 cct:Bool ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Bool-Itv,
+        cct:R2-Nom-Ratio .
+
+cct:R2-Top-Product-Top-Qlt rdfs:subClassOf cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Top-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Top-Qlt rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R3-Loc-Nom-Obj a :Type ;
+    rdfs:label "R3(Loc, Nom, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf cct:R3,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Top-Nom-Obj .
+
+cct:R3-Top-Qlt-Top rdfs:subClassOf cct:R3-Top-Top-Top .
+
+cct:R3-Top-Top-Top rdfs:subClassOf :Top .
+
+<https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#deforested> rdfs:label "Deforested areas"@en ;
+    rdfs:comment "Actual deforested area in the Amazon Forest Region"@en .
+
+cct:Loc a :Type ;
+    rdfs:label "Loc" ;
+    rdfs:subClassOf cct:Val .
+
+cct:Obj a :Type ;
+    rdfs:label "Obj" ;
+    rdfs:subClassOf cct:Val .
+
+cct:R2-Obj-Product-Reg-Nom a :Type ;
+    rdfs:label "R2(Obj, (Reg * Nom))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 [ a :Type ;
+            rdfs:label "(Reg * Nom)" ;
+            rdf:_1 cct:Reg ;
+            rdf:_2 cct:Nom ;
+            rdfs:subClassOf :Product ] ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Top-Product-Reg-Nom .
+
+cct:R2-Obj-Reg a :Type ;
+    rdfs:label "R2(Obj, Reg)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg .
+
+cct:R2-Top-Nom rdfs:subClassOf cct:R2-Top-Qlt .
+
+cct:Val rdfs:subClassOf :Top .
+
+cct:R1-Bool a :Type ;
+    rdfs:label "R1(Bool)" ;
+    rdf:_1 cct:Bool ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Nom .
+
+cct:R2-Loc-Bool a :Type ;
+    rdfs:label "R2(Loc, Bool)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Loc-Nom,
+        cct:R2-Top-Bool .
+
+cct:R2-Top-Top rdfs:subClassOf :Top .
+
+cct:Reg a :Type ;
+    rdfs:label "Reg" ;
+    rdfs:subClassOf cct:Val .
+
+cct:Ratio a :Type ;
+    rdfs:label "Ratio" ;
+    rdfs:subClassOf cct:Itv .
+
+cct:Nom a :Type ;
+    rdfs:label "Nom" ;
+    rdfs:subClassOf cct:Qlt .
+
+cct:R1-Loc a :Type ;
+    rdfs:label "R1(Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Val .
+
+cct:Bool a :Type ;
+    rdfs:label "Bool" ;
+    rdfs:subClassOf cct:Nom .
+
+_:N00728afd6b4b4fb5b44870c7298a0f4b rdfs:label "R1(Loc) via fcover" ;
+    :from _:Nd1423eece38540c5bb4bd8e355feda83,
+        [ rdfs:label "R1(Bool) via nest" ;
+            :from [ rdfs:label "Bool from source" ;
+                    :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+                    :type cct:Bool ] ;
+            :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+            :type cct:R1-Bool ;
+            :via cct:nest ] ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+    :type cct:R1-Loc ;
+    :via cct:fcover .
+
+_:N189fc97244c04a29a3460145f58bf002 rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+    :from [ rdfs:label "R1(Obj) via pi3" ;
+            :from [ rdfs:label "R3(Loc, Nom, Obj) via select" ;
+                    :from [ rdfs:label "Bool via eq" ;
+                            :from _:N6d769c7175734223a8e82fc3edd9c0aa ;
+                            :origin _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+                            :type cct:Bool ;
+                            :via cct:eq ],
+                        _:Nc0ac94bcbce9488ba2749026b1a0f2a9,
+                        _:Nc6b7cc6e98084a2c9ac381946b9ec2f1 ;
+                    :internal _:N6d769c7175734223a8e82fc3edd9c0aa ;
+                    :origin _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+                    :type cct:R3-Loc-Nom-Obj ;
+                    :via cct:select ] ;
+            :origin _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+            :type cct:R1-Obj ;
+            :via cct:pi3 ],
+        _:Nd3654bbfa798494f9a68769805a8fe0a ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+    :type cct:R2-Obj-Product-Reg-Nom ;
+    :via cct:subset .
+
+_:N1da604b1be244a56bec941c39b7d5329 rdfs:label "Bool from source" ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b10 ;
+    :type cct:Bool .
+
+_:N2e118e2a62af49c0a1fb3a6b46bc0a3d rdfs:label "R1(Loc) via deify" ;
+    :from [ rdfs:label "Reg from source" ;
+            :origin _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+            :type cct:Reg ] ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+    :type cct:R1-Loc ;
+    :via cct:deify .
+
+_:N3dabde80173344c1b8f9e23e3bbaa8e9 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    :from _:Nfeccc41853b74a8fb5c36fda9713b4b7 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b12 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:get_attrL .
+
+_:N3e675cc8b4914cc5abcbc2205bb111ff rdfs:label "R1(Loc) via fcover" ;
+    :from [ rdfs:label "R1(Bool) via nest" ;
+            :from _:N1da604b1be244a56bec941c39b7d5329 ;
+            :origin _:nfc8f3a9230bb4b46b14292ab01883267b10 ;
+            :type cct:R1-Bool ;
+            :via cct:nest ],
+        _:Nd1423eece38540c5bb4bd8e355feda83 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b10 ;
+    :type cct:R1-Loc ;
+    :via cct:fcover .
+
+_:N5b1b85d5e63740279eb230b94f7dc463 rdfs:label "Bool from source" ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+    :type cct:Bool .
+
+_:N6122bfa210624719be4aa951ef1098c8 rdfs:label "Ratio via ratio" ;
+    :from [ rdfs:label "Ratio via size" ;
+            :from [ rdfs:label "R1(Loc) via fcover" ;
+                    :from [ rdfs:label "R2(Loc, Bool) via subset" ;
+                            :from _:N3e675cc8b4914cc5abcbc2205bb111ff,
+                                _:Nec689c574bda4a1ab7d710661de22688 ;
+                            :origin _:nfc8f3a9230bb4b46b14292ab01883267b10 ;
+                            :type cct:R2-Loc-Bool ;
+                            :via cct:subset ],
+                        [ rdfs:label "R1(Bool) via nest" ;
+                            :from [ rdfs:label "Bool from source" ;
+                                    :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+                                    :type cct:Bool ] ;
+                            :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+                            :type cct:R1-Bool ;
+                            :via cct:nest ] ;
+                    :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+                    :type cct:R1-Loc ;
+                    :via cct:fcover ] ;
+            :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+            :type cct:Ratio ;
+            :via cct:size ],
+        [ rdfs:label "Ratio via size" ;
+            :from _:N00728afd6b4b4fb5b44870c7298a0f4b ;
+            :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+            :type cct:Ratio ;
+            :via cct:size ] ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+    :type cct:Ratio ;
+    :via cct:ratio .
+
+_:N71bb040b764f4303ae604384e4427054 rdfs:label "R1(Loc) via pi1" ;
+    :from _:N7550f13bbb4b42b89c4998bb31a929f4 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+    :type cct:R1-Loc ;
+    :via cct:pi1 .
+
+_:N8235fb4f798249d3aa233681dac6b320 rdfs:label "R1(Loc) via fcover" ;
+    :from _:Nec689c574bda4a1ab7d710661de22688,
+        [ rdfs:label "R1(Bool) via nest" ;
+            :from [ rdfs:label "Bool from source" ;
+                    :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+                    :type cct:Bool ] ;
+            :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+            :type cct:R1-Bool ;
+            :via cct:nest ] ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+    :type cct:R1-Loc ;
+    :via cct:fcover .
+
+_:Nc18818ea5c82464e89155f2d7331fc05 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    :from _:N189fc97244c04a29a3460145f58bf002 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b9 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:get_attrL .
+
+_:Ne4e3b43bcb15497ab73088e63ac20779 rdfs:label "Reg via reify" ;
+    :from _:N8235fb4f798249d3aa233681dac6b320 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+    :type cct:Reg ;
+    :via cct:reify .
+
+_:Nedfe919cedc2419197ca81d04a19239b rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    :from _:Nd3654bbfa798494f9a68769805a8fe0a ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:get_attrL .
+
+_:N2f6f99b0b7334b18ac954ee04fc41c9b rdfs:label "R2(Bool, Ratio) via nest2" ;
+    :from _:N5b1b85d5e63740279eb230b94f7dc463,
+        _:N6122bfa210624719be4aa951ef1098c8 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b11 ;
+    :type cct:R2-Bool-Ratio ;
+    :via cct:nest2 .
+
+_:N481a2969a51c4598a82f5e0ebf7afc0a rdfs:label "R3(Loc, Nom, Reg) via lTopo" ;
+    :from _:N71bb040b764f4303ae604384e4427054,
+        _:Ne4e3b43bcb15497ab73088e63ac20779 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+    :type _:N2cafb556977a49a28e949c43e1999c21 ;
+    :via cct:lTopo .
+
+_:N5c1e10199462464f9303580e005ab41d rdfs:label "(internal)" ;
+    :from _:N481a2969a51c4598a82f5e0ebf7afc0a,
+        _:Nd889c9e44d0c47a1ae5c089f22306f30 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 .
+
+_:N6d769c7175734223a8e82fc3edd9c0aa rdfs:label "(internal)" ;
+    :from _:Nc0ac94bcbce9488ba2749026b1a0f2a9,
+        _:Nc6b7cc6e98084a2c9ac381946b9ec2f1 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b8 .
+
+_:N7550f13bbb4b42b89c4998bb31a929f4 rdfs:label "R2(Loc, Bool) via extrapol" ;
+    :from _:N3dabde80173344c1b8f9e23e3bbaa8e9 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b12 ;
+    :type cct:R2-Loc-Bool ;
+    :via cct:extrapol .
+
+_:N9e781cf2cda24d6ba86966ec3b14b810 rdfs:label "(internal)" ;
+    :from _:N2f6f99b0b7334b18ac954ee04fc41c9b ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b14 .
+
+_:Nc0ac94bcbce9488ba2749026b1a0f2a9 rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
+    :from _:N2e118e2a62af49c0a1fb3a6b46bc0a3d,
+        _:Nedfe919cedc2419197ca81d04a19239b ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+    :type cct:R3-Loc-Nom-Obj ;
+    :via cct:loTopo .
+
+_:Nc6b7cc6e98084a2c9ac381946b9ec2f1 rdfs:label "Nom from source" ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b8 ;
+    :type cct:Nom .
+
+_:Nd1423eece38540c5bb4bd8e355feda83 rdfs:label "R2(Loc, Bool) via extrapol" ;
+    :from _:Nc18818ea5c82464e89155f2d7331fc05 ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b9 ;
+    :type cct:R2-Loc-Bool ;
+    :via cct:extrapol .
+
+_:Nd889c9e44d0c47a1ae5c089f22306f30 rdfs:label "Nom from source" ;
+    :origin _:nfc8f3a9230bb4b46b14292ab01883267b13 ;
+    :type cct:Nom .
+
+_:Nfeccc41853b74a8fb5c36fda9713b4b7 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    :origin <https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#planned> ;
+    :type cct:R2-Obj-Product-Reg-Nom .
+
+_:N2cafb556977a49a28e949c43e1999c21 a :Type ;
+    rdfs:label "R3(Loc, Nom, Reg)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Reg ;
+    rdfs:subClassOf cct:R3 .
+
+_:Nd3654bbfa798494f9a68769805a8fe0a rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    :origin <https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#roads> ;
+    :type cct:R2-Obj-Product-Reg-Nom .
+
+_:Nec689c574bda4a1ab7d710661de22688 rdfs:label "R2(Loc, Bool) from source" ;
+    :origin <https://learn.arcgis.com/en/projects/predict-deforestation-in-the-amazon-rain-forest/#deforested> ;
+    :type cct:R2-Loc-Bool .
+
+_:nfc8f3a9230bb4b46b14292ab01883267b12 rdfs:label "Planned road area"@en ;
+    rdfs:comment "A vector polygon representing area within 5.5km of the planned road in the Amazon Forest area"@en .
+
+_:nfc8f3a9230bb4b46b14292ab01883267b9 rdfs:label "Roads area"@en ;
+    rdfs:comment "A vector polygon representing area within 5.5km of roads in the Amazon Forest area"@en .
+
+_:nfc8f3a9230bb4b46b14292ab01883267b10 rdfs:label "Deforested road area"@en ;
+    rdfs:comment "Vector polygon data representing area that is both deforested and within 5.5km of roads in the Amazon Forest area"@en .
+
+_:nfc8f3a9230bb4b46b14292ab01883267b14 rdfs:label "Planned road area (% Deforestation)"@en ;
+    rdfs:comment "A vector multipart polygon representing area within 5.5km of the planned road in the Amazon Forest area with an expected total of deforestation as an attribute"@en .
+
+_:nfc8f3a9230bb4b46b14292ab01883267b8 rdfs:label "Roads selection"@en ;
+    rdfs:comment "A selection of the roads by a user's view extent (all roads visible on screen)"@en .
+
+_:nfc8f3a9230bb4b46b14292ab01883267b11 rdfs:label "Road area (% deforested)"@en ;
+    rdfs:comment "Vector polygon representing the area within 5.5km of roads with a percentage of the area that has been deforested"@en .
+
+_:nfc8f3a9230bb4b46b14292ab01883267b13 rdfs:label "Planned road area (No deforestation)"@en ;
+    rdfs:comment "A vector multipart polygon representing area within 5.5km of the planned road in the Amazon Forest area with existing deforestation erased"@en .
+

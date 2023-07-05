@@ -1,0 +1,18 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfexpert2: <https://quangis.github.io/workflows/expert2/> .
+
+wfexpert2:wfwaste_disposal a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:CreateNetwork ;
+            wf:input1 _:in1 ;
+            wf:output _:out1 ],
+        [ wf:applicationOf abstr:TSPRouting ;
+            wf:input1 _:out1 ;
+            wf:input2 _:in3 ;
+            wf:input3 _:in2 ;
+            wf:output _:out0 ] ;
+    wf:source _:in1,
+        _:in2,
+        _:in3 ;
+    wf:target _:out0 .
+

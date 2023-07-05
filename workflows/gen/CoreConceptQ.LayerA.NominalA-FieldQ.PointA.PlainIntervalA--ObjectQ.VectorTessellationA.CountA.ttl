@@ -1,0 +1,44 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.PointA.PlainIntervalA--ObjectQ.VectorTessellationA.CountA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:KrigingInterval ;
+            wf:input1 _:ndfef7469ced74357933b7a8128ab72e8b2 ;
+            wf:output _:ndfef7469ced74357933b7a8128ab72e8b3 ],
+        [ wf:applicationOf abstr:SpatialJoinCountTess ;
+            wf:input1 _:ndfef7469ced74357933b7a8128ab72e8b6 ;
+            wf:input2 _:ndfef7469ced74357933b7a8128ab72e8b5 ;
+            wf:output [ a ccd:CountA,
+                        ccd:ObjectQ,
+                        ccd:VectorTessellationA ;
+                    rdfs:label "ObjectQ, VectorTessellationA, CountA" ] ],
+        [ wf:applicationOf abstr:ZonalStatisticsMeanInterval ;
+            wf:input1 _:ndfef7469ced74357933b7a8128ab72e8b3 ;
+            wf:input2 _:ndfef7469ced74357933b7a8128ab72e8b5 ;
+            wf:output _:ndfef7469ced74357933b7a8128ab72e8b6 ] ;
+    wf:source _:ndfef7469ced74357933b7a8128ab72e8b2,
+        _:ndfef7469ced74357933b7a8128ab72e8b5 .
+
+_:ndfef7469ced74357933b7a8128ab72e8b2 a ccd:FieldQ,
+        ccd:PlainIntervalA,
+        ccd:PointA ;
+    rdfs:label "FieldQ, PointA, PlainIntervalA" .
+
+_:ndfef7469ced74357933b7a8128ab72e8b3 a ccd:FieldQ,
+        ccd:PlainIntervalA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainIntervalA" .
+
+_:ndfef7469ced74357933b7a8128ab72e8b6 a ccd:ObjectQ,
+        ccd:PlainIntervalA,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
+
+_:ndfef7469ced74357933b7a8128ab72e8b5 a ccd:CyclicA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, CyclicA" .
+

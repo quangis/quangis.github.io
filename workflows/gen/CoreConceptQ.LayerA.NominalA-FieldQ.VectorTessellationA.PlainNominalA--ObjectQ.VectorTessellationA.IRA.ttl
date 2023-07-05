@@ -1,0 +1,44 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.VectorTessellationA.PlainNominalA--ObjectQ.VectorTessellationA.IRA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:ComputeCountDensityonObject ;
+            wf:input1 _:n0fe1f9f60a94440aa4074a7ff9a9b4b3b2 ;
+            wf:output [ a ccd:IRA,
+                        ccd:ObjectQ,
+                        ccd:VectorTessellationA ;
+                    rdfs:label "ObjectQ, VectorTessellationA, IRA" ] ],
+        [ wf:applicationOf abstr:IntersectDissolveField2Object ;
+            wf:input1 _:n0fe1f9f60a94440aa4074a7ff9a9b4b3b5 ;
+            wf:input2 _:n0fe1f9f60a94440aa4074a7ff9a9b4b3b6 ;
+            wf:output _:n0fe1f9f60a94440aa4074a7ff9a9b4b3b7 ],
+        [ wf:applicationOf abstr:SpatialJoinCountTess ;
+            wf:input1 _:n0fe1f9f60a94440aa4074a7ff9a9b4b3b7 ;
+            wf:input2 _:n0fe1f9f60a94440aa4074a7ff9a9b4b3b6 ;
+            wf:output _:n0fe1f9f60a94440aa4074a7ff9a9b4b3b2 ] ;
+    wf:source _:n0fe1f9f60a94440aa4074a7ff9a9b4b3b5,
+        _:n0fe1f9f60a94440aa4074a7ff9a9b4b3b6 .
+
+_:n0fe1f9f60a94440aa4074a7ff9a9b4b3b2 a ccd:CountA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, CountA" .
+
+_:n0fe1f9f60a94440aa4074a7ff9a9b4b3b5 a ccd:FieldQ,
+        ccd:PlainNominalA,
+        ccd:VectorTessellationA ;
+    rdfs:label "FieldQ, VectorTessellationA, PlainNominalA" .
+
+_:n0fe1f9f60a94440aa4074a7ff9a9b4b3b7 a ccd:ERA,
+        ccd:ObjectQ,
+        ccd:VectorRegionA ;
+    rdfs:label "ObjectQ, VectorRegionA, ERA" .
+
+_:n0fe1f9f60a94440aa4074a7ff9a9b4b3b6 a ccd:NominalA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, NominalA" .
+

@@ -1,0 +1,36 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.PlainRatioA--ObjectQ.VectorTessellationA.ERA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:SpatialJoinSumTessRatio ;
+            wf:input1 _:n66cbe76bd2444cb4af0f80cc4d98d78fb3 ;
+            wf:input2 _:n66cbe76bd2444cb4af0f80cc4d98d78fb2 ;
+            wf:output [ a ccd:ERA,
+                        ccd:ObjectQ,
+                        ccd:VectorTessellationA ;
+                    rdfs:label "ObjectQ, VectorTessellationA, ERA" ] ],
+        [ wf:applicationOf abstr:SelectLayerByLocationTessObjects ;
+            wf:input1 _:n66cbe76bd2444cb4af0f80cc4d98d78fb3 ;
+            wf:input2 _:n66cbe76bd2444cb4af0f80cc4d98d78fb6 ;
+            wf:output _:n66cbe76bd2444cb4af0f80cc4d98d78fb2 ] ;
+    wf:source _:n66cbe76bd2444cb4af0f80cc4d98d78fb3,
+        _:n66cbe76bd2444cb4af0f80cc4d98d78fb6 .
+
+_:n66cbe76bd2444cb4af0f80cc4d98d78fb2 a ccd:ObjectQ,
+        ccd:PlainNominalA,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, PlainNominalA" .
+
+_:n66cbe76bd2444cb4af0f80cc4d98d78fb6 a ccd:ObjectQ,
+        ccd:PlainRatioA,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, PlainRatioA" .
+
+_:n66cbe76bd2444cb4af0f80cc4d98d78fb3 a ccd:ERA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, ERA" .
+

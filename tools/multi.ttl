@@ -5,364 +5,364 @@
 
 multi:AddandCalculateAttribute a :Multi ;
     rdfs:comment "Add an attribute and calculate value based on one other attribute" ;
-    :action [ :apply arcgis:AddField ;
+    :action [ :apply arcgis:CalculateField ;
+            :input _:N9e9fb322ce5848038b6de425d09ee6ff ;
+            :output [ ] ],
+        [ :apply arcgis:AddField ;
             :input [ :id "1" ] ;
-            :output _:N3c3f4f47fe0a4b978926528ee7907c27 ],
-        [ :apply arcgis:CalculateField ;
-            :input _:N3c3f4f47fe0a4b978926528ee7907c27 ;
-            :output [ ] ] .
+            :output _:N9e9fb322ce5848038b6de425d09ee6ff ] .
 
 multi:BufferDissolve a :Multi ;
-    :action [ :apply arcgis:Buffer ;
+    :action [ :apply arcgis:Dissolve ;
+            :input _:Nc91c677ed93d4a1aa34c8dd313fd08a9 ;
+            :output [ ] ],
+        [ :apply arcgis:Buffer ;
             :input [ :id "1" ] ;
-            :output _:Nf1ec5f03672e419ab2696df458c0c66f ],
-        [ :apply arcgis:Dissolve ;
-            :input _:Nf1ec5f03672e419ab2696df458c0c66f ;
-            :output [ ] ] .
+            :output _:Nc91c677ed93d4a1aa34c8dd313fd08a9 ] .
 
 multi:CalculateAreaMeasure a :Multi ;
     rdfs:comment "This is an abbreviated workflow for calculating area based measures with attributes" ;
     :action [ :apply arcgis:AddField ;
             :input [ :id "1" ] ;
-            :output _:Ndb743213beaf4d988ad15d3c4c7975c4 ],
+            :output _:N7f149b3a453246e8a0ee199f14b96155 ],
         [ :apply arcgis:CalculateField2 ;
-            :input [ :id "2" ],
-                _:Ndb743213beaf4d988ad15d3c4c7975c4 ;
+            :input _:N7f149b3a453246e8a0ee199f14b96155,
+                [ :id "2" ] ;
             :output [ ] ] .
 
 multi:CalculateCountAmountRatio a :Multi ;
     :action [ :apply arcgis:JoinField ;
-            :input _:N350baf643d964469b1da8f9a8aab506a,
-                _:N9e84375704154bc58eb9b88d6cfa60b7 ;
-            :output _:N6b368c0ddfa44aec8c2a611278dfeb1d ],
+            :input _:N7579ec72a5b841ebb1ac3f3800eee7d2,
+                _:Nfe6696905a7645aa86e7e2a727fc76d1 ;
+            :output _:Nc3916593f036496493d71f5497eb2a35 ],
+        [ :apply arcgis:CalculateField ;
+            :input _:Nc3916593f036496493d71f5497eb2a35 ;
+            :output [ ] ],
+        [ :apply arcgis:CalculateField ;
+            :input _:N742964003fd64a67bbf8b2398b4210c8 ;
+            :output _:N7579ec72a5b841ebb1ac3f3800eee7d2 ],
         [ :apply arcgis:AddField ;
             :input [ :id "1" ] ;
-            :output _:Nce0c3d90a3db4017b891082430d5010d ],
-        [ :apply arcgis:CalculateField ;
-            :input _:N7586a309e83b482ca0a581dfa06de984 ;
-            :output _:N9e84375704154bc58eb9b88d6cfa60b7 ],
-        [ :apply arcgis:CalculateField ;
-            :input _:Nce0c3d90a3db4017b891082430d5010d ;
-            :output _:N350baf643d964469b1da8f9a8aab506a ],
+            :output _:N9ad437d09f264311aa093e3e1e924e21 ],
         [ :apply arcgis:AddFields ;
             :input [ :id "2" ] ;
-            :output _:N7586a309e83b482ca0a581dfa06de984 ],
+            :output _:N742964003fd64a67bbf8b2398b4210c8 ],
         [ :apply arcgis:CalculateField ;
-            :input _:N6b368c0ddfa44aec8c2a611278dfeb1d ;
-            :output [ ] ] .
+            :input _:N9ad437d09f264311aa093e3e1e924e21 ;
+            :output _:Nfe6696905a7645aa86e7e2a727fc76d1 ] .
 
 multi:CalculateDensityonObject a :Multi ;
-    :action [ :apply arcgis:CalculateGeometryAttributes ;
-            :input _:N5d90147f44244214b45b55320a5d89a8 ;
-            :output _:N49489eca258d458498c71d762e66bf5e ],
-        [ :apply arcgis:AddField ;
-            :input [ :id "1" ] ;
-            :output _:N21d76278c8264fc7a871181c9cd193c6 ],
-        [ :apply arcgis:CalculateField ;
-            :input _:N49489eca258d458498c71d762e66bf5e ;
+    :action [ :apply arcgis:CalculateField ;
+            :input _:N82556db572194ad5afe6ee8411c89e27 ;
             :output [ ] ],
         [ :apply arcgis:AddField ;
-            :input _:N21d76278c8264fc7a871181c9cd193c6 ;
-            :output _:N5d90147f44244214b45b55320a5d89a8 ] .
+            :input _:Neef746ebfed44da481e4820398c13384 ;
+            :output _:N5e9ad23be8b642deb97de02a2bd4fb01 ],
+        [ :apply arcgis:CalculateGeometryAttributes ;
+            :input _:N5e9ad23be8b642deb97de02a2bd4fb01 ;
+            :output _:N82556db572194ad5afe6ee8411c89e27 ],
+        [ :apply arcgis:AddField ;
+            :input [ :id "1" ] ;
+            :output _:Neef746ebfed44da481e4820398c13384 ] .
 
 multi:CalculateDiversity4onObjectVector a :Multi ;
     :action [ :apply arcgis:AddField ;
             :input [ :id "4" ] ;
-            :output _:N84c565a8eaab47fa95695a6ffd8038d2 ],
+            :output _:N0d3ff55589154fe794c2e12dbea1a713 ],
         [ :apply arcgis:CalculateField ;
-            :input [ :id "1" ],
-                _:N84c565a8eaab47fa95695a6ffd8038d2,
-                [ :id "3" ],
+            :input [ :id "3" ],
+                _:N0d3ff55589154fe794c2e12dbea1a713,
+                [ :id "1" ],
                 [ :id "2" ] ;
             :output [ ] ] .
 
 multi:CalculateObjectVectorAmountRatio a :Multi ;
-    :action [ :apply arcgis:AddField ;
-            :input [ :id "2" ] ;
-            :output _:Na4c9814955fc4c71b6ebd3827999b320 ],
-        [ :apply arcgis:CalculateField ;
+    :action [ :apply arcgis:CalculateField ;
             :input [ :id "1" ],
-                _:Na4c9814955fc4c71b6ebd3827999b320 ;
-            :output [ ] ] .
+                _:Nbfeb7331ae7647eabaf6b6c0a4adddc0 ;
+            :output [ ] ],
+        [ :apply arcgis:AddField ;
+            :input [ :id "2" ] ;
+            :output _:Nbfeb7331ae7647eabaf6b6c0a4adddc0 ] .
 
 multi:CalculateObjectVectorDensity a :Multi ;
-    :action [ :apply arcgis:AddField ;
-            :input _:N209f068a9b8f4cec8ab7bac28aad5055 ;
-            :output _:Nc58369570d344502b02eda33a9920dcd ],
-        [ :apply arcgis:AddGeometryAttributes ;
+    :action [ :apply arcgis:AddGeometryAttributes ;
             :input [ :id "1" ] ;
-            :output _:N209f068a9b8f4cec8ab7bac28aad5055 ],
+            :output _:N4ad096aff4f749dcbfa07084435fa562 ],
+        [ :apply arcgis:AddField ;
+            :input _:N4ad096aff4f749dcbfa07084435fa562 ;
+            :output _:N61bfc0b424d14f8c9554a3d0d67b690d ],
         [ :apply arcgis:CalculateField ;
-            :input _:Nc58369570d344502b02eda33a9920dcd ;
+            :input _:N61bfc0b424d14f8c9554a3d0d67b690d ;
             :output [ ] ] .
 
 multi:CalculatePartialAmounts a :Multi ;
     rdfs:comment "Calculates a set of portions from a set of object based count amounts using some boolean vector field. Only the portions that are within the true value of the boolean field are considered. This is an areal interpolation problem, which is solved by first generating area proportions and then multiplying them with the count amount." ;
     :action [ :apply arcgis:CalculateField ;
-            :input _:Nd2e3784d03474fd28d3bd617f0f8a04c ;
+            :input _:N203152e291334c8e883c64e9e1234dc3 ;
             :output [ ] ],
-        [ :apply arcgis:CalculateField ;
-            :input _:Nfa41f9c0972a49d49f5b8c24de382538 ;
-            :output _:Nd2e3784d03474fd28d3bd617f0f8a04c ],
         [ :apply arcgis:AddFields ;
-            :input _:Nb220ec11c6b74e36a5007fd44828fbee ;
-            :output _:Nfa41f9c0972a49d49f5b8c24de382538 ],
+            :input _:N2d6fa5cbb7ba43f2b9d9ec76c7a6b902 ;
+            :output _:N7c3b6ad8fa99471ba36a9d99188df619 ],
         [ :apply arcgis:Clip ;
-            :input [ :id "2" ],
-                [ :id "1" ] ;
-            :output _:Nb220ec11c6b74e36a5007fd44828fbee ] .
+            :input [ :id "1" ],
+                [ :id "2" ] ;
+            :output _:N2d6fa5cbb7ba43f2b9d9ec76c7a6b902 ],
+        [ :apply arcgis:CalculateField ;
+            :input _:N7c3b6ad8fa99471ba36a9d99188df619 ;
+            :output _:N203152e291334c8e883c64e9e1234dc3 ] .
 
 multi:ClosestFacilityAnalysis a :Multi ;
     :action [ :apply arcgis:MakeClosestFacilityAnalysisLayer ;
             :input [ rdfs:comment "roads" ;
                     :id "1" ] ;
-            :output _:N416b7428e736475897e2db8656f403a7 ],
-        [ :apply arcgis:AddLocations ;
-            :input _:N416b7428e736475897e2db8656f403a7,
-                [ rdfs:comment "goals" ;
-                    :id "2" ] ;
-            :output _:N81b3e2bab8a949e69558950a5c4f588d ],
+            :output _:N6395b8b359f443d2a353f1c646a67747 ],
         [ :apply arcgis:Solve ;
-            :input _:Nc770bb7c658244d0ba7f94dd8d4dbed1 ;
+            :input _:Nf3cab8b8dac04b4baaf297ff977828a2 ;
             :output [ ] ],
         [ :apply arcgis:AddLocations ;
-            :input _:N81b3e2bab8a949e69558950a5c4f588d,
+            :input _:N1e2a8ee62e5b4a5e80fafe9710dacd67,
                 [ rdfs:comment "origins" ;
                     :id "3" ] ;
-            :output _:Nc770bb7c658244d0ba7f94dd8d4dbed1 ] .
+            :output _:Nf3cab8b8dac04b4baaf297ff977828a2 ],
+        [ :apply arcgis:AddLocations ;
+            :input [ rdfs:comment "goals" ;
+                    :id "2" ],
+                _:N6395b8b359f443d2a353f1c646a67747 ;
+            :output _:N1e2a8ee62e5b4a5e80fafe9710dacd67 ] .
 
 multi:ComputeCountDensityonObject a :Multi ;
-    :action [ :apply arcgis:CalculateField ;
-            :input _:N74888b30d46a4e36971ea2875cc49446 ;
+    :action [ :apply arcgis:CalculateGeometryAttributes ;
+            :input _:N0a31972b98fa4420ac3c9fbebc474733 ;
+            :output _:Nd3c5d3ba3add425996a20249fb808c82 ],
+        [ :apply arcgis:AddField ;
+            :input [ :id "1" ] ;
+            :output _:N0a31972b98fa4420ac3c9fbebc474733 ],
+        [ :apply arcgis:CalculateField ;
+            :input _:N8182ce27ffc54a5583d11f3c17389e1b ;
             :output [ ] ],
         [ :apply arcgis:AddField ;
-            :input [ :id "1" ] ;
-            :output _:Ne9326c257d1c4f269126fdc9f09308c6 ],
+            :input _:Nffa89d60fc01440bb671ad1c87ed5c8a ;
+            :output _:N8182ce27ffc54a5583d11f3c17389e1b ],
         [ :apply arcgis:AddField ;
-            :input _:N97f493733db74c02ba6006036e408a8c ;
-            :output _:N032c0821657f4019b1178a4895934a97 ],
+            :input _:Nd3c5d3ba3add425996a20249fb808c82 ;
+            :output _:Nffc7b38c62664d3183eca83bff68c27d ],
         [ :apply arcgis:CalculateField ;
-            :input _:N032c0821657f4019b1178a4895934a97 ;
-            :output _:Nff20303db8394ddfaf75c288bb8f4e60 ],
-        [ :apply arcgis:CalculateGeometryAttributes ;
-            :input _:Ne9326c257d1c4f269126fdc9f09308c6 ;
-            :output _:N97f493733db74c02ba6006036e408a8c ],
-        [ :apply arcgis:AddField ;
-            :input _:Nff20303db8394ddfaf75c288bb8f4e60 ;
-            :output _:N74888b30d46a4e36971ea2875cc49446 ] .
+            :input _:Nffc7b38c62664d3183eca83bff68c27d ;
+            :output _:Nffa89d60fc01440bb671ad1c87ed5c8a ] .
 
 multi:CreateNetwork a :Multi ;
-    :action [ :apply arcgis:CreateNetworkDataset ;
+    :action [ :apply arcgis:BuildNetwork ;
+            :input _:N85fe9b4de18e4f779712dd09fb4bfd81 ;
+            :output [ ] ],
+        [ :apply arcgis:CreateNetworkDataset ;
             :input [ :id "1" ] ;
-            :output _:N62f38898f4ad4adba196637ad2412363 ],
-        [ :apply arcgis:BuildNetwork ;
-            :input _:N62f38898f4ad4adba196637ad2412363 ;
-            :output [ ] ] .
+            :output _:N85fe9b4de18e4f779712dd09fb4bfd81 ] .
 
 multi:DerivePartsOfPopCenters a :Multi ;
     :action [ :apply arcgis:CalculateGeometryAttributes ;
-            :input _:N3ecc7a5c9af24bc990a3650cf951c72c ;
-            :output _:Nc38b2e22dbe04881acd33b83fad7b97c ],
-        [ :apply arcgis:CalculateField ;
-            :input _:Nf0a9dac2e4254bbcb1970a08135e857d ;
-            :output [ ] ],
-        [ :apply arcgis:AddField ;
-            :input _:Nc38b2e22dbe04881acd33b83fad7b97c ;
-            :output _:Nf0a9dac2e4254bbcb1970a08135e857d ],
+            :input _:Neb1097e165d441b39f1923122b4f620e ;
+            :output _:N78f686f225dc496fbba8d9e9262ccfd9 ],
         [ :apply arcgis:Clip ;
             :input [ :id "2" ],
                 [ :id "1" ] ;
-            :output _:N3ecc7a5c9af24bc990a3650cf951c72c ] .
+            :output _:Neb1097e165d441b39f1923122b4f620e ],
+        [ :apply arcgis:CalculateField ;
+            :input _:N24e31a17a1734db2b63f9b5415b97328 ;
+            :output [ ] ],
+        [ :apply arcgis:AddField ;
+            :input _:N78f686f225dc496fbba8d9e9262ccfd9 ;
+            :output _:N24e31a17a1734db2b63f9b5415b97328 ] .
 
 multi:FullSelectFeatures a :Multi ;
     rdfs:comment "Query to select items from layers using attribut values" ;
-    :action [ :apply arcgis:FC2FCObjectTess ;
-            :input _:N23ce09bf171b4452b06dfb13aa3b37fd ;
-            :output [ ] ],
-        [ rdfs:comment "Select by attribute is always followed by copying features" ;
+    :action [ rdfs:comment "Select by attribute is always followed by copying features" ;
             :apply arcgis:SelectLayerByAttribute ;
             :input [ :id "1" ] ;
-            :output _:N23ce09bf171b4452b06dfb13aa3b37fd ] .
+            :output _:N166439a30feb4345b2d2f8addf0813fc ],
+        [ :apply arcgis:FC2FCObjectTess ;
+            :input _:N166439a30feb4345b2d2f8addf0813fc ;
+            :output [ ] ] .
 
 multi:FullSelectLayerByAttribute a :Multi ;
     rdfs:comment "Select by attribute is always followed by copy features (treated as one tool in the annotation",
         "a SQL query to select features matching a selection criterion. You build a query expression to generate the subset. You can query a dataset based on a field in a layer or a table. Using this selection a new Feature dataset is created with only the selected features using the 'Copy Features tool'. This feature dataset represents all the areas that fulfill the criterion" ;
     :action [ :apply arcgis:CopyFeatures ;
-            :input _:Nf60686c38f894e739f60cc61939f2df2 ;
+            :input _:Ne5a3330f4e6840e9b19c7bf7c552059f ;
             :output [ ] ],
         [ :apply arcgis:SelectLayerByAttribute ;
             :input [ :id "1" ] ;
-            :output _:Nf60686c38f894e739f60cc61939f2df2 ] .
+            :output _:Ne5a3330f4e6840e9b19c7bf7c552059f ] .
 
 multi:FullSelectLayerByLocation a :Multi ;
-    :action [ :apply arcgis:CopyFeatures ;
-            :input _:N3261a7ca3645491caffa8a359297097c ;
-            :output [ ] ],
-        [ :apply arcgis:SelectLayerByLocation ;
+    :action [ :apply arcgis:SelectLayerByLocation ;
             :input [ :id "2" ],
                 [ :id "1" ] ;
-            :output _:N3261a7ca3645491caffa8a359297097c ] .
+            :output _:N75ce8fa2343b41348d6df599949ead44 ],
+        [ :apply arcgis:CopyFeatures ;
+            :input _:N75ce8fa2343b41348d6df599949ead44 ;
+            :output [ ] ] .
 
 multi:GenerateIntersections a :Multi ;
-    :action [ :apply arcgis:FeatureVerticesToPoints ;
-            :input [ :id "1" ] ;
-            :output _:Na4d77d6df4bf45ffaaee235253e0e5ed ],
-        [ :apply arcgis:SelectLayerByAttribute ;
-            :input _:Nc6a22d7351f045779512bf8818357df0 ;
+    :action [ :apply arcgis:SelectLayerByAttribute ;
+            :input _:Ndda1608661844e3c9b95dd204efde4b9 ;
             :output [ ] ],
         [ :apply arcgis:CollectEvents ;
-            :input _:Na4d77d6df4bf45ffaaee235253e0e5ed ;
-            :output _:Nc6a22d7351f045779512bf8818357df0 ] .
+            :input _:N4ecc5458cf00415ebaf6511f25156136 ;
+            :output _:Ndda1608661844e3c9b95dd204efde4b9 ],
+        [ :apply arcgis:FeatureVerticesToPoints ;
+            :input [ :id "1" ] ;
+            :output _:N4ecc5458cf00415ebaf6511f25156136 ] .
 
 multi:InterpolateDensityonObjects2LineObject a :Multi ;
     :action [ :apply arcgis:Intersect ;
-            :input [ :id "2" ],
-                [ :id "1" ] ;
-            :output _:N1c03ccec95b54d2eb7d42796c438d577 ],
+            :input [ :id "1" ],
+                [ :id "2" ] ;
+            :output _:N127aeaee6abf41c8b0d47cb9fa8725b5 ],
         [ :apply arcgis:SummaryStatistics ;
-            :input _:N1c03ccec95b54d2eb7d42796c438d577 ;
+            :input _:N127aeaee6abf41c8b0d47cb9fa8725b5 ;
             :output [ ] ] .
 
 multi:IntersectDissolve a :Multi ;
     rdfs:comment "this tool computes the coverage of a field inside object region by first intersecting and then dissolving  and joining, to obtain the area covered by the field inside the object region" ;
-    :action [ :apply arcgis:JoinField ;
-            :input _:N2a73fc09c3674c5e94da832dc09ffd59,
-                _:Na7485e106adb4683af335d2048846d66 ;
+    :action [ :apply arcgis:MergeObjects ;
+            :input _:Nee037c8e9519401e80adf4282b39ae25 ;
+            :output _:N03a59064eaed4d09b5c292b761283268 ],
+        [ :apply arcgis:JoinField ;
+            :input _:N03a59064eaed4d09b5c292b761283268,
+                _:Nfeea6451991246d48c301b68b77a80b1 ;
             :output [ ] ],
-        [ :apply arcgis:MergeObjects ;
-            :input _:Nc2f5b7180ef84daf9ebeeee3c301c27d ;
-            :output _:N2a73fc09c3674c5e94da832dc09ffd59 ],
         [ :apply arcgis:Intersect ;
-            :input _:Na7485e106adb4683af335d2048846d66,
-                [ :id "1" ] ;
-            :output _:Nc2f5b7180ef84daf9ebeeee3c301c27d ] .
+            :input [ :id "1" ],
+                _:Nfeea6451991246d48c301b68b77a80b1 ;
+            :output _:Nee037c8e9519401e80adf4282b39ae25 ] .
 
 multi:JoinCountAttribute a :Multi ;
-    :action [ :apply arcgis:CopyFeatures ;
-            :input _:N378e3e67f886410fb33dca9ef291cf27 ;
-            :output [ ] ],
-        [ :apply arcgis:JoinField ;
+    :action [ :apply arcgis:JoinField ;
             :input [ :id "1" ],
                 [ :id "2" ] ;
-            :output _:N378e3e67f886410fb33dca9ef291cf27 ] .
+            :output _:N33120a57d9a84b9ea4aae8ccba8cc22e ],
+        [ :apply arcgis:CopyFeatures ;
+            :input _:N33120a57d9a84b9ea4aae8ccba8cc22e ;
+            :output [ ] ] .
 
 multi:JoinFromTable a :Multi ;
     rdfs:comment "Make table from Excel" ;
     :action [ :apply arcgis:JoinField ;
             :input [ :id "2" ],
-                _:Nc1f96d8d37684bc791ddf1f911a88a8c ;
+                _:Nb8b127fe2e91441f8235da6857cdfbf6 ;
             :output [ ] ],
         [ :apply arcgis:ExcelToTable ;
             :input [ :id "1" ] ;
-            :output _:Nc1f96d8d37684bc791ddf1f911a88a8c ] .
+            :output _:Nb8b127fe2e91441f8235da6857cdfbf6 ] .
 
 multi:JoinObjectRatios a :Multi ;
     :action [ :apply arcgis:ExportFeatures ;
-            :input _:Nf14a8e25b71b4b249454482020791441 ;
+            :input _:N25c5600c158143a386b19d2d6aab7b7a ;
             :output [ ] ],
         [ :apply arcgis:AddJoin ;
             :input [ :id "1" ],
                 [ :id "2" ] ;
-            :output _:Nf14a8e25b71b4b249454482020791441 ] .
+            :output _:N25c5600c158143a386b19d2d6aab7b7a ] .
 
 multi:LoadCountAmounts a :Multi ;
-    :action [ :apply arcgis:JoinField ;
-            :input _:N193b5dd35c804558be42605a167e7f63,
-                [ :id "1" ] ;
-            :output _:N4cc91423e20747a7a5393c49c46a0b43 ],
+    :action [ :apply arcgis:AddField ;
+            :input _:Ne88ad0ca54e849ddae5abae073d94786 ;
+            :output _:N5655c593987f4839b72feac98d8feb63 ],
         [ :apply arcgis:CopyFeatures ;
             :input [ :id "2" ] ;
-            :output _:N193b5dd35c804558be42605a167e7f63 ],
+            :output _:Nbf1bb5f221af4f5d8052f9756c2fb228 ],
+        [ :apply arcgis:JoinField ;
+            :input [ :id "1" ],
+                _:Nbf1bb5f221af4f5d8052f9756c2fb228 ;
+            :output _:Ne88ad0ca54e849ddae5abae073d94786 ],
         [ :apply arcgis:CalculateField ;
-            :input _:Nb02100224921494ba1ff8b051afc09a1 ;
-            :output [ ] ],
-        [ :apply arcgis:AddField ;
-            :input _:N4cc91423e20747a7a5393c49c46a0b43 ;
-            :output _:Nb02100224921494ba1ff8b051afc09a1 ] .
+            :input _:N5655c593987f4839b72feac98d8feb63 ;
+            :output [ ] ] .
 
 multi:MakeLayerFromTable a :Multi ;
     :action [ :apply arcgis:MakeXyEventLayer ;
-            :input _:N542e538260944789bf6f75db2ba51f9e ;
-            :output _:Nc0bbb48efb6a44d19447d206e7dc2138 ],
-        [ :apply arcgis:JoinField ;
-            :input _:N51a537033fa9443e8cdb4fa85808921f,
-                _:Nfef03235eef0444da96e647a1dcef784 ;
-            :output [ ] ],
+            :input _:Ndb741a2376594a68b6610ce26202e8fb ;
+            :output _:N09687c0e72bb4464a8321db686cb2cb9 ],
         [ :apply arcgis:ExcelToTable ;
-            :input _:N542e538260944789bf6f75db2ba51f9e ;
-            :output _:N51a537033fa9443e8cdb4fa85808921f ],
+            :input _:Ndb741a2376594a68b6610ce26202e8fb ;
+            :output _:Ndad0c7881ce347cdbc4e666f35caa033 ],
         [ :apply arcgis:Project ;
-            :input _:Nc0bbb48efb6a44d19447d206e7dc2138 ;
-            :output _:Nfef03235eef0444da96e647a1dcef784 ] .
+            :input _:N09687c0e72bb4464a8321db686cb2cb9 ;
+            :output _:Na51f8db090bf421c9643be9184806fd2 ],
+        [ :apply arcgis:JoinField ;
+            :input _:Na51f8db090bf421c9643be9184806fd2,
+                _:Ndad0c7881ce347cdbc4e666f35caa033 ;
+            :output [ ] ] .
 
 multi:RasterCoverage a :Multi ;
     rdfs:comment "Computes coverage (size) from a raster table for each raster value" ;
-    :action [ :apply arcgis:TableToTable ;
-            :input [ :id "1" ] ;
-            :output _:N5b8ed0801d4747ecb41715dc5331516a ],
-        [ :apply arcgis:CalculateField ;
-            :input _:Nd3185ee27aac4ace8ba88621e630b814 ;
+    :action [ :apply arcgis:CalculateField ;
+            :input _:N3b1b9f1170d74ce6950ff0b1c8c8db0a ;
             :output [ ] ],
+        [ :apply arcgis:TableToTable ;
+            :input [ :id "1" ] ;
+            :output _:Nbe5d893214e446c480c0a41edd18e6d9 ],
         [ :apply arcgis:AddField ;
-            :input _:N5b8ed0801d4747ecb41715dc5331516a ;
-            :output _:Nd3185ee27aac4ace8ba88621e630b814 ] .
+            :input _:Nbe5d893214e446c480c0a41edd18e6d9 ;
+            :output _:N3b1b9f1170d74ce6950ff0b1c8c8db0a ] .
 
 multi:RasterToContour a :Multi ;
-    :action [ :apply arcgis:RasterToIsoRaster ;
+    :action [ :apply arcgis:RegionFromRasterExtent ;
+            :input _:Nf21f77c7a8a341d7bdecfca6782f182d ;
+            :output [ ] ],
+        [ :apply arcgis:RasterToIsoRaster ;
             :input [ :id "1" ] ;
-            :output _:N8c100285356d4f15b837e10a13ca48ef ],
-        [ :apply arcgis:RegionFromRasterExtent ;
-            :input _:N8c100285356d4f15b837e10a13ca48ef ;
-            :output [ ] ] .
+            :output _:Nf21f77c7a8a341d7bdecfca6782f182d ] .
 
 multi:SelectLayerByAttributeTessObjects a :Multi ;
-    :action [ :apply arcgis:SelectLayerByAttribute ;
-            :input [ :id "1" ] ;
-            :output _:Nc3a8a86d4bdd484e9f0e44ef8c981275 ],
-        [ :apply arcgis:FeatureClassToFeatureClass ;
-            :input _:Nc3a8a86d4bdd484e9f0e44ef8c981275 ;
-            :output [ ] ] .
-
-multi:SelectNeighborhoodsByAttributeTessObjects a :Multi ;
-    :action [ :apply arcgis:ExportFeatures ;
-            :input _:N7de2c533d7b34a3d8927c985f33710ea ;
+    :action [ :apply arcgis:FeatureClassToFeatureClass ;
+            :input _:Nf8e74a2ebab34b38bd257e33968e7cf4 ;
             :output [ ] ],
         [ :apply arcgis:SelectLayerByAttribute ;
             :input [ :id "1" ] ;
-            :output _:N7de2c533d7b34a3d8927c985f33710ea ] .
+            :output _:Nf8e74a2ebab34b38bd257e33968e7cf4 ] .
+
+multi:SelectNeighborhoodsByRatioObjects a :Multi ;
+    :action [ :apply arcgis:SelectLayerByAttribute ;
+            :input [ :id "1" ] ;
+            :output _:N9c3001a6237c4dd1815b2c845132bedc ],
+        [ :apply arcgis:ExportFeatures ;
+            :input _:N9c3001a6237c4dd1815b2c845132bedc ;
+            :output [ ] ] .
 
 multi:SelectSchoolsByLocationPointObject a :Multi ;
     :action [ :apply arcgis:ExportFeatures ;
-            :input _:Naaf016485abd4086ba4e7e9566dd4cdd ;
+            :input _:N0d3f725413284e9282d9224ba68a34fd ;
             :output [ ] ],
         [ :apply arcgis:SelectLayerByLocation ;
-            :input [ :id "1" ],
-                [ :id "2" ] ;
-            :output _:Naaf016485abd4086ba4e7e9566dd4cdd ] .
+            :input [ :id "2" ],
+                [ :id "1" ] ;
+            :output _:N0d3f725413284e9282d9224ba68a34fd ] .
 
 multi:SelectWOZByRatioObjects a :Multi ;
     :action [ :apply arcgis:ExportTable ;
-            :input _:N8608a712ee2948e3ba5d527f0f7eb3a1 ;
+            :input _:N686405cd2a2d48a0825894ac32378bf3 ;
             :output [ ] ],
         [ :apply arcgis:SelectLayerByAttribute ;
             :input [ :id "1" ] ;
-            :output _:N8608a712ee2948e3ba5d527f0f7eb3a1 ] .
+            :output _:N686405cd2a2d48a0825894ac32378bf3 ] .
 
 multi:TSPRouting a :Multi ;
-    :action [ :apply arcgis:Solve ;
-            :input _:Nabdd951a7ce846d29579d86d4781eb18 ;
+    :action [ :apply arcgis:MakeRouteAnalysisLayer ;
+            :input [ :id "1" ] ;
+            :output _:N4e2c6719146d4c9ebd9d5c3c7bca631b ],
+        [ :apply arcgis:Solve ;
+            :input _:Nde3ab5e096934cabbb5fb485c78bb12d ;
             :output [ ] ],
         [ :apply arcgis:AddLocations ;
-            :input _:Nb2875ce0651a41209204c0cb90b884a5,
-                [ :id "3" ] ;
-            :output _:Nabdd951a7ce846d29579d86d4781eb18 ],
+            :input [ :id "3" ],
+                _:Nfd5e69e82652417f9ca440e5833ac3fc ;
+            :output _:Nde3ab5e096934cabbb5fb485c78bb12d ],
         [ :apply arcgis:AddLocations ;
             :input [ :id "2" ],
-                _:N8ae8a680a3fa4c58a3faf9a1ddb59719 ;
-            :output _:Nb2875ce0651a41209204c0cb90b884a5 ],
-        [ :apply arcgis:MakeRouteAnalysisLayer ;
-            :input [ :id "1" ] ;
-            :output _:N8ae8a680a3fa4c58a3faf9a1ddb59719 ] .
+                _:N4e2c6719146d4c9ebd9d5c3c7bca631b ;
+            :output _:Nfd5e69e82652417f9ca440e5833ac3fc ] .
 
 multi:VelocityField a :Multi ;
     rdfs:comment """Computes a water flow velocity raster from slope * accumulation area
@@ -371,58 +371,58 @@ multi:VelocityField a :Multi ;
     # This computes SquareRoot("slope") * SquareRoot("flow_accumulation")
     """ ;
     :action [ :apply arcgis:RasterCalculator ;
-            :input [ :id "1" ],
-                [ :id "2" ] ;
-            :output _:N6e1a21a556cf49fb97d5877bae82f41a ],
+            :input [ :id "2" ],
+                [ :id "1" ] ;
+            :output _:Nf8ddf60b2b1c4211bca0f833c04ce265 ],
         [ rdfs:comment "This second step computes 0.1 * (Stowe_slope_area_term / [Mean slope-area term]). It needs looking up of parameter [Mean slope-area term]." ;
             :apply arcgis:RasterCalculator1 ;
-            :input _:N6e1a21a556cf49fb97d5877bae82f41a ;
+            :input _:Nf8ddf60b2b1c4211bca0f833c04ce265 ;
             :output [ ] ] .
 
 multi:ZonalStatistics a :Multi ;
     :action [ :apply arcgis:ZonalStatisticsAsTable ;
-            :input _:N3ea077c1d48b44a8a51760d25faf7a8e,
-                [ :id "1" ] ;
-            :output _:N2773320f972f4b7a856cc96ae10bcf06 ],
+            :input [ :id "1" ],
+                _:N8444af5cb8b748c6b9bbc653e2259442 ;
+            :output _:N5c8ed5cc8f53479089ddbf8e5aca9b0a ],
         [ :apply arcgis:JoinField ;
-            :input _:N2773320f972f4b7a856cc96ae10bcf06,
-                _:N3ea077c1d48b44a8a51760d25faf7a8e ;
+            :input _:N5c8ed5cc8f53479089ddbf8e5aca9b0a,
+                _:N8444af5cb8b748c6b9bbc653e2259442 ;
             :output [ ] ] .
 
 multi:ZonalStatisticsSumField a :Multi ;
-    :action [ :apply arcgis:ZonalStatisticsAsTable ;
-            :input [ :id "1" ],
-                _:Nc30e31adffe544fc87ce4333494445cb ;
-            :output _:N6e9154b9fd9243f09657ef4507f8dbf5 ],
-        [ :apply arcgis:JoinField ;
-            :input _:N0d6e548d643145648d484b51170950ff,
-                _:Nc30e31adffe544fc87ce4333494445cb ;
+    :action [ :apply arcgis:JoinField ;
+            :input _:N952c4895bce74a7484938c61e8dbb95a,
+                _:Nadd24072919446bebd560636435d5a79 ;
             :output [ ] ],
+        [ :apply arcgis:ZonalStatisticsAsTable ;
+            :input _:Nadd24072919446bebd560636435d5a79,
+                [ :id "1" ] ;
+            :output _:N4473f0e00cc0433da67ba703a1e1f04b ],
         [ :apply arcgis:AlterField ;
-            :input _:N6e9154b9fd9243f09657ef4507f8dbf5 ;
-            :output _:N0d6e548d643145648d484b51170950ff ] .
+            :input _:N4473f0e00cc0433da67ba703a1e1f04b ;
+            :output _:N952c4895bce74a7484938c61e8dbb95a ] .
 
 multi:convert2PointObjects a :Multi ;
     :action [ :apply arcgis:SelectLayerByAttribute ;
             :input [ :id "1" ] ;
-            :output _:N79e32d98c5364edc8b92a06b80b4573e ],
+            :output _:Nc67e3c6909eb4dea9e2ec55cb17015dd ],
         [ :apply arcgis:FeatureToPoint ;
-            :input _:N79e32d98c5364edc8b92a06b80b4573e ;
+            :input _:Nc67e3c6909eb4dea9e2ec55cb17015dd ;
             :output [ ] ] .
 
 multi:makePointObjects a :Multi ;
     :action [ :apply arcgis:FeatureToPoint ;
             :input [ :id "1" ] ;
-            :output _:N46f7368a4c6848f9a0ababf22933ff4a ],
+            :output _:N8a039f84e31a4cefa24e3dbf166f7966 ],
         [ :apply arcgis:CreateRandomPoints ;
-            :input _:N46f7368a4c6848f9a0ababf22933ff4a ;
+            :input _:N8a039f84e31a4cefa24e3dbf166f7966 ;
             :output [ ] ] .
 
-_:N3ea077c1d48b44a8a51760d25faf7a8e :id "2" .
+_:N8444af5cb8b748c6b9bbc653e2259442 :id "2" .
 
-_:N542e538260944789bf6f75db2ba51f9e :id "1" .
+_:Nadd24072919446bebd560636435d5a79 :id "2" .
 
-_:Na7485e106adb4683af335d2048846d66 :id "2" .
+_:Ndb741a2376594a68b6610ce26202e8fb :id "1" .
 
-_:Nc30e31adffe544fc87ce4333494445cb :id "2" .
+_:Nfeea6451991246d48c301b68b77a80b1 :id "2" .
 

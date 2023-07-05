@@ -1,0 +1,370 @@
+@prefix : <https://github.com/quangis/transforge#> .
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix cct: <https://quangis.github.io/vocab/cct#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfexpert1: <https://quangis.github.io/workflows/expert1/> .
+
+wfexpert1:NoisePortionAmsterdam a wf:Workflow,
+        :Transformation ;
+    wf:edge [ wf:applicationOf abstr:ContourToFieldRaster ;
+            wf:input1 <https://data.amsterdam.nl/datasets/WO-7loNDBtEcWg> ;
+            wf:output _:ne9bde3ae589a4964939b18231bcce229b6 ],
+        [ wf:applicationOf abstr:SelectLayerByObjectTessObjects ;
+            wf:input1 <https://www.pdok.nl/introductie/-/article/cbs-gebiedsindelingen> ;
+            wf:output _:ne9bde3ae589a4964939b18231bcce229b7 ],
+        [ wf:applicationOf abstr:ClipFieldRaster2ObjectExtent ;
+            wf:input1 _:ne9bde3ae589a4964939b18231bcce229b6 ;
+            wf:input2 _:ne9bde3ae589a4964939b18231bcce229b7 ;
+            wf:output _:ne9bde3ae589a4964939b18231bcce229b8 ],
+        [ wf:applicationOf abstr:LocalMapAlgebraSubOrder ;
+            wf:input1 _:ne9bde3ae589a4964939b18231bcce229b8 ;
+            wf:output _:ne9bde3ae589a4964939b18231bcce229b9 ],
+        [ wf:applicationOf abstr:RegionFromRasterExtent ;
+            wf:input1 _:ne9bde3ae589a4964939b18231bcce229b9 ;
+            wf:output _:ne9bde3ae589a4964939b18231bcce229b10 ] ;
+    wf:source <https://data.amsterdam.nl/datasets/WO-7loNDBtEcWg>,
+        <https://www.pdok.nl/introductie/-/article/cbs-gebiedsindelingen> ;
+    rdfs:comment "What is the region of Amsterdam where noise is more intense than 70 dB?"@en,
+        "Where in Amsterdam is noise more intense than 70 dB?"@en ;
+    :contains cct:Bool,
+        cct:Ord,
+        cct:R1-Loc,
+        cct:R1-Obj,
+        cct:R1-Ord,
+        cct:R2-Loc-Ord,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Reg,
+        cct:R2-Ord-Reg,
+        cct:Reg,
+        cct:compose2,
+        cct:deify,
+        cct:fcover,
+        cct:get_attrL,
+        cct:leq,
+        cct:name,
+        cct:nest2,
+        cct:notj,
+        cct:ocover,
+        cct:pi1,
+        cct:pi2,
+        cct:reify,
+        cct:revert,
+        cct:select,
+        cct:subset ;
+    :input _:N7da3f80b47f140e399a4487cdda58573,
+        _:Nd5b9128434334031ad74e52e3087c519 ;
+    :output [ rdfs:label "R2(Ord, Reg) via nest2" ;
+            :from [ rdfs:label "Ord via name" ;
+                    :from [ rdfs:label "R1(Ord) via pi2" ;
+                            :from _:Nc9468d3c7d684024933b88e854292444 ;
+                            :origin _:ne9bde3ae589a4964939b18231bcce229b10 ;
+                            :type cct:R1-Ord ;
+                            :via cct:pi2 ] ;
+                    :origin _:ne9bde3ae589a4964939b18231bcce229b10 ;
+                    :type cct:Ord ;
+                    :via cct:name ],
+                [ rdfs:label "Reg via reify" ;
+                    :from [ rdfs:label "R1(Loc) via fcover" ;
+                            :from [ rdfs:label "R1(Ord) via pi2" ;
+                                    :from _:Nc9468d3c7d684024933b88e854292444 ;
+                                    :origin _:ne9bde3ae589a4964939b18231bcce229b10 ;
+                                    :type cct:R1-Ord ;
+                                    :via cct:pi2 ],
+                                _:Nc9468d3c7d684024933b88e854292444 ;
+                            :origin _:ne9bde3ae589a4964939b18231bcce229b10 ;
+                            :type cct:R1-Loc ;
+                            :via cct:fcover ] ;
+                    :origin _:ne9bde3ae589a4964939b18231bcce229b10 ;
+                    :type cct:Reg ;
+                    :via cct:reify ] ;
+            :origin _:ne9bde3ae589a4964939b18231bcce229b10 ;
+            :type cct:R2-Ord-Reg ;
+            :via cct:nest2 ] .
+
+cct:Qlt rdfs:subClassOf cct:Val .
+
+cct:R1-Nom rdfs:subClassOf cct:R1-Qlt .
+
+cct:R1-Qlt rdfs:subClassOf cct:R1-Val .
+
+cct:R1-Top rdfs:subClassOf :Top .
+
+cct:R2-Loc-Nom rdfs:subClassOf cct:R2-Loc-Qlt,
+        cct:R2-Top-Nom .
+
+cct:R2-Loc-Qlt rdfs:subClassOf cct:R2-Loc-Top,
+        cct:R2-Top-Qlt .
+
+cct:R2-Loc-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Nom-Reg rdfs:subClassOf cct:R2-Nom-Top,
+        cct:R2-Qlt-Reg .
+
+cct:R2-Obj-Product-Reg-Qlt rdfs:subClassOf cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Top-Product-Reg-Qlt .
+
+cct:R2-Obj-Product-Reg-Top rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
+        cct:R2-Top-Product-Reg-Top .
+
+cct:R2-Obj-Product-Top-Nom rdfs:subClassOf cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Nom .
+
+cct:R2-Ord-Top rdfs:subClassOf cct:R2-Nom-Top .
+
+cct:R2-Qlt-Reg rdfs:subClassOf cct:R2-Qlt-Top,
+        cct:R2-Top-Reg .
+
+cct:R2-Top-Ord rdfs:subClassOf cct:R2-Top-Nom .
+
+cct:R2-Top-Product-Reg-Nom rdfs:subClassOf cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Top-Nom .
+
+cct:Loc a :Type ;
+    rdfs:label "Loc" ;
+    rdfs:subClassOf cct:Val .
+
+cct:R2-Nom-Top rdfs:subClassOf cct:R2-Qlt-Top .
+
+cct:R2-Obj-Product-Top-Qlt rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
+        cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Obj-Product-Top-Top rdfs:subClassOf cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Top .
+
+cct:R2-Obj-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Qlt-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Top-Nom rdfs:subClassOf cct:R2-Top-Qlt .
+
+cct:R2-Top-Product-Reg-Qlt rdfs:subClassOf cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Top-Product-Reg-Top rdfs:subClassOf cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Top-Nom rdfs:subClassOf cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Top-Qlt rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Top-Reg rdfs:subClassOf cct:R2-Top-Top .
+
+<https://data.amsterdam.nl/datasets/WO-7loNDBtEcWg> rdfs:label "Amsterdam noise contour"@en ;
+    rdfs:comment ""@en .
+
+cct:Nom a :Type ;
+    rdfs:label "Nom" ;
+    rdfs:subClassOf cct:Qlt .
+
+cct:Obj a :Type ;
+    rdfs:label "Obj" ;
+    rdfs:subClassOf cct:Val .
+
+cct:R1-Loc a :Type ;
+    rdfs:label "R1(Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Val .
+
+cct:R1-Obj a :Type ;
+    rdfs:label "R1(Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Val .
+
+cct:R1-Ord a :Type ;
+    rdfs:label "R1(Ord)" ;
+    rdf:_1 cct:Ord ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Nom .
+
+cct:R1-Val rdfs:subClassOf cct:R1-Top .
+
+cct:R2-Obj-Product-Reg-Nom a :Type ;
+    rdfs:label "R2(Obj, (Reg * Nom))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 [ a :Type ;
+            rdfs:label "(Reg * Nom)" ;
+            rdf:_1 cct:Reg ;
+            rdf:_2 cct:Nom ;
+            rdfs:subClassOf :Product ] ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Top-Product-Reg-Nom .
+
+cct:R2-Obj-Reg a :Type ;
+    rdfs:label "R2(Obj, Reg)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg .
+
+cct:R2-Ord-Reg a :Type ;
+    rdfs:label "R2(Ord, Reg)" ;
+    rdf:_1 cct:Ord ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Nom-Reg,
+        cct:R2-Ord-Top .
+
+cct:R2-Top-Product-Top-Qlt rdfs:subClassOf cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Top-Top rdfs:subClassOf cct:R2-Top-Top .
+
+<https://www.pdok.nl/introductie/-/article/cbs-gebiedsindelingen> rdfs:label "Municipalities"@en ;
+    rdfs:comment ""@en .
+
+cct:Bool a :Type ;
+    rdfs:label "Bool" ;
+    rdfs:subClassOf cct:Nom .
+
+cct:R2-Loc-Ord a :Type ;
+    rdfs:label "R2(Loc, Ord)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ord ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Loc-Nom,
+        cct:R2-Top-Ord .
+
+cct:Val rdfs:subClassOf :Top .
+
+cct:Ord a :Type ;
+    rdfs:label "Ord" ;
+    rdfs:subClassOf cct:Nom .
+
+cct:R2-Top-Top rdfs:subClassOf :Top .
+
+cct:Reg a :Type ;
+    rdfs:label "Reg" ;
+    rdfs:subClassOf cct:Val .
+
+_:N00ab36e279c742acbb881885feb1a6e1 rdfs:label "R1(Obj) via pi1" ;
+    :from [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
+            :from _:N9e81a31d1d3a4e778c2f73cb42fbbc3f ;
+            :origin _:ne9bde3ae589a4964939b18231bcce229b8 ;
+            :type cct:R2-Obj-Reg ;
+            :via cct:get_attrL ] ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b8 ;
+    :type cct:R1-Obj ;
+    :via cct:pi1 .
+
+_:N0e555a1b903f43b49a8ff87286ee4be7 rdfs:label "R2(Loc, Ord) via revert" ;
+    :from _:N7da3f80b47f140e399a4487cdda58573 ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b6 ;
+    :type cct:R2-Loc-Ord ;
+    :via cct:revert .
+
+_:N157772de0820460c8c87ea55aaeacb5b rdfs:label "R1(Obj) from source" ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b7 ;
+    :type cct:R1-Obj .
+
+_:N4459efa7fac94c81bfeb4d47a092d6fe rdfs:label "Bool via compose2" ;
+    :from _:N58ee40f6a089449e8d3b0c065a98bcb6,
+        _:N63ab7df6385041fe8d1e1029718d7eae,
+        _:Nb086f898e04c4c66b216fe2e061f20f7 ;
+    :internal _:N00d09d24c49040aba01258f1fcca29ae,
+        _:Nb035e91021a1406480e7e8bb3b720461 ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b9 ;
+    :type cct:Bool ;
+    :via cct:compose2 .
+
+_:N78f876c28e5e4ccb9f1509408daf722c rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    :from _:N9e81a31d1d3a4e778c2f73cb42fbbc3f ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b8 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:get_attrL .
+
+_:Nca10ebe144ce4af6afeab79efb747654 rdfs:label "Reg via ocover" ;
+    :from _:N00ab36e279c742acbb881885feb1a6e1,
+        _:N78f876c28e5e4ccb9f1509408daf722c ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b8 ;
+    :type cct:Reg ;
+    :via cct:ocover .
+
+_:Nde0c9e2dc54246d29deb4410da2c5599 rdfs:label "R1(Loc) via deify" ;
+    :from _:Nca10ebe144ce4af6afeab79efb747654 ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b8 ;
+    :type cct:R1-Loc ;
+    :via cct:deify .
+
+_:N00d09d24c49040aba01258f1fcca29ae rdfs:label "(internal)" ;
+    :from _:N58ee40f6a089449e8d3b0c065a98bcb6,
+        _:N63ab7df6385041fe8d1e1029718d7eae ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b9 .
+
+_:N63ab7df6385041fe8d1e1029718d7eae rdfs:label "Bool via notj" ;
+    :from _:Nb035e91021a1406480e7e8bb3b720461 ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b9 ;
+    :type cct:Bool ;
+    :via cct:notj .
+
+_:N7da3f80b47f140e399a4487cdda58573 rdfs:label "R2(Ord, Reg) from source" ;
+    :origin <https://data.amsterdam.nl/datasets/WO-7loNDBtEcWg> ;
+    :type cct:R2-Ord-Reg .
+
+_:N9c279ec37da749568b89e06bd6e9acf2 rdfs:label "Ord from source" ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b9 ;
+    :type cct:Ord .
+
+_:N9e81a31d1d3a4e778c2f73cb42fbbc3f rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+    :from _:N157772de0820460c8c87ea55aaeacb5b,
+        _:Nd5b9128434334031ad74e52e3087c519 ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b7 ;
+    :type cct:R2-Obj-Product-Reg-Nom ;
+    :via cct:subset .
+
+_:Nb035e91021a1406480e7e8bb3b720461 rdfs:label "(internal)" ;
+    :from _:N58ee40f6a089449e8d3b0c065a98bcb6,
+        _:Nb086f898e04c4c66b216fe2e061f20f7 ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b9 .
+
+_:Nb086f898e04c4c66b216fe2e061f20f7 rdfs:label "Bool via leq" ;
+    :from _:N00d09d24c49040aba01258f1fcca29ae ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b9 ;
+    :type cct:Bool ;
+    :via cct:leq .
+
+_:Nd5b9128434334031ad74e52e3087c519 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    :origin <https://www.pdok.nl/introductie/-/article/cbs-gebiedsindelingen> ;
+    :type cct:R2-Obj-Product-Reg-Nom .
+
+_:Nf1b92c0bb58c4245a9d584d4c46e9ab9 rdfs:label "R2(Loc, Ord) via subset" ;
+    :from _:N0e555a1b903f43b49a8ff87286ee4be7,
+        _:Nde0c9e2dc54246d29deb4410da2c5599 ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b8 ;
+    :type cct:R2-Loc-Ord ;
+    :via cct:subset .
+
+_:Nc9468d3c7d684024933b88e854292444 rdfs:label "R2(Loc, Ord) via select" ;
+    :from _:N4459efa7fac94c81bfeb4d47a092d6fe,
+        _:N9c279ec37da749568b89e06bd6e9acf2,
+        _:Nf1b92c0bb58c4245a9d584d4c46e9ab9 ;
+    :internal _:N58ee40f6a089449e8d3b0c065a98bcb6 ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b9 ;
+    :type cct:R2-Loc-Ord ;
+    :via cct:select .
+
+_:ne9bde3ae589a4964939b18231bcce229b6 rdfs:label "noise_raster"@en ;
+    rdfs:comment ""@en .
+
+_:N58ee40f6a089449e8d3b0c065a98bcb6 rdfs:label "(internal)" ;
+    :from _:N9c279ec37da749568b89e06bd6e9acf2,
+        _:Nf1b92c0bb58c4245a9d584d4c46e9ab9 ;
+    :origin _:ne9bde3ae589a4964939b18231bcce229b9 .
+
+_:ne9bde3ae589a4964939b18231bcce229b7 rdfs:label "amsterdam_shp"@en ;
+    rdfs:comment ""@en .
+
+_:ne9bde3ae589a4964939b18231bcce229b10 rdfs:label "noisy_amsterdam_shp"@en ;
+    rdfs:comment ""@en .
+
+_:ne9bde3ae589a4964939b18231bcce229b8 rdfs:label "noise_amsterdam"@en ;
+    rdfs:comment ""@en .
+
+_:ne9bde3ae589a4964939b18231bcce229b9 rdfs:label "noisy_amsterdam"@en ;
+    rdfs:comment ""@en .
+

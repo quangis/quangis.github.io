@@ -1,0 +1,19 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfexpert2: <https://quangis.github.io/workflows/expert2/> .
+
+wfexpert2:wfwalk_intersectiondensity a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:GenerateIntersections ;
+            wf:input1 _:in2 ;
+            wf:output _:out2 ],
+        [ wf:applicationOf abstr:SummarizeWithin2 ;
+            wf:input1 _:out2 ;
+            wf:input2 _:in1 ;
+            wf:output _:out1 ],
+        [ wf:applicationOf abstr:CalculateObjectVectorDensity ;
+            wf:input1 _:out1 ;
+            wf:output _:out0 ] ;
+    wf:source _:in1,
+        _:in2 ;
+    wf:target _:out0 .
+

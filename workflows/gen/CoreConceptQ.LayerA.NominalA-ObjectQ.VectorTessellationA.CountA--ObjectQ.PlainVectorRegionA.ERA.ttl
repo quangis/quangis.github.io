@@ -1,0 +1,35 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.VectorTessellationA.CountA--ObjectQ.PlainVectorRegionA.ERA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:ZonalStatisticsSumField ;
+            wf:input1 _:n5ec1d4e93fe34987b8fbaaae5470cb5ab2 ;
+            wf:input2 _:n5ec1d4e93fe34987b8fbaaae5470cb5ab3 ;
+            wf:output [ a ccd:ERA,
+                        ccd:ObjectQ,
+                        ccd:PlainVectorRegionA ;
+                    rdfs:label "ObjectQ, PlainVectorRegionA, ERA" ] ],
+        [ wf:applicationOf abstr:SelectLayerByObjectTessObjects ;
+            wf:input1 _:n5ec1d4e93fe34987b8fbaaae5470cb5ab6 ;
+            wf:output _:n5ec1d4e93fe34987b8fbaaae5470cb5ab3 ] ;
+    wf:source _:n5ec1d4e93fe34987b8fbaaae5470cb5ab2,
+        _:n5ec1d4e93fe34987b8fbaaae5470cb5ab6 .
+
+_:n5ec1d4e93fe34987b8fbaaae5470cb5ab2 a ccd:FieldQ,
+        ccd:RasterA,
+        <http://geographicknowledge.de/vocab/ExtensiveMeasures.rdf#IRA> ;
+    rdfs:label "FieldQ, RasterA, IRA" .
+
+_:n5ec1d4e93fe34987b8fbaaae5470cb5ab3 a ccd:BooleanA,
+        ccd:ObjectQ,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, BooleanA" .
+
+_:n5ec1d4e93fe34987b8fbaaae5470cb5ab6 a ccd:CountA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, CountA" .
+

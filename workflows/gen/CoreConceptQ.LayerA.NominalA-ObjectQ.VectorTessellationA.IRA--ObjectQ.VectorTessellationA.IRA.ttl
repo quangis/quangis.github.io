@@ -1,0 +1,35 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.VectorTessellationA.IRA--ObjectQ.VectorTessellationA.IRA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:SpatialJoinCountTess ;
+            wf:input1 _:n88ae178bbf3f4fdb8050f703cac837bbb3 ;
+            wf:input2 _:n88ae178bbf3f4fdb8050f703cac837bbb2 ;
+            wf:output _:n88ae178bbf3f4fdb8050f703cac837bbb4 ],
+        [ wf:applicationOf abstr:ComputeCountDensityonObject ;
+            wf:input1 _:n88ae178bbf3f4fdb8050f703cac837bbb4 ;
+            wf:output [ a ccd:IRA,
+                        ccd:ObjectQ,
+                        ccd:VectorTessellationA ;
+                    rdfs:label "ObjectQ, VectorTessellationA, IRA" ] ] ;
+    wf:source _:n88ae178bbf3f4fdb8050f703cac837bbb2,
+        _:n88ae178bbf3f4fdb8050f703cac837bbb3 .
+
+_:n88ae178bbf3f4fdb8050f703cac837bbb2 a ccd:IRA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, IRA" .
+
+_:n88ae178bbf3f4fdb8050f703cac837bbb3 a ccd:CyclicA,
+        ccd:LineA,
+        ccd:ObjectQ ;
+    rdfs:label "ObjectQ, LineA, CyclicA" .
+
+_:n88ae178bbf3f4fdb8050f703cac837bbb4 a ccd:CountA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, CountA" .
+

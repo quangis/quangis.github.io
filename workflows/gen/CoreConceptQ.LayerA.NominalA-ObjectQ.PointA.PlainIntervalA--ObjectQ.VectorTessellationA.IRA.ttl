@@ -1,0 +1,35 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.PlainIntervalA--ObjectQ.VectorTessellationA.IRA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:SpatialJoinCountTess ;
+            wf:input1 _:nab23bb9c5b3643f79c43063c288f6348b2 ;
+            wf:input2 _:nab23bb9c5b3643f79c43063c288f6348b3 ;
+            wf:output _:nab23bb9c5b3643f79c43063c288f6348b4 ],
+        [ wf:applicationOf abstr:ComputeCountDensityonObject ;
+            wf:input1 _:nab23bb9c5b3643f79c43063c288f6348b4 ;
+            wf:output [ a ccd:IRA,
+                        ccd:ObjectQ,
+                        ccd:VectorTessellationA ;
+                    rdfs:label "ObjectQ, VectorTessellationA, IRA" ] ] ;
+    wf:source _:nab23bb9c5b3643f79c43063c288f6348b2,
+        _:nab23bb9c5b3643f79c43063c288f6348b3 .
+
+_:nab23bb9c5b3643f79c43063c288f6348b2 a ccd:ObjectQ,
+        ccd:PlainIntervalA,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, PlainIntervalA" .
+
+_:nab23bb9c5b3643f79c43063c288f6348b3 a ccd:CyclicA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, CyclicA" .
+
+_:nab23bb9c5b3643f79c43063c288f6348b4 a ccd:CountA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, CountA" .
+

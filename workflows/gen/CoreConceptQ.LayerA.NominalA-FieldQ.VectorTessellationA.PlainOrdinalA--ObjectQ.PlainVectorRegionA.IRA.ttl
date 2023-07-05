@@ -1,0 +1,52 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.VectorTessellationA.PlainOrdinalA--ObjectQ.PlainVectorRegionA.IRA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsFieldDist ;
+            wf:input1 _:n6f0f859ce7284063a036f86e66d5d64db3 ;
+            wf:input2 _:n6f0f859ce7284063a036f86e66d5d64db2 ;
+            wf:output _:n6f0f859ce7284063a036f86e66d5d64db4 ],
+        [ wf:applicationOf abstr:KernelDensity ;
+            wf:input1 _:n6f0f859ce7284063a036f86e66d5d64db6 ;
+            wf:output _:n6f0f859ce7284063a036f86e66d5d64db8 ],
+        [ wf:applicationOf abstr:SummaryStatistics3 ;
+            wf:input1 _:n6f0f859ce7284063a036f86e66d5d64db6 ;
+            wf:output _:n6f0f859ce7284063a036f86e66d5d64db3 ],
+        [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:n6f0f859ce7284063a036f86e66d5d64db8 ;
+            wf:input2 _:n6f0f859ce7284063a036f86e66d5d64db4 ;
+            wf:output [ a ccd:IRA,
+                        ccd:ObjectQ,
+                        ccd:PlainVectorRegionA ;
+                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ] ;
+    wf:source _:n6f0f859ce7284063a036f86e66d5d64db2,
+        _:n6f0f859ce7284063a036f86e66d5d64db6 .
+
+_:n6f0f859ce7284063a036f86e66d5d64db2 a ccd:FieldQ,
+        ccd:PlainOrdinalA,
+        ccd:VectorTessellationA ;
+    rdfs:label "FieldQ, VectorTessellationA, PlainOrdinalA" .
+
+_:n6f0f859ce7284063a036f86e66d5d64db3 a ccd:ObjectQ,
+        ccd:PlainRatioA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainRatioA" .
+
+_:n6f0f859ce7284063a036f86e66d5d64db4 a ccd:ObjectQ,
+        ccd:PlainNominalA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
+
+_:n6f0f859ce7284063a036f86e66d5d64db8 a ccd:FieldQ,
+        ccd:PlainRatioA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainRatioA" .
+
+_:n6f0f859ce7284063a036f86e66d5d64db6 a ccd:ERA,
+        ccd:ObjectQ,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, ERA" .
+

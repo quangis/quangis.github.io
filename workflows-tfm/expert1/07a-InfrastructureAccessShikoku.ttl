@@ -1,0 +1,635 @@
+@prefix : <https://github.com/quangis/transforge#> .
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix cct: <https://quangis.github.io/vocab/cct#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <https://dbpedia.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfexpert1: <https://quangis.github.io/workflows/expert1/> .
+
+wfexpert1:InfrastructureAccessShikoku a wf:Workflow,
+        :Transformation ;
+    wf:edge [ wf:applicationOf abstr:SelectLayerByAttributeTessObjects ;
+            wf:input1 <https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#urbanization> ;
+            wf:output _:n7ad1529139a7493c9d34428b7e4f310eb8 ;
+            rdfs:comment "select rural from different urbanization grade areas and create new layer from them" ],
+        [ wf:applicationOf abstr:ClipObject2Object ;
+            wf:input1 <https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#chochomoku> ;
+            wf:input2 _:n7ad1529139a7493c9d34428b7e4f310eb8 ;
+            wf:output _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+            rdfs:comment "clip SCCM regions by rural areas" ],
+        [ wf:applicationOf abstr:ObjectSummaryStatisticsAmount ;
+            wf:input1 _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+            wf:output _:n7ad1529139a7493c9d34428b7e4f310eb10 ;
+            rdfs:comment "sum the total population (2015)" ],
+        [ wf:applicationOf abstr:CalculateCountAmountRatio ;
+            wf:input1 _:n7ad1529139a7493c9d34428b7e4f310eb10 ;
+            wf:input2 _:n7ad1529139a7493c9d34428b7e4f310eb13 ;
+            wf:output _:n7ad1529139a7493c9d34428b7e4f310eb14 ;
+            rdfs:comment "calculate the percentage of population living within 2km of infrastructure" ],
+        [ wf:applicationOf abstr:ObjectBuffer ;
+            wf:input1 <https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#roads> ;
+            wf:output _:n7ad1529139a7493c9d34428b7e4f310eb11 ;
+            rdfs:comment "buffer roads within 2km distance" ],
+        [ wf:applicationOf abstr:CalculatePartialAmountsfromObjects ;
+            wf:input1 _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+            wf:input2 _:n7ad1529139a7493c9d34428b7e4f310eb11 ;
+            wf:output _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+            rdfs:comment "clip rural areas with the roads buffer and estimate the total population that is within the buffer of 2km" ],
+        [ wf:applicationOf abstr:SummaryStatisticsAmount ;
+            wf:input1 _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+            wf:output _:n7ad1529139a7493c9d34428b7e4f310eb13 ;
+            rdfs:comment "sum the total population that is within the buffer of 2km (i.e. has access to infrastructure)" ] ;
+    wf:source <https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#chochomoku>,
+        <https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#roads>,
+        <https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#urbanization> ;
+    dcterms:subject "Out: IntV, In: OS, In: OS, In: OS" ;
+    rdfs:comment "How much of the rural population in Shikoku, Japan, can reach all-season roads?"@en ;
+    ns1:abstract "In this lesson, you'll act as an analyst in Japan's National Statistical Office. To promote sustainable development in the nation's rural areas, you'll estimate access to all-season roads. First, you'll add population and road data and limit your study area to rural regions. Then, you'll create a 2-kilometer buffer around all-season roads and calculate the percentage of the rural population within that buffer." ;
+    :contains cct:Bool,
+        cct:Nom,
+        cct:R1-Bool,
+        cct:R1-Loc,
+        cct:R1-Nom,
+        cct:R1-Obj,
+        cct:R1-Reg,
+        cct:R2-Loc-Bool,
+        cct:R2-Obj-Product-Reg-Count,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Reg,
+        cct:R2-Reg-Count,
+        cct:R2-Reg-Ratio,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Obj-Nom-Obj,
+        cct:Ratio,
+        cct:Reg,
+        cct:apply2,
+        cct:arealinterpol,
+        cct:contentsum,
+        cct:eq,
+        cct:extrapol,
+        cct:fcover,
+        cct:get_attrL,
+        cct:getamounts,
+        cct:groupbyR,
+        cct:loTopo,
+        cct:nest,
+        cct:oTopo,
+        cct:pi1,
+        cct:pi2,
+        cct:ratio,
+        cct:reify,
+        cct:select,
+        cct:subset ;
+    :input _:N276d26f253904e55879e06cffc9b85e1,
+        _:N32f93c4f1a4543bc85fa98845006f339,
+        _:Nc1000e5f9b1d402983e8e2317872ab96 ;
+    :output [ rdfs:label "R2(Reg, Ratio) via apply2" ;
+            :from _:N4a54ddb2a43849c9abb611cae8c3041a,
+                [ rdfs:label "Ratio via ratio" ;
+                    :from _:N5b690b80c15e43a8bd83b7100ef4cb58 ;
+                    :origin _:n7ad1529139a7493c9d34428b7e4f310eb14 ;
+                    :type cct:Ratio ;
+                    :via cct:ratio ],
+                _:Nef1b47e3da414eadaa41574d487db9c5 ;
+            :internal _:N5b690b80c15e43a8bd83b7100ef4cb58 ;
+            :origin _:n7ad1529139a7493c9d34428b7e4f310eb14 ;
+            :type cct:R2-Reg-Ratio ;
+            :via cct:apply2 ] .
+
+cct:Itv rdfs:subClassOf cct:Ord .
+
+cct:Ord rdfs:subClassOf cct:Nom .
+
+cct:Qlt rdfs:subClassOf cct:Val .
+
+cct:R1-Qlt rdfs:subClassOf cct:R1-Val .
+
+cct:R1-Top rdfs:subClassOf :Top .
+
+cct:R2-Loc-Nom rdfs:subClassOf cct:R2-Loc-Qlt,
+        cct:R2-Top-Nom .
+
+cct:R2-Loc-Qlt rdfs:subClassOf cct:R2-Loc-Top,
+        cct:R2-Top-Qlt .
+
+cct:R2-Loc-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Obj-Product-Reg-Itv rdfs:subClassOf cct:R2-Obj-Product-Reg-Ord,
+        cct:R2-Obj-Product-Top-Itv,
+        cct:R2-Top-Product-Reg-Itv .
+
+cct:R2-Obj-Product-Reg-Ord rdfs:subClassOf cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Top-Product-Reg-Ord .
+
+cct:R2-Obj-Product-Reg-Qlt rdfs:subClassOf cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Top-Product-Reg-Qlt .
+
+cct:R2-Obj-Product-Reg-Ratio rdfs:subClassOf cct:R2-Obj-Product-Reg-Itv,
+        cct:R2-Obj-Product-Top-Ratio,
+        cct:R2-Top-Product-Reg-Ratio .
+
+cct:R2-Obj-Product-Reg-Top rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
+        cct:R2-Top-Product-Reg-Top .
+
+cct:R2-Obj-Product-Top-Count rdfs:subClassOf cct:R2-Obj-Product-Top-Ratio,
+        cct:R2-Top-Product-Top-Count .
+
+cct:R2-Reg-Itv rdfs:subClassOf cct:R2-Reg-Ord,
+        cct:R2-Top-Itv .
+
+cct:R2-Reg-Nom rdfs:subClassOf cct:R2-Reg-Qlt,
+        cct:R2-Top-Nom .
+
+cct:R2-Reg-Ord rdfs:subClassOf cct:R2-Reg-Nom,
+        cct:R2-Top-Ord .
+
+cct:R2-Reg-Qlt rdfs:subClassOf cct:R2-Reg-Top,
+        cct:R2-Top-Qlt .
+
+cct:R2-Reg-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Top-Bool rdfs:subClassOf cct:R2-Top-Nom .
+
+cct:R2-Top-Count rdfs:subClassOf cct:R2-Top-Ratio .
+
+cct:R2-Top-Product-Reg-Count rdfs:subClassOf cct:R2-Top-Product-Reg-Ratio,
+        cct:R2-Top-Product-Top-Count .
+
+cct:R2-Top-Reg rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R3-Loc-Nom-Top rdfs:subClassOf cct:R3-Loc-Qlt-Top,
+        cct:R3-Top-Nom-Top .
+
+cct:R3-Loc-Qlt-Obj rdfs:subClassOf cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Top-Qlt-Obj .
+
+cct:R3-Loc-Top-Obj rdfs:subClassOf cct:R3-Loc-Top-Top,
+        cct:R3-Top-Top-Obj .
+
+cct:R3-Obj-Nom-Top rdfs:subClassOf cct:R3-Obj-Qlt-Top,
+        cct:R3-Top-Nom-Top .
+
+cct:R3-Obj-Qlt-Obj rdfs:subClassOf cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Top-Qlt-Obj .
+
+cct:R3-Obj-Top-Obj rdfs:subClassOf cct:R3-Obj-Top-Top,
+        cct:R3-Top-Top-Obj .
+
+cct:Count a :Type ;
+    rdfs:label "Count" ;
+    rdfs:subClassOf cct:Ratio .
+
+cct:R1-Bool a :Type ;
+    rdfs:label "R1(Bool)" ;
+    rdf:_1 cct:Bool ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Nom .
+
+cct:R1-Loc a :Type ;
+    rdfs:label "R1(Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Val .
+
+cct:R1-Obj a :Type ;
+    rdfs:label "R1(Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Val .
+
+cct:R1-Reg a :Type ;
+    rdfs:label "R1(Reg)" ;
+    rdf:_1 cct:Reg ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Val .
+
+cct:R2-Loc-Bool a :Type ;
+    rdfs:label "R2(Loc, Bool)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Bool ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Loc-Nom,
+        cct:R2-Top-Bool .
+
+cct:R2-Obj-Product-Top-Itv rdfs:subClassOf cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Itv .
+
+cct:R2-Obj-Product-Top-Nom rdfs:subClassOf cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Nom .
+
+cct:R2-Obj-Product-Top-Ord rdfs:subClassOf cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord .
+
+cct:R2-Obj-Product-Top-Qlt rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
+        cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Obj-Product-Top-Ratio rdfs:subClassOf cct:R2-Obj-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Ratio .
+
+cct:R2-Obj-Product-Top-Top rdfs:subClassOf cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Top .
+
+cct:R2-Obj-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Top-Itv rdfs:subClassOf cct:R2-Top-Ord .
+
+cct:R2-Top-Ord rdfs:subClassOf cct:R2-Top-Nom .
+
+cct:R2-Top-Product-Reg-Itv rdfs:subClassOf cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Top-Itv .
+
+cct:R2-Top-Product-Reg-Nom rdfs:subClassOf cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Top-Nom .
+
+cct:R2-Top-Product-Reg-Ord rdfs:subClassOf cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Top-Ord .
+
+cct:R2-Top-Product-Reg-Qlt rdfs:subClassOf cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Top-Product-Reg-Ratio rdfs:subClassOf cct:R2-Top-Product-Reg-Itv,
+        cct:R2-Top-Product-Top-Ratio .
+
+cct:R2-Top-Product-Reg-Top rdfs:subClassOf cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Top-Count rdfs:subClassOf cct:R2-Top-Product-Top-Ratio .
+
+cct:R2-Top-Ratio rdfs:subClassOf cct:R2-Top-Itv .
+
+cct:R3-Loc-Qlt-Top rdfs:subClassOf cct:R3-Loc-Top-Top,
+        cct:R3-Top-Qlt-Top .
+
+cct:R3-Loc-Top-Top rdfs:subClassOf cct:R3-Top-Top-Top .
+
+cct:R3-Obj-Qlt-Top rdfs:subClassOf cct:R3-Obj-Top-Top,
+        cct:R3-Top-Qlt-Top .
+
+cct:R3-Obj-Top-Top rdfs:subClassOf cct:R3-Top-Top-Top .
+
+cct:R3-Top-Nom-Obj rdfs:subClassOf cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj .
+
+<https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#chochomoku> rdfs:label "Administrative regions"@en ;
+    rdfs:comment "Cho-cho-moku ((SCCM, small administrative regions) in Shikoku, Japan (Polygon) with population number"@en .
+
+<https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#roads> rdfs:label "Roads"@en ;
+    rdfs:comment "All-season roads in Shikoku, Japan (Line)"@en .
+
+<https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#urbanization> rdfs:label "Metro employment areas"@en ;
+    rdfs:comment "Metropolitan Employment Areas (MEAs): Urbanization levels in Shikoku, Japan (Polygon)"@en .
+
+cct:Loc a :Type ;
+    rdfs:label "Loc" ;
+    rdfs:subClassOf cct:Val .
+
+cct:R1-Nom a :Type ;
+    rdfs:label "R1(Nom)" ;
+    rdf:_1 cct:Nom ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Qlt .
+
+cct:R2-Obj-Product-Reg-Count a :Type ;
+    rdfs:label "R2(Obj, (Reg * Count))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 [ a :Type ;
+            rdfs:label "(Reg * Count)" ;
+            rdf:_1 cct:Reg ;
+            rdf:_2 cct:Count ;
+            rdfs:subClassOf :Product ] ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Product-Reg-Ratio,
+        cct:R2-Obj-Product-Top-Count,
+        cct:R2-Top-Product-Reg-Count .
+
+cct:R2-Reg-Ratio a :Type ;
+    rdfs:label "R2(Reg, Ratio)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Reg-Itv,
+        cct:R2-Top-Ratio .
+
+cct:R2-Top-Product-Top-Itv rdfs:subClassOf cct:R2-Top-Product-Top-Ord .
+
+cct:R2-Top-Product-Top-Nom rdfs:subClassOf cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Top-Product-Top-Ord rdfs:subClassOf cct:R2-Top-Product-Top-Nom .
+
+cct:R2-Top-Product-Top-Qlt rdfs:subClassOf cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Top-Ratio rdfs:subClassOf cct:R2-Top-Product-Top-Itv .
+
+cct:R2-Top-Product-Top-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Top-Qlt rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R3-Loc-Nom-Obj a :Type ;
+    rdfs:label "R3(Loc, Nom, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf cct:R3,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Top-Nom-Obj .
+
+cct:R3-Obj-Nom-Obj a :Type ;
+    rdfs:label "R3(Obj, Nom, Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf cct:R3,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Top-Nom-Obj .
+
+cct:R3-Top-Nom-Top rdfs:subClassOf cct:R3-Top-Qlt-Top .
+
+cct:R3-Top-Qlt-Obj rdfs:subClassOf cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj .
+
+cct:R3-Top-Top-Obj rdfs:subClassOf cct:R3-Top-Top-Top .
+
+cct:R1-Val rdfs:subClassOf cct:R1-Top .
+
+cct:R2-Top-Nom rdfs:subClassOf cct:R2-Top-Qlt .
+
+cct:R3-Top-Qlt-Top rdfs:subClassOf cct:R3-Top-Top-Top .
+
+cct:R3-Top-Top-Top rdfs:subClassOf :Top .
+
+cct:Ratio a :Type ;
+    rdfs:label "Ratio" ;
+    rdfs:subClassOf cct:Itv .
+
+cct:Val rdfs:subClassOf :Top .
+
+cct:R2-Obj-Product-Reg-Nom a :Type ;
+    rdfs:label "R2(Obj, (Reg * Nom))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 [ a :Type ;
+            rdfs:label "(Reg * Nom)" ;
+            rdf:_1 cct:Reg ;
+            rdf:_2 cct:Nom ;
+            rdfs:subClassOf :Product ] ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Top-Product-Reg-Nom .
+
+cct:Bool a :Type ;
+    rdfs:label "Bool" ;
+    rdfs:subClassOf cct:Nom .
+
+cct:R2-Obj-Reg a :Type ;
+    rdfs:label "R2(Obj, Reg)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg .
+
+cct:R2-Reg-Count a :Type ;
+    rdfs:label "R2(Reg, Count)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Count ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Reg-Ratio,
+        cct:R2-Top-Count .
+
+cct:R2-Top-Top rdfs:subClassOf :Top .
+
+cct:Obj a :Type ;
+    rdfs:label "Obj" ;
+    rdfs:subClassOf cct:Val .
+
+cct:Reg a :Type ;
+    rdfs:label "Reg" ;
+    rdfs:subClassOf cct:Val .
+
+cct:Nom a :Type ;
+    rdfs:label "Nom" ;
+    rdfs:subClassOf cct:Qlt .
+
+_:N0d2a65232e0b4d40b655bd06fed45855 rdfs:label "Reg via reify" ;
+    :from _:Nb9df682203184fc1972b96deb524d71f ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:Reg ;
+    :via cct:reify .
+
+_:N18cd6d9630af45209cc26c84190eb878 rdfs:label "R1(Bool) via nest" ;
+    :from [ rdfs:label "Bool from source" ;
+            :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+            :type cct:Bool ] ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:R1-Bool ;
+    :via cct:nest .
+
+_:N37d4148da7cf44de9288b72222086be5 rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+    :from _:N276d26f253904e55879e06cffc9b85e1,
+        [ rdfs:label "R1(Nom) from source" ;
+            :origin _:n7ad1529139a7493c9d34428b7e4f310eb8 ;
+            :type cct:R1-Nom ] ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb8 ;
+    :type cct:R2-Obj-Product-Reg-Nom ;
+    :via cct:subset .
+
+_:N404f1bfcff164fb6a5c2cbdf96a41fa8 rdfs:label "R1(Loc) via fcover" ;
+    :from _:N18cd6d9630af45209cc26c84190eb878,
+        [ rdfs:label "R2(Loc, Bool) via extrapol" ;
+            :from [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
+                    :from _:N32f93c4f1a4543bc85fa98845006f339 ;
+                    :origin _:n7ad1529139a7493c9d34428b7e4f310eb11 ;
+                    :type cct:R2-Obj-Reg ;
+                    :via cct:get_attrL ] ;
+            :origin _:n7ad1529139a7493c9d34428b7e4f310eb11 ;
+            :type cct:R2-Loc-Bool ;
+            :via cct:extrapol ] ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:R1-Loc ;
+    :via cct:fcover .
+
+_:N42067f901c6c4b8badc8c9f09c6a0530 rdfs:label "R2(Reg, Count) via getamounts" ;
+    :from _:Nb312c1ef45c74fadb08db0dc495d7d8a ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:R2-Reg-Count ;
+    :via cct:getamounts .
+
+_:N4be396b0c384426cbfb0884ec3ac646f rdfs:label "R3(Obj, Nom, Obj) via select" ;
+    :from [ rdfs:label "Bool via eq" ;
+            :from _:N5285c85b749c44889dc1c7e80a03aa4d ;
+            :origin _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+            :type cct:Bool ;
+            :via cct:eq ],
+        _:Nad63b932572249f189245ceb0decf709,
+        _:Nd72586540dce4177b460b78f130b082a ;
+    :internal _:N5285c85b749c44889dc1c7e80a03aa4d ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+    :type cct:R3-Obj-Nom-Obj ;
+    :via cct:select .
+
+_:N4cd6f55f50554cf3b2c46f7af4e69fa9 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    :from _:Nc1000e5f9b1d402983e8e2317872ab96 ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:get_attrL .
+
+_:N668e590f86a646b9be64a6d91b31de59 rdfs:label "R2(Obj, Reg) via groupbyR" ;
+    :from _:N0d2a65232e0b4d40b655bd06fed45855,
+        _:N6ad059e3dc6544ed86ba4aa1af735f6e ;
+    :internal _:Nb9df682203184fc1972b96deb524d71f ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:groupbyR .
+
+_:N673346740e3c48f19111b5d08ac5971b rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    :from _:N37d4148da7cf44de9288b72222086be5 ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:get_attrL .
+
+_:N7abbfc03c8584810afd8c8590ea3cd3a rdfs:label "R1(Reg) via pi2" ;
+    :from _:N668e590f86a646b9be64a6d91b31de59 ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:R1-Reg ;
+    :via cct:pi2 .
+
+_:N8140cf3e4d614372b2170a8236ea0830 rdfs:label "Bool via eq" ;
+    :from _:N722602ce7d3f462295f2bb55d285456b ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:Bool ;
+    :via cct:eq .
+
+_:Naa4b59da901a459391345dc697fee4d6 rdfs:label "R2(Reg, Count) via getamounts" ;
+    :from _:Nb312c1ef45c74fadb08db0dc495d7d8a ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb10 ;
+    :type cct:R2-Reg-Count ;
+    :via cct:getamounts .
+
+_:Nb545de62645a45238be26fed9fc212f2 rdfs:label "R1(Obj) via pi1" ;
+    :from _:N4be396b0c384426cbfb0884ec3ac646f ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+    :type cct:R1-Obj ;
+    :via cct:pi1 .
+
+_:Nb5465e9ad55b4de7af7e28fbdc05d134 rdfs:label "R2(Reg, Count) via arealinterpol" ;
+    :from _:N42067f901c6c4b8badc8c9f09c6a0530,
+        _:N7abbfc03c8584810afd8c8590ea3cd3a ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:R2-Reg-Count ;
+    :via cct:arealinterpol .
+
+_:Nfea5a91ffbdb4b7ba3ca392c5ee0460b rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    :from _:Nb312c1ef45c74fadb08db0dc495d7d8a ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:get_attrL .
+
+_:N276d26f253904e55879e06cffc9b85e1 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    :origin <https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#urbanization> ;
+    :type cct:R2-Obj-Product-Reg-Nom .
+
+_:N32f93c4f1a4543bc85fa98845006f339 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    :origin <https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#roads> ;
+    :type cct:R2-Obj-Product-Reg-Nom .
+
+_:N4a54ddb2a43849c9abb611cae8c3041a rdfs:label "R2(Reg, Count) via contentsum" ;
+    :from _:Nb5465e9ad55b4de7af7e28fbdc05d134 ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb13 ;
+    :type cct:R2-Reg-Count ;
+    :via cct:contentsum .
+
+_:N5285c85b749c44889dc1c7e80a03aa4d rdfs:label "(internal)" ;
+    :from _:Nad63b932572249f189245ceb0decf709,
+        _:Nd72586540dce4177b460b78f130b082a ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb9 .
+
+_:N5b690b80c15e43a8bd83b7100ef4cb58 rdfs:label "(internal)" ;
+    :from _:N4a54ddb2a43849c9abb611cae8c3041a,
+        _:Nef1b47e3da414eadaa41574d487db9c5 ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb14 .
+
+_:N61e35d6dcb8343e58d569a5a958a0680 rdfs:label "Nom from source" ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:Nom .
+
+_:N6ad059e3dc6544ed86ba4aa1af735f6e rdfs:label "R3(Loc, Nom, Obj) via select" ;
+    :from _:N61e35d6dcb8343e58d569a5a958a0680,
+        _:N8140cf3e4d614372b2170a8236ea0830,
+        _:Ncc9fe3b33c8b4909b1a7211fcea37a19 ;
+    :internal _:N722602ce7d3f462295f2bb55d285456b ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:R3-Loc-Nom-Obj ;
+    :via cct:select .
+
+_:N722602ce7d3f462295f2bb55d285456b rdfs:label "(internal)" ;
+    :from _:N61e35d6dcb8343e58d569a5a958a0680,
+        _:Ncc9fe3b33c8b4909b1a7211fcea37a19 ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 .
+
+_:Nad63b932572249f189245ceb0decf709 rdfs:label "R3(Obj, Nom, Obj) via oTopo" ;
+    :from _:N4cd6f55f50554cf3b2c46f7af4e69fa9,
+        _:N673346740e3c48f19111b5d08ac5971b ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+    :type cct:R3-Obj-Nom-Obj ;
+    :via cct:oTopo .
+
+_:Nb9df682203184fc1972b96deb524d71f rdfs:label "(internal)" ;
+    :from _:N6ad059e3dc6544ed86ba4aa1af735f6e ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 .
+
+_:Ncc9fe3b33c8b4909b1a7211fcea37a19 rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
+    :from _:N404f1bfcff164fb6a5c2cbdf96a41fa8,
+        _:Nfea5a91ffbdb4b7ba3ca392c5ee0460b ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb12 ;
+    :type cct:R3-Loc-Nom-Obj ;
+    :via cct:loTopo .
+
+_:Nd72586540dce4177b460b78f130b082a rdfs:label "Nom from source" ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+    :type cct:Nom .
+
+_:Nef1b47e3da414eadaa41574d487db9c5 rdfs:label "R2(Reg, Count) via contentsum" ;
+    :from _:Naa4b59da901a459391345dc697fee4d6 ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb10 ;
+    :type cct:R2-Reg-Count ;
+    :via cct:contentsum .
+
+_:Nb312c1ef45c74fadb08db0dc495d7d8a rdfs:label "R2(Obj, (Reg * Count)) via subset" ;
+    :from _:Nb545de62645a45238be26fed9fc212f2,
+        _:Nc1000e5f9b1d402983e8e2317872ab96 ;
+    :origin _:n7ad1529139a7493c9d34428b7e4f310eb9 ;
+    :type cct:R2-Obj-Product-Reg-Count ;
+    :via cct:subset .
+
+_:Nc1000e5f9b1d402983e8e2317872ab96 rdfs:label "R2(Obj, (Reg * Count)) from source" ;
+    :origin <https://learn.arcgis.com/en/projects/estimate-access-to-infrastructure/#chochomoku> ;
+    :type cct:R2-Obj-Product-Reg-Count .
+
+_:n7ad1529139a7493c9d34428b7e4f310eb13 rdfs:label "Pop. sum near roads"@en ;
+    rdfs:comment "A sum of all population estimates in areas near roads in Shikoku"@en .
+
+_:n7ad1529139a7493c9d34428b7e4f310eb10 rdfs:label "Total rural population"@en ;
+    rdfs:comment "A standalone table with the total amount of population in rural municipalities in Shikoku"@en .
+
+_:n7ad1529139a7493c9d34428b7e4f310eb11 rdfs:label "Area within 2km of roads"@en ;
+    rdfs:comment "A vector polygon representing all area within 2 kilometers of all-season roads in Shikoku"@en .
+
+_:n7ad1529139a7493c9d34428b7e4f310eb14 rdfs:label "Pop. % near roads"@en ;
+    rdfs:comment "A percentage of all population living near roads in Shikoku"@en .
+
+_:n7ad1529139a7493c9d34428b7e4f310eb8 rdfs:label "Rural regions"@en ;
+    rdfs:comment "Vector polygons representing non-MEAs, i.e., areas with a 'rural' classification in Shikoku"@en .
+
+_:n7ad1529139a7493c9d34428b7e4f310eb9 rdfs:label "Rural municipalities"@en ;
+    rdfs:comment "All municipalities in rural areas in Shikoku"@en .
+
+_:n7ad1529139a7493c9d34428b7e4f310eb12 rdfs:label "Rural mun. area near roads"@en ;
+    rdfs:comment "Rural municipalities in Shikoku clipped by road proximity region and with estimated populations for partitioned municipalities"@en .
+

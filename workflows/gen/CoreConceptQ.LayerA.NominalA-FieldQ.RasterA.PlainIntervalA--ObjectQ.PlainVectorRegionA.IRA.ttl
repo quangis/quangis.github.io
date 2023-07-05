@@ -1,0 +1,35 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.RasterA.PlainIntervalA--ObjectQ.PlainVectorRegionA.IRA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:Slope ;
+            wf:input1 _:nc56bf9ff434345ceb9d2d12fe2eb2d84b2 ;
+            wf:output _:nc56bf9ff434345ceb9d2d12fe2eb2d84b3 ],
+        [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:nc56bf9ff434345ceb9d2d12fe2eb2d84b3 ;
+            wf:input2 _:nc56bf9ff434345ceb9d2d12fe2eb2d84b5 ;
+            wf:output [ a ccd:IRA,
+                        ccd:ObjectQ,
+                        ccd:PlainVectorRegionA ;
+                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ] ;
+    wf:source _:nc56bf9ff434345ceb9d2d12fe2eb2d84b2,
+        _:nc56bf9ff434345ceb9d2d12fe2eb2d84b5 .
+
+_:nc56bf9ff434345ceb9d2d12fe2eb2d84b2 a ccd:FieldQ,
+        ccd:PlainIntervalA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainIntervalA" .
+
+_:nc56bf9ff434345ceb9d2d12fe2eb2d84b3 a ccd:FieldQ,
+        ccd:PlainRatioA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainRatioA" .
+
+_:nc56bf9ff434345ceb9d2d12fe2eb2d84b5 a ccd:NominalA,
+        ccd:ObjectQ,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, NominalA" .
+

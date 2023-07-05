@@ -1,0 +1,22 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfexpert2: <https://quangis.github.io/workflows/expert2/> .
+
+wfexpert2:wfwaste_odour a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:addObjectCapacity ;
+            wf:input1 _:in1 ;
+            wf:output _:out3 ],
+        [ wf:applicationOf abstr:KernelDensity ;
+            wf:input1 _:out3 ;
+            wf:output _:out2 ],
+        [ wf:applicationOf abstr:SelectLayerByAttribute3 ;
+            wf:input1 _:in2 ;
+            wf:output _:out1 ],
+        [ wf:applicationOf abstr:ZonalStatisticsSumField ;
+            wf:input1 _:out2 ;
+            wf:input2 _:out1 ;
+            wf:output _:out0 ] ;
+    wf:source _:in1,
+        _:in2 ;
+    wf:target _:out0 .
+

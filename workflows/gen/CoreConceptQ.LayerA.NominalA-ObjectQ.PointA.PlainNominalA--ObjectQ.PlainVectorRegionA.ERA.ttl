@@ -1,0 +1,43 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.PlainNominalA--ObjectQ.PlainVectorRegionA.ERA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:addObjectCapacity ;
+            wf:input1 _:n63c48f2c5e4a486a895269a656c4344cb2 ;
+            wf:output _:n63c48f2c5e4a486a895269a656c4344cb3 ],
+        [ wf:applicationOf abstr:SummaryStatistics3 ;
+            wf:input1 _:n63c48f2c5e4a486a895269a656c4344cb3 ;
+            wf:output _:n63c48f2c5e4a486a895269a656c4344cb5 ],
+        [ wf:applicationOf abstr:ZonalStatisticsSumField ;
+            wf:input1 _:n63c48f2c5e4a486a895269a656c4344cb7 ;
+            wf:input2 _:n63c48f2c5e4a486a895269a656c4344cb5 ;
+            wf:output [ a ccd:ERA,
+                        ccd:ObjectQ,
+                        ccd:PlainVectorRegionA ;
+                    rdfs:label "ObjectQ, PlainVectorRegionA, ERA" ] ] ;
+    wf:source _:n63c48f2c5e4a486a895269a656c4344cb2,
+        _:n63c48f2c5e4a486a895269a656c4344cb7 .
+
+_:n63c48f2c5e4a486a895269a656c4344cb2 a ccd:ObjectQ,
+        ccd:PlainNominalA,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, PlainNominalA" .
+
+_:n63c48f2c5e4a486a895269a656c4344cb3 a ccd:ERA,
+        ccd:ObjectQ,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, ERA" .
+
+_:n63c48f2c5e4a486a895269a656c4344cb5 a ccd:ObjectQ,
+        ccd:PlainRatioA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainRatioA" .
+
+_:n63c48f2c5e4a486a895269a656c4344cb7 a ccd:FieldQ,
+        ccd:RasterA,
+        <http://geographicknowledge.de/vocab/ExtensiveMeasures.rdf#IRA> ;
+    rdfs:label "FieldQ, RasterA, IRA" .
+

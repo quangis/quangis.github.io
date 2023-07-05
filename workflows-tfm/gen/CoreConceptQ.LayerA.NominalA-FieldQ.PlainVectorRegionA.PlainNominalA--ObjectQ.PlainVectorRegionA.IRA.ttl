@@ -1,0 +1,697 @@
+@prefix : <https://github.com/quangis/transforge#> .
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix cct: <https://quangis.github.io/vocab/cct#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.PlainVectorRegionA.PlainNominalA--ObjectQ.PlainVectorRegionA.IRA1 a wf:Workflow,
+        :Transformation ;
+    wf:edge [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsFieldDist ;
+            wf:input1 _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+            wf:input2 _:nb8c8361fdb644817b1d3c8caf7ff49cfb3 ;
+            wf:output _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 ],
+        [ wf:applicationOf abstr:SummaryStatistics3 ;
+            wf:input1 _:nb8c8361fdb644817b1d3c8caf7ff49cfb6 ;
+            wf:output _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ],
+        [ wf:applicationOf abstr:KernelDensity ;
+            wf:input1 _:nb8c8361fdb644817b1d3c8caf7ff49cfb6 ;
+            wf:output _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ],
+        [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ;
+            wf:input2 _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 ;
+            wf:output _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ] ;
+    wf:source _:nb8c8361fdb644817b1d3c8caf7ff49cfb3,
+        _:nb8c8361fdb644817b1d3c8caf7ff49cfb6 ;
+    :contains cct:Bool,
+        cct:Nom,
+        cct:Obj,
+        cct:R1-Loc,
+        cct:R1-Obj,
+        cct:R1-Reg,
+        cct:R1-Top,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ratio,
+        cct:R2-Obj-Product-Reg-Ratio,
+        cct:R2-Obj-Ratio,
+        cct:R2-Obj-Reg,
+        cct:R2-Reg-Ratio,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Ratio-Obj,
+        cct:Ratio,
+        cct:Reg,
+        cct:apply2,
+        cct:avg,
+        cct:compose,
+        cct:eq,
+        cct:get_attrL,
+        cct:get_attrR,
+        cct:getamounts,
+        cct:groupbyL,
+        cct:groupbyR,
+        cct:join_attr,
+        cct:join_key,
+        cct:loDist,
+        cct:loTopo,
+        cct:merge,
+        cct:nest2,
+        cct:objectfromobjects,
+        cct:pi1,
+        cct:pi3,
+        cct:product,
+        cct:select,
+        cct:subset,
+        cct:sum ;
+    :input _:N3481efe5f7c647e1aafff2b62ca6160d,
+        _:N6fddd6e71daf442391eed235bc7311fe ;
+    :output [ rdfs:label "R2(Obj, (Reg * Ratio)) via join_attr" ;
+            :from [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
+                    :from _:N5a4e3343ee0c401c8177e8b227c72654 ;
+                    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+                    :type cct:R2-Obj-Reg ;
+                    :via cct:get_attrL ],
+                [ rdfs:label "R2(Obj, Ratio) via groupbyR" ;
+                    :from _:N85a03106285b4405ab5852837dea37fb,
+                        [ rdfs:label "Ratio via avg" ;
+                            :from _:N6b16b8bab9ee45c7ad295effab8f6467 ;
+                            :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+                            :type cct:Ratio ;
+                            :via cct:avg ] ;
+                    :internal _:N6b16b8bab9ee45c7ad295effab8f6467 ;
+                    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+                    :type cct:R2-Obj-Ratio ;
+                    :via cct:groupbyR ] ;
+            :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+            :type cct:R2-Obj-Product-Reg-Ratio ;
+            :via cct:join_attr ] .
+
+cct:Itv rdfs:subClassOf cct:Ord .
+
+cct:Ord rdfs:subClassOf cct:Nom .
+
+cct:Qlt rdfs:subClassOf cct:Val .
+
+cct:R2-Loc-Itv rdfs:subClassOf cct:R2-Loc-Ord,
+        cct:R2-Top-Itv .
+
+cct:R2-Loc-Ord rdfs:subClassOf cct:R2-Loc-Nom,
+        cct:R2-Top-Ord .
+
+cct:R2-Loc-Qlt rdfs:subClassOf cct:R2-Loc-Top,
+        cct:R2-Top-Qlt .
+
+cct:R2-Loc-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Obj-Itv rdfs:subClassOf cct:R2-Obj-Ord,
+        cct:R2-Top-Itv .
+
+cct:R2-Obj-Nom rdfs:subClassOf cct:R2-Obj-Qlt,
+        cct:R2-Top-Nom .
+
+cct:R2-Obj-Ord rdfs:subClassOf cct:R2-Obj-Nom,
+        cct:R2-Top-Ord .
+
+cct:R2-Obj-Product-Reg-Itv rdfs:subClassOf cct:R2-Obj-Product-Reg-Ord,
+        cct:R2-Obj-Product-Top-Itv,
+        cct:R2-Top-Product-Reg-Itv .
+
+cct:R2-Obj-Product-Reg-Nom rdfs:subClassOf cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Top-Product-Reg-Nom .
+
+cct:R2-Obj-Product-Reg-Ord rdfs:subClassOf cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Top-Product-Reg-Ord .
+
+cct:R2-Obj-Product-Reg-Qlt rdfs:subClassOf cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Top-Product-Reg-Qlt .
+
+cct:R2-Obj-Product-Reg-Top rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
+        cct:R2-Top-Product-Reg-Top .
+
+cct:R2-Obj-Product-Top-Ratio rdfs:subClassOf cct:R2-Obj-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Ratio .
+
+cct:R2-Obj-Qlt rdfs:subClassOf cct:R2-Obj-Top,
+        cct:R2-Top-Qlt .
+
+cct:R2-Reg-Itv rdfs:subClassOf cct:R2-Reg-Ord,
+        cct:R2-Top-Itv .
+
+cct:R2-Reg-Nom rdfs:subClassOf cct:R2-Reg-Qlt,
+        cct:R2-Top-Nom .
+
+cct:R2-Reg-Ord rdfs:subClassOf cct:R2-Reg-Nom,
+        cct:R2-Top-Ord .
+
+cct:R2-Reg-Qlt rdfs:subClassOf cct:R2-Reg-Top,
+        cct:R2-Top-Qlt .
+
+cct:R2-Reg-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Top-Product-Reg-Ratio rdfs:subClassOf cct:R2-Top-Product-Reg-Itv,
+        cct:R2-Top-Product-Top-Ratio .
+
+cct:R2-Top-Reg rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R3-Loc-Itv-Obj rdfs:subClassOf cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Ord-Obj,
+        cct:R3-Top-Itv-Obj .
+
+cct:R3-Loc-Ord-Obj rdfs:subClassOf cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Top-Ord-Obj .
+
+cct:R3-Loc-Qlt-Obj rdfs:subClassOf cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Top-Qlt-Obj .
+
+cct:R3-Loc-Ratio-Top rdfs:subClassOf cct:R3-Loc-Itv-Top,
+        cct:R3-Top-Ratio-Top .
+
+cct:R3-Loc-Top-Obj rdfs:subClassOf cct:R3-Loc-Top-Top,
+        cct:R3-Top-Top-Obj .
+
+cct:R3-Top-Ratio-Obj rdfs:subClassOf cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Ratio-Top .
+
+cct:R1-Obj a :Type ;
+    rdfs:label "R1(Obj)" ;
+    rdf:_1 cct:Obj ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Val .
+
+cct:R1-Reg a :Type ;
+    rdfs:label "R1(Reg)" ;
+    rdf:_1 cct:Reg ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Val .
+
+cct:R2-Loc-Ratio a :Type ;
+    rdfs:label "R2(Loc, Ratio)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Loc-Itv,
+        cct:R2-Top-Ratio .
+
+cct:R2-Obj-Product-Top-Itv rdfs:subClassOf cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Itv .
+
+cct:R2-Obj-Product-Top-Nom rdfs:subClassOf cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Nom .
+
+cct:R2-Obj-Product-Top-Ord rdfs:subClassOf cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord .
+
+cct:R2-Obj-Product-Top-Qlt rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
+        cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Obj-Product-Top-Top rdfs:subClassOf cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Reg-Itv rdfs:subClassOf cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Top-Itv .
+
+cct:R2-Top-Product-Reg-Nom rdfs:subClassOf cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Top-Nom .
+
+cct:R2-Top-Product-Reg-Ord rdfs:subClassOf cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Top-Ord .
+
+cct:R2-Top-Product-Reg-Qlt rdfs:subClassOf cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Top-Product-Reg-Top rdfs:subClassOf cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Top-Ratio rdfs:subClassOf cct:R2-Top-Product-Top-Itv .
+
+cct:R3-Loc-Itv-Top rdfs:subClassOf cct:R3-Loc-Ord-Top,
+        cct:R3-Top-Itv-Top .
+
+cct:R3-Loc-Nom-Top rdfs:subClassOf cct:R3-Loc-Qlt-Top,
+        cct:R3-Top-Nom-Top .
+
+cct:R3-Loc-Ord-Top rdfs:subClassOf cct:R3-Loc-Nom-Top,
+        cct:R3-Top-Ord-Top .
+
+cct:R3-Loc-Qlt-Top rdfs:subClassOf cct:R3-Loc-Top-Top,
+        cct:R3-Top-Qlt-Top .
+
+cct:R3-Loc-Top-Top rdfs:subClassOf cct:R3-Top-Top-Top .
+
+cct:R3-Top-Itv-Obj rdfs:subClassOf cct:R3-Top-Itv-Top,
+        cct:R3-Top-Ord-Obj .
+
+cct:R3-Top-Nom-Obj rdfs:subClassOf cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj .
+
+cct:R3-Top-Ord-Obj rdfs:subClassOf cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Ord-Top .
+
+cct:R3-Top-Qlt-Obj rdfs:subClassOf cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj .
+
+cct:R3-Top-Ratio-Top rdfs:subClassOf cct:R3-Top-Itv-Top .
+
+cct:R3-Top-Top-Obj rdfs:subClassOf cct:R3-Top-Top-Top .
+
+cct:Bool a :Type ;
+    rdfs:label "Bool" ;
+    rdfs:subClassOf cct:Nom .
+
+cct:R1-Val rdfs:subClassOf cct:R1-Top .
+
+cct:R2-Loc-Nom a :Type ;
+    rdfs:label "R2(Loc, Nom)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Nom ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Loc-Qlt,
+        cct:R2-Top-Nom .
+
+cct:R2-Obj-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Reg-Ratio a :Type ;
+    rdfs:label "R2(Reg, Ratio)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Reg-Itv,
+        cct:R2-Top-Ratio .
+
+cct:R2-Top-Product-Top-Itv rdfs:subClassOf cct:R2-Top-Product-Top-Ord .
+
+cct:R2-Top-Product-Top-Nom rdfs:subClassOf cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Top-Product-Top-Ord rdfs:subClassOf cct:R2-Top-Product-Top-Nom .
+
+cct:R2-Top-Product-Top-Qlt rdfs:subClassOf cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Top-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Top-Ratio rdfs:subClassOf cct:R2-Top-Itv .
+
+cct:R3-Loc-Ratio-Obj a :Type ;
+    rdfs:label "R3(Loc, Ratio, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Ratio ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf cct:R3,
+        cct:R3-Loc-Itv-Obj,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Top-Ratio-Obj .
+
+cct:R3-Top-Itv-Top rdfs:subClassOf cct:R3-Top-Ord-Top .
+
+cct:R3-Top-Nom-Top rdfs:subClassOf cct:R3-Top-Qlt-Top .
+
+cct:R3-Top-Ord-Top rdfs:subClassOf cct:R3-Top-Nom-Top .
+
+cct:R3-Top-Qlt-Top rdfs:subClassOf cct:R3-Top-Top-Top .
+
+cct:R3-Top-Top-Top rdfs:subClassOf :Top .
+
+cct:R1-Loc a :Type ;
+    rdfs:label "R1(Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Val .
+
+cct:R1-Top a :Type ;
+    rdfs:label "R1(τ23)",
+        "R1(τ24)" ;
+    rdf:_1 :Top ;
+    rdfs:subClassOf :Top,
+        cct:R1 .
+
+cct:R2-Top-Itv rdfs:subClassOf cct:R2-Top-Ord .
+
+cct:R2-Top-Nom rdfs:subClassOf cct:R2-Top-Qlt .
+
+cct:R2-Top-Ord rdfs:subClassOf cct:R2-Top-Nom .
+
+cct:R2-Top-Qlt rdfs:subClassOf cct:R2-Top-Top .
+
+cct:Val rdfs:subClassOf :Top .
+
+:Top a :Type ;
+    rdfs:label "τ23",
+        "τ24" .
+
+cct:Loc a :Type ;
+    rdfs:label "Loc" ;
+    rdfs:subClassOf cct:Val .
+
+cct:R2-Obj-Product-Reg-Ratio a :Type ;
+    rdfs:label "R2(Obj, (Reg * Ratio))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 [ a :Type ;
+            rdfs:label "(Reg * Ratio)" ;
+            rdf:_1 cct:Reg ;
+            rdf:_2 cct:Ratio ;
+            rdfs:subClassOf :Product ] ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Product-Reg-Itv,
+        cct:R2-Obj-Product-Top-Ratio,
+        cct:R2-Top-Product-Reg-Ratio .
+
+cct:R2-Obj-Ratio a :Type ;
+    rdfs:label "R2(Obj, Ratio)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Ratio ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Itv,
+        cct:R2-Top-Ratio .
+
+cct:R2-Obj-Reg a :Type ;
+    rdfs:label "R2(Obj, Reg)" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg .
+
+cct:R2-Top-Top rdfs:subClassOf :Top .
+
+cct:R3-Loc-Nom-Obj a :Type ;
+    rdfs:label "R3(Loc, Nom, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Obj ;
+    rdfs:subClassOf cct:R3,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Top-Nom-Obj .
+
+cct:Reg a :Type ;
+    rdfs:label "Reg" ;
+    rdfs:subClassOf cct:Val .
+
+cct:Nom a :Type ;
+    rdfs:label "Nom" ;
+    rdfs:subClassOf cct:Qlt .
+
+cct:Obj a :Type ;
+    rdfs:label "Obj" ;
+    rdfs:subClassOf cct:Val .
+
+cct:Ratio a :Type ;
+    rdfs:label "Ratio" ;
+    rdfs:subClassOf cct:Itv .
+
+_:N051b034c2edc4bc597e3d396b04772ea rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    :from _:N2119e8314dda4a269958eede8e0b1bff ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:get_attrL .
+
+_:N0759c6a6d78d453da9e607f1baba3fe6 rdfs:label "Reg via merge" ;
+    :from [ rdfs:label "R1(Reg) via pi1" ;
+            :from [ rdfs:label "R2(Reg, Ratio) via getamounts" ;
+                    :from _:N6fddd6e71daf442391eed235bc7311fe ;
+                    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+                    :type cct:R2-Reg-Ratio ;
+                    :via cct:getamounts ] ;
+            :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+            :type cct:R1-Reg ;
+            :via cct:pi1 ] ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+    :type cct:Reg ;
+    :via cct:merge .
+
+_:N101dc52a551444afaded323c21213406 rdfs:label "R1(Obj) via pi3" ;
+    :from [ rdfs:label "R3(Loc, Nom, Obj) via select" ;
+            :from _:N7916a8b10c7643d8991fa24e090e02a1,
+                _:Na575ea28201f46849c163d652072952b,
+                [ rdfs:label "Bool via eq" ;
+                    :from _:N50cd72b673a043498017350b467560f4 ;
+                    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 ;
+                    :type cct:Bool ;
+                    :via cct:eq ] ;
+            :internal _:N50cd72b673a043498017350b467560f4 ;
+            :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 ;
+            :type cct:R3-Loc-Nom-Obj ;
+            :via cct:select ] ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 ;
+    :type cct:R1-Obj ;
+    :via cct:pi3 .
+
+_:N12d9b638730f4557afa35df4e210fe07 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    :from _:N6fddd6e71daf442391eed235bc7311fe ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:get_attrL .
+
+_:N17ae04e16fd440989198530753501747 rdfs:label "Obj via objectfromobjects" ;
+    :from [ rdfs:label "R1(τ23) [τ23 <= Obj, R2(Obj, (Reg * Ratio)) << (R2(τ23, _), R2(τ23, (_ * _)))] via pi1" ;
+            :from _:N6fddd6e71daf442391eed235bc7311fe ;
+            :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+            :type cct:R1-Top ;
+            :via cct:pi1 ] ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+    :type cct:Obj ;
+    :via cct:objectfromobjects .
+
+_:N2e91fdbc133646748995235d4bed2055 rdfs:label "R1(Loc) via pi1" ;
+    :from _:N3481efe5f7c647e1aafff2b62ca6160d ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 ;
+    :type cct:R1-Loc ;
+    :via cct:pi1 .
+
+_:N4c90a6ba88f749668a26638ad014622e rdfs:label "Ratio via compose" ;
+    :from _:N24d30f6317234b6d9382a15c4b0b3625,
+        _:Ne5226962a9f6447a9ae4eb7c8a01b9bc,
+        _:Neaccedeea4df4b90aca4af2ea1ed85ef ;
+    :internal _:N299305edc0e84348af73f287db0b63ae,
+        _:N585e3a11b27e4117bb7b131a5fd303e8 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ;
+    :type cct:Ratio ;
+    :via cct:compose .
+
+_:N4ec271293e154b3588c0590dc04a8a0b rdfs:label "R1(τ24) [τ24 <= Obj, R2(Obj, (Reg * Ratio)) << (R2(τ24, _), R2(τ24, (_ * _)))] via pi1" ;
+    :from _:N6fddd6e71daf442391eed235bc7311fe ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+    :type cct:R1-Top ;
+    :via cct:pi1 .
+
+_:N7dc404f2b091430ba64ad38a4d3f1392 rdfs:label "Ratio via avg" ;
+    :from [ rdfs:label "R2(Reg, Ratio) via getamounts" ;
+            :from _:N6fddd6e71daf442391eed235bc7311fe ;
+            :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+            :type cct:R2-Reg-Ratio ;
+            :via cct:getamounts ] ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+    :type cct:Ratio ;
+    :via cct:avg .
+
+_:N8be259a8d9ef4aae8e4f78e25b908d02 rdfs:label "Ratio via product" ;
+    :from _:N530198de6efe440cb3bd410262f5d2fa ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ;
+    :type cct:Ratio ;
+    :via cct:product .
+
+_:N97d183f2a02149b393e84d731a7aaffe rdfs:label "R2(Obj, Reg) via nest2" ;
+    :from _:N0759c6a6d78d453da9e607f1baba3fe6,
+        _:N17ae04e16fd440989198530753501747 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:nest2 .
+
+_:N9a4469162acd4af0ac2e9275e9fcba84 rdfs:label "Obj via objectfromobjects" ;
+    :from _:N4ec271293e154b3588c0590dc04a8a0b ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+    :type cct:Obj ;
+    :via cct:objectfromobjects .
+
+_:N9d8bba53a8ff4c9f912a8463a91ab239 rdfs:label "Bool via eq" ;
+    :from _:Nf9ce45382e9d4d4cae3ccb6fa8f1ed54 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+    :type cct:Bool ;
+    :via cct:eq .
+
+_:Na96c5837639e47f0bc3e1bbec6a7c37f rdfs:label "R1(Loc) from source" ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ;
+    :type cct:R1-Loc .
+
+_:Nb6d7bcfc7ba948c0a9ded37d5c54f600 rdfs:label "R2(Obj, Ratio) via nest2" ;
+    :from _:N7dc404f2b091430ba64ad38a4d3f1392,
+        _:N9a4469162acd4af0ac2e9275e9fcba84 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+    :type cct:R2-Obj-Ratio ;
+    :via cct:nest2 .
+
+_:Ne3406ba597f0441395b92a880f90d689 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    :from _:N5a4e3343ee0c401c8177e8b227c72654 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+    :type cct:R2-Obj-Reg ;
+    :via cct:get_attrL .
+
+_:Ne3baac01cadf46c58fc4af32b0d5f3ef rdfs:label "R3(Loc, Nom, Obj) via select" ;
+    :from _:N5efe5ad6414f4a5895b41beac87e35c8,
+        _:N9d8bba53a8ff4c9f912a8463a91ab239,
+        _:Nb3c24e937c2e4e629b4c522736d6d84f ;
+    :internal _:Nf9ce45382e9d4d4cae3ccb6fa8f1ed54 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+    :type cct:R3-Loc-Nom-Obj ;
+    :via cct:select .
+
+_:Nf86ce37895dc4dc78c5772f360f13377 rdfs:label "R1(Loc) via pi1" ;
+    :from _:Nabe26ad81b0e48a9a1afd93ece087152 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+    :type cct:R1-Loc ;
+    :via cct:pi1 .
+
+_:N2119e8314dda4a269958eede8e0b1bff rdfs:label "R2(Obj, (Reg * Ratio)) via join_attr" ;
+    :from _:N97d183f2a02149b393e84d731a7aaffe,
+        _:Nb6d7bcfc7ba948c0a9ded37d5c54f600 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb2 ;
+    :type cct:R2-Obj-Product-Reg-Ratio ;
+    :via cct:join_attr .
+
+_:N2db18b7164284cd8986d94072b19ac38 rdfs:label "R2(Obj, Ratio) via get_attrR" ;
+    :from _:N6fddd6e71daf442391eed235bc7311fe ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ;
+    :type cct:R2-Obj-Ratio ;
+    :via cct:get_attrR .
+
+_:N3481efe5f7c647e1aafff2b62ca6160d rdfs:label "R2(Loc, Nom) from source" ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb3 ;
+    :type cct:R2-Loc-Nom .
+
+_:N50cd72b673a043498017350b467560f4 rdfs:label "(internal)" ;
+    :from _:N7916a8b10c7643d8991fa24e090e02a1,
+        _:Na575ea28201f46849c163d652072952b ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 .
+
+_:N530198de6efe440cb3bd410262f5d2fa rdfs:label "(internal)" ;
+    :from _:N299305edc0e84348af73f287db0b63ae,
+        _:N2db18b7164284cd8986d94072b19ac38 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 .
+
+_:N585e3a11b27e4117bb7b131a5fd303e8 rdfs:label "(internal)" ;
+    :from _:N24d30f6317234b6d9382a15c4b0b3625,
+        _:Ne5226962a9f6447a9ae4eb7c8a01b9bc ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 .
+
+_:N5a4e3343ee0c401c8177e8b227c72654 rdfs:label "R2(Obj, (Reg * Ratio)) via subset" ;
+    :from _:N101dc52a551444afaded323c21213406,
+        _:N2119e8314dda4a269958eede8e0b1bff ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 ;
+    :type cct:R2-Obj-Product-Reg-Ratio ;
+    :via cct:subset .
+
+_:N5efe5ad6414f4a5895b41beac87e35c8 rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
+    :from _:Ne3406ba597f0441395b92a880f90d689,
+        _:Nf86ce37895dc4dc78c5772f360f13377 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+    :type cct:R3-Loc-Nom-Obj ;
+    :via cct:loTopo .
+
+_:N6b16b8bab9ee45c7ad295effab8f6467 rdfs:label "(internal)" ;
+    :from _:N85a03106285b4405ab5852837dea37fb ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 .
+
+_:N7916a8b10c7643d8991fa24e090e02a1 rdfs:label "Nom from source" ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 ;
+    :type cct:Nom .
+
+_:N85a03106285b4405ab5852837dea37fb rdfs:label "R3(Loc, Ratio, Obj) via join_key" ;
+    :from _:Nabe26ad81b0e48a9a1afd93ece087152,
+        _:Ne3baac01cadf46c58fc4af32b0d5f3ef ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+    :type cct:R3-Loc-Ratio-Obj ;
+    :via cct:join_key .
+
+_:Na3ab7a3c850e4aa48629e20e525310ac rdfs:label "R3(Loc, Ratio, Obj) via loDist" ;
+    :from _:N12d9b638730f4557afa35df4e210fe07,
+        _:Na96c5837639e47f0bc3e1bbec6a7c37f ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ;
+    :type cct:R3-Loc-Ratio-Obj ;
+    :via cct:loDist .
+
+_:Na575ea28201f46849c163d652072952b rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
+    :from _:N051b034c2edc4bc597e3d396b04772ea,
+        _:N2e91fdbc133646748995235d4bed2055 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb4 ;
+    :type cct:R3-Loc-Nom-Obj ;
+    :via cct:loTopo .
+
+_:Nabe26ad81b0e48a9a1afd93ece087152 rdfs:label "R2(Loc, Ratio) via groupbyL" ;
+    :from _:N4c90a6ba88f749668a26638ad014622e,
+        _:Na3ab7a3c850e4aa48629e20e525310ac ;
+    :internal _:N24d30f6317234b6d9382a15c4b0b3625 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ;
+    :type cct:R2-Loc-Ratio ;
+    :via cct:groupbyL .
+
+_:Nb3c24e937c2e4e629b4c522736d6d84f rdfs:label "Nom from source" ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 ;
+    :type cct:Nom .
+
+_:Ne5226962a9f6447a9ae4eb7c8a01b9bc rdfs:label "R2(Obj, Ratio) via apply2" ;
+    :from _:N299305edc0e84348af73f287db0b63ae,
+        _:N2db18b7164284cd8986d94072b19ac38,
+        _:N8be259a8d9ef4aae8e4f78e25b908d02 ;
+    :internal _:N530198de6efe440cb3bd410262f5d2fa ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ;
+    :type cct:R2-Obj-Ratio ;
+    :via cct:apply2 .
+
+_:Neaccedeea4df4b90aca4af2ea1ed85ef rdfs:label "Ratio via sum" ;
+    :from _:N585e3a11b27e4117bb7b131a5fd303e8 ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 ;
+    :type cct:Ratio ;
+    :via cct:sum .
+
+_:Nf9ce45382e9d4d4cae3ccb6fa8f1ed54 rdfs:label "(internal)" ;
+    :from _:N5efe5ad6414f4a5895b41beac87e35c8,
+        _:Nb3c24e937c2e4e629b4c522736d6d84f ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb10 .
+
+_:N299305edc0e84348af73f287db0b63ae rdfs:label "(internal)" ;
+    :from _:N24d30f6317234b6d9382a15c4b0b3625,
+        _:Neaccedeea4df4b90aca4af2ea1ed85ef ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 .
+
+_:nb8c8361fdb644817b1d3c8caf7ff49cfb3 a ccd:FieldQ,
+        ccd:PlainNominalA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "FieldQ, PlainVectorRegionA, PlainNominalA" .
+
+_:N24d30f6317234b6d9382a15c4b0b3625 rdfs:label "(internal)" ;
+    :from _:Na3ab7a3c850e4aa48629e20e525310ac ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb8 .
+
+_:nb8c8361fdb644817b1d3c8caf7ff49cfb6 a ccd:ERA,
+        ccd:ObjectQ,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, ERA" .
+
+_:N6fddd6e71daf442391eed235bc7311fe rdfs:label "R2(Obj, (Reg * Ratio)) from source" ;
+    :origin _:nb8c8361fdb644817b1d3c8caf7ff49cfb6 ;
+    :type cct:R2-Obj-Product-Reg-Ratio .
+
+_:nb8c8361fdb644817b1d3c8caf7ff49cfb4 a ccd:ObjectQ,
+        ccd:PlainNominalA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
+
+_:nb8c8361fdb644817b1d3c8caf7ff49cfb10 a ccd:IRA,
+        ccd:ObjectQ,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" .
+
+_:nb8c8361fdb644817b1d3c8caf7ff49cfb2 a ccd:ObjectQ,
+        ccd:PlainRatioA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainRatioA" .
+
+_:nb8c8361fdb644817b1d3c8caf7ff49cfb8 a ccd:FieldQ,
+        ccd:PlainRatioA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainRatioA" .
+

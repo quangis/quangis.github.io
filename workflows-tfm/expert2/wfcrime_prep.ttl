@@ -1,0 +1,157 @@
+@prefix : <https://github.com/quangis/transforge#> .
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix cct: <https://quangis.github.io/vocab/cct#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfexpert2: <https://quangis.github.io/workflows/expert2/> .
+
+wfexpert2:wfcrime_prep a wf:Workflow,
+        :Transformation ;
+    wf:edge [ wf:applicationOf abstr:makePointObjects ;
+            wf:input1 _:ncf9082ef1e564ec89565a5c7746d9997b2 ;
+            wf:output _:ncf9082ef1e564ec89565a5c7746d9997b3 ],
+        [ wf:applicationOf abstr:CreateRandomPoints ;
+            wf:input1 _:ncf9082ef1e564ec89565a5c7746d9997b11 ;
+            wf:output _:ncf9082ef1e564ec89565a5c7746d9997b8 ],
+        [ wf:applicationOf abstr:FeatureClassToFeatureClass ;
+            wf:input1 _:ncf9082ef1e564ec89565a5c7746d9997b13 ;
+            wf:output _:ncf9082ef1e564ec89565a5c7746d9997b2 ],
+        [ wf:applicationOf abstr:CreateRandomPoints ;
+            wf:input1 _:ncf9082ef1e564ec89565a5c7746d9997b5 ;
+            wf:output _:ncf9082ef1e564ec89565a5c7746d9997b6 ],
+        [ wf:applicationOf abstr:Merge ;
+            wf:input1 _:ncf9082ef1e564ec89565a5c7746d9997b3 ;
+            wf:input2 _:ncf9082ef1e564ec89565a5c7746d9997b6 ;
+            wf:input3 _:ncf9082ef1e564ec89565a5c7746d9997b8 ;
+            wf:output _:ncf9082ef1e564ec89565a5c7746d9997b9 ] ;
+    wf:source _:ncf9082ef1e564ec89565a5c7746d9997b11,
+        _:ncf9082ef1e564ec89565a5c7746d9997b13,
+        _:ncf9082ef1e564ec89565a5c7746d9997b5 ;
+    wf:target _:ncf9082ef1e564ec89565a5c7746d9997b9 ;
+    :contains cct:R1-Nom,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:generateobjects,
+        cct:set_union,
+        cct:subset ;
+    :input _:N539712648a25427a99a91020ba30a41c,
+        _:N68506d2be3ee48cc8ab93db818638aaa,
+        _:Ne038624a9132410f9d4a7ae76e0da19b ;
+    :output [ rdfs:label "R2(Obj, (Reg * Nom)) via set_union" ;
+            :from [ rdfs:label "R2(Obj, (Reg * Nom)) via set_union" ;
+                    :from [ rdfs:label "R2(Obj, (Reg * Nom)) via generateobjects" ;
+                            :from _:Ne038624a9132410f9d4a7ae76e0da19b ;
+                            :origin _:ncf9082ef1e564ec89565a5c7746d9997b6 ;
+                            :type cct:R2-Obj-Product-Reg-Nom ;
+                            :via cct:generateobjects ],
+                        [ rdfs:label "R2(Obj, (Reg * Nom)) via generateobjects" ;
+                            :from [ rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+                                    :from _:N68506d2be3ee48cc8ab93db818638aaa,
+                                        [ rdfs:label "R1(Nom) from source" ;
+                                            :origin _:ncf9082ef1e564ec89565a5c7746d9997b2 ;
+                                            :type cct:R1-Nom ] ;
+                                    :origin _:ncf9082ef1e564ec89565a5c7746d9997b2 ;
+                                    :type cct:R2-Obj-Product-Reg-Nom ;
+                                    :via cct:subset ] ;
+                            :origin _:ncf9082ef1e564ec89565a5c7746d9997b3 ;
+                            :type cct:R2-Obj-Product-Reg-Nom ;
+                            :via cct:generateobjects ] ;
+                    :origin _:ncf9082ef1e564ec89565a5c7746d9997b9 ;
+                    :type cct:R2-Obj-Product-Reg-Nom ;
+                    :via cct:set_union ],
+                [ rdfs:label "R2(Obj, (Reg * Nom)) via generateobjects" ;
+                    :from _:N539712648a25427a99a91020ba30a41c ;
+                    :origin _:ncf9082ef1e564ec89565a5c7746d9997b8 ;
+                    :type cct:R2-Obj-Product-Reg-Nom ;
+                    :via cct:generateobjects ] ;
+            :origin _:ncf9082ef1e564ec89565a5c7746d9997b9 ;
+            :type cct:R2-Obj-Product-Reg-Nom ;
+            :via cct:set_union ] .
+
+cct:Obj a :Type ;
+    rdfs:label "Obj" ;
+    rdfs:subClassOf cct:Val .
+
+cct:Qlt rdfs:subClassOf cct:Val .
+
+cct:R1-Qlt rdfs:subClassOf cct:R1-Val .
+
+cct:R1-Top rdfs:subClassOf :Top .
+
+cct:R1-Val rdfs:subClassOf cct:R1-Top .
+
+cct:R2-Obj-Product-Reg-Qlt rdfs:subClassOf cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Top-Product-Reg-Qlt .
+
+cct:R2-Obj-Product-Reg-Top rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
+        cct:R2-Top-Product-Reg-Top .
+
+cct:R2-Obj-Product-Top-Nom rdfs:subClassOf cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Nom .
+
+cct:R2-Obj-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:R2-Top-Product-Reg-Nom rdfs:subClassOf cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Top-Nom .
+
+cct:Reg a :Type ;
+    rdfs:label "Reg" ;
+    rdfs:subClassOf cct:Val .
+
+cct:Nom a :Type ;
+    rdfs:label "Nom" ;
+    rdfs:subClassOf cct:Qlt .
+
+cct:R1-Nom a :Type ;
+    rdfs:label "R1(Nom)" ;
+    rdf:_1 cct:Nom ;
+    rdfs:subClassOf cct:R1,
+        cct:R1-Qlt .
+
+cct:R2-Obj-Product-Top-Qlt rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
+        cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Obj-Product-Top-Top rdfs:subClassOf cct:R2-Obj-Top,
+        cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Reg-Qlt rdfs:subClassOf cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Top-Product-Reg-Top rdfs:subClassOf cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Top-Nom rdfs:subClassOf cct:R2-Top-Product-Top-Qlt .
+
+cct:R2-Top-Top rdfs:subClassOf :Top .
+
+cct:R2-Top-Product-Top-Qlt rdfs:subClassOf cct:R2-Top-Product-Top-Top .
+
+cct:R2-Top-Product-Top-Top rdfs:subClassOf cct:R2-Top-Top .
+
+cct:Val rdfs:subClassOf :Top .
+
+cct:R2-Obj-Product-Reg-Nom a :Type ;
+    rdfs:label "R2(Obj, (Reg * Nom))" ;
+    rdf:_1 cct:Obj ;
+    rdf:_2 [ a :Type ;
+            rdfs:label "(Reg * Nom)" ;
+            rdf:_1 cct:Reg ;
+            rdf:_2 cct:Nom ;
+            rdfs:subClassOf :Product ] ;
+    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Top-Product-Reg-Nom .
+
+_:N539712648a25427a99a91020ba30a41c rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    :origin _:ncf9082ef1e564ec89565a5c7746d9997b11 ;
+    :type cct:R2-Obj-Product-Reg-Nom .
+
+_:N68506d2be3ee48cc8ab93db818638aaa rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    :origin _:ncf9082ef1e564ec89565a5c7746d9997b13 ;
+    :type cct:R2-Obj-Product-Reg-Nom .
+
+_:Ne038624a9132410f9d4a7ae76e0da19b rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    :origin _:ncf9082ef1e564ec89565a5c7746d9997b5 ;
+    :type cct:R2-Obj-Product-Reg-Nom .
+

@@ -1,0 +1,36 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PlainVectorRegionA.PlainRatioA--ObjectQ.VectorTessellationA.ERA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:SpatialJoinMeanTessInterval ;
+            wf:input1 _:nb9cc3da862bc471481c5f272d4e2ce34b2 ;
+            wf:input2 _:nb9cc3da862bc471481c5f272d4e2ce34b3 ;
+            wf:output _:nb9cc3da862bc471481c5f272d4e2ce34b4 ],
+        [ wf:applicationOf abstr:SpatialJoinSumTessRatio ;
+            wf:input1 _:nb9cc3da862bc471481c5f272d4e2ce34b3 ;
+            wf:input2 _:nb9cc3da862bc471481c5f272d4e2ce34b4 ;
+            wf:output [ a ccd:ERA,
+                        ccd:ObjectQ,
+                        ccd:VectorTessellationA ;
+                    rdfs:label "ObjectQ, VectorTessellationA, ERA" ] ] ;
+    wf:source _:nb9cc3da862bc471481c5f272d4e2ce34b2,
+        _:nb9cc3da862bc471481c5f272d4e2ce34b3 .
+
+_:nb9cc3da862bc471481c5f272d4e2ce34b2 a ccd:ObjectQ,
+        ccd:PlainRatioA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainRatioA" .
+
+_:nb9cc3da862bc471481c5f272d4e2ce34b4 a ccd:ObjectQ,
+        ccd:PlainIntervalA,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
+
+_:nb9cc3da862bc471481c5f272d4e2ce34b3 a ccd:ERA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, ERA" .
+

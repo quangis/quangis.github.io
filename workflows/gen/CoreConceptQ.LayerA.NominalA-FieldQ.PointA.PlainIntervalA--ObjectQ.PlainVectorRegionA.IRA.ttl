@@ -1,0 +1,43 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.PointA.PlainIntervalA--ObjectQ.PlainVectorRegionA.IRA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:Slope ;
+            wf:input1 _:nabf386a874a04fbc8a99c0a067c163e1b2 ;
+            wf:output _:nabf386a874a04fbc8a99c0a067c163e1b3 ],
+        [ wf:applicationOf abstr:KrigingInterval ;
+            wf:input1 _:nabf386a874a04fbc8a99c0a067c163e1b5 ;
+            wf:output _:nabf386a874a04fbc8a99c0a067c163e1b2 ],
+        [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:nabf386a874a04fbc8a99c0a067c163e1b3 ;
+            wf:input2 _:nabf386a874a04fbc8a99c0a067c163e1b7 ;
+            wf:output [ a ccd:IRA,
+                        ccd:ObjectQ,
+                        ccd:PlainVectorRegionA ;
+                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ] ;
+    wf:source _:nabf386a874a04fbc8a99c0a067c163e1b5,
+        _:nabf386a874a04fbc8a99c0a067c163e1b7 .
+
+_:nabf386a874a04fbc8a99c0a067c163e1b2 a ccd:FieldQ,
+        ccd:PlainIntervalA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainIntervalA" .
+
+_:nabf386a874a04fbc8a99c0a067c163e1b3 a ccd:FieldQ,
+        ccd:PlainRatioA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainRatioA" .
+
+_:nabf386a874a04fbc8a99c0a067c163e1b5 a ccd:FieldQ,
+        ccd:PlainIntervalA,
+        ccd:PointA ;
+    rdfs:label "FieldQ, PointA, PlainIntervalA" .
+
+_:nabf386a874a04fbc8a99c0a067c163e1b7 a ccd:CyclicA,
+        ccd:ObjectQ,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, CyclicA" .
+

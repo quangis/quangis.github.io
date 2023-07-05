@@ -1,0 +1,36 @@
+@prefix abstr: <https://quangis.github.io/tool/abstract#> .
+@prefix ccd: <http://geographicknowledge.de/vocab/CoreConceptData.rdf#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
+@prefix wfgen: <https://quangis.github.io/workflows/generated/> .
+
+wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.PlainOrdinalA--ObjectQ.PlainVectorRegionA.CountA1 a wf:Workflow ;
+    wf:edge [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsDist ;
+            wf:input1 _:nf005940b1ccb468498226a445dab92bfb3 ;
+            wf:input2 _:nf005940b1ccb468498226a445dab92bfb2 ;
+            wf:output _:nf005940b1ccb468498226a445dab92bfb4 ],
+        [ wf:applicationOf abstr:SelectLayerByLocationTessObject ;
+            wf:input1 _:nf005940b1ccb468498226a445dab92bfb3 ;
+            wf:input2 _:nf005940b1ccb468498226a445dab92bfb4 ;
+            wf:output [ a ccd:CountA,
+                        ccd:ObjectQ,
+                        ccd:PlainVectorRegionA ;
+                    rdfs:label "ObjectQ, PlainVectorRegionA, CountA" ] ] ;
+    wf:source _:nf005940b1ccb468498226a445dab92bfb2,
+        _:nf005940b1ccb468498226a445dab92bfb3 .
+
+_:nf005940b1ccb468498226a445dab92bfb2 a ccd:ObjectQ,
+        ccd:PlainOrdinalA,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, PlainOrdinalA" .
+
+_:nf005940b1ccb468498226a445dab92bfb4 a ccd:ObjectQ,
+        ccd:PlainNominalA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
+
+_:nf005940b1ccb468498226a445dab92bfb3 a ccd:CountA,
+        ccd:ObjectQ,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, CountA" .
+
