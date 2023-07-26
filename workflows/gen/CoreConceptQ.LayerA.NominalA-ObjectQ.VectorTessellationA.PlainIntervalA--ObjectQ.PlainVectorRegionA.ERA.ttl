@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.VectorTessellationA.PlainIntervalA--ObjectQ.PlainVectorRegionA.ERA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:SelectLayerByObjectTessObjects ;
-            wf:input1 _:n87d2ee3a747c4982859fb6b544ed0642b2 ;
-            wf:output _:n87d2ee3a747c4982859fb6b544ed0642b3 ],
-        [ wf:applicationOf abstr:ZonalStatisticsSumField ;
-            wf:input1 _:n87d2ee3a747c4982859fb6b544ed0642b5 ;
-            wf:input2 _:n87d2ee3a747c4982859fb6b544ed0642b3 ;
+    wf:edge [ wf:applicationOf abstr:ZonalStatisticsSumField ;
+            wf:input1 _:n72a90aa04b0341c19daaf6fd365704eab3 ;
+            wf:input2 _:n72a90aa04b0341c19daaf6fd365704eab2 ;
             wf:output [ a ccd:ERA,
                         ccd:ObjectQ,
                         ccd:PlainVectorRegionA ;
-                    rdfs:label "ObjectQ, PlainVectorRegionA, ERA" ] ] ;
-    wf:source _:n87d2ee3a747c4982859fb6b544ed0642b2,
-        _:n87d2ee3a747c4982859fb6b544ed0642b5 .
+                    rdfs:label "ObjectQ, PlainVectorRegionA, ERA" ] ],
+        [ wf:applicationOf abstr:SelectLayerByAttributeTessObjects ;
+            wf:input1 _:n72a90aa04b0341c19daaf6fd365704eab6 ;
+            wf:output _:n72a90aa04b0341c19daaf6fd365704eab2 ] ;
+    wf:source _:n72a90aa04b0341c19daaf6fd365704eab3,
+        _:n72a90aa04b0341c19daaf6fd365704eab6 .
 
-_:n87d2ee3a747c4982859fb6b544ed0642b2 a ccd:ObjectQ,
-        ccd:PlainIntervalA,
-        ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
-
-_:n87d2ee3a747c4982859fb6b544ed0642b3 a ccd:BooleanA,
-        ccd:ObjectQ,
+_:n72a90aa04b0341c19daaf6fd365704eab2 a ccd:ObjectQ,
+        ccd:PlainNominalA,
         ccd:PlainVectorRegionA ;
-    rdfs:label "ObjectQ, PlainVectorRegionA, BooleanA" .
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
 
-_:n87d2ee3a747c4982859fb6b544ed0642b5 a ccd:FieldQ,
+_:n72a90aa04b0341c19daaf6fd365704eab3 a ccd:FieldQ,
         ccd:RasterA,
         <http://geographicknowledge.de/vocab/ExtensiveMeasures.rdf#ERA> ;
     rdfs:label "FieldQ, RasterA, ERA" .
+
+_:n72a90aa04b0341c19daaf6fd365704eab6 a ccd:ObjectQ,
+        ccd:PlainIntervalA,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
 

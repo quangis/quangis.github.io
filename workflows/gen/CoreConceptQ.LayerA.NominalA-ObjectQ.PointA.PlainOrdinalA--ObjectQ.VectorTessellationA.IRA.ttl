@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.PlainOrdinalA--ObjectQ.VectorTessellationA.IRA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:ComputeCountDensityonObject ;
-            wf:input1 _:n600b3e0cbee84dea81af08950ec55e34b2 ;
+    wf:edge [ wf:applicationOf abstr:SummarizeWithin2 ;
+            wf:input1 _:ne107430292594d949a60b049e107f51eb3 ;
+            wf:input2 _:ne107430292594d949a60b049e107f51eb2 ;
+            wf:output _:ne107430292594d949a60b049e107f51eb4 ],
+        [ wf:applicationOf abstr:ComputeCountDensityonObject ;
+            wf:input1 _:ne107430292594d949a60b049e107f51eb4 ;
             wf:output [ a ccd:IRA,
                         ccd:ObjectQ,
                         ccd:VectorTessellationA ;
-                    rdfs:label "ObjectQ, VectorTessellationA, IRA" ] ],
-        [ wf:applicationOf abstr:SpatialJoinCountTess ;
-            wf:input1 _:n600b3e0cbee84dea81af08950ec55e34b5 ;
-            wf:input2 _:n600b3e0cbee84dea81af08950ec55e34b6 ;
-            wf:output _:n600b3e0cbee84dea81af08950ec55e34b2 ] ;
-    wf:source _:n600b3e0cbee84dea81af08950ec55e34b5,
-        _:n600b3e0cbee84dea81af08950ec55e34b6 .
+                    rdfs:label "ObjectQ, VectorTessellationA, IRA" ] ] ;
+    wf:source _:ne107430292594d949a60b049e107f51eb2,
+        _:ne107430292594d949a60b049e107f51eb3 .
 
-_:n600b3e0cbee84dea81af08950ec55e34b2 a ccd:CountA,
+_:ne107430292594d949a60b049e107f51eb2 a ccd:CyclicA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, CountA" .
+    rdfs:label "ObjectQ, VectorTessellationA, CyclicA" .
 
-_:n600b3e0cbee84dea81af08950ec55e34b5 a ccd:ObjectQ,
+_:ne107430292594d949a60b049e107f51eb3 a ccd:ObjectQ,
         ccd:PlainOrdinalA,
         ccd:PointA ;
     rdfs:label "ObjectQ, PointA, PlainOrdinalA" .
 
-_:n600b3e0cbee84dea81af08950ec55e34b6 a ccd:CyclicA,
+_:ne107430292594d949a60b049e107f51eb4 a ccd:CountA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, CyclicA" .
+    rdfs:label "ObjectQ, VectorTessellationA, CountA" .
 

@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.RasterA.PlainRatioA--ObjectQ.VectorTessellationA.CountA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:ZonalStatisticsMeanInterval ;
-            wf:input1 _:n207ab6fdcaaf431db2d4c2ccb41f285eb3 ;
-            wf:input2 _:n207ab6fdcaaf431db2d4c2ccb41f285eb2 ;
-            wf:output _:n207ab6fdcaaf431db2d4c2ccb41f285eb4 ],
-        [ wf:applicationOf abstr:LoadCountAmounts ;
-            wf:input1 _:n207ab6fdcaaf431db2d4c2ccb41f285eb2 ;
-            wf:input2 _:n207ab6fdcaaf431db2d4c2ccb41f285eb4 ;
+    wf:edge [ wf:applicationOf abstr:LoadCountAmounts ;
+            wf:input1 _:n17cf0d1e806541a1ad41ccd7132e66eab3 ;
+            wf:input2 _:n17cf0d1e806541a1ad41ccd7132e66eab2 ;
             wf:output [ a ccd:CountA,
                         ccd:ObjectQ,
                         ccd:VectorTessellationA ;
-                    rdfs:label "ObjectQ, VectorTessellationA, CountA" ] ] ;
-    wf:source _:n207ab6fdcaaf431db2d4c2ccb41f285eb2,
-        _:n207ab6fdcaaf431db2d4c2ccb41f285eb3 .
+                    rdfs:label "ObjectQ, VectorTessellationA, CountA" ] ],
+        [ wf:applicationOf abstr:ZonalStatisticsMeanInterval ;
+            wf:input1 _:n17cf0d1e806541a1ad41ccd7132e66eab6 ;
+            wf:input2 _:n17cf0d1e806541a1ad41ccd7132e66eab3 ;
+            wf:output _:n17cf0d1e806541a1ad41ccd7132e66eab2 ] ;
+    wf:source _:n17cf0d1e806541a1ad41ccd7132e66eab3,
+        _:n17cf0d1e806541a1ad41ccd7132e66eab6 .
 
-_:n207ab6fdcaaf431db2d4c2ccb41f285eb3 a ccd:FieldQ,
-        ccd:PlainRatioA,
-        ccd:RasterA ;
-    rdfs:label "FieldQ, RasterA, PlainRatioA" .
-
-_:n207ab6fdcaaf431db2d4c2ccb41f285eb4 a ccd:ObjectQ,
+_:n17cf0d1e806541a1ad41ccd7132e66eab2 a ccd:ObjectQ,
         ccd:PlainIntervalA,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
 
-_:n207ab6fdcaaf431db2d4c2ccb41f285eb2 a ccd:CountA,
+_:n17cf0d1e806541a1ad41ccd7132e66eab6 a ccd:FieldQ,
+        ccd:PlainRatioA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainRatioA" .
+
+_:n17cf0d1e806541a1ad41ccd7132e66eab3 a ccd:CountA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, CountA" .

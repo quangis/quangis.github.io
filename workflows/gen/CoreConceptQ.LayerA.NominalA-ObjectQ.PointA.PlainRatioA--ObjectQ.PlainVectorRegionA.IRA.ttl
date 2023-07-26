@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.PlainRatioA--ObjectQ.PlainVectorRegionA.IRA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:SummaryStatistics3 ;
-            wf:input1 _:nc5dd09310fa3455e8cfb66f83084fa13b2 ;
-            wf:output _:nc5dd09310fa3455e8cfb66f83084fa13b3 ],
-        [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
-            wf:input1 _:nc5dd09310fa3455e8cfb66f83084fa13b5 ;
-            wf:input2 _:nc5dd09310fa3455e8cfb66f83084fa13b3 ;
+    wf:edge [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:n4064d8be52044a98a672dcdf20ea3680b2 ;
+            wf:input2 _:n4064d8be52044a98a672dcdf20ea3680b3 ;
             wf:output [ a ccd:IRA,
                         ccd:ObjectQ,
                         ccd:PlainVectorRegionA ;
-                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ] ;
-    wf:source _:nc5dd09310fa3455e8cfb66f83084fa13b2,
-        _:nc5dd09310fa3455e8cfb66f83084fa13b5 .
+                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ],
+        [ wf:applicationOf abstr:SummaryStatistics3 ;
+            wf:input1 _:n4064d8be52044a98a672dcdf20ea3680b6 ;
+            wf:output _:n4064d8be52044a98a672dcdf20ea3680b3 ] ;
+    wf:source _:n4064d8be52044a98a672dcdf20ea3680b2,
+        _:n4064d8be52044a98a672dcdf20ea3680b6 .
 
-_:nc5dd09310fa3455e8cfb66f83084fa13b2 a ccd:ObjectQ,
-        ccd:PlainRatioA,
-        ccd:PointA ;
-    rdfs:label "ObjectQ, PointA, PlainRatioA" .
+_:n4064d8be52044a98a672dcdf20ea3680b2 a ccd:FieldQ,
+        ccd:RasterA,
+        <http://geographicknowledge.de/vocab/ExtensiveMeasures.rdf#ERA> ;
+    rdfs:label "FieldQ, RasterA, ERA" .
 
-_:nc5dd09310fa3455e8cfb66f83084fa13b3 a ccd:ObjectQ,
+_:n4064d8be52044a98a672dcdf20ea3680b3 a ccd:ObjectQ,
         ccd:PlainRatioA,
         ccd:PlainVectorRegionA ;
     rdfs:label "ObjectQ, PlainVectorRegionA, PlainRatioA" .
 
-_:nc5dd09310fa3455e8cfb66f83084fa13b5 a ccd:FieldQ,
-        ccd:RasterA,
-        <http://geographicknowledge.de/vocab/ExtensiveMeasures.rdf#ERA> ;
-    rdfs:label "FieldQ, RasterA, ERA" .
+_:n4064d8be52044a98a672dcdf20ea3680b6 a ccd:ObjectQ,
+        ccd:PlainRatioA,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, PlainRatioA" .
 

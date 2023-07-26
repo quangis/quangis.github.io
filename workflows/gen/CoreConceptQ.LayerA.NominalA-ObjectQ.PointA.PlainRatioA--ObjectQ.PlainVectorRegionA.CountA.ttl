@@ -5,31 +5,30 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.PlainRatioA--ObjectQ.PlainVectorRegionA.CountA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:SelectLayerByLocationTessObject ;
-            wf:input1 _:nccef4d70ac57459e8f6a7955cdb5d52bb3 ;
-            wf:input2 _:nccef4d70ac57459e8f6a7955cdb5d52bb2 ;
+    wf:edge [ wf:applicationOf abstr:SummaryStatistics3 ;
+            wf:input1 _:nca07f7c8766e41bd852eb4c9b3f8094eb2 ;
+            wf:output _:nca07f7c8766e41bd852eb4c9b3f8094eb3 ],
+        [ wf:applicationOf abstr:SelectLayerByLocationTessObject ;
+            wf:input1 _:nca07f7c8766e41bd852eb4c9b3f8094eb5 ;
+            wf:input2 _:nca07f7c8766e41bd852eb4c9b3f8094eb3 ;
             wf:output [ a ccd:CountA,
                         ccd:ObjectQ,
                         ccd:PlainVectorRegionA ;
-                    rdfs:label "ObjectQ, PlainVectorRegionA, CountA" ] ],
-        [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsDist ;
-            wf:input1 _:nccef4d70ac57459e8f6a7955cdb5d52bb3 ;
-            wf:input2 _:nccef4d70ac57459e8f6a7955cdb5d52bb6 ;
-            wf:output _:nccef4d70ac57459e8f6a7955cdb5d52bb2 ] ;
-    wf:source _:nccef4d70ac57459e8f6a7955cdb5d52bb3,
-        _:nccef4d70ac57459e8f6a7955cdb5d52bb6 .
+                    rdfs:label "ObjectQ, PlainVectorRegionA, CountA" ] ] ;
+    wf:source _:nca07f7c8766e41bd852eb4c9b3f8094eb2,
+        _:nca07f7c8766e41bd852eb4c9b3f8094eb5 .
 
-_:nccef4d70ac57459e8f6a7955cdb5d52bb2 a ccd:ObjectQ,
-        ccd:PlainNominalA,
-        ccd:PlainVectorRegionA ;
-    rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
-
-_:nccef4d70ac57459e8f6a7955cdb5d52bb6 a ccd:ObjectQ,
+_:nca07f7c8766e41bd852eb4c9b3f8094eb2 a ccd:ObjectQ,
         ccd:PlainRatioA,
         ccd:PointA ;
     rdfs:label "ObjectQ, PointA, PlainRatioA" .
 
-_:nccef4d70ac57459e8f6a7955cdb5d52bb3 a ccd:CountA,
+_:nca07f7c8766e41bd852eb4c9b3f8094eb3 a ccd:ObjectQ,
+        ccd:PlainRatioA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainRatioA" .
+
+_:nca07f7c8766e41bd852eb4c9b3f8094eb5 a ccd:CountA,
         ccd:ObjectQ,
         ccd:PlainVectorRegionA ;
     rdfs:label "ObjectQ, PlainVectorRegionA, CountA" .

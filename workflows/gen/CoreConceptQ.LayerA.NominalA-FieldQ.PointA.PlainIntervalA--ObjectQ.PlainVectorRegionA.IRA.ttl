@@ -5,39 +5,39 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.PointA.PlainIntervalA--ObjectQ.PlainVectorRegionA.IRA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:Slope ;
-            wf:input1 _:nabf386a874a04fbc8a99c0a067c163e1b2 ;
-            wf:output _:nabf386a874a04fbc8a99c0a067c163e1b3 ],
-        [ wf:applicationOf abstr:KrigingInterval ;
-            wf:input1 _:nabf386a874a04fbc8a99c0a067c163e1b5 ;
-            wf:output _:nabf386a874a04fbc8a99c0a067c163e1b2 ],
-        [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
-            wf:input1 _:nabf386a874a04fbc8a99c0a067c163e1b3 ;
-            wf:input2 _:nabf386a874a04fbc8a99c0a067c163e1b7 ;
+    wf:edge [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb2 ;
+            wf:input2 _:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb3 ;
             wf:output [ a ccd:IRA,
                         ccd:ObjectQ,
                         ccd:PlainVectorRegionA ;
-                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ] ;
-    wf:source _:nabf386a874a04fbc8a99c0a067c163e1b5,
-        _:nabf386a874a04fbc8a99c0a067c163e1b7 .
+                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ],
+        [ wf:applicationOf abstr:IDWInterval ;
+            wf:input1 _:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb6 ;
+            wf:output _:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb7 ],
+        [ wf:applicationOf abstr:Slope ;
+            wf:input1 _:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb7 ;
+            wf:output _:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb2 ] ;
+    wf:source _:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb3,
+        _:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb6 .
 
-_:nabf386a874a04fbc8a99c0a067c163e1b2 a ccd:FieldQ,
-        ccd:PlainIntervalA,
-        ccd:RasterA ;
-    rdfs:label "FieldQ, RasterA, PlainIntervalA" .
-
-_:nabf386a874a04fbc8a99c0a067c163e1b3 a ccd:FieldQ,
+_:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb2 a ccd:FieldQ,
         ccd:PlainRatioA,
         ccd:RasterA ;
     rdfs:label "FieldQ, RasterA, PlainRatioA" .
 
-_:nabf386a874a04fbc8a99c0a067c163e1b5 a ccd:FieldQ,
+_:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb3 a ccd:CyclicA,
+        ccd:ObjectQ,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, CyclicA" .
+
+_:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb6 a ccd:FieldQ,
         ccd:PlainIntervalA,
         ccd:PointA ;
     rdfs:label "FieldQ, PointA, PlainIntervalA" .
 
-_:nabf386a874a04fbc8a99c0a067c163e1b7 a ccd:CyclicA,
-        ccd:ObjectQ,
-        ccd:PlainVectorRegionA ;
-    rdfs:label "ObjectQ, PlainVectorRegionA, CyclicA" .
+_:n0c9cf6c1f7cc4ef18fcc31d5476ad66cb7 a ccd:FieldQ,
+        ccd:PlainIntervalA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainIntervalA" .
 

@@ -5,48 +5,47 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.PointA.PlainIntervalA--ObjectQ.PlainVectorRegionA.CountA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:KrigingInterval ;
-            wf:input1 _:n854cc1d865784ef5bec15791cfe1b1b3b2 ;
-            wf:output _:n854cc1d865784ef5bec15791cfe1b1b3b3 ],
-        [ wf:applicationOf abstr:ZonalStatisticsSize ;
-            wf:input1 _:n854cc1d865784ef5bec15791cfe1b1b3b3 ;
-            wf:input2 _:n854cc1d865784ef5bec15791cfe1b1b3b6 ;
-            wf:output _:n854cc1d865784ef5bec15791cfe1b1b3b5 ],
-        [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsDist ;
-            wf:input1 _:n854cc1d865784ef5bec15791cfe1b1b3b6 ;
-            wf:input2 _:n854cc1d865784ef5bec15791cfe1b1b3b5 ;
-            wf:output _:n854cc1d865784ef5bec15791cfe1b1b3b7 ],
-        [ wf:applicationOf abstr:ClipObject2Object ;
-            wf:input1 _:n854cc1d865784ef5bec15791cfe1b1b3b6 ;
-            wf:input2 _:n854cc1d865784ef5bec15791cfe1b1b3b7 ;
+    wf:edge [ wf:applicationOf abstr:SelectLayerByLocationTessObject ;
+            wf:input1 _:n41b42cce44c144ce87d051f7ade3f96eb2 ;
+            wf:input2 _:n41b42cce44c144ce87d051f7ade3f96eb3 ;
             wf:output [ a ccd:CountA,
                         ccd:ObjectQ,
                         ccd:PlainVectorRegionA ;
-                    rdfs:label "ObjectQ, PlainVectorRegionA, CountA" ] ] ;
-    wf:source _:n854cc1d865784ef5bec15791cfe1b1b3b2,
-        _:n854cc1d865784ef5bec15791cfe1b1b3b6 .
+                    rdfs:label "ObjectQ, PlainVectorRegionA, CountA" ] ],
+        [ wf:applicationOf abstr:SelectFeaturesCoverageToExistenceVector ;
+            wf:input1 _:n41b42cce44c144ce87d051f7ade3f96eb6 ;
+            wf:output _:n41b42cce44c144ce87d051f7ade3f96eb7 ],
+        [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsFieldDist ;
+            wf:input1 _:n41b42cce44c144ce87d051f7ade3f96eb2 ;
+            wf:input2 _:n41b42cce44c144ce87d051f7ade3f96eb7 ;
+            wf:output _:n41b42cce44c144ce87d051f7ade3f96eb3 ],
+        [ wf:applicationOf abstr:KrigingInterval ;
+            wf:input1 _:n41b42cce44c144ce87d051f7ade3f96eb10 ;
+            wf:output _:n41b42cce44c144ce87d051f7ade3f96eb6 ] ;
+    wf:source _:n41b42cce44c144ce87d051f7ade3f96eb10,
+        _:n41b42cce44c144ce87d051f7ade3f96eb2 .
 
-_:n854cc1d865784ef5bec15791cfe1b1b3b2 a ccd:FieldQ,
+_:n41b42cce44c144ce87d051f7ade3f96eb10 a ccd:FieldQ,
         ccd:PlainIntervalA,
         ccd:PointA ;
     rdfs:label "FieldQ, PointA, PlainIntervalA" .
 
-_:n854cc1d865784ef5bec15791cfe1b1b3b3 a ccd:FieldQ,
-        ccd:PlainIntervalA,
-        ccd:RasterA ;
-    rdfs:label "FieldQ, RasterA, PlainIntervalA" .
-
-_:n854cc1d865784ef5bec15791cfe1b1b3b5 a ccd:ERA,
-        ccd:ObjectQ,
-        ccd:VectorRegionA ;
-    rdfs:label "ObjectQ, VectorRegionA, ERA" .
-
-_:n854cc1d865784ef5bec15791cfe1b1b3b7 a ccd:ObjectQ,
+_:n41b42cce44c144ce87d051f7ade3f96eb3 a ccd:ObjectQ,
         ccd:PlainNominalA,
         ccd:PlainVectorRegionA ;
     rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
 
-_:n854cc1d865784ef5bec15791cfe1b1b3b6 a ccd:CountA,
+_:n41b42cce44c144ce87d051f7ade3f96eb6 a ccd:FieldQ,
+        ccd:PlainIntervalA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainIntervalA" .
+
+_:n41b42cce44c144ce87d051f7ade3f96eb7 a ccd:FieldQ,
+        ccd:PlainNominalA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "FieldQ, PlainVectorRegionA, PlainNominalA" .
+
+_:n41b42cce44c144ce87d051f7ade3f96eb2 a ccd:CountA,
         ccd:ObjectQ,
         ccd:PlainVectorRegionA ;
     rdfs:label "ObjectQ, PlainVectorRegionA, CountA" .

@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.VectorTessellationA.PlainIntervalA--ObjectQ.PlainVectorRegionA.IRA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:FeatureClassToFeatureClass2 ;
-            wf:input1 _:na13019d2a493427fac11246e0ca3711db2 ;
-            wf:output _:na13019d2a493427fac11246e0ca3711db3 ],
-        [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
-            wf:input1 _:na13019d2a493427fac11246e0ca3711db5 ;
-            wf:input2 _:na13019d2a493427fac11246e0ca3711db3 ;
+    wf:edge [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:nb02bd58291474d07b9335552c999a98bb2 ;
+            wf:input2 _:nb02bd58291474d07b9335552c999a98bb3 ;
             wf:output [ a ccd:IRA,
                         ccd:ObjectQ,
                         ccd:PlainVectorRegionA ;
-                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ] ;
-    wf:source _:na13019d2a493427fac11246e0ca3711db2,
-        _:na13019d2a493427fac11246e0ca3711db5 .
+                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ],
+        [ wf:applicationOf abstr:SelectLayerByObjectTessObjects ;
+            wf:input1 _:nb02bd58291474d07b9335552c999a98bb6 ;
+            wf:output _:nb02bd58291474d07b9335552c999a98bb3 ] ;
+    wf:source _:nb02bd58291474d07b9335552c999a98bb2,
+        _:nb02bd58291474d07b9335552c999a98bb6 .
 
-_:na13019d2a493427fac11246e0ca3711db2 a ccd:ObjectQ,
-        ccd:PlainIntervalA,
-        ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
-
-_:na13019d2a493427fac11246e0ca3711db3 a ccd:ObjectQ,
-        ccd:PlainNominalA,
-        ccd:PlainVectorRegionA ;
-    rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
-
-_:na13019d2a493427fac11246e0ca3711db5 a ccd:FieldQ,
+_:nb02bd58291474d07b9335552c999a98bb2 a ccd:FieldQ,
         ccd:RasterA,
         <http://geographicknowledge.de/vocab/ExtensiveMeasures.rdf#ERA> ;
     rdfs:label "FieldQ, RasterA, ERA" .
+
+_:nb02bd58291474d07b9335552c999a98bb3 a ccd:BooleanA,
+        ccd:ObjectQ,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, BooleanA" .
+
+_:nb02bd58291474d07b9335552c999a98bb6 a ccd:ObjectQ,
+        ccd:PlainIntervalA,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
 

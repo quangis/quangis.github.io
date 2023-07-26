@@ -5,39 +5,40 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.PlainNominalA--ObjectQ.PlainVectorRegionA.IRA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:addObjectCapacity ;
-            wf:input1 _:n9791331b33ec42c99a8591e22c2d6cd3b2 ;
-            wf:output _:n9791331b33ec42c99a8591e22c2d6cd3b3 ],
-        [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
-            wf:input1 _:n9791331b33ec42c99a8591e22c2d6cd3b6 ;
-            wf:input2 _:n9791331b33ec42c99a8591e22c2d6cd3b5 ;
+    wf:edge [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:n81bffb61a8194faf97a4e47a764ee8a0b3 ;
+            wf:input2 _:n81bffb61a8194faf97a4e47a764ee8a0b2 ;
             wf:output [ a ccd:IRA,
                         ccd:ObjectQ,
                         ccd:PlainVectorRegionA ;
                     rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ],
-        [ wf:applicationOf abstr:KernelDensity ;
-            wf:input1 _:n9791331b33ec42c99a8591e22c2d6cd3b3 ;
-            wf:output _:n9791331b33ec42c99a8591e22c2d6cd3b6 ] ;
-    wf:source _:n9791331b33ec42c99a8591e22c2d6cd3b2,
-        _:n9791331b33ec42c99a8591e22c2d6cd3b5 .
+        [ wf:applicationOf abstr:SummaryStatistics3 ;
+            wf:input1 _:n81bffb61a8194faf97a4e47a764ee8a0b6 ;
+            wf:output _:n81bffb61a8194faf97a4e47a764ee8a0b2 ],
+        [ wf:applicationOf abstr:GenerateNearTable ;
+            wf:input1 _:n81bffb61a8194faf97a4e47a764ee8a0b8 ;
+            wf:input2 _:n81bffb61a8194faf97a4e47a764ee8a0b8 ;
+            wf:output _:n81bffb61a8194faf97a4e47a764ee8a0b6 ] ;
+    wf:source _:n81bffb61a8194faf97a4e47a764ee8a0b3,
+        _:n81bffb61a8194faf97a4e47a764ee8a0b8 .
 
-_:n9791331b33ec42c99a8591e22c2d6cd3b2 a ccd:ObjectQ,
-        ccd:PlainNominalA,
-        ccd:PointA ;
-    rdfs:label "ObjectQ, PointA, PlainNominalA" .
-
-_:n9791331b33ec42c99a8591e22c2d6cd3b3 a ccd:ERA,
-        ccd:ObjectQ,
-        ccd:PointA ;
-    rdfs:label "ObjectQ, PointA, ERA" .
-
-_:n9791331b33ec42c99a8591e22c2d6cd3b5 a ccd:CyclicA,
-        ccd:ObjectQ,
+_:n81bffb61a8194faf97a4e47a764ee8a0b2 a ccd:ObjectQ,
+        ccd:PlainRatioA,
         ccd:PlainVectorRegionA ;
-    rdfs:label "ObjectQ, PlainVectorRegionA, CyclicA" .
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainRatioA" .
 
-_:n9791331b33ec42c99a8591e22c2d6cd3b6 a ccd:FieldQ,
+_:n81bffb61a8194faf97a4e47a764ee8a0b3 a ccd:FieldQ,
         ccd:PlainRatioA,
         ccd:RasterA ;
     rdfs:label "FieldQ, RasterA, PlainRatioA" .
+
+_:n81bffb61a8194faf97a4e47a764ee8a0b6 a ccd:ObjectQ,
+        ccd:PlainRatioA,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, PlainRatioA" .
+
+_:n81bffb61a8194faf97a4e47a764ee8a0b8 a ccd:ObjectQ,
+        ccd:PlainNominalA,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, PlainNominalA" .
 

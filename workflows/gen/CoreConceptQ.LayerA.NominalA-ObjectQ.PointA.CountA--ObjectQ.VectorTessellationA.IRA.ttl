@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.CountA--ObjectQ.VectorTessellationA.IRA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:SpatialJoinCountTess ;
-            wf:input1 _:n19a59f81a7ff4fccb266fb3b4ecdcc50b3 ;
-            wf:input2 _:n19a59f81a7ff4fccb266fb3b4ecdcc50b2 ;
-            wf:output _:n19a59f81a7ff4fccb266fb3b4ecdcc50b4 ],
-        [ wf:applicationOf abstr:ComputeCountDensityonObject ;
-            wf:input1 _:n19a59f81a7ff4fccb266fb3b4ecdcc50b4 ;
+    wf:edge [ wf:applicationOf abstr:ComputeCountDensityonObject ;
+            wf:input1 _:ndd5c2211610d4b48b6c4f99372e59a4cb2 ;
             wf:output [ a ccd:IRA,
                         ccd:ObjectQ,
                         ccd:VectorTessellationA ;
-                    rdfs:label "ObjectQ, VectorTessellationA, IRA" ] ] ;
-    wf:source _:n19a59f81a7ff4fccb266fb3b4ecdcc50b2,
-        _:n19a59f81a7ff4fccb266fb3b4ecdcc50b3 .
+                    rdfs:label "ObjectQ, VectorTessellationA, IRA" ] ],
+        [ wf:applicationOf abstr:SummarizeWithin2 ;
+            wf:input1 _:ndd5c2211610d4b48b6c4f99372e59a4cb6 ;
+            wf:input2 _:ndd5c2211610d4b48b6c4f99372e59a4cb5 ;
+            wf:output _:ndd5c2211610d4b48b6c4f99372e59a4cb2 ] ;
+    wf:source _:ndd5c2211610d4b48b6c4f99372e59a4cb5,
+        _:ndd5c2211610d4b48b6c4f99372e59a4cb6 .
 
-_:n19a59f81a7ff4fccb266fb3b4ecdcc50b2 a ccd:CyclicA,
+_:ndd5c2211610d4b48b6c4f99372e59a4cb2 a ccd:CountA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, CountA" .
+
+_:ndd5c2211610d4b48b6c4f99372e59a4cb5 a ccd:CyclicA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, CyclicA" .
 
-_:n19a59f81a7ff4fccb266fb3b4ecdcc50b3 a ccd:CountA,
+_:ndd5c2211610d4b48b6c4f99372e59a4cb6 a ccd:CountA,
         ccd:ObjectQ,
         ccd:PointA ;
     rdfs:label "ObjectQ, PointA, CountA" .
-
-_:n19a59f81a7ff4fccb266fb3b4ecdcc50b4 a ccd:CountA,
-        ccd:ObjectQ,
-        ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, CountA" .
 

@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.PlainRatioA--ObjectQ.PlainVectorRegionA.ERA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:ZonalStatisticsSumField ;
-            wf:input1 _:n8478f6830c8949f789542f209b551c2db3 ;
-            wf:input2 _:n8478f6830c8949f789542f209b551c2db2 ;
+    wf:edge [ wf:applicationOf abstr:SummaryStatistics3 ;
+            wf:input1 _:n56cacf36f52b43388510d68cdec57feeb2 ;
+            wf:output _:n56cacf36f52b43388510d68cdec57feeb3 ],
+        [ wf:applicationOf abstr:ZonalStatisticsSumField ;
+            wf:input1 _:n56cacf36f52b43388510d68cdec57feeb5 ;
+            wf:input2 _:n56cacf36f52b43388510d68cdec57feeb3 ;
             wf:output [ a ccd:ERA,
                         ccd:ObjectQ,
                         ccd:PlainVectorRegionA ;
-                    rdfs:label "ObjectQ, PlainVectorRegionA, ERA" ] ],
-        [ wf:applicationOf abstr:SummaryStatistics3 ;
-            wf:input1 _:n8478f6830c8949f789542f209b551c2db6 ;
-            wf:output _:n8478f6830c8949f789542f209b551c2db2 ] ;
-    wf:source _:n8478f6830c8949f789542f209b551c2db3,
-        _:n8478f6830c8949f789542f209b551c2db6 .
+                    rdfs:label "ObjectQ, PlainVectorRegionA, ERA" ] ] ;
+    wf:source _:n56cacf36f52b43388510d68cdec57feeb2,
+        _:n56cacf36f52b43388510d68cdec57feeb5 .
 
-_:n8478f6830c8949f789542f209b551c2db2 a ccd:ObjectQ,
+_:n56cacf36f52b43388510d68cdec57feeb2 a ccd:ObjectQ,
+        ccd:PlainRatioA,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, PlainRatioA" .
+
+_:n56cacf36f52b43388510d68cdec57feeb3 a ccd:ObjectQ,
         ccd:PlainRatioA,
         ccd:PlainVectorRegionA ;
     rdfs:label "ObjectQ, PlainVectorRegionA, PlainRatioA" .
 
-_:n8478f6830c8949f789542f209b551c2db3 a ccd:FieldQ,
+_:n56cacf36f52b43388510d68cdec57feeb5 a ccd:FieldQ,
         ccd:RasterA,
         <http://geographicknowledge.de/vocab/ExtensiveMeasures.rdf#ERA> ;
     rdfs:label "FieldQ, RasterA, ERA" .
-
-_:n8478f6830c8949f789542f209b551c2db6 a ccd:ObjectQ,
-        ccd:PlainRatioA,
-        ccd:PointA ;
-    rdfs:label "ObjectQ, PointA, PlainRatioA" .
 

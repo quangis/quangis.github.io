@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PlainVectorRegionA.IRA--ObjectQ.VectorTessellationA.ERA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:SpatialJoinSumTessRatio ;
-            wf:input1 _:n616379cda1d4474bb64585713f05054bb3 ;
-            wf:input2 _:n616379cda1d4474bb64585713f05054bb2 ;
+    wf:edge [ wf:applicationOf abstr:SpatialJoinMeanTessInterval ;
+            wf:input1 _:n81878c5912ec4563b3856ac671c109dfb3 ;
+            wf:input2 _:n81878c5912ec4563b3856ac671c109dfb2 ;
+            wf:output _:n81878c5912ec4563b3856ac671c109dfb4 ],
+        [ wf:applicationOf abstr:SpatialJoinSumTessRatio ;
+            wf:input1 _:n81878c5912ec4563b3856ac671c109dfb2 ;
+            wf:input2 _:n81878c5912ec4563b3856ac671c109dfb4 ;
             wf:output [ a ccd:ERA,
                         ccd:ObjectQ,
                         ccd:VectorTessellationA ;
-                    rdfs:label "ObjectQ, VectorTessellationA, ERA" ] ],
-        [ wf:applicationOf abstr:SpatialJoinMeanTessInterval ;
-            wf:input1 _:n616379cda1d4474bb64585713f05054bb6 ;
-            wf:input2 _:n616379cda1d4474bb64585713f05054bb3 ;
-            wf:output _:n616379cda1d4474bb64585713f05054bb2 ] ;
-    wf:source _:n616379cda1d4474bb64585713f05054bb3,
-        _:n616379cda1d4474bb64585713f05054bb6 .
+                    rdfs:label "ObjectQ, VectorTessellationA, ERA" ] ] ;
+    wf:source _:n81878c5912ec4563b3856ac671c109dfb2,
+        _:n81878c5912ec4563b3856ac671c109dfb3 .
 
-_:n616379cda1d4474bb64585713f05054bb2 a ccd:ObjectQ,
-        ccd:PlainIntervalA,
-        ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
-
-_:n616379cda1d4474bb64585713f05054bb6 a ccd:IRA,
+_:n81878c5912ec4563b3856ac671c109dfb3 a ccd:IRA,
         ccd:ObjectQ,
         ccd:PlainVectorRegionA ;
     rdfs:label "ObjectQ, PlainVectorRegionA, IRA" .
 
-_:n616379cda1d4474bb64585713f05054bb3 a ccd:ERA,
+_:n81878c5912ec4563b3856ac671c109dfb4 a ccd:ObjectQ,
+        ccd:PlainIntervalA,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
+
+_:n81878c5912ec4563b3856ac671c109dfb2 a ccd:ERA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, ERA" .

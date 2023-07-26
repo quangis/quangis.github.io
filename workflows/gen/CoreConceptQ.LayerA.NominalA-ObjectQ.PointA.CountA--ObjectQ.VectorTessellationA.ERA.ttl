@@ -6,31 +6,30 @@
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.CountA--ObjectQ.VectorTessellationA.ERA1 a wf:Workflow ;
     wf:edge [ wf:applicationOf abstr:SpatialJoinSumTessRatio ;
-            wf:input1 _:na6dacf70cc0944b285ee077084d92165b2 ;
-            wf:input2 _:na6dacf70cc0944b285ee077084d92165b3 ;
+            wf:input1 _:nf20fd8be05f5440aa0e3e3f93dcaae85b2 ;
+            wf:input2 _:nf20fd8be05f5440aa0e3e3f93dcaae85b3 ;
             wf:output [ a ccd:ERA,
                         ccd:ObjectQ,
                         ccd:VectorTessellationA ;
                     rdfs:label "ObjectQ, VectorTessellationA, ERA" ] ],
-        [ wf:applicationOf abstr:SpatialJoinMeanTessInterval ;
-            wf:input1 _:na6dacf70cc0944b285ee077084d92165b6 ;
-            wf:input2 _:na6dacf70cc0944b285ee077084d92165b2 ;
-            wf:output _:na6dacf70cc0944b285ee077084d92165b3 ] ;
-    wf:source _:na6dacf70cc0944b285ee077084d92165b2,
-        _:na6dacf70cc0944b285ee077084d92165b6 .
+        [ wf:applicationOf abstr:addObjectCapacity ;
+            wf:input1 _:nf20fd8be05f5440aa0e3e3f93dcaae85b6 ;
+            wf:output _:nf20fd8be05f5440aa0e3e3f93dcaae85b2 ] ;
+    wf:source _:nf20fd8be05f5440aa0e3e3f93dcaae85b3,
+        _:nf20fd8be05f5440aa0e3e3f93dcaae85b6 .
 
-_:na6dacf70cc0944b285ee077084d92165b3 a ccd:ObjectQ,
-        ccd:PlainIntervalA,
+_:nf20fd8be05f5440aa0e3e3f93dcaae85b2 a ccd:ERA,
+        ccd:ObjectQ,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, ERA" .
+
+_:nf20fd8be05f5440aa0e3e3f93dcaae85b3 a ccd:NominalA,
+        ccd:ObjectQ,
         ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
+    rdfs:label "ObjectQ, VectorTessellationA, NominalA" .
 
-_:na6dacf70cc0944b285ee077084d92165b6 a ccd:CountA,
+_:nf20fd8be05f5440aa0e3e3f93dcaae85b6 a ccd:CountA,
         ccd:ObjectQ,
         ccd:PointA ;
     rdfs:label "ObjectQ, PointA, CountA" .
-
-_:na6dacf70cc0944b285ee077084d92165b2 a ccd:ERA,
-        ccd:ObjectQ,
-        ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, ERA" .
 

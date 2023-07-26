@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PlainVectorRegionA.PlainNominalA--ObjectQ.VectorTessellationA.ERA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:SelectLayerByLocationTessObjects ;
-            wf:input1 _:n5dfa267a21754b10bf38b928bb346bccb3 ;
-            wf:input2 _:n5dfa267a21754b10bf38b928bb346bccb2 ;
-            wf:output _:n5dfa267a21754b10bf38b928bb346bccb4 ],
-        [ wf:applicationOf abstr:SpatialJoinSumTessRatio ;
-            wf:input1 _:n5dfa267a21754b10bf38b928bb346bccb3 ;
-            wf:input2 _:n5dfa267a21754b10bf38b928bb346bccb4 ;
+    wf:edge [ wf:applicationOf abstr:SpatialJoinSumTessRatio ;
+            wf:input1 _:n8cb4b708088a4622bc23a678ca320978b3 ;
+            wf:input2 _:n8cb4b708088a4622bc23a678ca320978b2 ;
             wf:output [ a ccd:ERA,
                         ccd:ObjectQ,
                         ccd:VectorTessellationA ;
-                    rdfs:label "ObjectQ, VectorTessellationA, ERA" ] ] ;
-    wf:source _:n5dfa267a21754b10bf38b928bb346bccb2,
-        _:n5dfa267a21754b10bf38b928bb346bccb3 .
+                    rdfs:label "ObjectQ, VectorTessellationA, ERA" ] ],
+        [ wf:applicationOf abstr:SelectLayerByLocationTessObjects ;
+            wf:input1 _:n8cb4b708088a4622bc23a678ca320978b3 ;
+            wf:input2 _:n8cb4b708088a4622bc23a678ca320978b6 ;
+            wf:output _:n8cb4b708088a4622bc23a678ca320978b2 ] ;
+    wf:source _:n8cb4b708088a4622bc23a678ca320978b3,
+        _:n8cb4b708088a4622bc23a678ca320978b6 .
 
-_:n5dfa267a21754b10bf38b928bb346bccb2 a ccd:ObjectQ,
-        ccd:PlainNominalA,
-        ccd:PlainVectorRegionA ;
-    rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
-
-_:n5dfa267a21754b10bf38b928bb346bccb4 a ccd:ObjectQ,
+_:n8cb4b708088a4622bc23a678ca320978b2 a ccd:ObjectQ,
         ccd:PlainNominalA,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, PlainNominalA" .
 
-_:n5dfa267a21754b10bf38b928bb346bccb3 a ccd:ERA,
+_:n8cb4b708088a4622bc23a678ca320978b6 a ccd:ObjectQ,
+        ccd:PlainNominalA,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
+
+_:n8cb4b708088a4622bc23a678ca320978b3 a ccd:ERA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, ERA" .

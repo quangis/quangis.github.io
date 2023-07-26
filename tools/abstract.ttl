@@ -73,11 +73,11 @@ abstr:CalculateCountAmountRatio a :Abstraction ;
     :input [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:VectorRegionA ;
-            :id "2" ],
+            :id "1" ],
         [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:VectorRegionA ;
-            :id "1" ] ;
+            :id "2" ] ;
     :output [ a ccd:AmountQ,
                 ccd:IRA,
                 ccd:VectorRegionA ] .
@@ -155,15 +155,15 @@ abstr:CalculateDiversity4onObjectVector a :Abstraction ;
         [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorTessellationA ;
+            :id "1" ],
+        [ a ccd:ObjectQ,
+                ccd:RatioA,
+                ccd:VectorTessellationA ;
             :id "4" ],
         [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorTessellationA ;
-            :id "3" ],
-        [ a ccd:ObjectQ,
-                ccd:RatioA,
-                ccd:VectorTessellationA ;
-            :id "1" ] ;
+            :id "3" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorTessellationA ] .
@@ -218,14 +218,14 @@ abstr:CalculateObjectVectorAmountRatio a :Abstraction ;
             (get_attrL 1)
             (apply2 ratio (get_attrR 1) (get_attrR 2))""" ;
     :implementation multi:CalculateObjectVectorAmountRatio ;
-    :input [ a ccd:ObjectQ,
-                ccd:RatioA,
-                ccd:VectorTessellationA ;
-            :id "2" ],
-        [ a ccd:CountA,
+    :input [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            :id "1" ] ;
+            :id "1" ],
+        [ a ccd:ObjectQ,
+                ccd:RatioA,
+                ccd:VectorTessellationA ;
+            :id "2" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorTessellationA ] .
@@ -244,11 +244,11 @@ abstr:CalculateObjectVectorCountAmountRatio a :Abstraction ;
     :input [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ;
-            :id "2" ],
+            :id "1" ],
         [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ;
-            :id "1" ] ;
+            :id "2" ] ;
     :output [ a ccd:IRA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ] .
@@ -305,14 +305,14 @@ abstr:CalculatePartialAmountsfromObjects2 a :Abstraction ;
                 (get_attrL 1)
             ) in)))""" ;
     :implementation multi:CalculatePartialAmounts ;
-    :input [ a ccd:BooleanA,
-                ccd:FieldQ,
-                ccd:PlainVectorRegionA ;
-            :id "2" ],
-        [ a ccd:CountA,
+    :input [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ;
-            :id "1" ] ;
+            :id "1" ],
+        [ a ccd:BooleanA,
+                ccd:FieldQ,
+                ccd:PlainVectorRegionA ;
+            :id "2" ] ;
     :output [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:PlainVectorRegionA ] .
@@ -365,11 +365,11 @@ abstr:CalculateVectorFieldAreaPercentage a :Abstraction ;
     :input [ a ccd:BooleanA,
                 ccd:FieldQ,
                 ccd:VectorRegionA ;
-            :id "2" ],
+            :id "1" ],
         [ a ccd:BooleanA,
                 ccd:FieldQ,
                 ccd:VectorRegionA ;
-            :id "1" ] ;
+            :id "2" ] ;
     :output [ a ccd:AmountQ,
                 ccd:IRA,
                 ccd:VectorRegionA ] .
@@ -431,13 +431,13 @@ abstr:ClipNomFieldVector2Extent a :Abstraction ;
     rdfs:comment "Clips some nominal field vector to the region where a boolean field vector is true." ;
     cct:expression "subset (1: Field(Nom)) (fcover (2: Field(Bool)) (nest true))" ;
     :implementation arcgis:Clip ;
-    :input [ a ccd:BooleanA,
+    :input [ a ccd:FieldQ,
+                ccd:VectorRegionA ;
+            :id "1" ],
+        [ a ccd:BooleanA,
                 ccd:FieldQ,
                 ccd:VectorRegionA ;
-            :id "2" ],
-        [ a ccd:FieldQ,
-                ccd:VectorRegionA ;
-            :id "1" ] ;
+            :id "2" ] ;
     :output [ a ccd:FieldQ,
                 ccd:VectorRegionA ] .
 
@@ -454,15 +454,15 @@ abstr:ClipObject2Object a :Abstraction ;
             ))
         """ ;
     :implementation arcgis:Clip ;
-    :input [ a ccd:CountA,
+    :input [ a ccd:ObjectQ,
+                ccd:PlainVectorRegionA ;
+            rdfs:comment "to the regions of these objects" ;
+            :id "2" ],
+        [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ;
             rdfs:comment "objects to be clipped" ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
-                ccd:PlainVectorRegionA ;
-            rdfs:comment "to the regions of these objects" ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
@@ -477,19 +477,19 @@ abstr:ClosestFacilityAnalysis a :Abstraction ;
             (get_attrL 2)
             (groupbyL min (nDist (get_attrL 2) (get_attrL 3) 1))
         """ ;
-    :input [ a ccd:ObjectQ,
+    :input [ a ccd:LineA,
+                ccd:NetworkQ,
+                ccd:RatioA ;
+            rdfs:comment "roads" ;
+            :id "1" ],
+        [ a ccd:ObjectQ,
                 ccd:PointA ;
             rdfs:comment "goals" ;
             :id "2" ],
         [ a ccd:ObjectQ,
                 ccd:PointA ;
             rdfs:comment "origins" ;
-            :id "3" ],
-        [ a ccd:LineA,
-                ccd:NetworkQ,
-                ccd:RatioA ;
-            rdfs:comment "roads" ;
-            :id "1" ] ;
+            :id "3" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA,
                 ccd:RatioA ] .
@@ -502,15 +502,15 @@ abstr:ClostestFacilityAnalysis a :Abstraction ;
             (get_attrL 2)
             (groupbyL min (nDist (get_attrL 2) (get_attrL 3) 1))""" ;
     :implementation multi:ClosestFacilityAnalysis ;
-    :input [ a ccd:LineA,
-                ccd:ObjectQ ;
-            :id "1" ],
+    :input [ a ccd:ObjectQ,
+                ccd:PointA ;
+            :id "3" ],
         [ a ccd:ObjectQ,
                 ccd:PointA ;
             :id "2" ],
-        [ a ccd:ObjectQ,
-                ccd:PointA ;
-            :id "3" ] ;
+        [ a ccd:LineA,
+                ccd:ObjectQ ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA,
                 ccd:RatioA ] .
@@ -861,12 +861,12 @@ abstr:JoinCountAttribute a :Abstraction ;
 2: ObjectExtent; 
 join_attr 2 1""" ;
     :implementation multi:JoinCountAttribute ;
-    :input [ a ccd:CountA,
-                ccd:ObjectQ ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
+    :input [ a ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            :id "2" ] ;
+            :id "2" ],
+        [ a ccd:CountA,
+                ccd:ObjectQ ;
+            :id "1" ] ;
     :output [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -930,9 +930,9 @@ abstr:LoadAmountonObjects a :Abstraction ;
                 ccd:VectorRegionA ] .
 
 abstr:LoadCountAmounts a :Abstraction ;
-    cct:expression """        1: R2(Obj, Count);
+    cct:expression """        1: ObjectInfo(Count);
         2: ObjectInfo(_);
-        join_attr (get_attrL 2) 1""" ;
+        join_attr (get_attrL 2) (get_attrR 1)""" ;
     :implementation multi:LoadCountAmounts ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
@@ -1013,11 +1013,11 @@ abstr:Merge a :Abstraction ;
         [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ;
-            :id "3" ],
+            :id "2" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ;
-            :id "2" ] ;
+            :id "3" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ] .
@@ -1054,10 +1054,10 @@ abstr:NearPointObjects a :Abstraction ;
     :implementation arcgis:NearPointObjects ;
     :input [ a ccd:ObjectQ,
                 ccd:PointA ;
-            :id "1" ],
+            :id "2" ],
         [ a ccd:ObjectQ,
                 ccd:PointA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA,
                 ccd:RatioA ] .
@@ -1124,16 +1124,16 @@ abstr:RouteAnalysis a :Abstraction ;
 3: ObjectInfo(Nom);        
            generateobjectsfromrel (nRoutes (get_attrL 2) (get_attrL 3) 1)""" ;
     :implementation multi:TSPRouting ;
-    :input [ a ccd:LineA,
+    :input [ a ccd:ObjectQ,
+                ccd:PointA ;
+            :id "2" ],
+        [ a ccd:LineA,
                 ccd:NetworkQ,
                 ccd:RatioA ;
             :id "1" ],
         [ a ccd:ObjectQ,
                 ccd:PointA ;
-            :id "3" ],
-        [ a ccd:ObjectQ,
-                ccd:PointA ;
-            :id "2" ] ;
+            :id "3" ] ;
     :output [ a ccd:LineA,
                 ccd:NominalA,
                 ccd:ObjectQ ] .
@@ -1257,12 +1257,12 @@ abstr:SelectLayerByLocation a :Abstraction ;
     :implementation arcgis:SelectLayerByLocation ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PointA ;
-            :id "1" ],
+                ccd:PlainVectorRegionA ;
+            :id "2" ],
         [ a ccd:NominalA,
                 ccd:ObjectQ,
-                ccd:PlainVectorRegionA ;
-            :id "2" ] ;
+                ccd:PointA ;
+            :id "1" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ] .
@@ -1278,14 +1278,14 @@ abstr:SelectLayerByLocationDistTessObject a :Abstraction ;
                 (-: Ratio)
             ))""" ;
     :implementation multi:SelectSchoolsByLocationPointObject ;
-    :input [ a ccd:LineA,
-                ccd:NominalA,
-                ccd:ObjectQ ;
-            :id "2" ],
-        [ a ccd:NominalA,
+    :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ;
-            :id "1" ] ;
+            :id "1" ],
+        [ a ccd:LineA,
+                ccd:NominalA,
+                ccd:ObjectQ ;
+            :id "2" ] ;
     :output [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
@@ -1394,11 +1394,11 @@ abstr:SelectLayerByLocationPointObjects a :Abstraction ;
         """ ;
     :implementation multi:FullSelectLayerByLocation ;
     :input [ a ccd:ObjectQ,
-                ccd:PlainVectorRegionA ;
-            :id "2" ],
-        [ a ccd:ObjectQ,
                 ccd:PointA ;
-            :id "1" ] ;
+            :id "1" ],
+        [ a ccd:ObjectQ,
+                ccd:PlainVectorRegionA ;
+            :id "2" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:PointA ] .
 
@@ -1679,13 +1679,13 @@ abstr:SnapPourPoint a :Abstraction ;
         join (revert (get_attrL 1)) (get_attrR 1)
         """ ;
     :implementation arcgis:SnapPourPoint ;
-    :input [ a ccd:FieldRaster,
+    :input [ a ccd:ObjectQ,
+                ccd:PointA ;
+            :id "1" ],
+        [ a ccd:FieldRaster,
                 ccd:RatioA ;
             rdfs:comment "flow accumulation raster" ;
-            :id "2" ],
-        [ a ccd:ObjectQ,
-                ccd:PointA ;
-            :id "1" ] ;
+            :id "2" ] ;
     :output [ a ccd:FieldQ,
                 ccd:PlainNominalA,
                 ccd:RasterA ] .
@@ -1849,13 +1849,13 @@ abstr:SpatialJoinMeanTessInterval a :Abstraction ;
             )
         """ ;
     :implementation arcgis:SpatialJoin ;
-    :input [ a ccd:IntervalA,
+    :input [ a ccd:ObjectQ,
+                ccd:VectorTessellationA ;
+            :id "2" ],
+        [ a ccd:IntervalA,
                 ccd:ObjectQ,
                 ccd:VectorA ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
-                ccd:VectorTessellationA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:IntervalA,
                 ccd:ObjectQ,
                 ccd:VectorTessellationA ] .
@@ -1878,12 +1878,12 @@ abstr:SpatialJoinMeanTessRatio a :Abstraction ;
         """ ;
     :implementation arcgis:SpatialJoin ;
     :input [ a ccd:ObjectQ,
+                ccd:VectorTessellationA ;
+            :id "2" ],
+        [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorA ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
-                ccd:VectorTessellationA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:ObjectQ,
                 ccd:RatioA,
                 ccd:VectorTessellationA ] .
@@ -2049,7 +2049,7 @@ abstr:TSPRouting a :Abstraction ;
     :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ;
-            :id "3" ],
+            :id "2" ],
         [ a ccd:LineA,
                 ccd:NetworkQ,
                 ccd:RatioA ;
@@ -2057,7 +2057,7 @@ abstr:TSPRouting a :Abstraction ;
         [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PointA ;
-            :id "2" ] ;
+            :id "3" ] ;
     :output [ a ccd:LineA,
                 ccd:NetworkQ ] .
 
@@ -2067,12 +2067,12 @@ abstr:VelocityFieldDEM a :Abstraction ;
     :implementation multi:VelocityField ;
     :input [ a ccd:FieldRaster,
                 ccd:RatioA ;
-            rdfs:comment "slope" ;
-            :id "1" ],
+            rdfs:comment "accumulation area" ;
+            :id "2" ],
         [ a ccd:FieldRaster,
                 ccd:RatioA ;
-            rdfs:comment "accumulation area" ;
-            :id "2" ] ;
+            rdfs:comment "slope" ;
+            :id "1" ] ;
     :output [ a ccd:FieldRaster,
                 ccd:RatioA ;
             rdfs:comment "velocity" ] .
@@ -2086,15 +2086,15 @@ abstr:Watershed a :Abstraction ;
         )
         """ ;
     :implementation arcgis:Watershed ;
-    :input [ a ccd:FieldRaster,
-                ccd:RatioA ;
-            rdfs:comment "flow direction raster" ;
-            :id "1" ],
-        [ a ccd:FieldQ,
+    :input [ a ccd:FieldQ,
                 ccd:PlainNominalA,
                 ccd:RasterA ;
             rdfs:comment "pour point raster" ;
-            :id "2" ] ;
+            :id "2" ],
+        [ a ccd:FieldRaster,
+                ccd:RatioA ;
+            rdfs:comment "flow direction raster" ;
+            :id "1" ] ;
     :output [ a ccd:FieldQ,
                 ccd:PlainNominalA,
                 ccd:RasterA ;
@@ -2133,12 +2133,12 @@ abstr:ZonalStatisticsMeanRatio a :Abstraction ;
             ))
         """ ;
     :implementation multi:ZonalStatistics ;
-    :input [ a ccd:ObjectQ,
-                ccd:PlainVectorRegionA ;
-            :id "2" ],
-        [ a ccd:FieldRaster,
+    :input [ a ccd:FieldRaster,
                 ccd:RatioA ;
-            :id "1" ] ;
+            :id "1" ],
+        [ a ccd:ObjectQ,
+                ccd:PlainVectorRegionA ;
+            :id "2" ] ;
     :output [ a ccd:IRA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
@@ -2156,12 +2156,12 @@ abstr:ZonalStatisticsSize a :Abstraction ;
             ) in))
         """ ;
     :implementation multi:ZonalStatistics ;
-    :input [ a ccd:ObjectQ,
-                ccd:VectorRegionA ;
-            :id "2" ],
-        [ a ccd:FieldRaster,
+    :input [ a ccd:FieldRaster,
                 ccd:NominalA ;
-            :id "1" ] ;
+            :id "1" ],
+        [ a ccd:ObjectQ,
+                ccd:VectorRegionA ;
+            :id "2" ] ;
     :output [ a ccd:ERA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ] .
@@ -2179,13 +2179,13 @@ abstr:ZonalStatisticsSumCount a :Abstraction ;
             )
         """ ;
     :implementation multi:ZonalStatistics ;
-    :input [ a ccd:AmountQ,
+    :input [ a ccd:ObjectQ,
+                ccd:VectorRegionA ;
+            :id "2" ],
+        [ a ccd:AmountQ,
                 ccd:CountA,
                 ccd:RasterA ;
-            :id "1" ],
-        [ a ccd:ObjectQ,
-                ccd:VectorRegionA ;
-            :id "2" ] ;
+            :id "1" ] ;
     :output [ a ccd:CountA,
                 ccd:ObjectQ,
                 ccd:VectorRegionA ] .
@@ -2200,14 +2200,14 @@ abstr:ZonalStatisticsSumField a :Abstraction ;
             1
         )) """ ;
     :implementation multi:ZonalStatisticsSumField ;
-    :input [ a ccd:FieldQ,
-                ccd:RasterA,
-                ccd:RatioA ;
-            :id "1" ],
-        [ a ccd:NominalA,
+    :input [ a ccd:NominalA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ;
-            :id "2" ] ;
+            :id "2" ],
+        [ a ccd:FieldQ,
+                ccd:RasterA,
+                ccd:RatioA ;
+            :id "1" ] ;
     :output [ a ccd:ERA,
                 ccd:ObjectQ,
                 ccd:PlainVectorRegionA ] .
@@ -2266,16 +2266,16 @@ abstr:con3 a :Abstraction ;
     :implementation arcgis:Con ;
     :input [ a ccd:FieldRaster,
                 ccd:RatioA ;
+            rdfs:comment "field raster to be cut for inside" ;
+            :id "2" ],
+        [ a ccd:FieldRaster,
+                ccd:RatioA ;
             rdfs:comment "conditional raster, less than some value" ;
             :id "1" ],
         [ a ccd:FieldRaster,
                 ccd:RatioA ;
             rdfs:comment "field raster to be cut for outside" ;
-            :id "3" ],
-        [ a ccd:FieldRaster,
-                ccd:RatioA ;
-            rdfs:comment "field raster to be cut for inside" ;
-            :id "2" ] ;
+            :id "3" ] ;
     :output [ a ccd:FieldRaster,
                 ccd:RatioA ] .
 

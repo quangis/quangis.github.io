@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.PointA.PlainOrdinalA--ObjectQ.PlainVectorRegionA.CountA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsDist ;
-            wf:input1 _:nf005940b1ccb468498226a445dab92bfb3 ;
-            wf:input2 _:nf005940b1ccb468498226a445dab92bfb2 ;
-            wf:output _:nf005940b1ccb468498226a445dab92bfb4 ],
-        [ wf:applicationOf abstr:SelectLayerByLocationTessObject ;
-            wf:input1 _:nf005940b1ccb468498226a445dab92bfb3 ;
-            wf:input2 _:nf005940b1ccb468498226a445dab92bfb4 ;
+    wf:edge [ wf:applicationOf abstr:SelectLayerByLocationTessObject ;
+            wf:input1 _:n202161744d15483396d83faf2e119370b3 ;
+            wf:input2 _:n202161744d15483396d83faf2e119370b2 ;
             wf:output [ a ccd:CountA,
                         ccd:ObjectQ,
                         ccd:PlainVectorRegionA ;
-                    rdfs:label "ObjectQ, PlainVectorRegionA, CountA" ] ] ;
-    wf:source _:nf005940b1ccb468498226a445dab92bfb2,
-        _:nf005940b1ccb468498226a445dab92bfb3 .
+                    rdfs:label "ObjectQ, PlainVectorRegionA, CountA" ] ],
+        [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsDist ;
+            wf:input1 _:n202161744d15483396d83faf2e119370b3 ;
+            wf:input2 _:n202161744d15483396d83faf2e119370b6 ;
+            wf:output _:n202161744d15483396d83faf2e119370b2 ] ;
+    wf:source _:n202161744d15483396d83faf2e119370b3,
+        _:n202161744d15483396d83faf2e119370b6 .
 
-_:nf005940b1ccb468498226a445dab92bfb2 a ccd:ObjectQ,
-        ccd:PlainOrdinalA,
-        ccd:PointA ;
-    rdfs:label "ObjectQ, PointA, PlainOrdinalA" .
-
-_:nf005940b1ccb468498226a445dab92bfb4 a ccd:ObjectQ,
+_:n202161744d15483396d83faf2e119370b2 a ccd:ObjectQ,
         ccd:PlainNominalA,
         ccd:PlainVectorRegionA ;
     rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
 
-_:nf005940b1ccb468498226a445dab92bfb3 a ccd:CountA,
+_:n202161744d15483396d83faf2e119370b6 a ccd:ObjectQ,
+        ccd:PlainOrdinalA,
+        ccd:PointA ;
+    rdfs:label "ObjectQ, PointA, PlainOrdinalA" .
+
+_:n202161744d15483396d83faf2e119370b3 a ccd:CountA,
         ccd:ObjectQ,
         ccd:PlainVectorRegionA ;
     rdfs:label "ObjectQ, PlainVectorRegionA, CountA" .

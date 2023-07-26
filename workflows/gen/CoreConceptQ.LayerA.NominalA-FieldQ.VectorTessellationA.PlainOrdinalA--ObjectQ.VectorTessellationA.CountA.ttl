@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.VectorTessellationA.PlainOrdinalA--ObjectQ.VectorTessellationA.CountA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:SpatialJoinCountTess ;
-            wf:input1 _:n24a569f69f6b462ab9ad68d73535ad42b3 ;
-            wf:input2 _:n24a569f69f6b462ab9ad68d73535ad42b2 ;
+    wf:edge [ wf:applicationOf abstr:IntersectDissolveField2Object ;
+            wf:input1 _:n51797143183a41a7bf30b36061759182b2 ;
+            wf:input2 _:n51797143183a41a7bf30b36061759182b3 ;
+            wf:output _:n51797143183a41a7bf30b36061759182b4 ],
+        [ wf:applicationOf abstr:SpatialJoinCountTess ;
+            wf:input1 _:n51797143183a41a7bf30b36061759182b4 ;
+            wf:input2 _:n51797143183a41a7bf30b36061759182b3 ;
             wf:output [ a ccd:CountA,
                         ccd:ObjectQ,
                         ccd:VectorTessellationA ;
-                    rdfs:label "ObjectQ, VectorTessellationA, CountA" ] ],
-        [ wf:applicationOf abstr:IntersectDissolveField2Object ;
-            wf:input1 _:n24a569f69f6b462ab9ad68d73535ad42b6 ;
-            wf:input2 _:n24a569f69f6b462ab9ad68d73535ad42b2 ;
-            wf:output _:n24a569f69f6b462ab9ad68d73535ad42b3 ] ;
-    wf:source _:n24a569f69f6b462ab9ad68d73535ad42b2,
-        _:n24a569f69f6b462ab9ad68d73535ad42b6 .
+                    rdfs:label "ObjectQ, VectorTessellationA, CountA" ] ] ;
+    wf:source _:n51797143183a41a7bf30b36061759182b2,
+        _:n51797143183a41a7bf30b36061759182b3 .
 
-_:n24a569f69f6b462ab9ad68d73535ad42b3 a ccd:ERA,
-        ccd:ObjectQ,
-        ccd:VectorRegionA ;
-    rdfs:label "ObjectQ, VectorRegionA, ERA" .
-
-_:n24a569f69f6b462ab9ad68d73535ad42b6 a ccd:FieldQ,
+_:n51797143183a41a7bf30b36061759182b2 a ccd:FieldQ,
         ccd:PlainOrdinalA,
         ccd:VectorTessellationA ;
     rdfs:label "FieldQ, VectorTessellationA, PlainOrdinalA" .
 
-_:n24a569f69f6b462ab9ad68d73535ad42b2 a ccd:NominalA,
+_:n51797143183a41a7bf30b36061759182b4 a ccd:ERA,
+        ccd:ObjectQ,
+        ccd:VectorRegionA ;
+    rdfs:label "ObjectQ, VectorRegionA, ERA" .
+
+_:n51797143183a41a7bf30b36061759182b3 a ccd:NominalA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, NominalA" .

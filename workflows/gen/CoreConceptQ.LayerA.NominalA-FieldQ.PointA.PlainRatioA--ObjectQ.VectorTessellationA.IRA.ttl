@@ -5,47 +5,47 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.PointA.PlainRatioA--ObjectQ.VectorTessellationA.IRA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:ComputeCountDensityonObject ;
-            wf:input1 _:n563b01454c9e4de8a012597633a59634b2 ;
+    wf:edge [ wf:applicationOf abstr:ZonalStatisticsSize ;
+            wf:input1 _:ne4b03201cd4a4398acdbf3247e1674a6b2 ;
+            wf:input2 _:ne4b03201cd4a4398acdbf3247e1674a6b3 ;
+            wf:output _:ne4b03201cd4a4398acdbf3247e1674a6b4 ],
+        [ wf:applicationOf abstr:SpatialJoinCountTess ;
+            wf:input1 _:ne4b03201cd4a4398acdbf3247e1674a6b4 ;
+            wf:input2 _:ne4b03201cd4a4398acdbf3247e1674a6b3 ;
+            wf:output _:ne4b03201cd4a4398acdbf3247e1674a6b6 ],
+        [ wf:applicationOf abstr:ComputeCountDensityonObject ;
+            wf:input1 _:ne4b03201cd4a4398acdbf3247e1674a6b6 ;
             wf:output [ a ccd:IRA,
                         ccd:ObjectQ,
                         ccd:VectorTessellationA ;
                     rdfs:label "ObjectQ, VectorTessellationA, IRA" ] ],
-        [ wf:applicationOf abstr:ZonalStatisticsSize ;
-            wf:input1 _:n563b01454c9e4de8a012597633a59634b9 ;
-            wf:input2 _:n563b01454c9e4de8a012597633a59634b6 ;
-            wf:output _:n563b01454c9e4de8a012597633a59634b5 ],
-        [ wf:applicationOf abstr:SpatialJoinCountTess ;
-            wf:input1 _:n563b01454c9e4de8a012597633a59634b5 ;
-            wf:input2 _:n563b01454c9e4de8a012597633a59634b6 ;
-            wf:output _:n563b01454c9e4de8a012597633a59634b2 ],
-        [ wf:applicationOf abstr:IDWInterval ;
-            wf:input1 _:n563b01454c9e4de8a012597633a59634b8 ;
-            wf:output _:n563b01454c9e4de8a012597633a59634b9 ] ;
-    wf:source _:n563b01454c9e4de8a012597633a59634b6,
-        _:n563b01454c9e4de8a012597633a59634b8 .
+        [ wf:applicationOf abstr:KrigingInterval ;
+            wf:input1 _:ne4b03201cd4a4398acdbf3247e1674a6b9 ;
+            wf:output _:ne4b03201cd4a4398acdbf3247e1674a6b2 ] ;
+    wf:source _:ne4b03201cd4a4398acdbf3247e1674a6b3,
+        _:ne4b03201cd4a4398acdbf3247e1674a6b9 .
 
-_:n563b01454c9e4de8a012597633a59634b2 a ccd:CountA,
-        ccd:ObjectQ,
-        ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, CountA" .
-
-_:n563b01454c9e4de8a012597633a59634b5 a ccd:ERA,
-        ccd:ObjectQ,
-        ccd:VectorRegionA ;
-    rdfs:label "ObjectQ, VectorRegionA, ERA" .
-
-_:n563b01454c9e4de8a012597633a59634b8 a ccd:FieldQ,
-        ccd:PlainRatioA,
-        ccd:PointA ;
-    rdfs:label "FieldQ, PointA, PlainRatioA" .
-
-_:n563b01454c9e4de8a012597633a59634b9 a ccd:FieldQ,
+_:ne4b03201cd4a4398acdbf3247e1674a6b2 a ccd:FieldQ,
         ccd:PlainIntervalA,
         ccd:RasterA ;
     rdfs:label "FieldQ, RasterA, PlainIntervalA" .
 
-_:n563b01454c9e4de8a012597633a59634b6 a ccd:NominalA,
+_:ne4b03201cd4a4398acdbf3247e1674a6b4 a ccd:ERA,
+        ccd:ObjectQ,
+        ccd:VectorRegionA ;
+    rdfs:label "ObjectQ, VectorRegionA, ERA" .
+
+_:ne4b03201cd4a4398acdbf3247e1674a6b6 a ccd:CountA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, CountA" .
+
+_:ne4b03201cd4a4398acdbf3247e1674a6b9 a ccd:FieldQ,
+        ccd:PlainRatioA,
+        ccd:PointA ;
+    rdfs:label "FieldQ, PointA, PlainRatioA" .
+
+_:ne4b03201cd4a4398acdbf3247e1674a6b3 a ccd:NominalA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, NominalA" .

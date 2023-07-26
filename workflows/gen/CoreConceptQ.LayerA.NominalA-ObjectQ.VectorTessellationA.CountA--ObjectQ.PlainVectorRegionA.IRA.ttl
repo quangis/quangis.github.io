@@ -5,31 +5,31 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-ObjectQ.VectorTessellationA.CountA--ObjectQ.PlainVectorRegionA.IRA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
-            wf:input1 _:n2e479e44853d4db686d8b52d13eb8aeeb2 ;
-            wf:input2 _:n2e479e44853d4db686d8b52d13eb8aeeb3 ;
+    wf:edge [ wf:applicationOf abstr:SelectLayerByObjectTessObjects ;
+            wf:input1 _:nc4996a9a5822423eb975cf242896604fb2 ;
+            wf:output _:nc4996a9a5822423eb975cf242896604fb3 ],
+        [ wf:applicationOf abstr:ZonalStatisticsMeanRatio ;
+            wf:input1 _:nc4996a9a5822423eb975cf242896604fb5 ;
+            wf:input2 _:nc4996a9a5822423eb975cf242896604fb3 ;
             wf:output [ a ccd:IRA,
                         ccd:ObjectQ,
                         ccd:PlainVectorRegionA ;
-                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ],
-        [ wf:applicationOf abstr:SelectNeighborhoodsByAttributeTessObjects ;
-            wf:input1 _:n2e479e44853d4db686d8b52d13eb8aeeb6 ;
-            wf:output _:n2e479e44853d4db686d8b52d13eb8aeeb3 ] ;
-    wf:source _:n2e479e44853d4db686d8b52d13eb8aeeb2,
-        _:n2e479e44853d4db686d8b52d13eb8aeeb6 .
+                    rdfs:label "ObjectQ, PlainVectorRegionA, IRA" ] ] ;
+    wf:source _:nc4996a9a5822423eb975cf242896604fb2,
+        _:nc4996a9a5822423eb975cf242896604fb5 .
 
-_:n2e479e44853d4db686d8b52d13eb8aeeb2 a ccd:FieldQ,
-        ccd:RasterA,
-        <http://geographicknowledge.de/vocab/ExtensiveMeasures.rdf#ERA> ;
-    rdfs:label "FieldQ, RasterA, ERA" .
-
-_:n2e479e44853d4db686d8b52d13eb8aeeb3 a ccd:ObjectQ,
-        ccd:PlainNominalA,
-        ccd:PlainVectorRegionA ;
-    rdfs:label "ObjectQ, PlainVectorRegionA, PlainNominalA" .
-
-_:n2e479e44853d4db686d8b52d13eb8aeeb6 a ccd:CountA,
+_:nc4996a9a5822423eb975cf242896604fb2 a ccd:CountA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, CountA" .
+
+_:nc4996a9a5822423eb975cf242896604fb3 a ccd:BooleanA,
+        ccd:ObjectQ,
+        ccd:PlainVectorRegionA ;
+    rdfs:label "ObjectQ, PlainVectorRegionA, BooleanA" .
+
+_:nc4996a9a5822423eb975cf242896604fb5 a ccd:FieldQ,
+        ccd:RasterA,
+        <http://geographicknowledge.de/vocab/ExtensiveMeasures.rdf#ERA> ;
+    rdfs:label "FieldQ, RasterA, ERA" .
 

@@ -5,39 +5,39 @@
 @prefix wfgen: <https://quangis.github.io/workflows/generated/> .
 
 wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.RasterA.PlainRatioA--ObjectQ.VectorTessellationA.IRA1 a wf:Workflow ;
-    wf:edge [ wf:applicationOf abstr:ZonalStatisticsMeanInterval ;
-            wf:input1 _:n29b041c9c2bf45e398df38377c3c24e8b3 ;
-            wf:input2 _:n29b041c9c2bf45e398df38377c3c24e8b2 ;
-            wf:output _:n29b041c9c2bf45e398df38377c3c24e8b4 ],
-        [ wf:applicationOf abstr:ComputeCountDensityonObject ;
-            wf:input1 _:n29b041c9c2bf45e398df38377c3c24e8b6 ;
+    wf:edge [ wf:applicationOf abstr:ComputeCountDensityonObject ;
+            wf:input1 _:n8ef3702bd07743ba950e52f4d752e02cb2 ;
             wf:output [ a ccd:IRA,
                         ccd:ObjectQ,
                         ccd:VectorTessellationA ;
                     rdfs:label "ObjectQ, VectorTessellationA, IRA" ] ],
         [ wf:applicationOf abstr:SpatialJoinSumTessCount ;
-            wf:input1 _:n29b041c9c2bf45e398df38377c3c24e8b2 ;
-            wf:input2 _:n29b041c9c2bf45e398df38377c3c24e8b4 ;
-            wf:output _:n29b041c9c2bf45e398df38377c3c24e8b6 ] ;
-    wf:source _:n29b041c9c2bf45e398df38377c3c24e8b2,
-        _:n29b041c9c2bf45e398df38377c3c24e8b3 .
+            wf:input1 _:n8ef3702bd07743ba950e52f4d752e02cb5 ;
+            wf:input2 _:n8ef3702bd07743ba950e52f4d752e02cb6 ;
+            wf:output _:n8ef3702bd07743ba950e52f4d752e02cb2 ],
+        [ wf:applicationOf abstr:ZonalStatisticsMeanInterval ;
+            wf:input1 _:n8ef3702bd07743ba950e52f4d752e02cb8 ;
+            wf:input2 _:n8ef3702bd07743ba950e52f4d752e02cb5 ;
+            wf:output _:n8ef3702bd07743ba950e52f4d752e02cb6 ] ;
+    wf:source _:n8ef3702bd07743ba950e52f4d752e02cb5,
+        _:n8ef3702bd07743ba950e52f4d752e02cb8 .
 
-_:n29b041c9c2bf45e398df38377c3c24e8b3 a ccd:FieldQ,
-        ccd:PlainRatioA,
-        ccd:RasterA ;
-    rdfs:label "FieldQ, RasterA, PlainRatioA" .
-
-_:n29b041c9c2bf45e398df38377c3c24e8b4 a ccd:ObjectQ,
-        ccd:PlainIntervalA,
-        ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
-
-_:n29b041c9c2bf45e398df38377c3c24e8b6 a ccd:CountA,
+_:n8ef3702bd07743ba950e52f4d752e02cb2 a ccd:CountA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, CountA" .
 
-_:n29b041c9c2bf45e398df38377c3c24e8b2 a ccd:CountA,
+_:n8ef3702bd07743ba950e52f4d752e02cb6 a ccd:ObjectQ,
+        ccd:PlainIntervalA,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, PlainIntervalA" .
+
+_:n8ef3702bd07743ba950e52f4d752e02cb8 a ccd:FieldQ,
+        ccd:PlainRatioA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainRatioA" .
+
+_:n8ef3702bd07743ba950e52f4d752e02cb5 a ccd:CountA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
     rdfs:label "ObjectQ, VectorTessellationA, CountA" .
