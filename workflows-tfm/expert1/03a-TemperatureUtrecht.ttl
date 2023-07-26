@@ -1,51 +1,36 @@
-@prefix : <https://github.com/quangis/transforge#> .
 @prefix abstr: <https://quangis.github.io/tool/abstract#> .
 @prefix cct: <https://quangis.github.io/vocab/cct#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tf: <https://github.com/quangis/transforge#> .
 @prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
 @prefix wfexpert1: <https://quangis.github.io/workflows/expert1/> .
 
 wfexpert1:TemperatureUtrecht a wf:Workflow,
-        :Transformation ;
+        tf:Transformation ;
     wf:edge [ wf:applicationOf abstr:MakePointMeasuresFromTable ;
             wf:input1 <http://projects.knmi.nl/klimatologie/daggegevens/selectie.cgi> ;
-            wf:output _:nf017f4d0adcd4252a6fb034c7a159ba4b6 ],
+            wf:output _:ncdeb3d404de843fdbe570e83ad2d1100b6 ],
         [ wf:applicationOf abstr:IDWInterval ;
-            wf:input1 _:nf017f4d0adcd4252a6fb034c7a159ba4b6 ;
-            wf:output _:nf017f4d0adcd4252a6fb034c7a159ba4b7 ],
+            wf:input1 _:ncdeb3d404de843fdbe570e83ad2d1100b6 ;
+            wf:output _:ncdeb3d404de843fdbe570e83ad2d1100b7 ],
         [ wf:applicationOf abstr:SelectLayerByObjectTessObjects ;
             wf:input1 <https://www.pdok.nl/introductie/-/article/cbs-gebiedsindelingen> ;
-            wf:output _:nf017f4d0adcd4252a6fb034c7a159ba4b8 ],
+            wf:output _:ncdeb3d404de843fdbe570e83ad2d1100b8 ],
         [ wf:applicationOf abstr:SelectLayerByLocationTessObjects ;
             wf:input1 <https://www.pdok.nl/introductie/-/article/cbs-wijken-en-buurten> ;
-            wf:input2 _:nf017f4d0adcd4252a6fb034c7a159ba4b8 ;
-            wf:output _:nf017f4d0adcd4252a6fb034c7a159ba4b9 ],
+            wf:input2 _:ncdeb3d404de843fdbe570e83ad2d1100b8 ;
+            wf:output _:ncdeb3d404de843fdbe570e83ad2d1100b9 ],
         [ wf:applicationOf abstr:ZonalStatisticsMeanInterval ;
-            wf:input1 _:nf017f4d0adcd4252a6fb034c7a159ba4b7 ;
-            wf:input2 _:nf017f4d0adcd4252a6fb034c7a159ba4b9 ;
-            wf:output _:nf017f4d0adcd4252a6fb034c7a159ba4b10 ] ;
+            wf:input1 _:ncdeb3d404de843fdbe570e83ad2d1100b7 ;
+            wf:input2 _:ncdeb3d404de843fdbe570e83ad2d1100b9 ;
+            wf:output _:ncdeb3d404de843fdbe570e83ad2d1100b10 ] ;
     wf:source <http://projects.knmi.nl/klimatologie/daggegevens/selectie.cgi>,
         <https://www.pdok.nl/introductie/-/article/cbs-gebiedsindelingen>,
         <https://www.pdok.nl/introductie/-/article/cbs-vierkantstatistieken>,
         <https://www.pdok.nl/introductie/-/article/cbs-wijken-en-buurten> ;
     rdfs:comment "What is the average temperature for each neighborhood in Utrecht?"@en,
         "What is the distribution of temperature in Utrecht across neighborhoods?"@en ;
-    :contains :Top,
-        cct:Bool,
-        cct:Itv,
-        cct:Nom,
-        cct:R1-Loc,
-        cct:R1-Obj,
-        cct:R2-Loc-Itv,
-        cct:R2-Obj-Itv,
-        cct:R2-Obj-Product-Reg-Itv,
-        cct:R2-Obj-Product-Reg-Nom,
-        cct:R2-Obj-Reg,
-        cct:R2-Reg-Itv,
-        cct:R3-Obj-Nom-Obj,
-        cct:Reg,
-        cct:apply1,
+    tf:containsOperator cct:apply1,
         cct:avg,
         cct:deify,
         cct:eq,
@@ -57,198 +42,156 @@ wfexpert1:TemperatureUtrecht a wf:Workflow,
         cct:pi1,
         cct:select,
         cct:subset ;
-    :input _:N2401cab62aeb457398f9ce613a821f12,
-        _:Nb9af3c2e8d584dcab3a02976f732539b,
-        _:Nd7fcb24e790a43e6852e83a35bafa938,
-        [ rdfs:label "τ1 from source" ;
-            :origin <https://www.pdok.nl/introductie/-/article/cbs-vierkantstatistieken> ;
-            :type :Top ] ;
-    :output [ rdfs:label "R2(Obj, (Reg * Itv)) via join_attr" ;
-            :from [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
-                    :from _:N5201928da74e4e33b750f908df7de635 ;
-                    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b10 ;
-                    :type cct:R2-Obj-Reg ;
-                    :via cct:get_attrL ],
-                [ rdfs:label "R2(Obj, Itv) via apply1" ;
-                    :from _:Na4890cac937b45bba2749af06ca21232,
-                        [ rdfs:label "Itv via fcont" ;
-                            :from _:N04a806f09e324223a082edac7ddc1348,
-                                _:N9957635c0a864f3193fe620ac4fb4b8f,
-                                [ rdfs:label "Itv via avg" ;
-                                    :from _:N43fbdc6c224d443ea014c26497a50cda ;
-                                    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b10 ;
-                                    :type cct:Itv ;
-                                    :via cct:avg ] ;
-                            :internal _:N43fbdc6c224d443ea014c26497a50cda ;
-                            :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b10 ;
-                            :type cct:Itv ;
-                            :via cct:fcont ] ;
-                    :internal _:N9957635c0a864f3193fe620ac4fb4b8f ;
-                    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b10 ;
-                    :type cct:R2-Obj-Itv ;
-                    :via cct:apply1 ] ;
-            :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b10 ;
-            :type cct:R2-Obj-Product-Reg-Itv ;
-            :via cct:join_attr ] .
-
-cct:Ord rdfs:subClassOf cct:Nom .
-
-cct:Qlt rdfs:subClassOf cct:Val .
-
-cct:R1-Top rdfs:subClassOf :Top .
-
-cct:R2-Loc-Nom rdfs:subClassOf cct:R2-Loc-Qlt,
-        cct:R2-Top-Nom .
-
-cct:R2-Loc-Ord rdfs:subClassOf cct:R2-Loc-Nom,
-        cct:R2-Top-Ord .
-
-cct:R2-Loc-Qlt rdfs:subClassOf cct:R2-Loc-Top,
-        cct:R2-Top-Qlt .
-
-cct:R2-Loc-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R2-Obj-Nom rdfs:subClassOf cct:R2-Obj-Qlt,
-        cct:R2-Top-Nom .
-
-cct:R2-Obj-Ord rdfs:subClassOf cct:R2-Obj-Nom,
-        cct:R2-Top-Ord .
-
-cct:R2-Obj-Product-Reg-Ord rdfs:subClassOf cct:R2-Obj-Product-Reg-Nom,
-        cct:R2-Obj-Product-Top-Ord,
-        cct:R2-Top-Product-Reg-Ord .
-
-cct:R2-Obj-Product-Reg-Qlt rdfs:subClassOf cct:R2-Obj-Product-Reg-Top,
-        cct:R2-Obj-Product-Top-Qlt,
-        cct:R2-Top-Product-Reg-Qlt .
-
-cct:R2-Obj-Product-Reg-Top rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
-        cct:R2-Top-Product-Reg-Top .
-
-cct:R2-Obj-Product-Top-Itv rdfs:subClassOf cct:R2-Obj-Product-Top-Ord,
-        cct:R2-Top-Product-Top-Itv .
-
-cct:R2-Obj-Qlt rdfs:subClassOf cct:R2-Obj-Top,
-        cct:R2-Top-Qlt .
-
-cct:R2-Reg-Nom rdfs:subClassOf cct:R2-Reg-Qlt,
-        cct:R2-Top-Nom .
-
-cct:R2-Reg-Ord rdfs:subClassOf cct:R2-Reg-Nom,
-        cct:R2-Top-Ord .
-
-cct:R2-Reg-Qlt rdfs:subClassOf cct:R2-Reg-Top,
-        cct:R2-Top-Qlt .
-
-cct:R2-Reg-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R2-Top-Product-Reg-Itv rdfs:subClassOf cct:R2-Top-Product-Reg-Ord,
-        cct:R2-Top-Product-Top-Itv .
-
-cct:R2-Top-Reg rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R3-Obj-Nom-Top rdfs:subClassOf cct:R3-Obj-Qlt-Top,
-        cct:R3-Top-Nom-Top .
-
-cct:R3-Obj-Qlt-Obj rdfs:subClassOf cct:R3-Obj-Qlt-Top,
-        cct:R3-Obj-Top-Obj,
-        cct:R3-Top-Qlt-Obj .
-
-cct:R3-Obj-Top-Obj rdfs:subClassOf cct:R3-Obj-Top-Top,
-        cct:R3-Top-Top-Obj .
-
-cct:R3-Top-Nom-Obj rdfs:subClassOf cct:R3-Top-Nom-Top,
-        cct:R3-Top-Qlt-Obj .
-
-cct:Bool a :Type ;
-    rdfs:label "Bool" ;
-    rdfs:subClassOf cct:Nom .
-
-cct:Loc a :Type ;
-    rdfs:label "Loc" ;
-    rdfs:subClassOf cct:Val .
-
-cct:R1-Loc a :Type ;
-    rdfs:label "R1(Loc)" ;
-    rdf:_1 cct:Loc ;
-    rdfs:subClassOf cct:R1,
-        cct:R1-Val .
-
-cct:R1-Val rdfs:subClassOf cct:R1-Top .
-
-cct:R2-Loc-Itv a :Type ;
-    rdfs:label "R2(Loc, Itv)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Itv ;
-    rdfs:subClassOf cct:R2,
+    tf:containsType tf:Top,
+        cct:Bool,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:R1-Loc,
+        cct:R1-Obj,
+        cct:R1-Top,
+        cct:R1-Val,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
         cct:R2-Loc-Ord,
-        cct:R2-Top-Itv .
-
-cct:R2-Obj-Itv a :Type ;
-    rdfs:label "R2(Obj, Itv)" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 cct:Itv ;
-    rdfs:subClassOf cct:R2,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Obj-Itv,
+        cct:R2-Obj-Nom,
         cct:R2-Obj-Ord,
-        cct:R2-Top-Itv .
-
-cct:R2-Obj-Product-Reg-Itv a :Type ;
-    rdfs:label "R2(Obj, (Reg * Itv))" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 [ a :Type ;
-            rdfs:label "(Reg * Itv)" ;
-            rdf:_1 cct:Reg ;
-            rdf:_2 cct:Itv ;
-            rdfs:subClassOf :Product ] ;
-    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Product-Reg-Itv,
+        cct:R2-Obj-Product-Reg-Nom,
         cct:R2-Obj-Product-Reg-Ord,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
         cct:R2-Obj-Product-Top-Itv,
-        cct:R2-Top-Product-Reg-Itv .
-
-cct:R2-Obj-Product-Top-Nom rdfs:subClassOf cct:R2-Obj-Product-Top-Qlt,
-        cct:R2-Top-Product-Top-Nom .
-
-cct:R2-Obj-Product-Top-Ord rdfs:subClassOf cct:R2-Obj-Product-Top-Nom,
-        cct:R2-Top-Product-Top-Ord .
-
-cct:R2-Obj-Product-Top-Qlt rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
-        cct:R2-Top-Product-Top-Qlt .
-
-cct:R2-Obj-Product-Top-Top rdfs:subClassOf cct:R2-Obj-Top,
-        cct:R2-Top-Product-Top-Top .
-
-cct:R2-Reg-Itv a :Type ;
-    rdfs:label "R2(Reg, Itv)" ;
-    rdf:_1 cct:Reg ;
-    rdf:_2 cct:Itv ;
-    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Ord,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Reg-Itv,
+        cct:R2-Reg-Nom,
         cct:R2-Reg-Ord,
-        cct:R2-Top-Itv .
-
-cct:R2-Top-Product-Reg-Nom rdfs:subClassOf cct:R2-Top-Product-Reg-Qlt,
-        cct:R2-Top-Product-Top-Nom .
-
-cct:R2-Top-Product-Reg-Ord rdfs:subClassOf cct:R2-Top-Product-Reg-Nom,
-        cct:R2-Top-Product-Top-Ord .
-
-cct:R2-Top-Product-Reg-Qlt rdfs:subClassOf cct:R2-Top-Product-Reg-Top,
-        cct:R2-Top-Product-Top-Qlt .
-
-cct:R2-Top-Product-Reg-Top rdfs:subClassOf cct:R2-Top-Product-Top-Top .
-
-cct:R2-Top-Product-Top-Itv rdfs:subClassOf cct:R2-Top-Product-Top-Ord .
-
-cct:R3-Obj-Qlt-Top rdfs:subClassOf cct:R3-Obj-Top-Top,
-        cct:R3-Top-Qlt-Top .
-
-cct:R3-Obj-Top-Top rdfs:subClassOf cct:R3-Top-Top-Top .
-
-cct:R3-Top-Nom-Top rdfs:subClassOf cct:R3-Top-Qlt-Top .
-
-cct:R3-Top-Qlt-Obj rdfs:subClassOf cct:R3-Top-Qlt-Top,
-        cct:R3-Top-Top-Obj .
-
-cct:R3-Top-Top-Obj rdfs:subClassOf cct:R3-Top-Top-Top .
+        cct:R2-Reg-Qlt,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Product-Reg-Itv,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Ord,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Itv,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Ord,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top,
+        cct:Reg,
+        cct:Val ;
+    tf:input [ rdfs:label "τ1 from source" ;
+            tf:origin <https://www.pdok.nl/introductie/-/article/cbs-vierkantstatistieken> ;
+            tf:type tf:Top ],
+        _:N2e40ba1eb0a94844acd50d8f74ac2aac,
+        _:Nbdd65aecc20640109de99030acfc4f8b,
+        _:Nfcbddd3716b14582aca209faf5ff6daf ;
+    tf:output [ rdfs:label "R2(Obj, (Reg * Itv)) via join_attr" ;
+            tf:from [ rdfs:label "R2(Obj, Itv) via apply1" ;
+                    tf:from [ rdfs:label "Itv via fcont" ;
+                            tf:from _:N467c3d4835184ad39490a227784dfe38,
+                                [ rdfs:label "Itv via avg" ;
+                                    tf:from _:N7b672fb56c7642afae4214fd336d0cf5 ;
+                                    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b10 ;
+                                    tf:subtypeOf tf:Top,
+                                        cct:Itv,
+                                        cct:Nom,
+                                        cct:Ord,
+                                        cct:Qlt,
+                                        cct:Val ;
+                                    tf:type cct:Itv ;
+                                    tf:via cct:avg ],
+                                _:N4ea2d31e75b3491d8074d63ce4820eb0 ;
+                            tf:internal _:N7b672fb56c7642afae4214fd336d0cf5 ;
+                            tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b10 ;
+                            tf:subtypeOf tf:Top,
+                                cct:Itv,
+                                cct:Nom,
+                                cct:Ord,
+                                cct:Qlt,
+                                cct:Val ;
+                            tf:type cct:Itv ;
+                            tf:via cct:fcont ],
+                        _:Nf4bb49cfe8ac48f9b299d9adc7f6374c ;
+                    tf:internal _:N4ea2d31e75b3491d8074d63ce4820eb0 ;
+                    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b10 ;
+                    tf:subtypeOf tf:Top,
+                        cct:R2-Obj-Itv,
+                        cct:R2-Obj-Nom,
+                        cct:R2-Obj-Ord,
+                        cct:R2-Obj-Qlt,
+                        cct:R2-Obj-Top,
+                        cct:R2-Top-Itv,
+                        cct:R2-Top-Nom,
+                        cct:R2-Top-Ord,
+                        cct:R2-Top-Qlt,
+                        cct:R2-Top-Top ;
+                    tf:type cct:R2-Obj-Itv ;
+                    tf:via cct:apply1 ],
+                [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
+                    tf:from _:N8e96e144596c49cca48ff3c1125ea8fa ;
+                    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b10 ;
+                    tf:subtypeOf tf:Top,
+                        cct:R2-Obj-Reg,
+                        cct:R2-Obj-Top,
+                        cct:R2-Top-Reg,
+                        cct:R2-Top-Top ;
+                    tf:type cct:R2-Obj-Reg ;
+                    tf:via cct:get_attrL ] ;
+            tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b10 ;
+            tf:subtypeOf tf:Top,
+                cct:R2-Obj-Product-Reg-Itv,
+                cct:R2-Obj-Product-Reg-Nom,
+                cct:R2-Obj-Product-Reg-Ord,
+                cct:R2-Obj-Product-Reg-Qlt,
+                cct:R2-Obj-Product-Reg-Top,
+                cct:R2-Obj-Product-Top-Itv,
+                cct:R2-Obj-Product-Top-Nom,
+                cct:R2-Obj-Product-Top-Ord,
+                cct:R2-Obj-Product-Top-Qlt,
+                cct:R2-Obj-Product-Top-Top,
+                cct:R2-Obj-Top,
+                cct:R2-Top-Product-Reg-Itv,
+                cct:R2-Top-Product-Reg-Nom,
+                cct:R2-Top-Product-Reg-Ord,
+                cct:R2-Top-Product-Reg-Qlt,
+                cct:R2-Top-Product-Reg-Top,
+                cct:R2-Top-Product-Top-Itv,
+                cct:R2-Top-Product-Top-Nom,
+                cct:R2-Top-Product-Top-Ord,
+                cct:R2-Top-Product-Top-Qlt,
+                cct:R2-Top-Product-Top-Top,
+                cct:R2-Top-Top ;
+            tf:type cct:R2-Obj-Product-Reg-Itv ;
+            tf:via cct:join_attr ] .
 
 <https://www.pdok.nl/introductie/-/article/cbs-vierkantstatistieken> rdfs:label "BS grid statistics"@en ;
     rdfs:comment ""@en .
@@ -256,211 +199,277 @@ cct:R3-Top-Top-Obj rdfs:subClassOf cct:R3-Top-Top-Top .
 <http://projects.knmi.nl/klimatologie/daggegevens/selectie.cgi> rdfs:label "KNMI weather stations"@en ;
     rdfs:comment ""@en .
 
-cct:R1-Obj a :Type ;
-    rdfs:label "R1(Obj)" ;
-    rdf:_1 cct:Obj ;
-    rdfs:subClassOf cct:R1,
-        cct:R1-Val .
-
-cct:R2-Obj-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R2-Top-Itv rdfs:subClassOf cct:R2-Top-Ord .
-
-cct:R2-Top-Product-Top-Nom rdfs:subClassOf cct:R2-Top-Product-Top-Qlt .
-
-cct:R2-Top-Product-Top-Ord rdfs:subClassOf cct:R2-Top-Product-Top-Nom .
-
-cct:R2-Top-Product-Top-Qlt rdfs:subClassOf cct:R2-Top-Product-Top-Top .
-
-cct:R2-Top-Product-Top-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R3-Obj-Nom-Obj a :Type ;
-    rdfs:label "R3(Obj, Nom, Obj)" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 cct:Nom ;
-    rdf:_3 cct:Obj ;
-    rdfs:subClassOf cct:R3,
-        cct:R3-Obj-Nom-Top,
-        cct:R3-Obj-Qlt-Obj,
-        cct:R3-Top-Nom-Obj .
-
-cct:R3-Top-Qlt-Top rdfs:subClassOf cct:R3-Top-Top-Top .
-
-cct:R3-Top-Top-Top rdfs:subClassOf :Top .
-
 <https://www.pdok.nl/introductie/-/article/cbs-gebiedsindelingen> rdfs:label "Municipalities"@en ;
     rdfs:comment ""@en .
 
 <https://www.pdok.nl/introductie/-/article/cbs-wijken-en-buurten> rdfs:label "Neighborhood regions"@en ;
     rdfs:comment ""@en .
 
-cct:R2-Top-Nom rdfs:subClassOf cct:R2-Top-Qlt .
-
-cct:R2-Top-Ord rdfs:subClassOf cct:R2-Top-Nom .
-
-cct:R2-Top-Qlt rdfs:subClassOf cct:R2-Top-Top .
-
-cct:Val rdfs:subClassOf :Top .
-
-cct:R2-Obj-Reg a :Type ;
-    rdfs:label "R2(Obj, Reg)" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 cct:Reg ;
-    rdfs:subClassOf cct:R2,
-        cct:R2-Obj-Top,
-        cct:R2-Top-Reg .
-
-:Top a :Type ;
+tf:Top a tf:Type ;
     rdfs:label "τ1" .
 
-cct:Nom a :Type ;
-    rdfs:label "Nom" ;
-    rdfs:subClassOf cct:Qlt .
+_:N1136d7bf137e4967a6066dc9deb93ed6 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:from [ rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+            tf:from [ rdfs:label "R1(Obj) from source" ;
+                    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b8 ;
+                    tf:subtypeOf tf:Top,
+                        cct:R1-Obj,
+                        cct:R1-Top,
+                        cct:R1-Val ;
+                    tf:type cct:R1-Obj ],
+                _:Nfcbddd3716b14582aca209faf5ff6daf ;
+            tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b8 ;
+            tf:subtypeOf tf:Top,
+                cct:R2-Obj-Product-Reg-Nom,
+                cct:R2-Obj-Product-Reg-Qlt,
+                cct:R2-Obj-Product-Reg-Top,
+                cct:R2-Obj-Product-Top-Nom,
+                cct:R2-Obj-Product-Top-Qlt,
+                cct:R2-Obj-Product-Top-Top,
+                cct:R2-Obj-Top,
+                cct:R2-Top-Product-Reg-Nom,
+                cct:R2-Top-Product-Reg-Qlt,
+                cct:R2-Top-Product-Reg-Top,
+                cct:R2-Top-Product-Top-Nom,
+                cct:R2-Top-Product-Top-Qlt,
+                cct:R2-Top-Product-Top-Top,
+                cct:R2-Top-Top ;
+            tf:type cct:R2-Obj-Product-Reg-Nom ;
+            tf:via cct:subset ] ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b9 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
 
-cct:R2-Obj-Product-Reg-Nom a :Type ;
-    rdfs:label "R2(Obj, (Reg * Nom))" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 [ a :Type ;
-            rdfs:label "(Reg * Nom)" ;
-            rdf:_1 cct:Reg ;
-            rdf:_2 cct:Nom ;
-            rdfs:subClassOf :Product ] ;
-    rdfs:subClassOf cct:R2,
+_:N41640e6329f144859ec6e1e02e61d203 rdfs:label "R3(Obj, Nom, Obj) via select" ;
+    tf:from _:N296b6183278f41eea395e744c0d070c0,
+        [ rdfs:label "Bool via eq" ;
+            tf:from _:Nb5dbc4dde4a14865a485e6f4733a75c5 ;
+            tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b9 ;
+            tf:subtypeOf tf:Top,
+                cct:Bool,
+                cct:Nom,
+                cct:Qlt,
+                cct:Val ;
+            tf:type cct:Bool ;
+            tf:via cct:eq ],
+        _:Nf987710096e14005876c72a40851619c ;
+    tf:internal _:Nb5dbc4dde4a14865a485e6f4733a75c5 ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b9 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Obj-Nom-Obj ;
+    tf:via cct:select .
+
+_:N4ac33779e3b34282bf858718de59c8ee rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:from _:Nbdd65aecc20640109de99030acfc4f8b ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b9 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
+
+_:N7313f33d3b3d4beb8e47f75cf0c92a79 rdfs:label "R1(Loc) via deify" ;
+    tf:from [ rdfs:label "Reg from source" ;
+            tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b7 ;
+            tf:subtypeOf tf:Top,
+                cct:Reg,
+                cct:Val ;
+            tf:type cct:Reg ] ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b7 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Loc ;
+    tf:via cct:deify .
+
+_:Nc7b5e2168ac043428abb5b4f64c30e35 rdfs:label "R1(Obj) via pi1" ;
+    tf:from _:N41640e6329f144859ec6e1e02e61d203 ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b9 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Obj,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Obj ;
+    tf:via cct:pi1 .
+
+_:N296b6183278f41eea395e744c0d070c0 rdfs:label "R3(Obj, Nom, Obj) via oTopo" ;
+    tf:from _:N1136d7bf137e4967a6066dc9deb93ed6,
+        _:N4ac33779e3b34282bf858718de59c8ee ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b9 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Obj-Nom-Obj ;
+    tf:via cct:oTopo .
+
+_:N2e40ba1eb0a94844acd50d8f74ac2aac rdfs:label "R2(Reg, Itv) from source" ;
+    tf:origin <http://projects.knmi.nl/klimatologie/daggegevens/selectie.cgi> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Reg-Itv,
+        cct:R2-Reg-Nom,
+        cct:R2-Reg-Ord,
+        cct:R2-Reg-Qlt,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Reg-Itv .
+
+_:N467c3d4835184ad39490a227784dfe38 rdfs:label "R2(Loc, Itv) via interpol" ;
+    tf:from _:N2e40ba1eb0a94844acd50d8f74ac2aac,
+        _:N7313f33d3b3d4beb8e47f75cf0c92a79 ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b7 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Itv ;
+    tf:via cct:interpol .
+
+_:N7b672fb56c7642afae4214fd336d0cf5 rdfs:label "(internal)" ;
+    tf:from _:N467c3d4835184ad39490a227784dfe38,
+        _:N4ea2d31e75b3491d8074d63ce4820eb0 ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b10 .
+
+_:N8e96e144596c49cca48ff3c1125ea8fa rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+    tf:from _:Nbdd65aecc20640109de99030acfc4f8b,
+        _:Nc7b5e2168ac043428abb5b4f64c30e35 ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b9 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
         cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
         cct:R2-Obj-Product-Top-Nom,
-        cct:R2-Top-Product-Reg-Nom .
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom ;
+    tf:via cct:subset .
 
-cct:R2-Top-Top rdfs:subClassOf :Top .
+_:Nb5dbc4dde4a14865a485e6f4733a75c5 rdfs:label "(internal)" ;
+    tf:from _:N296b6183278f41eea395e744c0d070c0,
+        _:Nf987710096e14005876c72a40851619c ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b9 .
 
-cct:Reg a :Type ;
-    rdfs:label "Reg" ;
-    rdfs:subClassOf cct:Val .
+_:Nf4bb49cfe8ac48f9b299d9adc7f6374c rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:from _:N8e96e144596c49cca48ff3c1125ea8fa ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b10 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
 
-cct:Itv a :Type ;
-    rdfs:label "Itv" ;
-    rdfs:subClassOf cct:Ord .
+_:Nf987710096e14005876c72a40851619c rdfs:label "Nom from source" ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b9 ;
+    tf:subtypeOf tf:Top,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Nom .
 
-cct:Obj a :Type ;
-    rdfs:label "Obj" ;
-    rdfs:subClassOf cct:Val .
+_:Nfcbddd3716b14582aca209faf5ff6daf rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    tf:origin <https://www.pdok.nl/introductie/-/article/cbs-gebiedsindelingen> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom .
 
-_:N12b700b97e534314a62d1e4df25dedff rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
-    :from _:N2401cab62aeb457398f9ce613a821f12,
-        [ rdfs:label "R1(Obj) from source" ;
-            :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b8 ;
-            :type cct:R1-Obj ] ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b8 ;
-    :type cct:R2-Obj-Product-Reg-Nom ;
-    :via cct:subset .
-
-_:N16bb1137ab5846da843867503f4dd8f3 rdfs:label "R1(Obj) via pi1" ;
-    :from [ rdfs:label "R3(Obj, Nom, Obj) via select" ;
-            :from [ rdfs:label "Bool via eq" ;
-                    :from _:N1f7f804382fa427a8ae5f18124a9d3b9 ;
-                    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b9 ;
-                    :type cct:Bool ;
-                    :via cct:eq ],
-                _:N6105e2c6fa7b492880cae8c52e2bab40,
-                _:Nb30a0bcb1a2847f0b959ffe46731b075 ;
-            :internal _:N1f7f804382fa427a8ae5f18124a9d3b9 ;
-            :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b9 ;
-            :type cct:R3-Obj-Nom-Obj ;
-            :via cct:select ] ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b9 ;
-    :type cct:R1-Obj ;
-    :via cct:pi1 .
-
-_:N2788c395674542f394243e68e9fa0931 rdfs:label "Reg from source" ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b7 ;
-    :type cct:Reg .
-
-_:N4585abcbcde24e398248fc37fd642a4a rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    :from _:Nb9af3c2e8d584dcab3a02976f732539b ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b9 ;
-    :type cct:R2-Obj-Reg ;
-    :via cct:get_attrL .
-
-_:N90c571fd79cf4ec89c8111459a6938c8 rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    :from _:N12b700b97e534314a62d1e4df25dedff ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b9 ;
-    :type cct:R2-Obj-Reg ;
-    :via cct:get_attrL .
-
-_:Nde0c2fa9873a454c991fd363f5aedf8e rdfs:label "R1(Loc) via deify" ;
-    :from _:N2788c395674542f394243e68e9fa0931 ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b7 ;
-    :type cct:R1-Loc ;
-    :via cct:deify .
-
-_:N04a806f09e324223a082edac7ddc1348 rdfs:label "R2(Loc, Itv) via interpol" ;
-    :from _:Nd7fcb24e790a43e6852e83a35bafa938,
-        _:Nde0c2fa9873a454c991fd363f5aedf8e ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b7 ;
-    :type cct:R2-Loc-Itv ;
-    :via cct:interpol .
-
-_:N1f7f804382fa427a8ae5f18124a9d3b9 rdfs:label "(internal)" ;
-    :from _:N6105e2c6fa7b492880cae8c52e2bab40,
-        _:Nb30a0bcb1a2847f0b959ffe46731b075 ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b9 .
-
-_:N2401cab62aeb457398f9ce613a821f12 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
-    :origin <https://www.pdok.nl/introductie/-/article/cbs-gebiedsindelingen> ;
-    :type cct:R2-Obj-Product-Reg-Nom .
-
-_:N43fbdc6c224d443ea014c26497a50cda rdfs:label "(internal)" ;
-    :from _:N04a806f09e324223a082edac7ddc1348,
-        _:N9957635c0a864f3193fe620ac4fb4b8f ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b10 .
-
-_:N5201928da74e4e33b750f908df7de635 rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
-    :from _:N16bb1137ab5846da843867503f4dd8f3,
-        _:Nb9af3c2e8d584dcab3a02976f732539b ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b9 ;
-    :type cct:R2-Obj-Product-Reg-Nom ;
-    :via cct:subset .
-
-_:N6105e2c6fa7b492880cae8c52e2bab40 rdfs:label "R3(Obj, Nom, Obj) via oTopo" ;
-    :from _:N4585abcbcde24e398248fc37fd642a4a,
-        _:N90c571fd79cf4ec89c8111459a6938c8 ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b9 ;
-    :type cct:R3-Obj-Nom-Obj ;
-    :via cct:oTopo .
-
-_:Na4890cac937b45bba2749af06ca21232 rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    :from _:N5201928da74e4e33b750f908df7de635 ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b10 ;
-    :type cct:R2-Obj-Reg ;
-    :via cct:get_attrL .
-
-_:Nb30a0bcb1a2847f0b959ffe46731b075 rdfs:label "Nom from source" ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b9 ;
-    :type cct:Nom .
-
-_:Nd7fcb24e790a43e6852e83a35bafa938 rdfs:label "R2(Reg, Itv) from source" ;
-    :origin <http://projects.knmi.nl/klimatologie/daggegevens/selectie.cgi> ;
-    :type cct:R2-Reg-Itv .
-
-_:nf017f4d0adcd4252a6fb034c7a159ba4b6 rdfs:label "knmi_shp2"@en ;
+_:ncdeb3d404de843fdbe570e83ad2d1100b6 rdfs:label "knmi_shp2"@en ;
     rdfs:comment ""@en .
 
-_:N9957635c0a864f3193fe620ac4fb4b8f rdfs:label "(internal)" ;
-    :from _:Na4890cac937b45bba2749af06ca21232 ;
-    :origin _:nf017f4d0adcd4252a6fb034c7a159ba4b10 .
+_:N4ea2d31e75b3491d8074d63ce4820eb0 rdfs:label "(internal)" ;
+    tf:from _:Nf4bb49cfe8ac48f9b299d9adc7f6374c ;
+    tf:origin _:ncdeb3d404de843fdbe570e83ad2d1100b10 .
 
-_:Nb9af3c2e8d584dcab3a02976f732539b rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
-    :origin <https://www.pdok.nl/introductie/-/article/cbs-wijken-en-buurten> ;
-    :type cct:R2-Obj-Product-Reg-Nom .
+_:Nbdd65aecc20640109de99030acfc4f8b rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    tf:origin <https://www.pdok.nl/introductie/-/article/cbs-wijken-en-buurten> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom .
 
-_:nf017f4d0adcd4252a6fb034c7a159ba4b8 rdfs:label "utrecht_shp"@en ;
+_:ncdeb3d404de843fdbe570e83ad2d1100b8 rdfs:label "utrecht_shp"@en ;
     rdfs:comment ""@en .
 
-_:nf017f4d0adcd4252a6fb034c7a159ba4b7 rdfs:label "tempraster"@en ;
+_:ncdeb3d404de843fdbe570e83ad2d1100b7 rdfs:label "tempraster"@en ;
     rdfs:comment ""@en .
 
-_:nf017f4d0adcd4252a6fb034c7a159ba4b10 rdfs:label "utrecht_buurten_agg_temp"@en ;
+_:ncdeb3d404de843fdbe570e83ad2d1100b10 rdfs:label "utrecht_buurten_agg_temp"@en ;
     rdfs:comment ""@en .
 
-_:nf017f4d0adcd4252a6fb034c7a159ba4b9 rdfs:label "utrecht_buurten"@en ;
+_:ncdeb3d404de843fdbe570e83ad2d1100b9 rdfs:label "utrecht_buurten"@en ;
     rdfs:comment ""@en .
 

@@ -1,41 +1,40 @@
-@prefix : <https://github.com/quangis/transforge#> .
 @prefix abstr: <https://quangis.github.io/tool/abstract#> .
 @prefix cct: <https://quangis.github.io/vocab/cct#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ns1: <https://dbpedia.org/ontology/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tf: <https://github.com/quangis/transforge#> .
 @prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
 @prefix wfexpert1: <https://quangis.github.io/workflows/expert1/> .
 
 wfexpert1:OgallalaAquifer a wf:Workflow,
-        :Transformation ;
+        tf:Transformation ;
     wf:edge [ wf:applicationOf abstr:SelectFeaturesByObjectPlainRegionObjects ;
             wf:input1 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#aquifer> ;
-            wf:output _:na6fa31bf104745b2a5f3ae956d39896eb7 ;
+            wf:output _:nafbc69522b08458ab302620184793ebfb7 ;
             rdfs:comment "select Oogallala aquifer" ],
         [ wf:applicationOf abstr:SelectFeaturesCoverageToExistenceVector ;
             wf:input1 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#precipitation> ;
-            wf:output _:na6fa31bf104745b2a5f3ae956d39896eb8 ;
+            wf:output _:nafbc69522b08458ab302620184793ebfb8 ;
             rdfs:comment "select areas with low precipitation" ],
         [ wf:applicationOf abstr:SelectFeaturesCoverageToExistenceVector ;
             wf:input1 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#irrigation> ;
-            wf:output _:na6fa31bf104745b2a5f3ae956d39896eb9 ;
+            wf:output _:nafbc69522b08458ab302620184793ebfb9 ;
             rdfs:comment "select areas with high irrigation" ],
         [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsDist ;
             wf:input1 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#UrbanAreas> ;
-            wf:input2 _:na6fa31bf104745b2a5f3ae956d39896eb7 ;
-            wf:output _:na6fa31bf104745b2a5f3ae956d39896eb10 ;
+            wf:input2 _:nafbc69522b08458ab302620184793ebfb7 ;
+            wf:output _:nafbc69522b08458ab302620184793ebfb10 ;
             rdfs:comment "select urban areas within 150 miles (geodesic) of the aquifer" ],
         [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsFieldDist ;
-            wf:input1 _:na6fa31bf104745b2a5f3ae956d39896eb10 ;
-            wf:input2 _:na6fa31bf104745b2a5f3ae956d39896eb8 ;
-            wf:output _:na6fa31bf104745b2a5f3ae956d39896eb11 ;
+            wf:input1 _:nafbc69522b08458ab302620184793ebfb10 ;
+            wf:input2 _:nafbc69522b08458ab302620184793ebfb8 ;
+            wf:output _:nafbc69522b08458ab302620184793ebfb11 ;
             rdfs:comment "further select urban areas within the area with low precipitation" ],
         [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsFieldDist ;
-            wf:input1 _:na6fa31bf104745b2a5f3ae956d39896eb11 ;
-            wf:input2 _:na6fa31bf104745b2a5f3ae956d39896eb9 ;
-            wf:output _:na6fa31bf104745b2a5f3ae956d39896eb12 ;
+            wf:input1 _:nafbc69522b08458ab302620184793ebfb11 ;
+            wf:input2 _:nafbc69522b08458ab302620184793ebfb9 ;
+            wf:output _:nafbc69522b08458ab302620184793ebfb12 ;
             rdfs:comment "further select urban areas that intersect with the irrigation region dataset" ] ;
     wf:source <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#UrbanAreas>,
         <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#aquifer>,
@@ -44,18 +43,7 @@ wfexpert1:OgallalaAquifer a wf:Workflow,
     dcterms:subject "Out: Ratio, In: R(Obj, Reg), In: R(Obj, Reg), In: R(Loc, Bool)" ;
     rdfs:comment "What areas of the Ogallala Aquifer in the United States are at risk from water depletion?"@en ;
     ns1:abstract "Water from underground aquifers can help create rich farmland and prosperous cities in places that would otherwise not provide enough water. However, many aquifers are being emptied far faster than they can be recharged by rainwater. The Ogallala (High Plains) Aquifer in the United States is one of the largest in the world, spanning 450,000 square kilometers and eight states. It is also at risk of depletion. In this lesson, you'll locate areas where agricultural irrigation, urbanization, and low precipitation place the heaviest burden on the Ogallala Aquifer." ;
-    :contains cct:Bool,
-        cct:Nom,
-        cct:R1-Loc,
-        cct:R1-Obj,
-        cct:R2-Itv-Reg,
-        cct:R2-Loc-Itv,
-        cct:R2-Obj-Product-Reg-Nom,
-        cct:R2-Obj-Reg,
-        cct:R3-Loc-Nom-Obj,
-        cct:R3-Obj-Ratio-Obj,
-        cct:Ratio,
-        cct:eq,
+    tf:containsOperator cct:eq,
         cct:get_attrL,
         cct:invert,
         cct:leq,
@@ -66,167 +54,143 @@ wfexpert1:OgallalaAquifer a wf:Workflow,
         cct:revert,
         cct:select,
         cct:subset ;
-    :input _:N25c40aca26444db7bead068ad71a7db5,
-        _:N43dc220413894ec8961d61183e6deba0,
-        _:N7863398d85dd444a9d383c870c304e23,
-        _:Nfcab660cc7fc49d9a4f482a1035e6a15 ;
-    :output [ rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
-            :from [ rdfs:label "R1(Obj) via pi3" ;
-                    :from [ rdfs:label "R3(Loc, Nom, Obj) via select" ;
-                            :from [ rdfs:label "Bool via eq" ;
-                                    :from _:N6119c5fbdf8347eab4b22d3d25f6a846 ;
-                                    :origin _:na6fa31bf104745b2a5f3ae956d39896eb12 ;
-                                    :type cct:Bool ;
-                                    :via cct:eq ],
-                                _:N50f50b53f5b847bfad2edc2de7e78115,
-                                _:N5baef1265a194a6db7b88d2040e15726 ;
-                            :internal _:N6119c5fbdf8347eab4b22d3d25f6a846 ;
-                            :origin _:na6fa31bf104745b2a5f3ae956d39896eb12 ;
-                            :type cct:R3-Loc-Nom-Obj ;
-                            :via cct:select ] ;
-                    :origin _:na6fa31bf104745b2a5f3ae956d39896eb12 ;
-                    :type cct:R1-Obj ;
-                    :via cct:pi3 ],
-                _:Ncbbf32c8c0c94426b8ea659148373ac3 ;
-            :origin _:na6fa31bf104745b2a5f3ae956d39896eb12 ;
-            :type cct:R2-Obj-Product-Reg-Nom ;
-            :via cct:subset ] .
-
-cct:Ord rdfs:subClassOf cct:Nom .
-
-cct:Qlt rdfs:subClassOf cct:Val .
-
-cct:R1-Top rdfs:subClassOf :Top .
-
-cct:R2-Itv-Top rdfs:subClassOf cct:R2-Ord-Top .
-
-cct:R2-Loc-Nom rdfs:subClassOf cct:R2-Loc-Qlt,
-        cct:R2-Top-Nom .
-
-cct:R2-Loc-Ord rdfs:subClassOf cct:R2-Loc-Nom,
-        cct:R2-Top-Ord .
-
-cct:R2-Loc-Qlt rdfs:subClassOf cct:R2-Loc-Top,
-        cct:R2-Top-Qlt .
-
-cct:R2-Loc-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R2-Nom-Reg rdfs:subClassOf cct:R2-Nom-Top,
-        cct:R2-Qlt-Reg .
-
-cct:R2-Obj-Product-Reg-Qlt rdfs:subClassOf cct:R2-Obj-Product-Reg-Top,
+    tf:containsType tf:Top,
+        cct:Bool,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:R1-Loc,
+        cct:R1-Obj,
+        cct:R1-Top,
+        cct:R1-Val,
+        cct:R2-Itv-Reg,
+        cct:R2-Itv-Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
         cct:R2-Obj-Product-Top-Qlt,
-        cct:R2-Top-Product-Reg-Qlt .
-
-cct:R2-Obj-Product-Reg-Top rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
-        cct:R2-Top-Product-Reg-Top .
-
-cct:R2-Obj-Product-Top-Nom rdfs:subClassOf cct:R2-Obj-Product-Top-Qlt,
-        cct:R2-Top-Product-Top-Nom .
-
-cct:R2-Ord-Reg rdfs:subClassOf cct:R2-Nom-Reg,
-        cct:R2-Ord-Top .
-
-cct:R2-Qlt-Reg rdfs:subClassOf cct:R2-Qlt-Top,
-        cct:R2-Top-Reg .
-
-cct:R2-Top-Itv rdfs:subClassOf cct:R2-Top-Ord .
-
-cct:R2-Top-Product-Reg-Nom rdfs:subClassOf cct:R2-Top-Product-Reg-Qlt,
-        cct:R2-Top-Product-Top-Nom .
-
-cct:R3-Loc-Nom-Top rdfs:subClassOf cct:R3-Loc-Qlt-Top,
-        cct:R3-Top-Nom-Top .
-
-cct:R3-Loc-Qlt-Obj rdfs:subClassOf cct:R3-Loc-Qlt-Top,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Ord-Reg,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
         cct:R3-Loc-Top-Obj,
-        cct:R3-Top-Qlt-Obj .
-
-cct:R3-Loc-Top-Obj rdfs:subClassOf cct:R3-Loc-Top-Top,
-        cct:R3-Top-Top-Obj .
-
-cct:R3-Obj-Itv-Obj rdfs:subClassOf cct:R3-Obj-Itv-Top,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Obj-Itv-Obj,
+        cct:R3-Obj-Itv-Top,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
         cct:R3-Obj-Ord-Obj,
-        cct:R3-Top-Itv-Obj .
-
-cct:R3-Obj-Nom-Obj rdfs:subClassOf cct:R3-Obj-Nom-Top,
-        cct:R3-Obj-Qlt-Obj,
-        cct:R3-Top-Nom-Obj .
-
-cct:R3-Obj-Ord-Obj rdfs:subClassOf cct:R3-Obj-Nom-Obj,
         cct:R3-Obj-Ord-Top,
-        cct:R3-Top-Ord-Obj .
-
-cct:R3-Obj-Qlt-Obj rdfs:subClassOf cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Ratio-Obj,
+        cct:R3-Obj-Ratio-Top,
         cct:R3-Obj-Top-Obj,
-        cct:R3-Top-Qlt-Obj .
-
-cct:R3-Obj-Ratio-Top rdfs:subClassOf cct:R3-Obj-Itv-Top,
-        cct:R3-Top-Ratio-Top .
-
-cct:R3-Obj-Top-Obj rdfs:subClassOf cct:R3-Obj-Top-Top,
-        cct:R3-Top-Top-Obj .
-
-cct:R3-Top-Ratio-Obj rdfs:subClassOf cct:R3-Top-Itv-Obj,
-        cct:R3-Top-Ratio-Top .
-
-cct:R1-Val rdfs:subClassOf cct:R1-Top .
-
-cct:R2-Nom-Top rdfs:subClassOf cct:R2-Qlt-Top .
-
-cct:R2-Obj-Product-Top-Qlt rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
-        cct:R2-Top-Product-Top-Qlt .
-
-cct:R2-Obj-Product-Top-Top rdfs:subClassOf cct:R2-Obj-Top,
-        cct:R2-Top-Product-Top-Top .
-
-cct:R2-Obj-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R2-Ord-Top rdfs:subClassOf cct:R2-Nom-Top .
-
-cct:R2-Qlt-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R2-Top-Nom rdfs:subClassOf cct:R2-Top-Qlt .
-
-cct:R2-Top-Ord rdfs:subClassOf cct:R2-Top-Nom .
-
-cct:R2-Top-Product-Reg-Qlt rdfs:subClassOf cct:R2-Top-Product-Reg-Top,
-        cct:R2-Top-Product-Top-Qlt .
-
-cct:R2-Top-Product-Reg-Top rdfs:subClassOf cct:R2-Top-Product-Top-Top .
-
-cct:R2-Top-Product-Top-Nom rdfs:subClassOf cct:R2-Top-Product-Top-Qlt .
-
-cct:R2-Top-Qlt rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R2-Top-Reg rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R3-Loc-Qlt-Top rdfs:subClassOf cct:R3-Loc-Top-Top,
-        cct:R3-Top-Qlt-Top .
-
-cct:R3-Loc-Top-Top rdfs:subClassOf cct:R3-Top-Top-Top .
-
-cct:R3-Obj-Itv-Top rdfs:subClassOf cct:R3-Obj-Ord-Top,
-        cct:R3-Top-Itv-Top .
-
-cct:R3-Obj-Nom-Top rdfs:subClassOf cct:R3-Obj-Qlt-Top,
-        cct:R3-Top-Nom-Top .
-
-cct:R3-Obj-Ord-Top rdfs:subClassOf cct:R3-Obj-Nom-Top,
-        cct:R3-Top-Ord-Top .
-
-cct:R3-Obj-Qlt-Top rdfs:subClassOf cct:R3-Obj-Top-Top,
-        cct:R3-Top-Qlt-Top .
-
-cct:R3-Obj-Top-Top rdfs:subClassOf cct:R3-Top-Top-Top .
-
-cct:R3-Top-Itv-Obj rdfs:subClassOf cct:R3-Top-Itv-Top,
-        cct:R3-Top-Ord-Obj .
-
-cct:R3-Top-Ord-Obj rdfs:subClassOf cct:R3-Top-Nom-Obj,
-        cct:R3-Top-Ord-Top .
-
-cct:R3-Top-Ratio-Top rdfs:subClassOf cct:R3-Top-Itv-Top .
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Obj,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top,
+        cct:Ratio,
+        cct:Val ;
+    tf:input _:N00b1f221a3a949cdb18c2ba3620e3e56,
+        _:N24a6226225a843a7828681774a614cfc,
+        _:N7822bfb02c404a42baf75e2045522d48,
+        _:Naa3a9ce8e8754a8884df198bf8df43ae ;
+    tf:output [ rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+            tf:from _:Na4d2a1350def4aafa7982ec55a346f03,
+                [ rdfs:label "R1(Obj) via pi3" ;
+                    tf:from [ rdfs:label "R3(Loc, Nom, Obj) via select" ;
+                            tf:from _:N24129579fd57466b8b3f68f599b32fbe,
+                                [ rdfs:label "Bool via eq" ;
+                                    tf:from _:N9836b64df5014c64821b1d7f4aa376ae ;
+                                    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
+                                    tf:subtypeOf tf:Top,
+                                        cct:Bool,
+                                        cct:Nom,
+                                        cct:Qlt,
+                                        cct:Val ;
+                                    tf:type cct:Bool ;
+                                    tf:via cct:eq ],
+                                _:N8c1d9c68ca8242e2afd5771f5886c579 ;
+                            tf:internal _:N9836b64df5014c64821b1d7f4aa376ae ;
+                            tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
+                            tf:subtypeOf tf:Top,
+                                cct:R3-Loc-Nom-Obj,
+                                cct:R3-Loc-Nom-Top,
+                                cct:R3-Loc-Qlt-Obj,
+                                cct:R3-Loc-Qlt-Top,
+                                cct:R3-Loc-Top-Obj,
+                                cct:R3-Loc-Top-Top,
+                                cct:R3-Top-Nom-Obj,
+                                cct:R3-Top-Nom-Top,
+                                cct:R3-Top-Qlt-Obj,
+                                cct:R3-Top-Qlt-Top,
+                                cct:R3-Top-Top-Obj,
+                                cct:R3-Top-Top-Top ;
+                            tf:type cct:R3-Loc-Nom-Obj ;
+                            tf:via cct:select ] ;
+                    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
+                    tf:subtypeOf tf:Top,
+                        cct:R1-Obj,
+                        cct:R1-Top,
+                        cct:R1-Val ;
+                    tf:type cct:R1-Obj ;
+                    tf:via cct:pi3 ] ;
+            tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
+            tf:subtypeOf tf:Top,
+                cct:R2-Obj-Product-Reg-Nom,
+                cct:R2-Obj-Product-Reg-Qlt,
+                cct:R2-Obj-Product-Reg-Top,
+                cct:R2-Obj-Product-Top-Nom,
+                cct:R2-Obj-Product-Top-Qlt,
+                cct:R2-Obj-Product-Top-Top,
+                cct:R2-Obj-Top,
+                cct:R2-Top-Product-Reg-Nom,
+                cct:R2-Top-Product-Reg-Qlt,
+                cct:R2-Top-Product-Reg-Top,
+                cct:R2-Top-Product-Top-Nom,
+                cct:R2-Top-Product-Top-Qlt,
+                cct:R2-Top-Product-Top-Top,
+                cct:R2-Top-Top ;
+            tf:type cct:R2-Obj-Product-Reg-Nom ;
+            tf:via cct:subset ] .
 
 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#UrbanAreas> rdfs:label "Urban areas"@en ;
     rdfs:comment "U.S. Census Urban Areas provides information about the locations, names, population, and codes of urban areas primarily for national planning applications."@en .
@@ -240,369 +204,579 @@ cct:R3-Top-Ratio-Top rdfs:subClassOf cct:R3-Top-Itv-Top .
 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#precipitation> rdfs:label "Average annual precipitation"@en ;
     rdfs:comment "Polygons of average annual precipitation in the contiguous United States, for the climatological period 1990-2009"@en .
 
-cct:Itv a :Type ;
-    rdfs:label "Itv" ;
-    rdfs:subClassOf cct:Ord .
+_:N16306acf9e3346c1a99d16729e0c2f6f rdfs:label "R1(Loc) via pi1" ;
+    tf:from [ rdfs:label "R2(Loc, Itv) via revert" ;
+            tf:from [ rdfs:label "R2(Itv, Reg) via select" ;
+                    tf:from [ rdfs:label "Bool via eq" ;
+                            tf:from _:Nd5d589a985ff48cbb3400d18004c0f11 ;
+                            tf:origin _:nafbc69522b08458ab302620184793ebfb8 ;
+                            tf:subtypeOf tf:Top,
+                                cct:Bool,
+                                cct:Nom,
+                                cct:Qlt,
+                                cct:Val ;
+                            tf:type cct:Bool ;
+                            tf:via cct:eq ],
+                        _:N76d32bed0c334ce2b80695514ec4e803,
+                        _:N7703c35cb7c54659a5ec629e0f3a17e7 ;
+                    tf:internal _:Nd5d589a985ff48cbb3400d18004c0f11 ;
+                    tf:origin _:nafbc69522b08458ab302620184793ebfb8 ;
+                    tf:subtypeOf tf:Top,
+                        cct:R2-Itv-Reg,
+                        cct:R2-Itv-Top,
+                        cct:R2-Nom-Reg,
+                        cct:R2-Nom-Top,
+                        cct:R2-Ord-Reg,
+                        cct:R2-Ord-Top,
+                        cct:R2-Qlt-Reg,
+                        cct:R2-Qlt-Top,
+                        cct:R2-Top-Reg,
+                        cct:R2-Top-Top ;
+                    tf:type cct:R2-Itv-Reg ;
+                    tf:via cct:select ] ;
+            tf:origin _:nafbc69522b08458ab302620184793ebfb8 ;
+            tf:subtypeOf tf:Top,
+                cct:R2-Loc-Itv,
+                cct:R2-Loc-Nom,
+                cct:R2-Loc-Ord,
+                cct:R2-Loc-Qlt,
+                cct:R2-Loc-Top,
+                cct:R2-Top-Itv,
+                cct:R2-Top-Nom,
+                cct:R2-Top-Ord,
+                cct:R2-Top-Qlt,
+                cct:R2-Top-Top ;
+            tf:type cct:R2-Loc-Itv ;
+            tf:via cct:revert ] ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Loc ;
+    tf:via cct:pi1 .
 
-cct:Loc a :Type ;
-    rdfs:label "Loc" ;
-    rdfs:subClassOf cct:Val .
+_:N1752acc0cd434b32b01f7bfa6126f96f rdfs:label "R1(Obj) from source" ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb7 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Obj,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Obj .
 
-cct:R1-Loc a :Type ;
-    rdfs:label "R1(Loc)" ;
-    rdf:_1 cct:Loc ;
-    rdfs:subClassOf cct:R1,
-        cct:R1-Val .
-
-cct:R2-Top-Product-Top-Qlt rdfs:subClassOf cct:R2-Top-Product-Top-Top .
-
-cct:R2-Top-Product-Top-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R3-Obj-Ratio-Obj a :Type ;
-    rdfs:label "R3(Obj, Ratio, Obj)" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 cct:Ratio ;
-    rdf:_3 cct:Obj ;
-    rdfs:subClassOf cct:R3,
-        cct:R3-Obj-Itv-Obj,
-        cct:R3-Obj-Ratio-Top,
-        cct:R3-Top-Ratio-Obj .
-
-cct:R3-Top-Itv-Top rdfs:subClassOf cct:R3-Top-Ord-Top .
-
-cct:R3-Top-Nom-Obj rdfs:subClassOf cct:R3-Top-Nom-Top,
-        cct:R3-Top-Qlt-Obj .
-
-cct:R3-Top-Ord-Top rdfs:subClassOf cct:R3-Top-Nom-Top .
-
-cct:R3-Top-Qlt-Obj rdfs:subClassOf cct:R3-Top-Qlt-Top,
-        cct:R3-Top-Top-Obj .
-
-cct:R3-Top-Top-Obj rdfs:subClassOf cct:R3-Top-Top-Top .
-
-cct:Ratio a :Type ;
-    rdfs:label "Ratio" ;
-    rdfs:subClassOf cct:Itv .
-
-cct:Reg a :Type ;
-    rdfs:label "Reg" ;
-    rdfs:subClassOf cct:Val .
-
-cct:R3-Top-Nom-Top rdfs:subClassOf cct:R3-Top-Qlt-Top .
-
-cct:R3-Top-Qlt-Top rdfs:subClassOf cct:R3-Top-Top-Top .
-
-cct:R3-Top-Top-Top rdfs:subClassOf :Top .
-
-cct:Val rdfs:subClassOf :Top .
-
-cct:R1-Obj a :Type ;
-    rdfs:label "R1(Obj)" ;
-    rdf:_1 cct:Obj ;
-    rdfs:subClassOf cct:R1,
-        cct:R1-Val .
-
-cct:R2-Itv-Reg a :Type ;
-    rdfs:label "R2(Itv, Reg)" ;
-    rdf:_1 cct:Itv ;
-    rdf:_2 cct:Reg ;
-    rdfs:subClassOf cct:R2,
-        cct:R2-Itv-Top,
-        cct:R2-Ord-Reg .
-
-cct:R2-Loc-Itv a :Type ;
-    rdfs:label "R2(Loc, Itv)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Itv ;
-    rdfs:subClassOf cct:R2,
-        cct:R2-Loc-Ord,
-        cct:R2-Top-Itv .
-
-cct:R2-Obj-Reg a :Type ;
-    rdfs:label "R2(Obj, Reg)" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 cct:Reg ;
-    rdfs:subClassOf cct:R2,
+_:N332c352859ff4468bc2f06dafa5da6cc rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:from [ rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+            tf:from _:N1752acc0cd434b32b01f7bfa6126f96f,
+                _:N24a6226225a843a7828681774a614cfc ;
+            tf:origin _:nafbc69522b08458ab302620184793ebfb7 ;
+            tf:subtypeOf tf:Top,
+                cct:R2-Obj-Product-Reg-Nom,
+                cct:R2-Obj-Product-Reg-Qlt,
+                cct:R2-Obj-Product-Reg-Top,
+                cct:R2-Obj-Product-Top-Nom,
+                cct:R2-Obj-Product-Top-Qlt,
+                cct:R2-Obj-Product-Top-Top,
+                cct:R2-Obj-Top,
+                cct:R2-Top-Product-Reg-Nom,
+                cct:R2-Top-Product-Reg-Qlt,
+                cct:R2-Top-Product-Reg-Top,
+                cct:R2-Top-Product-Top-Nom,
+                cct:R2-Top-Product-Top-Qlt,
+                cct:R2-Top-Product-Top-Top,
+                cct:R2-Top-Top ;
+            tf:type cct:R2-Obj-Product-Reg-Nom ;
+            tf:via cct:subset ] ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
         cct:R2-Obj-Top,
-        cct:R2-Top-Reg .
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
 
-cct:R3-Loc-Nom-Obj a :Type ;
-    rdfs:label "R3(Loc, Nom, Obj)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Nom ;
-    rdf:_3 cct:Obj ;
-    rdfs:subClassOf cct:R3,
+_:N57ef650f1bdc4165b4d2d78f66dfe7d2 rdfs:label "R2(Loc, Itv) via revert" ;
+    tf:from [ rdfs:label "R2(Itv, Reg) via select" ;
+            tf:from _:N1ab47777b65349f990fce8a048294b0c,
+                _:N63d524aa3be54b9997a131a5ca0960e6,
+                [ rdfs:label "Bool via eq" ;
+                    tf:from _:N899c8378fcf0435e8ce30739d2a3e91c ;
+                    tf:origin _:nafbc69522b08458ab302620184793ebfb9 ;
+                    tf:subtypeOf tf:Top,
+                        cct:Bool,
+                        cct:Nom,
+                        cct:Qlt,
+                        cct:Val ;
+                    tf:type cct:Bool ;
+                    tf:via cct:eq ] ;
+            tf:internal _:N899c8378fcf0435e8ce30739d2a3e91c ;
+            tf:origin _:nafbc69522b08458ab302620184793ebfb9 ;
+            tf:subtypeOf tf:Top,
+                cct:R2-Itv-Reg,
+                cct:R2-Itv-Top,
+                cct:R2-Nom-Reg,
+                cct:R2-Nom-Top,
+                cct:R2-Ord-Reg,
+                cct:R2-Ord-Top,
+                cct:R2-Qlt-Reg,
+                cct:R2-Qlt-Top,
+                cct:R2-Top-Reg,
+                cct:R2-Top-Top ;
+            tf:type cct:R2-Itv-Reg ;
+            tf:via cct:select ] ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb9 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Itv ;
+    tf:via cct:revert .
+
+_:N581610dfd73144068660208b33fda6e6 rdfs:label "R1(Obj) via pi1" ;
+    tf:from [ rdfs:label "R3(Obj, Ratio, Obj) via select" ;
+            tf:from _:N5866d9f816b44c52ab881ba97e360301,
+                _:N7eb4dd5b5c7d4b298fc6eb205699ec90,
+                [ rdfs:label "Bool via leq" ;
+                    tf:from _:Nf8f0376d5276402dba2bf89b426a8ea2 ;
+                    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+                    tf:subtypeOf tf:Top,
+                        cct:Bool,
+                        cct:Nom,
+                        cct:Qlt,
+                        cct:Val ;
+                    tf:type cct:Bool ;
+                    tf:via cct:leq ] ;
+            tf:internal _:Nf8f0376d5276402dba2bf89b426a8ea2 ;
+            tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+            tf:subtypeOf tf:Top,
+                cct:R3-Obj-Itv-Obj,
+                cct:R3-Obj-Itv-Top,
+                cct:R3-Obj-Nom-Obj,
+                cct:R3-Obj-Nom-Top,
+                cct:R3-Obj-Ord-Obj,
+                cct:R3-Obj-Ord-Top,
+                cct:R3-Obj-Qlt-Obj,
+                cct:R3-Obj-Qlt-Top,
+                cct:R3-Obj-Ratio-Obj,
+                cct:R3-Obj-Ratio-Top,
+                cct:R3-Obj-Top-Obj,
+                cct:R3-Obj-Top-Top,
+                cct:R3-Top-Itv-Obj,
+                cct:R3-Top-Itv-Top,
+                cct:R3-Top-Nom-Obj,
+                cct:R3-Top-Nom-Top,
+                cct:R3-Top-Ord-Obj,
+                cct:R3-Top-Ord-Top,
+                cct:R3-Top-Qlt-Obj,
+                cct:R3-Top-Qlt-Top,
+                cct:R3-Top-Ratio-Obj,
+                cct:R3-Top-Ratio-Top,
+                cct:R3-Top-Top-Obj,
+                cct:R3-Top-Top-Top ;
+            tf:type cct:R3-Obj-Ratio-Obj ;
+            tf:via cct:select ] ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Obj,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Obj ;
+    tf:via cct:pi1 .
+
+_:N8722f42e2ec84852b7b23c1b1d6a7670 rdfs:label "Bool via eq" ;
+    tf:from _:Nd3482f129e9545f182f8c575f4e053f5 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+    tf:subtypeOf tf:Top,
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Bool ;
+    tf:via cct:eq .
+
+_:Na393283a0ffe4ff4a416148d15ed419a rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:from _:Na4d2a1350def4aafa7982ec55a346f03 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
+
+_:Ncb3ba742453f4256a5753c18a5c13fc1 rdfs:label "R3(Loc, Nom, Obj) via select" ;
+    tf:from _:N28b4b580d8c245ac903cd0af5543b82a,
+        _:N8722f42e2ec84852b7b23c1b1d6a7670,
+        _:Nf2a718536c264cb7a6aad538b5f9629a ;
+    tf:internal _:Nd3482f129e9545f182f8c575f4e053f5 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Loc-Nom-Obj,
         cct:R3-Loc-Nom-Top,
         cct:R3-Loc-Qlt-Obj,
-        cct:R3-Top-Nom-Obj .
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Nom-Obj ;
+    tf:via cct:select .
 
-cct:Bool a :Type ;
-    rdfs:label "Bool" ;
-    rdfs:subClassOf cct:Nom .
+_:Nccaa9dce21904b9f86b3b50eac699afb rdfs:label "R1(Obj) via pi3" ;
+    tf:from _:Ncb3ba742453f4256a5753c18a5c13fc1 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Obj,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Obj ;
+    tf:via cct:pi3 .
 
-cct:Obj a :Type ;
-    rdfs:label "Obj" ;
-    rdfs:subClassOf cct:Val .
+_:Nd31789aba1954f00b99a052c6f9c3842 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:from _:Nfa8260b1ad0d49ea8c03ce2bd2823a96 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
 
-cct:R2-Top-Top rdfs:subClassOf :Top .
+_:Nd5261876216042938793ebcef0fd17f0 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:from _:N00b1f221a3a949cdb18c2ba3620e3e56 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
 
-cct:R2-Obj-Product-Reg-Nom a :Type ;
-    rdfs:label "R2(Obj, (Reg * Nom))" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 [ a :Type ;
-            rdfs:label "(Reg * Nom)" ;
-            rdf:_1 cct:Reg ;
-            rdf:_2 cct:Nom ;
-            rdfs:subClassOf :Product ] ;
-    rdfs:subClassOf cct:R2,
+_:Nf08afd9ba315454f8445a1020a6b7c1f rdfs:label "R1(Loc) via pi1" ;
+    tf:from _:N57ef650f1bdc4165b4d2d78f66dfe7d2 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Loc ;
+    tf:via cct:pi1 .
+
+_:N1ab47777b65349f990fce8a048294b0c rdfs:label "R2(Itv, Reg) via invert" ;
+    tf:from _:N7822bfb02c404a42baf75e2045522d48 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb9 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Itv-Reg,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Reg,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Itv-Reg ;
+    tf:via cct:invert .
+
+_:N24129579fd57466b8b3f68f599b32fbe rdfs:label "Nom from source" ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
+    tf:subtypeOf tf:Top,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Nom .
+
+_:N24a6226225a843a7828681774a614cfc rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    tf:origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#aquifer> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
         cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
         cct:R2-Obj-Product-Top-Nom,
-        cct:R2-Top-Product-Reg-Nom .
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom .
 
-cct:Nom a :Type ;
-    rdfs:label "Nom" ;
-    rdfs:subClassOf cct:Qlt .
+_:N28b4b580d8c245ac903cd0af5543b82a rdfs:label "Nom from source" ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+    tf:subtypeOf tf:Top,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Nom .
 
-_:N0d89023bf05a4539a71a119b1b4a8fab rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
-    :from _:N43dc220413894ec8961d61183e6deba0,
-        [ rdfs:label "R1(Obj) from source" ;
-            :origin _:na6fa31bf104745b2a5f3ae956d39896eb7 ;
-            :type cct:R1-Obj ] ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb7 ;
-    :type cct:R2-Obj-Product-Reg-Nom ;
-    :via cct:subset .
+_:N5866d9f816b44c52ab881ba97e360301 rdfs:label "Ratio from source" ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio .
 
-_:N1409dc670db54235bb7267411ab66b9a rdfs:label "Bool via eq" ;
-    :from _:N8a379cc9de6c464997bf49eba1723972 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb11 ;
-    :type cct:Bool ;
-    :via cct:eq .
+_:N63d524aa3be54b9997a131a5ca0960e6 rdfs:label "Nom from source" ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb9 ;
+    tf:subtypeOf tf:Top,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Nom .
 
-_:N1c0f8d8647b7405497a23889f9da92ee rdfs:label "R2(Itv, Reg) via select" ;
-    :from _:N606a08602cfa41a980e571e26ae14c45,
-        [ rdfs:label "Bool via eq" ;
-            :from _:N2967b31959a743d2b735f5a2856ca2c3 ;
-            :origin _:na6fa31bf104745b2a5f3ae956d39896eb9 ;
-            :type cct:Bool ;
-            :via cct:eq ],
-        _:Nff208b0f7e1d4aa9861495b098cf23a0 ;
-    :internal _:N2967b31959a743d2b735f5a2856ca2c3 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb9 ;
-    :type cct:R2-Itv-Reg ;
-    :via cct:select .
+_:N76d32bed0c334ce2b80695514ec4e803 rdfs:label "R2(Itv, Reg) via invert" ;
+    tf:from _:Naa3a9ce8e8754a8884df198bf8df43ae ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb8 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Itv-Reg,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Reg,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Itv-Reg ;
+    tf:via cct:invert .
 
-_:N2946c7a390f64d30a7ade1cb3069e163 rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    :from _:N0d89023bf05a4539a71a119b1b4a8fab ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb10 ;
-    :type cct:R2-Obj-Reg ;
-    :via cct:get_attrL .
+_:N7703c35cb7c54659a5ec629e0f3a17e7 rdfs:label "Nom from source" ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb8 ;
+    tf:subtypeOf tf:Top,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Nom .
 
-_:N32a3a1cba9ee4de5ad91a0239bf78bdd rdfs:label "R3(Loc, Nom, Obj) via select" ;
-    :from _:N1409dc670db54235bb7267411ab66b9a,
-        _:N193d82eb2380498db78e86d1f970fd1f,
-        _:N2271491303364e8a861c80d8e8b539b3 ;
-    :internal _:N8a379cc9de6c464997bf49eba1723972 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb11 ;
-    :type cct:R3-Loc-Nom-Obj ;
-    :via cct:select .
+_:N7822bfb02c404a42baf75e2045522d48 rdfs:label "R2(Loc, Itv) from source" ;
+    tf:origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#irrigation> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Itv .
 
-_:N3826a07e1d5346d59a3ffd62f461ed51 rdfs:label "R1(Loc) via pi1" ;
-    :from [ rdfs:label "R2(Loc, Itv) via revert" ;
-            :from _:N1c0f8d8647b7405497a23889f9da92ee ;
-            :origin _:na6fa31bf104745b2a5f3ae956d39896eb9 ;
-            :type cct:R2-Loc-Itv ;
-            :via cct:revert ] ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb12 ;
-    :type cct:R1-Loc ;
-    :via cct:pi1 .
+_:N7eb4dd5b5c7d4b298fc6eb205699ec90 rdfs:label "R3(Obj, Ratio, Obj) via oDist" ;
+    tf:from _:N332c352859ff4468bc2f06dafa5da6cc,
+        _:Nd5261876216042938793ebcef0fd17f0 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Obj-Itv-Obj,
+        cct:R3-Obj-Itv-Top,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Ord-Obj,
+        cct:R3-Obj-Ord-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Ratio-Obj,
+        cct:R3-Obj-Ratio-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Obj,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Obj-Ratio-Obj ;
+    tf:via cct:oDist .
 
-_:N57cdf2d3fe7a4f4b90dcc3b9c78cbb63 rdfs:label "R1(Obj) via pi3" ;
-    :from _:N32a3a1cba9ee4de5ad91a0239bf78bdd ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb11 ;
-    :type cct:R1-Obj ;
-    :via cct:pi3 .
+_:N899c8378fcf0435e8ce30739d2a3e91c rdfs:label "(internal)" ;
+    tf:from _:N1ab47777b65349f990fce8a048294b0c,
+        _:N63d524aa3be54b9997a131a5ca0960e6 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb9 .
 
-_:N5bc61aa336e643f9a3246973607eb27a rdfs:label "R2(Itv, Reg) via select" ;
-    :from _:N1bc785f2e29544d58e680068d7072b5f,
-        _:N45ee74de783445ebbee34727dbbd5feb,
-        [ rdfs:label "Bool via eq" ;
-            :from _:Nb231d894e05b4f52b834dd0c00a4d040 ;
-            :origin _:na6fa31bf104745b2a5f3ae956d39896eb8 ;
-            :type cct:Bool ;
-            :via cct:eq ] ;
-    :internal _:Nb231d894e05b4f52b834dd0c00a4d040 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb8 ;
-    :type cct:R2-Itv-Reg ;
-    :via cct:select .
+_:N8c1d9c68ca8242e2afd5771f5886c579 rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
+    tf:from _:Na393283a0ffe4ff4a416148d15ed419a,
+        _:Nf08afd9ba315454f8445a1020a6b7c1f ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Nom-Obj ;
+    tf:via cct:loTopo .
 
-_:N5ea8942ccc0f4417bc88c79f87f8a3df rdfs:label "R1(Obj) via pi1" ;
-    :from [ rdfs:label "R3(Obj, Ratio, Obj) via select" ;
-            :from _:N12c82d15c43147589f1424f07e5fe4ef,
-                [ rdfs:label "Bool via leq" ;
-                    :from _:N42a161b12b434f17bd57867595bce39f ;
-                    :origin _:na6fa31bf104745b2a5f3ae956d39896eb10 ;
-                    :type cct:Bool ;
-                    :via cct:leq ],
-                _:Nda2423ee62504e8cba000b62d285e76f ;
-            :internal _:N42a161b12b434f17bd57867595bce39f ;
-            :origin _:na6fa31bf104745b2a5f3ae956d39896eb10 ;
-            :type cct:R3-Obj-Ratio-Obj ;
-            :via cct:select ] ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb10 ;
-    :type cct:R1-Obj ;
-    :via cct:pi1 .
+_:N9836b64df5014c64821b1d7f4aa376ae rdfs:label "(internal)" ;
+    tf:from _:N24129579fd57466b8b3f68f599b32fbe,
+        _:N8c1d9c68ca8242e2afd5771f5886c579 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb12 .
 
-_:N88a6fbe30ab744c29ef05feeb249a676 rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    :from _:N25c40aca26444db7bead068ad71a7db5 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb10 ;
-    :type cct:R2-Obj-Reg ;
-    :via cct:get_attrL .
+_:Na4d2a1350def4aafa7982ec55a346f03 rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+    tf:from _:Nccaa9dce21904b9f86b3b50eac699afb,
+        _:Nfa8260b1ad0d49ea8c03ce2bd2823a96 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom ;
+    tf:via cct:subset .
 
-_:N917900784eb44f3e9f26d9f264c25da7 rdfs:label "R1(Loc) via pi1" ;
-    :from [ rdfs:label "R2(Loc, Itv) via revert" ;
-            :from _:N5bc61aa336e643f9a3246973607eb27a ;
-            :origin _:na6fa31bf104745b2a5f3ae956d39896eb8 ;
-            :type cct:R2-Loc-Itv ;
-            :via cct:revert ] ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb11 ;
-    :type cct:R1-Loc ;
-    :via cct:pi1 .
+_:Naa3a9ce8e8754a8884df198bf8df43ae rdfs:label "R2(Loc, Itv) from source" ;
+    tf:origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#precipitation> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Itv .
 
-_:Ncf409e7b61314d998aba5bf5819691ff rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    :from _:Ncbbf32c8c0c94426b8ea659148373ac3 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb12 ;
-    :type cct:R2-Obj-Reg ;
-    :via cct:get_attrL .
+_:Nd3482f129e9545f182f8c575f4e053f5 rdfs:label "(internal)" ;
+    tf:from _:N28b4b580d8c245ac903cd0af5543b82a,
+        _:Nf2a718536c264cb7a6aad538b5f9629a ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb11 .
 
-_:Ne03ecbe3588340bbaf9fa74b179c77dd rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    :from _:N148fe5419b47433097e5cd3464d86159 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb11 ;
-    :type cct:R2-Obj-Reg ;
-    :via cct:get_attrL .
+_:Nd5d589a985ff48cbb3400d18004c0f11 rdfs:label "(internal)" ;
+    tf:from _:N76d32bed0c334ce2b80695514ec4e803,
+        _:N7703c35cb7c54659a5ec629e0f3a17e7 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb8 .
 
-_:N12c82d15c43147589f1424f07e5fe4ef rdfs:label "Ratio from source" ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb10 ;
-    :type cct:Ratio .
+_:Nf2a718536c264cb7a6aad538b5f9629a rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
+    tf:from _:N16306acf9e3346c1a99d16729e0c2f6f,
+        _:Nd31789aba1954f00b99a052c6f9c3842 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Nom-Obj ;
+    tf:via cct:loTopo .
 
-_:N148fe5419b47433097e5cd3464d86159 rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
-    :from _:N25c40aca26444db7bead068ad71a7db5,
-        _:N5ea8942ccc0f4417bc88c79f87f8a3df ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb10 ;
-    :type cct:R2-Obj-Product-Reg-Nom ;
-    :via cct:subset .
+_:Nf8f0376d5276402dba2bf89b426a8ea2 rdfs:label "(internal)" ;
+    tf:from _:N5866d9f816b44c52ab881ba97e360301,
+        _:N7eb4dd5b5c7d4b298fc6eb205699ec90 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb10 .
 
-_:N193d82eb2380498db78e86d1f970fd1f rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
-    :from _:N917900784eb44f3e9f26d9f264c25da7,
-        _:Ne03ecbe3588340bbaf9fa74b179c77dd ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb11 ;
-    :type cct:R3-Loc-Nom-Obj ;
-    :via cct:loTopo .
+_:Nfa8260b1ad0d49ea8c03ce2bd2823a96 rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+    tf:from _:N00b1f221a3a949cdb18c2ba3620e3e56,
+        _:N581610dfd73144068660208b33fda6e6 ;
+    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom ;
+    tf:via cct:subset .
 
-_:N1bc785f2e29544d58e680068d7072b5f rdfs:label "Nom from source" ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb8 ;
-    :type cct:Nom .
+_:N00b1f221a3a949cdb18c2ba3620e3e56 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    tf:origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#UrbanAreas> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom .
 
-_:N2271491303364e8a861c80d8e8b539b3 rdfs:label "Nom from source" ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb11 ;
-    :type cct:Nom .
-
-_:N2967b31959a743d2b735f5a2856ca2c3 rdfs:label "(internal)" ;
-    :from _:N606a08602cfa41a980e571e26ae14c45,
-        _:Nff208b0f7e1d4aa9861495b098cf23a0 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb9 .
-
-_:N42a161b12b434f17bd57867595bce39f rdfs:label "(internal)" ;
-    :from _:N12c82d15c43147589f1424f07e5fe4ef,
-        _:Nda2423ee62504e8cba000b62d285e76f ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb10 .
-
-_:N43dc220413894ec8961d61183e6deba0 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
-    :origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#aquifer> ;
-    :type cct:R2-Obj-Product-Reg-Nom .
-
-_:N45ee74de783445ebbee34727dbbd5feb rdfs:label "R2(Itv, Reg) via invert" ;
-    :from _:N7863398d85dd444a9d383c870c304e23 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb8 ;
-    :type cct:R2-Itv-Reg ;
-    :via cct:invert .
-
-_:N50f50b53f5b847bfad2edc2de7e78115 rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
-    :from _:N3826a07e1d5346d59a3ffd62f461ed51,
-        _:Ncf409e7b61314d998aba5bf5819691ff ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb12 ;
-    :type cct:R3-Loc-Nom-Obj ;
-    :via cct:loTopo .
-
-_:N5baef1265a194a6db7b88d2040e15726 rdfs:label "Nom from source" ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb12 ;
-    :type cct:Nom .
-
-_:N606a08602cfa41a980e571e26ae14c45 rdfs:label "R2(Itv, Reg) via invert" ;
-    :from _:Nfcab660cc7fc49d9a4f482a1035e6a15 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb9 ;
-    :type cct:R2-Itv-Reg ;
-    :via cct:invert .
-
-_:N6119c5fbdf8347eab4b22d3d25f6a846 rdfs:label "(internal)" ;
-    :from _:N50f50b53f5b847bfad2edc2de7e78115,
-        _:N5baef1265a194a6db7b88d2040e15726 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb12 .
-
-_:N7863398d85dd444a9d383c870c304e23 rdfs:label "R2(Loc, Itv) from source" ;
-    :origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#precipitation> ;
-    :type cct:R2-Loc-Itv .
-
-_:N8a379cc9de6c464997bf49eba1723972 rdfs:label "(internal)" ;
-    :from _:N193d82eb2380498db78e86d1f970fd1f,
-        _:N2271491303364e8a861c80d8e8b539b3 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb11 .
-
-_:Nb231d894e05b4f52b834dd0c00a4d040 rdfs:label "(internal)" ;
-    :from _:N1bc785f2e29544d58e680068d7072b5f,
-        _:N45ee74de783445ebbee34727dbbd5feb ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb8 .
-
-_:Ncbbf32c8c0c94426b8ea659148373ac3 rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
-    :from _:N148fe5419b47433097e5cd3464d86159,
-        _:N57cdf2d3fe7a4f4b90dcc3b9c78cbb63 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb11 ;
-    :type cct:R2-Obj-Product-Reg-Nom ;
-    :via cct:subset .
-
-_:Nda2423ee62504e8cba000b62d285e76f rdfs:label "R3(Obj, Ratio, Obj) via oDist" ;
-    :from _:N2946c7a390f64d30a7ade1cb3069e163,
-        _:N88a6fbe30ab744c29ef05feeb249a676 ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb10 ;
-    :type cct:R3-Obj-Ratio-Obj ;
-    :via cct:oDist .
-
-_:Nfcab660cc7fc49d9a4f482a1035e6a15 rdfs:label "R2(Loc, Itv) from source" ;
-    :origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#irrigation> ;
-    :type cct:R2-Loc-Itv .
-
-_:Nff208b0f7e1d4aa9861495b098cf23a0 rdfs:label "Nom from source" ;
-    :origin _:na6fa31bf104745b2a5f3ae956d39896eb9 ;
-    :type cct:Nom .
-
-_:N25c40aca26444db7bead068ad71a7db5 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
-    :origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#UrbanAreas> ;
-    :type cct:R2-Obj-Product-Reg-Nom .
-
-_:na6fa31bf104745b2a5f3ae956d39896eb7 rdfs:label "Oogallala aquifer"@en ;
+_:nafbc69522b08458ab302620184793ebfb7 rdfs:label "Oogallala aquifer"@en ;
     rdfs:comment "A vector polygon representing the oogallala aquifer"@en .
 
-_:na6fa31bf104745b2a5f3ae956d39896eb8 rdfs:label "Low precipitation areas"@en ;
+_:nafbc69522b08458ab302620184793ebfb8 rdfs:label "Low precipitation areas"@en ;
     rdfs:comment "Areas with a low precipitation (<=20 inches of rain per year)"@en .
 
-_:na6fa31bf104745b2a5f3ae956d39896eb9 rdfs:label "High irrigation areas"@en ;
+_:nafbc69522b08458ab302620184793ebfb9 rdfs:label "High irrigation areas"@en ;
     rdfs:comment "Areas with a high irrigation (>=20% of land being irrigated)"@en .
 
-_:na6fa31bf104745b2a5f3ae956d39896eb12 rdfs:label "Drought-risk urban areas"@en ;
+_:nafbc69522b08458ab302620184793ebfb12 rdfs:label "Drought-risk urban areas"@en ;
     rdfs:comment "Urban areas that are within 150 miles of the Oogallala aquifer and have low precipitation (<=20 inches of rain per year) and high irrigation (>=20% of land being irrigated), thereby causing a risk of aquifer depletion."@en .
 
-_:na6fa31bf104745b2a5f3ae956d39896eb10 rdfs:label "Urban areas near Oogallala"@en ;
+_:nafbc69522b08458ab302620184793ebfb10 rdfs:label "Urban areas near Oogallala"@en ;
     rdfs:comment "Urban areas that are within 150 miles of the Oogallala aquifer"@en .
 
-_:na6fa31bf104745b2a5f3ae956d39896eb11 rdfs:label "Low precipitation urban areas"@en ;
+_:nafbc69522b08458ab302620184793ebfb11 rdfs:label "Low precipitation urban areas"@en ;
     rdfs:comment "Urban areas that are within 150 miles of the Oogallala aquifer and have low precipitation (<=20 inches of rain per year)."@en .
 

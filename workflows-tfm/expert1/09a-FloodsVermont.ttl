@@ -1,100 +1,78 @@
-@prefix : <https://github.com/quangis/transforge#> .
 @prefix abstr: <https://quangis.github.io/tool/abstract#> .
 @prefix cct: <https://quangis.github.io/vocab/cct#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ns1: <https://dbpedia.org/ontology/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tf: <https://github.com/quangis/transforge#> .
 @prefix wf: <http://geographicknowledge.de/vocab/Workflow.rdf#> .
 @prefix wfexpert1: <https://quangis.github.io/workflows/expert1/> .
 
 wfexpert1:FloodsVermont a wf:Workflow,
-        :Transformation ;
+        tf:Transformation ;
     wf:edge [ wf:applicationOf abstr:Slope ;
             wf:input1 <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b14 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb14 ;
             rdfs:comment "Calculate slopes in Glover" ],
         [ wf:applicationOf abstr:ExtractByMask ;
-            wf:input1 _:n51d36f44d9584dc5b33027d8002aedb7b20 ;
-            wf:input2 _:n51d36f44d9584dc5b33027d8002aedb7b22 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b23 ;
+            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb20 ;
+            wf:input2 _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb23 ;
             rdfs:comment "extract flow directions by watershed mask" ],
         [ wf:applicationOf abstr:FlowLength ;
-            wf:input1 _:n51d36f44d9584dc5b33027d8002aedb7b19 ;
-            wf:input2 _:n51d36f44d9584dc5b33027d8002aedb7b23 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
+            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb19 ;
+            wf:input2 _:n9ba28b43d9e94fee920fee69709ab9beb23 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
             rdfs:comment "calculate the upstream or downstream distance, or weighted distance, along the flow path for each cell" ],
         [ wf:applicationOf abstr:RasterToIsoRaster ;
-            wf:input1 _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b25 ;
+            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb25 ;
             rdfs:comment "reclassify flow time values to specific ranges (Isochrones raster)" ],
         [ wf:applicationOf abstr:CreateUnitHydrograph ;
-            wf:input1 _:n51d36f44d9584dc5b33027d8002aedb7b25 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b26 ;
+            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb25 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
             rdfs:comment "convert to unit hydrograph" ],
         [ wf:applicationOf abstr:VelocityFieldDEM ;
-            wf:input1 _:n51d36f44d9584dc5b33027d8002aedb7b14 ;
-            wf:input2 _:n51d36f44d9584dc5b33027d8002aedb7b15 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b16 ;
+            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb14 ;
+            wf:input2 _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb16 ;
             rdfs:comment "Calculate slope-area term (Maidment et al. equation)" ],
         [ wf:applicationOf abstr:con1 ;
-            wf:input1 _:n51d36f44d9584dc5b33027d8002aedb7b16 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b17 ;
+            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb16 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb17 ;
             rdfs:comment "set a lower bound of 0.02" ],
         [ wf:applicationOf abstr:con1 ;
-            wf:input1 _:n51d36f44d9584dc5b33027d8002aedb7b17 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b18 ;
+            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb17 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb18 ;
             rdfs:comment "set an upper bound of 2" ],
         [ wf:applicationOf abstr:LocalMapAlgebraInvert ;
-            wf:input1 _:n51d36f44d9584dc5b33027d8002aedb7b18 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b19 ;
+            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb18 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb19 ;
             rdfs:comment "Create a weight (impedance) grid" ],
         [ wf:applicationOf abstr:FlowDirection ;
             wf:input1 <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b20 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb20 ;
             rdfs:comment "get directions of water flow" ],
         [ wf:applicationOf abstr:FlowAccumulation ;
-            wf:input1 _:n51d36f44d9584dc5b33027d8002aedb7b20 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b15 ;
+            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb20 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
             rdfs:comment "get accumulations of water flow" ],
         [ wf:applicationOf abstr:SnapPourPoint ;
             wf:input1 <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#pourPoint> ;
-            wf:input2 _:n51d36f44d9584dc5b33027d8002aedb7b15 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b21 ;
+            wf:input2 _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
             rdfs:comment "snap pour point to river (Distance: 60m)" ],
         [ wf:applicationOf abstr:Watershed ;
-            wf:input1 _:n51d36f44d9584dc5b33027d8002aedb7b20 ;
-            wf:input2 _:n51d36f44d9584dc5b33027d8002aedb7b21 ;
-            wf:output _:n51d36f44d9584dc5b33027d8002aedb7b22 ;
+            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb20 ;
+            wf:input2 _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
+            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
             rdfs:comment "get watershed" ] ;
     wf:source <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#pourPoint>,
         <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> ;
     dcterms:subject "" ;
     rdfs:comment "Which areas are susceptible to flooding in Vermont during a predicted rainstorm?"@en ;
     ns1:abstract " Stowe, a small Vermont town of nearly 5,000 residents, suffered considerably when the remnants of Hurricane Irene stuck the Green Mountain region in August 2011. The Little River overflowed and washed out roads, bridges, and culverts. Wanting to learn from the tragedy, Stowe officials discovered that they had precious little information involving flood prediction. They turned to hydrographs, which are line graphs determining how much water a stream will discharge during a rainstorm. In this lesson, you'll create those hydrographs." ;
-    :contains _:N0b9ee2d58408458487204d2466f39f2e,
-        _:N2f9ebce38c524a7b885bf5754558f54c,
-        _:N4855bcdc0f1f40ee97f9f979f988b1c4,
-        _:N7ef04ca47f1b438e8a97e3d83b180ec2,
-        _:N9defdda53023450caf5e71e5723c85ea,
-        _:Nc62bbbdaf93947b99d20ba973205e255,
-        _:Ne3b1c7bc1c5d416bb5f21b5cc03d3a20,
-        cct:Bool,
-        cct:Ord,
-        cct:R1-Loc,
-        cct:R2-Loc-Itv,
-        cct:R2-Loc-Nom,
-        cct:R2-Loc-Ord,
-        cct:R2-Loc-Ratio,
-        cct:R2-Nom-Reg,
-        cct:R2-Obj-Nom,
-        cct:R2-Obj-Product-Reg-Nom,
-        cct:R2-Obj-Reg,
-        cct:R2-Ord-Ratio,
-        cct:R3-Loc-Ratio-Loc,
-        cct:Ratio,
-        cct:Reg,
-        cct:accumulate,
+    tf:containsOperator cct:accumulate,
         cct:apply,
         cct:apply1,
         cct:apply2,
@@ -123,744 +101,937 @@ wfexpert1:FloodsVermont a wf:Workflow,
         cct:slope,
         cct:subset,
         cct:swap ;
-    :input _:N7f852c6cc5e743819d32e1ef310181e1,
-        _:Nce660ba9fa1c4eb390192d83e82f60bf ;
-    :output [ rdfs:label "R2(Ord, Ratio) via apply1" ;
-            :from _:N4b1fd8a5520f473e8f97ffc315f45f57,
-                [ rdfs:label "Ratio via swap" ;
-                    :from [ rdfs:label "Ratio via ratio" ;
-                            :from _:N51e39351674f40df8da6b676cb677020 ;
-                            :origin _:n51d36f44d9584dc5b33027d8002aedb7b26 ;
-                            :type cct:Ratio ;
-                            :via cct:ratio ],
-                        _:Nd846831423d14a6eaf28a11431e17d78,
-                        _:Nec30b631f984419fa134c30c2228be6d ;
-                    :internal _:N51e39351674f40df8da6b676cb677020 ;
-                    :origin _:n51d36f44d9584dc5b33027d8002aedb7b26 ;
-                    :type cct:Ratio ;
-                    :via cct:swap ] ;
-            :internal _:Nec30b631f984419fa134c30c2228be6d ;
-            :origin _:n51d36f44d9584dc5b33027d8002aedb7b26 ;
-            :type cct:R2-Ord-Ratio ;
-            :via cct:apply1 ] .
-
-cct:Qlt rdfs:subClassOf cct:Val .
-
-cct:R1-Top rdfs:subClassOf :Top .
-
-cct:R1-Val rdfs:subClassOf cct:R1-Top .
-
-cct:R2-Loc-Qlt rdfs:subClassOf cct:R2-Loc-Top,
-        cct:R2-Top-Qlt .
-
-cct:R2-Loc-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R2-Nom-Ratio rdfs:subClassOf cct:R2-Nom-Itv,
-        cct:R2-Qlt-Ratio .
-
-cct:R2-Obj-Product-Reg-Qlt rdfs:subClassOf cct:R2-Obj-Product-Reg-Top,
-        cct:R2-Obj-Product-Top-Qlt,
-        cct:R2-Top-Product-Reg-Qlt .
-
-cct:R2-Obj-Product-Reg-Top rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
-        cct:R2-Top-Product-Reg-Top .
-
-cct:R2-Obj-Product-Top-Nom rdfs:subClassOf cct:R2-Obj-Product-Top-Qlt,
-        cct:R2-Top-Product-Top-Nom .
-
-cct:R2-Obj-Qlt rdfs:subClassOf cct:R2-Obj-Top,
-        cct:R2-Top-Qlt .
-
-cct:R2-Ord-Itv rdfs:subClassOf cct:R2-Nom-Itv,
-        cct:R2-Ord-Ord .
-
-cct:R2-Ord-Nom rdfs:subClassOf cct:R2-Nom-Nom,
-        cct:R2-Ord-Qlt .
-
-cct:R2-Ord-Ord rdfs:subClassOf cct:R2-Nom-Ord,
-        cct:R2-Ord-Nom .
-
-cct:R2-Ord-Qlt rdfs:subClassOf cct:R2-Nom-Qlt,
-        cct:R2-Ord-Top .
-
-cct:R2-Ord-Top rdfs:subClassOf cct:R2-Nom-Top .
-
-cct:R2-Qlt-Ratio rdfs:subClassOf cct:R2-Qlt-Itv,
-        cct:R2-Top-Ratio .
-
-cct:R2-Qlt-Reg rdfs:subClassOf cct:R2-Qlt-Top,
-        cct:R2-Top-Reg .
-
-cct:R2-Top-Product-Reg-Nom rdfs:subClassOf cct:R2-Top-Product-Reg-Qlt,
-        cct:R2-Top-Product-Top-Nom .
-
-cct:R3-Loc-Itv-Loc rdfs:subClassOf cct:R3-Loc-Itv-Top,
-        cct:R3-Loc-Ord-Loc,
-        cct:R3-Top-Itv-Loc .
-
-cct:R3-Loc-Nom-Loc rdfs:subClassOf cct:R3-Loc-Nom-Top,
-        cct:R3-Loc-Qlt-Loc,
-        cct:R3-Top-Nom-Loc .
-
-cct:R3-Loc-Ord-Loc rdfs:subClassOf cct:R3-Loc-Nom-Loc,
-        cct:R3-Loc-Ord-Top,
-        cct:R3-Top-Ord-Loc .
-
-cct:R3-Loc-Qlt-Loc rdfs:subClassOf cct:R3-Loc-Qlt-Top,
-        cct:R3-Loc-Top-Loc,
-        cct:R3-Top-Qlt-Loc .
-
-cct:R3-Loc-Ratio-Top rdfs:subClassOf cct:R3-Loc-Itv-Top,
-        cct:R3-Top-Ratio-Top .
-
-cct:R3-Loc-Top-Loc rdfs:subClassOf cct:R3-Loc-Top-Top,
-        cct:R3-Top-Top-Loc .
-
-cct:R3-Top-Ratio-Loc rdfs:subClassOf cct:R3-Top-Itv-Loc,
-        cct:R3-Top-Ratio-Top .
-
-cct:Itv a :Type ;
-    rdfs:label "Itv" ;
-    rdfs:subClassOf cct:Ord .
-
-cct:R2-Nom-Itv rdfs:subClassOf cct:R2-Nom-Ord,
-        cct:R2-Qlt-Itv .
-
-cct:R2-Nom-Nom rdfs:subClassOf cct:R2-Nom-Qlt,
-        cct:R2-Qlt-Nom .
-
-cct:R2-Nom-Ord rdfs:subClassOf cct:R2-Nom-Nom,
-        cct:R2-Qlt-Ord .
-
-cct:R2-Nom-Qlt rdfs:subClassOf cct:R2-Nom-Top,
-        cct:R2-Qlt-Qlt .
-
-cct:R2-Obj-Nom a :Type ;
-    rdfs:label "R2(Obj, Nom)" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 cct:Nom ;
-    rdfs:subClassOf cct:R2,
-        cct:R2-Obj-Qlt,
-        cct:R2-Top-Nom .
-
-cct:R2-Obj-Product-Reg-Nom a :Type ;
-    rdfs:label "R2(Obj, (Reg * Nom))" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 [ a :Type ;
-            rdfs:label "(Reg * Nom)" ;
-            rdf:_1 cct:Reg ;
-            rdf:_2 cct:Nom ;
-            rdfs:subClassOf :Product ] ;
-    rdfs:subClassOf cct:R2,
+    tf:containsType _:N44c263a6ef8f4675adda86230570b178,
+        _:N7c2156d5d8a249e8846517096a883972,
+        _:N9f5ac91deec74bb68ca3010fd5845e71,
+        _:Na3a40df6606e45138f2ad5f0b36112a6,
+        _:Nbc1c3bacde834453b6fbef1017209e6a,
+        _:Nda902efd90df428c9ac2111ebfe3738f,
+        _:Ne195d295707c4222864c6af58795ea20,
+        tf:Top,
+        cct:Bool,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Obj-Nom,
+        cct:R2-Obj-Product-Reg-Nom,
         cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
         cct:R2-Obj-Product-Top-Nom,
-        cct:R2-Top-Product-Reg-Nom .
-
-cct:R2-Obj-Product-Top-Qlt rdfs:subClassOf cct:R2-Obj-Product-Top-Top,
-        cct:R2-Top-Product-Top-Qlt .
-
-cct:R2-Obj-Product-Top-Top rdfs:subClassOf cct:R2-Obj-Top,
-        cct:R2-Top-Product-Top-Top .
-
-cct:R2-Obj-Reg a :Type ;
-    rdfs:label "R2(Obj, Reg)" ;
-    rdf:_1 cct:Obj ;
-    rdf:_2 cct:Reg ;
-    rdfs:subClassOf cct:R2,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Reg,
         cct:R2-Obj-Top,
-        cct:R2-Top-Reg .
-
-cct:R2-Qlt-Itv rdfs:subClassOf cct:R2-Qlt-Ord,
-        cct:R2-Top-Itv .
-
-cct:R2-Qlt-Nom rdfs:subClassOf cct:R2-Qlt-Qlt,
-        cct:R2-Top-Nom .
-
-cct:R2-Qlt-Ord rdfs:subClassOf cct:R2-Qlt-Nom,
-        cct:R2-Top-Ord .
-
-cct:R2-Qlt-Qlt rdfs:subClassOf cct:R2-Qlt-Top,
-        cct:R2-Top-Qlt .
-
-cct:R2-Top-Product-Reg-Qlt rdfs:subClassOf cct:R2-Top-Product-Reg-Top,
-        cct:R2-Top-Product-Top-Qlt .
-
-cct:R2-Top-Product-Reg-Top rdfs:subClassOf cct:R2-Top-Product-Top-Top .
-
-cct:R2-Top-Product-Top-Nom rdfs:subClassOf cct:R2-Top-Product-Top-Qlt .
-
-cct:R2-Top-Ratio rdfs:subClassOf cct:R2-Top-Itv .
-
-cct:R2-Top-Reg rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R3-Loc-Itv-Top rdfs:subClassOf cct:R3-Loc-Ord-Top,
-        cct:R3-Top-Itv-Top .
-
-cct:R3-Loc-Nom-Top rdfs:subClassOf cct:R3-Loc-Qlt-Top,
-        cct:R3-Top-Nom-Top .
-
-cct:R3-Loc-Ord-Top rdfs:subClassOf cct:R3-Loc-Nom-Top,
-        cct:R3-Top-Ord-Top .
-
-cct:R3-Loc-Qlt-Top rdfs:subClassOf cct:R3-Loc-Top-Top,
-        cct:R3-Top-Qlt-Top .
-
-cct:R3-Loc-Top-Top rdfs:subClassOf cct:R3-Top-Top-Top .
-
-cct:R3-Top-Itv-Loc rdfs:subClassOf cct:R3-Top-Itv-Top,
-        cct:R3-Top-Ord-Loc .
-
-cct:R3-Top-Nom-Loc rdfs:subClassOf cct:R3-Top-Nom-Top,
-        cct:R3-Top-Qlt-Loc .
-
-cct:R3-Top-Ord-Loc rdfs:subClassOf cct:R3-Top-Nom-Loc,
-        cct:R3-Top-Ord-Top .
-
-cct:R3-Top-Qlt-Loc rdfs:subClassOf cct:R3-Top-Qlt-Top,
-        cct:R3-Top-Top-Loc .
-
-cct:R3-Top-Ratio-Top rdfs:subClassOf cct:R3-Top-Itv-Top .
-
-cct:R3-Top-Top-Loc rdfs:subClassOf cct:R3-Top-Top-Top .
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Ratio,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top,
+        cct:R3-Loc-Itv-Loc,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Loc,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Loc,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Loc,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top,
+        cct:Ratio,
+        cct:Reg,
+        cct:Val ;
+    tf:input _:N643a199499c9412b84f68e008bf987c7,
+        _:Ne2585b27fe6e4e0fa2aad58b9de20919 ;
+    tf:output [ rdfs:label "R2(Ord, Ratio) via apply1" ;
+            tf:from _:N38fa4c30452d4d1092ef9b7561eb7cef,
+                [ rdfs:label "Ratio via swap" ;
+                    tf:from _:N5a05de90cf574a6991d7cbeecd786a52,
+                        _:N62a51cb1524e4a5bb67bfbff665f911a,
+                        [ rdfs:label "Ratio via ratio" ;
+                            tf:from _:N793329aba48d40359c39433913fd1934 ;
+                            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+                            tf:subtypeOf tf:Top,
+                                cct:Itv,
+                                cct:Nom,
+                                cct:Ord,
+                                cct:Qlt,
+                                cct:Ratio,
+                                cct:Val ;
+                            tf:type cct:Ratio ;
+                            tf:via cct:ratio ] ;
+                    tf:internal _:N793329aba48d40359c39433913fd1934 ;
+                    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+                    tf:subtypeOf tf:Top,
+                        cct:Itv,
+                        cct:Nom,
+                        cct:Ord,
+                        cct:Qlt,
+                        cct:Ratio,
+                        cct:Val ;
+                    tf:type cct:Ratio ;
+                    tf:via cct:swap ] ;
+            tf:internal _:N62a51cb1524e4a5bb67bfbff665f911a ;
+            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+            tf:subtypeOf tf:Top,
+                cct:R2-Nom-Itv,
+                cct:R2-Nom-Nom,
+                cct:R2-Nom-Ord,
+                cct:R2-Nom-Qlt,
+                cct:R2-Nom-Ratio,
+                cct:R2-Nom-Top,
+                cct:R2-Ord-Itv,
+                cct:R2-Ord-Nom,
+                cct:R2-Ord-Ord,
+                cct:R2-Ord-Qlt,
+                cct:R2-Ord-Ratio,
+                cct:R2-Ord-Top,
+                cct:R2-Qlt-Itv,
+                cct:R2-Qlt-Nom,
+                cct:R2-Qlt-Ord,
+                cct:R2-Qlt-Qlt,
+                cct:R2-Qlt-Ratio,
+                cct:R2-Qlt-Top,
+                cct:R2-Top-Itv,
+                cct:R2-Top-Nom,
+                cct:R2-Top-Ord,
+                cct:R2-Top-Qlt,
+                cct:R2-Top-Ratio,
+                cct:R2-Top-Top ;
+            tf:type cct:R2-Ord-Ratio ;
+            tf:via cct:apply1 ] .
 
 <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#pourPoint> rdfs:label "Unit hydrograph measurement"@en ;
     rdfs:comment "Point of measurement for the unit hydrograph"@en .
 
-cct:Bool a :Type ;
-    rdfs:label "Bool" ;
-    rdfs:subClassOf cct:Nom .
-
-cct:R2-Loc-Itv a :Type ;
-    rdfs:label "R2(Loc, Itv)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Itv ;
-    rdfs:subClassOf cct:R2,
-        cct:R2-Loc-Ord,
-        cct:R2-Top-Itv .
-
-cct:R2-Loc-Ord a :Type ;
-    rdfs:label "R2(Loc, Ord)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Ord ;
-    rdfs:subClassOf cct:R2,
-        cct:R2-Loc-Nom,
-        cct:R2-Top-Ord .
-
-cct:R2-Nom-Reg a :Type ;
-    rdfs:label "R2(Nom, Reg)" ;
-    rdf:_1 cct:Nom ;
-    rdf:_2 cct:Reg ;
-    rdfs:subClassOf cct:R2,
-        cct:R2-Nom-Top,
-        cct:R2-Qlt-Reg .
-
-cct:R2-Nom-Top rdfs:subClassOf cct:R2-Qlt-Top .
-
-cct:R2-Obj-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R2-Ord-Ratio a :Type ;
-    rdfs:label "R2(Ord, Ratio)" ;
-    rdf:_1 cct:Ord ;
-    rdf:_2 cct:Ratio ;
-    rdfs:subClassOf cct:R2,
-        cct:R2-Nom-Ratio,
-        cct:R2-Ord-Itv .
-
-cct:R2-Qlt-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R2-Top-Itv rdfs:subClassOf cct:R2-Top-Ord .
-
-cct:R2-Top-Ord rdfs:subClassOf cct:R2-Top-Nom .
-
-cct:R2-Top-Product-Top-Qlt rdfs:subClassOf cct:R2-Top-Product-Top-Top .
-
-cct:R2-Top-Product-Top-Top rdfs:subClassOf cct:R2-Top-Top .
-
-cct:R3-Top-Itv-Top rdfs:subClassOf cct:R3-Top-Ord-Top .
-
-cct:R3-Top-Nom-Top rdfs:subClassOf cct:R3-Top-Qlt-Top .
-
-cct:R3-Top-Ord-Top rdfs:subClassOf cct:R3-Top-Nom-Top .
-
-cct:R3-Top-Qlt-Top rdfs:subClassOf cct:R3-Top-Top-Top .
-
-cct:R3-Top-Top-Top rdfs:subClassOf :Top .
-
 <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> rdfs:label "DEM"@en ;
     rdfs:comment "Stowe, Vermont as a digital elevation model (Raster)"@en .
 
-cct:Obj a :Type ;
-    rdfs:label "Obj" ;
-    rdfs:subClassOf cct:Val .
+_:N1b005a4877fb4b54b098ab6497e8d339 rdfs:label "R2(Nom, Reg) via invert" ;
+    tf:from [ rdfs:label "R2(Loc, Nom) via join" ;
+            tf:from [ rdfs:label "R2(Obj, Nom) via get_attrR" ;
+                    tf:from _:Ne2585b27fe6e4e0fa2aad58b9de20919 ;
+                    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
+                    tf:subtypeOf tf:Top,
+                        cct:R2-Obj-Nom,
+                        cct:R2-Obj-Qlt,
+                        cct:R2-Obj-Top,
+                        cct:R2-Top-Nom,
+                        cct:R2-Top-Qlt,
+                        cct:R2-Top-Top ;
+                    tf:type cct:R2-Obj-Nom ;
+                    tf:via cct:get_attrR ],
+                [ rdfs:label "R2(Loc, Obj) via revert" ;
+                    tf:from [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
+                            tf:from _:Ne2585b27fe6e4e0fa2aad58b9de20919 ;
+                            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
+                            tf:subtypeOf tf:Top,
+                                cct:R2-Obj-Reg,
+                                cct:R2-Obj-Top,
+                                cct:R2-Top-Reg,
+                                cct:R2-Top-Top ;
+                            tf:type cct:R2-Obj-Reg ;
+                            tf:via cct:get_attrL ] ;
+                    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
+                    tf:type _:Na3a40df6606e45138f2ad5f0b36112a6 ;
+                    tf:via cct:revert ] ;
+            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
+            tf:subtypeOf tf:Top,
+                cct:R2-Loc-Nom,
+                cct:R2-Loc-Qlt,
+                cct:R2-Loc-Top,
+                cct:R2-Top-Nom,
+                cct:R2-Top-Qlt,
+                cct:R2-Top-Top ;
+            tf:type cct:R2-Loc-Nom ;
+            tf:via cct:join ] ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Nom-Reg ;
+    tf:via cct:invert .
 
-cct:R2-Loc-Nom a :Type ;
-    rdfs:label "R2(Loc, Nom)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Nom ;
-    rdfs:subClassOf cct:R2,
-        cct:R2-Loc-Qlt,
-        cct:R2-Top-Nom .
+_:N1e3e31b951b042a9bfdb6789d37a3fa1 rdfs:label "Ratio via size" ;
+    tf:from _:Nb2b5a3e16bc94e23b0911a40dc582adf ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:size .
 
-cct:R2-Top-Nom rdfs:subClassOf cct:R2-Top-Qlt .
+_:N2e785d5513764164a5c2c39aa6a03f8b rdfs:label "R2(Loc, Reg) via apply1" ;
+    tf:from _:Nebce5fe98e144450ba45159e932d525d,
+        [ rdfs:label "Reg via reify" ;
+            tf:from _:N9f22b936c3154b338215fe039b4126d5 ;
+            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
+            tf:subtypeOf tf:Top,
+                cct:Reg,
+                cct:Val ;
+            tf:type cct:Reg ;
+            tf:via cct:reify ] ;
+    tf:internal _:N9f22b936c3154b338215fe039b4126d5 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
+    tf:type _:Ne195d295707c4222864c6af58795ea20 ;
+    tf:via cct:apply1 .
 
-cct:R2-Top-Qlt rdfs:subClassOf cct:R2-Top-Top .
-
-cct:Val rdfs:subClassOf :Top .
-
-cct:Ord a :Type ;
-    rdfs:label "Ord" ;
-    rdfs:subClassOf cct:Nom .
-
-cct:R1-Loc a :Type ;
-    rdfs:label "R1(Loc)" ;
-    rdf:_1 cct:Loc ;
-    rdfs:subClassOf cct:R1,
-        cct:R1-Val .
-
-cct:Nom a :Type ;
-    rdfs:label "Nom" ;
-    rdfs:subClassOf cct:Qlt .
-
-cct:R2-Top-Top rdfs:subClassOf :Top .
-
-cct:R3-Loc-Ratio-Loc a :Type ;
-    rdfs:label "R3(Loc, Ratio, Loc)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Ratio ;
-    rdf:_3 cct:Loc ;
-    rdfs:subClassOf cct:R3,
+_:N45b984f7d1134dd5ad836dc633798b36 rdfs:label "R3(Loc, Ratio, Loc) via gridgraph" ;
+    tf:from _:N587b30de1a5f416baa5b2ab67d8b183c,
+        [ rdfs:label "R2(Loc, Ratio) via apply1" ;
+            tf:from [ rdfs:label "Ratio via ratio" ;
+                    tf:from _:N6eaa56e48aa9431886b6c6273e8bd483,
+                        [ rdfs:label "Ratio from source" ;
+                            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb19 ;
+                            tf:subtypeOf tf:Top,
+                                cct:Itv,
+                                cct:Nom,
+                                cct:Ord,
+                                cct:Qlt,
+                                cct:Ratio,
+                                cct:Val ;
+                            tf:type cct:Ratio ] ;
+                    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb19 ;
+                    tf:subtypeOf tf:Top,
+                        cct:Itv,
+                        cct:Nom,
+                        cct:Ord,
+                        cct:Qlt,
+                        cct:Ratio,
+                        cct:Val ;
+                    tf:type cct:Ratio ;
+                    tf:via cct:ratio ],
+                _:Nc18fbf76b7ed4aa0bed114b9ca3e6b5a ;
+            tf:internal _:N6eaa56e48aa9431886b6c6273e8bd483 ;
+            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb19 ;
+            tf:subtypeOf tf:Top,
+                cct:R2-Loc-Itv,
+                cct:R2-Loc-Nom,
+                cct:R2-Loc-Ord,
+                cct:R2-Loc-Qlt,
+                cct:R2-Loc-Ratio,
+                cct:R2-Loc-Top,
+                cct:R2-Top-Itv,
+                cct:R2-Top-Nom,
+                cct:R2-Top-Ord,
+                cct:R2-Top-Qlt,
+                cct:R2-Top-Ratio,
+                cct:R2-Top-Top ;
+            tf:type cct:R2-Loc-Ratio ;
+            tf:via cct:apply1 ] ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+    tf:subtypeOf tf:Top,
         cct:R3-Loc-Itv-Loc,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Loc,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Loc,
         cct:R3-Loc-Ratio-Top,
-        cct:R3-Top-Ratio-Loc .
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Loc,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Ratio-Loc ;
+    tf:via cct:gridgraph .
 
-cct:R2-Loc-Ratio a :Type ;
-    rdfs:label "R2(Loc, Ratio)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Ratio ;
-    rdfs:subClassOf cct:R2,
-        cct:R2-Loc-Itv,
-        cct:R2-Top-Ratio .
+_:N5859a14410704a06aa9fb3988b1a322b rdfs:label "R2(Loc, Nom) via revert" ;
+    tf:from [ rdfs:label "R2(Nom, Reg) via join" ;
+            tf:from _:N1b005a4877fb4b54b098ab6497e8d339,
+                [ rdfs:label "R2(Reg, Reg) via invert" ;
+                    tf:from _:N2e785d5513764164a5c2c39aa6a03f8b ;
+                    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
+                    tf:type _:N9f5ac91deec74bb68ca3010fd5845e71 ;
+                    tf:via cct:invert ] ;
+            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
+            tf:subtypeOf tf:Top,
+                cct:R2-Nom-Reg,
+                cct:R2-Nom-Top,
+                cct:R2-Qlt-Reg,
+                cct:R2-Qlt-Top,
+                cct:R2-Top-Reg,
+                cct:R2-Top-Top ;
+            tf:type cct:R2-Nom-Reg ;
+            tf:via cct:join ] ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Nom ;
+    tf:via cct:revert .
 
-cct:Reg a :Type ;
-    rdfs:label "Reg" ;
-    rdfs:subClassOf cct:Val .
+_:N5f40011a83c74b1b84da4d3ff1513f3e rdfs:label "Ratio via size" ;
+    tf:from _:N4f27905ee49a4928928eae5066ee29c9 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:size .
 
-cct:Loc a :Type ;
-    rdfs:label "Loc" ;
-    rdfs:subClassOf cct:Val .
+_:N72de7ae04566485a9ddb8b326a0088bd rdfs:label "Ratio via product" ;
+    tf:from _:N34fd57f12e3d40aaa513460b3d86d319 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb16 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:product .
 
-cct:Ratio a :Type ;
-    rdfs:label "Ratio" ;
-    rdfs:subClassOf cct:Itv .
+_:N97451b555b0c4030b063bd5ecc33437a rdfs:label "Bool via leq" ;
+    tf:from _:N1d25c988ff7447568e05675cc9802cb5 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb17 ;
+    tf:subtypeOf tf:Top,
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Bool ;
+    tf:via cct:leq .
 
-_:N0026866de42f42679643037ee23bb221 rdfs:label "R2(Loc, Ratio) via apply1" ;
-    :from [ rdfs:label "Ratio via ratio" ;
-            :from _:N4fab371503834b7e87125c7c5fb6b9a2,
-                [ rdfs:label "Ratio from source" ;
-                    :origin _:n51d36f44d9584dc5b33027d8002aedb7b19 ;
-                    :type cct:Ratio ] ;
-            :origin _:n51d36f44d9584dc5b33027d8002aedb7b19 ;
-            :type cct:Ratio ;
-            :via cct:ratio ],
-        _:Nff68e72a48b845bdb7ce1e5258995e37 ;
-    :internal _:N4fab371503834b7e87125c7c5fb6b9a2 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b19 ;
-    :type cct:R2-Loc-Ratio ;
-    :via cct:apply1 .
+_:Na2ce8004f73f4fdda8c3cb56832c3931 rdfs:label "Ord via classify" ;
+    tf:from _:N25ab3dd521b049e2afab4b780b31db5f ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb25 ;
+    tf:subtypeOf tf:Top,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Ord ;
+    tf:via cct:classify .
 
-_:N0874c084780d4a4889478c15591edc23 rdfs:label "Bool via leq" ;
-    :from _:N76f023af1f864a6f849257ecffc044aa ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b18 ;
-    :type cct:Bool ;
-    :via cct:leq .
+_:Na7371e82d3794e6cbf965ddc540f335c rdfs:label "R1(Loc) via nest" ;
+    tf:from _:N0737c655c4bf4f819a71fb1002c92b60 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Loc ;
+    tf:via cct:nest .
 
-_:N18fbe08869b843cf88ef17f5ecd7df0c rdfs:label "Bool via leq" ;
-    :from _:N8040f275dda84a52baa6c47065a86e96 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b17 ;
-    :type cct:Bool ;
-    :via cct:leq .
+_:Nb23368f9047a4e94b7577c286c4ba2cc rdfs:label "R2(Loc, R3(Loc, Ratio, Loc)) via apply2" ;
+    tf:from _:N510fc54c81024ccc8e8c038e47803231,
+        _:Na47107eb5e58424a9c2d45e3784923dd,
+        [ rdfs:label "R3(Loc, Ratio, Loc) via lgDist" ;
+            tf:from _:N45b984f7d1134dd5ad836dc633798b36,
+                _:N922d427d4a624feea669b0148300541c ;
+            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+            tf:subtypeOf tf:Top,
+                cct:R3-Loc-Itv-Loc,
+                cct:R3-Loc-Itv-Top,
+                cct:R3-Loc-Nom-Loc,
+                cct:R3-Loc-Nom-Top,
+                cct:R3-Loc-Ord-Loc,
+                cct:R3-Loc-Ord-Top,
+                cct:R3-Loc-Qlt-Loc,
+                cct:R3-Loc-Qlt-Top,
+                cct:R3-Loc-Ratio-Loc,
+                cct:R3-Loc-Ratio-Top,
+                cct:R3-Loc-Top-Loc,
+                cct:R3-Loc-Top-Top,
+                cct:R3-Top-Itv-Loc,
+                cct:R3-Top-Itv-Top,
+                cct:R3-Top-Nom-Loc,
+                cct:R3-Top-Nom-Top,
+                cct:R3-Top-Ord-Loc,
+                cct:R3-Top-Ord-Top,
+                cct:R3-Top-Qlt-Loc,
+                cct:R3-Top-Qlt-Top,
+                cct:R3-Top-Ratio-Loc,
+                cct:R3-Top-Ratio-Top,
+                cct:R3-Top-Top-Loc,
+                cct:R3-Top-Top-Top ;
+            tf:type cct:R3-Loc-Ratio-Loc ;
+            tf:via cct:lgDist ] ;
+    tf:internal _:N922d427d4a624feea669b0148300541c ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+    tf:type _:N44c263a6ef8f4675adda86230570b178 ;
+    tf:via cct:apply2 .
 
-_:N251b91aa76594482bf4e2a6ab6655d36 rdfs:label "Ratio via size" ;
-    :from _:Nd432aff769e1412d8ea9edc500dbd809 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b15 ;
-    :type cct:Ratio ;
-    :via cct:size .
+_:Nb554b97d932a426e9dda62f3d4d966b5 rdfs:label "Ratio via max" ;
+    tf:from _:N8def8e2a255e4aab98c9eba4c592d483 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:max .
 
-_:N2d04498e29e74e479d47ea2c19c7b40f rdfs:label "R1(Loc) via pi1" ;
-    :from [ rdfs:label "R2(Loc, Nom) via revert" ;
-            :from [ rdfs:label "R2(Nom, Reg) via join" ;
-                    :from [ rdfs:label "R2(Nom, Reg) via invert" ;
-                            :from [ rdfs:label "R2(Loc, Nom) via join" ;
-                                    :from [ rdfs:label "R2(Obj, Nom) via get_attrR" ;
-                                            :from _:Nce660ba9fa1c4eb390192d83e82f60bf ;
-                                            :origin _:n51d36f44d9584dc5b33027d8002aedb7b21 ;
-                                            :type cct:R2-Obj-Nom ;
-                                            :via cct:get_attrR ],
-                                        [ rdfs:label "R2(Loc, Obj) via revert" ;
-                                            :from [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
-                                                    :from _:Nce660ba9fa1c4eb390192d83e82f60bf ;
-                                                    :origin _:n51d36f44d9584dc5b33027d8002aedb7b21 ;
-                                                    :type cct:R2-Obj-Reg ;
-                                                    :via cct:get_attrL ] ;
-                                            :origin _:n51d36f44d9584dc5b33027d8002aedb7b21 ;
-                                            :type _:N9defdda53023450caf5e71e5723c85ea ;
-                                            :via cct:revert ] ;
-                                    :origin _:n51d36f44d9584dc5b33027d8002aedb7b21 ;
-                                    :type cct:R2-Loc-Nom ;
-                                    :via cct:join ] ;
-                            :origin _:n51d36f44d9584dc5b33027d8002aedb7b22 ;
-                            :type cct:R2-Nom-Reg ;
-                            :via cct:invert ],
-                        [ rdfs:label "R2(Reg, Reg) via invert" ;
-                            :from [ rdfs:label "R2(Loc, Reg) via apply1" ;
-                                    :from _:N0e5d5e36d850447da56a41544ce45314,
-                                        [ rdfs:label "Reg via reify" ;
-                                            :from _:N855956202d08475eb1b6c77bf40074fb ;
-                                            :origin _:n51d36f44d9584dc5b33027d8002aedb7b22 ;
-                                            :type cct:Reg ;
-                                            :via cct:reify ] ;
-                                    :internal _:N855956202d08475eb1b6c77bf40074fb ;
-                                    :origin _:n51d36f44d9584dc5b33027d8002aedb7b22 ;
-                                    :type _:Nc62bbbdaf93947b99d20ba973205e255 ;
-                                    :via cct:apply1 ] ;
-                            :origin _:n51d36f44d9584dc5b33027d8002aedb7b22 ;
-                            :type _:N4855bcdc0f1f40ee97f9f979f988b1c4 ;
-                            :via cct:invert ] ;
-                    :origin _:n51d36f44d9584dc5b33027d8002aedb7b22 ;
-                    :type cct:R2-Nom-Reg ;
-                    :via cct:join ] ;
-            :origin _:n51d36f44d9584dc5b33027d8002aedb7b22 ;
-            :type cct:R2-Loc-Nom ;
-            :via cct:revert ] ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b23 ;
-    :type cct:R1-Loc ;
-    :via cct:pi1 .
+_:Nc313c545a1634a9e99abcd07eb4dbec3 rdfs:label "Bool via leq" ;
+    tf:from _:N39468dfa3ce140efac59644bc72cb685 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb18 ;
+    tf:subtypeOf tf:Top,
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Bool ;
+    tf:via cct:leq .
 
-_:N2d5609de1fe94c56893dbcf20c9710cd rdfs:label "Ord via classify" ;
-    :from _:N8ea55e3b21114e0484ef97571b2eb20d ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b25 ;
-    :type cct:Ord ;
-    :via cct:classify .
+_:Ncb6b1e8820024a1d9767c10578119a61 rdfs:label "R1(Loc) via pi1" ;
+    tf:from _:N5859a14410704a06aa9fb3988b1a322b ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb23 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Loc ;
+    tf:via cct:pi1 .
 
-_:N3074578e9b2541f78aa8397bb940faff rdfs:label "Ratio via product" ;
-    :from _:Nf4d9ecde533d40fd918d07a9b85db865 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b16 ;
-    :type cct:Ratio ;
-    :via cct:product .
+_:Ne330958130b54166ae3c3284fb56afbc rdfs:label "R1(R3(Loc, Ratio, Loc)) via pi2" ;
+    tf:from _:Nb23368f9047a4e94b7577c286c4ba2cc ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+    tf:type _:Nbc1c3bacde834453b6fbef1017209e6a ;
+    tf:via cct:pi2 .
 
-_:N385d1ca83f9c437eaedf19864cf77795 rdfs:label "Ratio via max" ;
-    :from _:N87eef197978b45a192552e289ff396e7 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-    :type cct:Ratio ;
-    :via cct:max .
+_:N00ff6ade30b64ed8af59ba887940cbd9 rdfs:label "Ratio from source" ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb17 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio .
 
-_:N3b09f2eef13345f2b29a5af54e46746c rdfs:label "R1(Loc) via nest" ;
-    :from _:N4f2b8cbfcb8841909204d929be2c3d5e ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-    :type cct:R1-Loc ;
-    :via cct:nest .
+_:N0737c655c4bf4f819a71fb1002c92b60 rdfs:label "(internal)" ;
+    tf:from _:Naf6006ab0afc414d8804858a2b7c6921 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 .
 
-_:N51d7d80b97274b7aa53e96711d5013aa rdfs:label "R3(Loc, Ratio, Loc) via lgDist" ;
-    :from _:N82ed9969a3c44607badf397f8813c830,
-        [ rdfs:label "R3(Loc, Ratio, Loc) via gridgraph" ;
-            :from _:N0026866de42f42679643037ee23bb221,
-                _:N084c9829d229439198412d96b93b2632 ;
-            :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-            :type cct:R3-Loc-Ratio-Loc ;
-            :via cct:gridgraph ] ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-    :type cct:R3-Loc-Ratio-Loc ;
-    :via cct:lgDist .
+_:N1d25c988ff7447568e05675cc9802cb5 rdfs:label "(internal)" ;
+    tf:from _:N00ff6ade30b64ed8af59ba887940cbd9,
+        _:Na2f5bc40d6744933b85cbb63dfa1edc3 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb17 .
 
-_:Nc0442ebc62c14fac9f63b359190cb669 rdfs:label "R1(R3(Loc, Ratio, Loc)) via pi2" ;
-    :from [ rdfs:label "R2(Loc, R3(Loc, Ratio, Loc)) via apply2" ;
-            :from _:N51d7d80b97274b7aa53e96711d5013aa,
-                _:N82fd9b73f7a04265bd20ae6965c0ef63,
-                _:Nac6fa9fbbeb641aa9ed7e94117f80fc4 ;
-            :internal _:N82ed9969a3c44607badf397f8813c830 ;
-            :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-            :type _:N7ef04ca47f1b438e8a97e3d83b180ec2 ;
-            :via cct:apply2 ] ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-    :type _:N2f9ebce38c524a7b885bf5754558f54c ;
-    :via cct:pi2 .
+_:N25ab3dd521b049e2afab4b780b31db5f rdfs:label "(internal)" ;
+    tf:from _:N7360088c978a42778198e56a6b768258 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb25 .
 
-_:Nd6469c7b9540483c9de5b717fadba03e rdfs:label "Ratio via size" ;
-    :from _:Na09b4f2a35e649cab5432fed4d517504 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b26 ;
-    :type cct:Ratio ;
-    :via cct:size .
+_:N34fd57f12e3d40aaa513460b3d86d319 rdfs:label "(internal)" ;
+    tf:from _:Nacc5758bc99f43a29a7d2d9da0e67774,
+        _:Ne454986d82a643f99c3a3bb6b3b879b7 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb16 .
 
-_:N05f2d41e579b40ab81732eb54468fda5 rdfs:label "Ratio from source" ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b17 ;
-    :type cct:Ratio .
+_:N38fa4c30452d4d1092ef9b7561eb7cef rdfs:label "R2(Ord, Ratio) via groupby" ;
+    tf:from _:N1e3e31b951b042a9bfdb6789d37a3fa1,
+        _:Nf2b917f010ca43c5945f2d132609e515 ;
+    tf:internal _:Nb2b5a3e16bc94e23b0911a40dc582adf ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Nom-Itv,
+        cct:R2-Nom-Nom,
+        cct:R2-Nom-Ord,
+        cct:R2-Nom-Qlt,
+        cct:R2-Nom-Ratio,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Itv,
+        cct:R2-Ord-Nom,
+        cct:R2-Ord-Ord,
+        cct:R2-Ord-Qlt,
+        cct:R2-Ord-Ratio,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Itv,
+        cct:R2-Qlt-Nom,
+        cct:R2-Qlt-Ord,
+        cct:R2-Qlt-Qlt,
+        cct:R2-Qlt-Ratio,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Ord-Ratio ;
+    tf:via cct:groupby .
 
-_:N0e5d5e36d850447da56a41544ce45314 rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
-    :from _:Nff1bc48b6d514c1ab4e189a564a6b8b6 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b22 ;
-    :type _:N0b9ee2d58408458487204d2466f39f2e ;
-    :via cct:accumulate .
+_:N39468dfa3ce140efac59644bc72cb685 rdfs:label "(internal)" ;
+    tf:from _:N633e63b5c49941a7841468a82292d1ec,
+        _:Na696d336d04e42568d2a4c4fb7f8f6af ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb18 .
 
-_:N150adb93c1b142c28273f7a19ef83f20 rdfs:label "R2(Loc, Ratio) via select" ;
-    :from _:N05f2d41e579b40ab81732eb54468fda5,
-        _:N18fbe08869b843cf88ef17f5ecd7df0c,
-        _:Naa26f3968fdc4254ad857a33b153f8ee ;
-    :internal _:N8040f275dda84a52baa6c47065a86e96 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b17 ;
-    :type cct:R2-Loc-Ratio ;
-    :via cct:select .
-
-_:N2f9ebce38c524a7b885bf5754558f54c a :Type ;
-    rdfs:label "R1(R3(Loc, Ratio, Loc))" ;
-    rdf:_1 cct:R3-Loc-Ratio-Loc ;
-    rdfs:subClassOf cct:R1 .
-
-_:N3fc0bd28e3914597b855a842782beeed rdfs:label "R2(Loc, Ratio) via apply1" ;
-    :from _:N251b91aa76594482bf4e2a6ab6655d36,
-        _:Ne7df4e3353264689bfc39fac78214c31 ;
-    :internal _:Nd432aff769e1412d8ea9edc500dbd809 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b15 ;
-    :type cct:R2-Loc-Ratio ;
-    :via cct:apply1 .
-
-_:N4855bcdc0f1f40ee97f9f979f988b1c4 a :Type ;
-    rdfs:label "R2(Reg, Reg)" ;
-    rdf:_1 cct:Reg ;
-    rdf:_2 cct:Reg ;
-    rdfs:subClassOf cct:R2 .
-
-_:N4b1fd8a5520f473e8f97ffc315f45f57 rdfs:label "R2(Ord, Ratio) via groupby" ;
-    :from _:Ncfeecdfc74984b30b05c2db7edd2e3a1,
-        _:Nd6469c7b9540483c9de5b717fadba03e ;
-    :internal _:Na09b4f2a35e649cab5432fed4d517504 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b26 ;
-    :type cct:R2-Ord-Ratio ;
-    :via cct:groupby .
-
-_:N4f2b8cbfcb8841909204d929be2c3d5e rdfs:label "(internal)" ;
-    :from _:Nc6c628713c534ace9620da7c1df63f11 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 .
-
-_:N4fab371503834b7e87125c7c5fb6b9a2 rdfs:label "(internal)" ;
-    :from _:Nff68e72a48b845bdb7ce1e5258995e37 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b19 .
-
-_:N51e39351674f40df8da6b676cb677020 rdfs:label "(internal)" ;
-    :from _:Nd846831423d14a6eaf28a11431e17d78,
-        _:Nec30b631f984419fa134c30c2228be6d ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b26 .
-
-_:N54cc4d7ae43e4c0680a7f7181d420bb4 rdfs:label "R3(Loc, Ratio, Loc) via relunion" ;
-    :from _:Nc0442ebc62c14fac9f63b359190cb669 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-    :type cct:R3-Loc-Ratio-Loc ;
-    :via cct:relunion .
-
-_:N76f023af1f864a6f849257ecffc044aa rdfs:label "(internal)" ;
-    :from _:N150adb93c1b142c28273f7a19ef83f20,
-        _:Nbc6d7f029e174f49a4355c12a91be78d ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b18 .
-
-_:N7ef04ca47f1b438e8a97e3d83b180ec2 a :Type ;
+_:N44c263a6ef8f4675adda86230570b178 a tf:Type ;
     rdfs:label "R2(Loc, R3(Loc, Ratio, Loc))" ;
     rdf:_1 cct:Loc ;
     rdf:_2 cct:R3-Loc-Ratio-Loc ;
     rdfs:subClassOf cct:R2 .
 
-_:N8040f275dda84a52baa6c47065a86e96 rdfs:label "(internal)" ;
-    :from _:N05f2d41e579b40ab81732eb54468fda5,
-        _:Naa26f3968fdc4254ad857a33b153f8ee ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b17 .
+_:N4f27905ee49a4928928eae5066ee29c9 rdfs:label "(internal)" ;
+    tf:from _:Nbc0b21a7646c41fd9a5e9ce65f69528b ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb15 .
 
-_:N82ed9969a3c44607badf397f8813c830 rdfs:label "(internal)" ;
-    :from _:N82fd9b73f7a04265bd20ae6965c0ef63,
-        _:Nac6fa9fbbeb641aa9ed7e94117f80fc4 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 .
+_:N510fc54c81024ccc8e8c038e47803231 rdfs:label "R2(Loc, R1(Loc)) via apply" ;
+    tf:from _:Na7371e82d3794e6cbf965ddc540f335c,
+        _:Naf6006ab0afc414d8804858a2b7c6921 ;
+    tf:internal _:N0737c655c4bf4f819a71fb1002c92b60 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+    tf:type _:N7c2156d5d8a249e8846517096a883972 ;
+    tf:via cct:apply .
 
-_:N82fd9b73f7a04265bd20ae6965c0ef63 rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
-    :from _:N084c9829d229439198412d96b93b2632 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-    :type _:N0b9ee2d58408458487204d2466f39f2e ;
-    :via cct:accumulate .
+_:N5a05de90cf574a6991d7cbeecd786a52 rdfs:label "Ratio from source" ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio .
 
-_:N855956202d08475eb1b6c77bf40074fb rdfs:label "(internal)" ;
-    :from _:N0e5d5e36d850447da56a41544ce45314 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b22 .
+_:N633e63b5c49941a7841468a82292d1ec rdfs:label "R2(Loc, Ratio) via select" ;
+    tf:from _:N00ff6ade30b64ed8af59ba887940cbd9,
+        _:N97451b555b0c4030b063bd5ecc33437a,
+        _:Na2f5bc40d6744933b85cbb63dfa1edc3 ;
+    tf:internal _:N1d25c988ff7447568e05675cc9802cb5 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb17 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Ratio ;
+    tf:via cct:select .
 
-_:N87eef197978b45a192552e289ff396e7 rdfs:label "(internal)" ;
-    :from _:N54cc4d7ae43e4c0680a7f7181d420bb4 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 .
+_:N6eaa56e48aa9431886b6c6273e8bd483 rdfs:label "(internal)" ;
+    tf:from _:Nc18fbf76b7ed4aa0bed114b9ca3e6b5a ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb19 .
 
-_:N8ea55e3b21114e0484ef97571b2eb20d rdfs:label "(internal)" ;
-    :from _:Nfba877a7408f4455a8166bdce7791b4e ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b25 .
+_:N7360088c978a42778198e56a6b768258 rdfs:label "R2(Loc, Ratio) via groupbyL" ;
+    tf:from _:N89d06658fc214885a5e1a241ecd2be8d,
+        _:Nb554b97d932a426e9dda62f3d4d966b5 ;
+    tf:internal _:N8def8e2a255e4aab98c9eba4c592d483 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Ratio ;
+    tf:via cct:groupbyL .
 
-_:N9defdda53023450caf5e71e5723c85ea a :Type ;
+_:N793329aba48d40359c39433913fd1934 rdfs:label "(internal)" ;
+    tf:from _:N5a05de90cf574a6991d7cbeecd786a52,
+        _:N62a51cb1524e4a5bb67bfbff665f911a ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 .
+
+_:N89d06658fc214885a5e1a241ecd2be8d rdfs:label "R3(Loc, Ratio, Loc) via relunion" ;
+    tf:from _:Ne330958130b54166ae3c3284fb56afbc ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Loc-Itv-Loc,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Loc,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Loc,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Loc,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Ratio-Loc ;
+    tf:via cct:relunion .
+
+_:N8def8e2a255e4aab98c9eba4c592d483 rdfs:label "(internal)" ;
+    tf:from _:N89d06658fc214885a5e1a241ecd2be8d ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 .
+
+_:N922d427d4a624feea669b0148300541c rdfs:label "(internal)" ;
+    tf:from _:N510fc54c81024ccc8e8c038e47803231,
+        _:Na47107eb5e58424a9c2d45e3784923dd ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 .
+
+_:N9f22b936c3154b338215fe039b4126d5 rdfs:label "(internal)" ;
+    tf:from _:Nebce5fe98e144450ba45159e932d525d ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 .
+
+_:N9f5ac91deec74bb68ca3010fd5845e71 a tf:Type ;
+    rdfs:label "R2(Reg, Reg)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf cct:R2 .
+
+_:Na2f5bc40d6744933b85cbb63dfa1edc3 rdfs:label "R2(Loc, Ratio) via apply2" ;
+    tf:from _:N72de7ae04566485a9ddb8b326a0088bd,
+        _:Nacc5758bc99f43a29a7d2d9da0e67774,
+        _:Ne454986d82a643f99c3a3bb6b3b879b7 ;
+    tf:internal _:N34fd57f12e3d40aaa513460b3d86d319 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb16 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Ratio ;
+    tf:via cct:apply2 .
+
+_:Na3a40df6606e45138f2ad5f0b36112a6 a tf:Type ;
     rdfs:label "R2(Loc, Obj)" ;
     rdf:_1 cct:Loc ;
     rdf:_2 cct:Obj ;
     rdfs:subClassOf cct:R2 .
 
-_:Na09b4f2a35e649cab5432fed4d517504 rdfs:label "(internal)" ;
-    :from _:Ncfeecdfc74984b30b05c2db7edd2e3a1 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b26 .
+_:Na47107eb5e58424a9c2d45e3784923dd rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
+    tf:from _:N587b30de1a5f416baa5b2ab67d8b183c ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+    tf:type _:N7c2156d5d8a249e8846517096a883972 ;
+    tf:via cct:accumulate .
 
-_:Naa26f3968fdc4254ad857a33b153f8ee rdfs:label "R2(Loc, Ratio) via apply2" ;
-    :from _:N3074578e9b2541f78aa8397bb940faff,
-        _:N3fc0bd28e3914597b855a842782beeed,
-        _:Nae7d50090ce64131b8545eb27d2ef1fa ;
-    :internal _:Nf4d9ecde533d40fd918d07a9b85db865 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b16 ;
-    :type cct:R2-Loc-Ratio ;
-    :via cct:apply2 .
+_:Na696d336d04e42568d2a4c4fb7f8f6af rdfs:label "Ratio from source" ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb18 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio .
 
-_:Nac6fa9fbbeb641aa9ed7e94117f80fc4 rdfs:label "R2(Loc, R1(Loc)) via apply" ;
-    :from _:N3b09f2eef13345f2b29a5af54e46746c,
-        _:Nc6c628713c534ace9620da7c1df63f11 ;
-    :internal _:N4f2b8cbfcb8841909204d929be2c3d5e ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-    :type _:N0b9ee2d58408458487204d2466f39f2e ;
-    :via cct:apply .
+_:Nacc5758bc99f43a29a7d2d9da0e67774 rdfs:label "R2(Loc, Ratio) via apply1" ;
+    tf:from _:N5f40011a83c74b1b84da4d3ff1513f3e,
+        _:Nbc0b21a7646c41fd9a5e9ce65f69528b ;
+    tf:internal _:N4f27905ee49a4928928eae5066ee29c9 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Ratio ;
+    tf:via cct:apply1 .
 
-_:Nae7d50090ce64131b8545eb27d2ef1fa rdfs:label "R2(Loc, Ratio) via slope" ;
-    :from _:N7f852c6cc5e743819d32e1ef310181e1 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b14 ;
-    :type cct:R2-Loc-Ratio ;
-    :via cct:slope .
+_:Naf6006ab0afc414d8804858a2b7c6921 rdfs:label "R1(Loc) via pi1" ;
+    tf:from _:N587b30de1a5f416baa5b2ab67d8b183c ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Loc ;
+    tf:via cct:pi1 .
 
-_:Nbc6d7f029e174f49a4355c12a91be78d rdfs:label "Ratio from source" ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b18 ;
-    :type cct:Ratio .
+_:Nb2b5a3e16bc94e23b0911a40dc582adf rdfs:label "(internal)" ;
+    tf:from _:Nf2b917f010ca43c5945f2d132609e515 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 .
 
-_:Nc62bbbdaf93947b99d20ba973205e255 a :Type ;
+_:Nbc0b21a7646c41fd9a5e9ce65f69528b rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
+    tf:from _:N028c521563e142d781b5b28649a80b0e ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
+    tf:type _:N7c2156d5d8a249e8846517096a883972 ;
+    tf:via cct:accumulate .
+
+_:Nbc1c3bacde834453b6fbef1017209e6a a tf:Type ;
+    rdfs:label "R1(R3(Loc, Ratio, Loc))" ;
+    rdf:_1 cct:R3-Loc-Ratio-Loc ;
+    rdfs:subClassOf cct:R1 .
+
+_:Nc18fbf76b7ed4aa0bed114b9ca3e6b5a rdfs:label "R2(Loc, Ratio) via select" ;
+    tf:from _:N633e63b5c49941a7841468a82292d1ec,
+        _:Na696d336d04e42568d2a4c4fb7f8f6af,
+        _:Nc313c545a1634a9e99abcd07eb4dbec3 ;
+    tf:internal _:N39468dfa3ce140efac59644bc72cb685 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb18 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Ratio ;
+    tf:via cct:select .
+
+_:Ne195d295707c4222864c6af58795ea20 a tf:Type ;
     rdfs:label "R2(Loc, Reg)" ;
     rdf:_1 cct:Loc ;
     rdf:_2 cct:Reg ;
     rdfs:subClassOf cct:R2 .
 
-_:Nc6c628713c534ace9620da7c1df63f11 rdfs:label "R1(Loc) via pi1" ;
-    :from _:N084c9829d229439198412d96b93b2632 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-    :type cct:R1-Loc ;
-    :via cct:pi1 .
+_:Ne454986d82a643f99c3a3bb6b3b879b7 rdfs:label "R2(Loc, Ratio) via slope" ;
+    tf:from _:N643a199499c9412b84f68e008bf987c7 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb14 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Ratio ;
+    tf:via cct:slope .
 
-_:Ncfeecdfc74984b30b05c2db7edd2e3a1 rdfs:label "R2(Loc, Ord) via apply1" ;
-    :from _:N2d5609de1fe94c56893dbcf20c9710cd,
-        _:Nfba877a7408f4455a8166bdce7791b4e ;
-    :internal _:N8ea55e3b21114e0484ef97571b2eb20d ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b25 ;
-    :type cct:R2-Loc-Ord ;
-    :via cct:apply1 .
+_:Nebce5fe98e144450ba45159e932d525d rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
+    tf:from _:N028c521563e142d781b5b28649a80b0e ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
+    tf:type _:N7c2156d5d8a249e8846517096a883972 ;
+    tf:via cct:accumulate .
 
-_:Nd432aff769e1412d8ea9edc500dbd809 rdfs:label "(internal)" ;
-    :from _:Ne7df4e3353264689bfc39fac78214c31 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b15 .
+_:Nf2b917f010ca43c5945f2d132609e515 rdfs:label "R2(Loc, Ord) via apply1" ;
+    tf:from _:N7360088c978a42778198e56a6b768258,
+        _:Na2ce8004f73f4fdda8c3cb56832c3931 ;
+    tf:internal _:N25ab3dd521b049e2afab4b780b31db5f ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb25 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Ord ;
+    tf:via cct:apply1 .
 
-_:Nd846831423d14a6eaf28a11431e17d78 rdfs:label "Ratio from source" ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b26 ;
-    :type cct:Ratio .
+_:N028c521563e142d781b5b28649a80b0e rdfs:label "R2(Loc, Loc) via flowdirgraph" ;
+    tf:from _:N643a199499c9412b84f68e008bf987c7 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb20 ;
+    tf:type _:Nda902efd90df428c9ac2111ebfe3738f ;
+    tf:via cct:flowdirgraph .
 
-_:Ne7df4e3353264689bfc39fac78214c31 rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
-    :from _:Nff1bc48b6d514c1ab4e189a564a6b8b6 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b15 ;
-    :type _:N0b9ee2d58408458487204d2466f39f2e ;
-    :via cct:accumulate .
+_:N587b30de1a5f416baa5b2ab67d8b183c rdfs:label "R2(Loc, Loc) via subset" ;
+    tf:from _:N028c521563e142d781b5b28649a80b0e,
+        _:Ncb6b1e8820024a1d9767c10578119a61 ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb23 ;
+    tf:type _:Nda902efd90df428c9ac2111ebfe3738f ;
+    tf:via cct:subset .
 
-_:Nf4d9ecde533d40fd918d07a9b85db865 rdfs:label "(internal)" ;
-    :from _:N3fc0bd28e3914597b855a842782beeed,
-        _:Nae7d50090ce64131b8545eb27d2ef1fa ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b16 .
+_:N62a51cb1524e4a5bb67bfbff665f911a rdfs:label "(internal)" ;
+    tf:from _:N38fa4c30452d4d1092ef9b7561eb7cef ;
+    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 .
 
-_:Nfba877a7408f4455a8166bdce7791b4e rdfs:label "R2(Loc, Ratio) via groupbyL" ;
-    :from _:N385d1ca83f9c437eaedf19864cf77795,
-        _:N54cc4d7ae43e4c0680a7f7181d420bb4 ;
-    :internal _:N87eef197978b45a192552e289ff396e7 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b24 ;
-    :type cct:R2-Loc-Ratio ;
-    :via cct:groupbyL .
+_:N643a199499c9412b84f68e008bf987c7 rdfs:label "R2(Loc, Itv) from source" ;
+    tf:origin <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Itv .
 
-_:Nff68e72a48b845bdb7ce1e5258995e37 rdfs:label "R2(Loc, Ratio) via select" ;
-    :from _:N0874c084780d4a4889478c15591edc23,
-        _:N150adb93c1b142c28273f7a19ef83f20,
-        _:Nbc6d7f029e174f49a4355c12a91be78d ;
-    :internal _:N76f023af1f864a6f849257ecffc044aa ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b18 ;
-    :type cct:R2-Loc-Ratio ;
-    :via cct:select .
-
-_:N084c9829d229439198412d96b93b2632 rdfs:label "R2(Loc, Loc) via subset" ;
-    :from _:N2d04498e29e74e479d47ea2c19c7b40f,
-        _:Nff1bc48b6d514c1ab4e189a564a6b8b6 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b23 ;
-    :type _:Ne3b1c7bc1c5d416bb5f21b5cc03d3a20 ;
-    :via cct:subset .
-
-_:N7f852c6cc5e743819d32e1ef310181e1 rdfs:label "R2(Loc, Itv) from source" ;
-    :origin <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> ;
-    :type cct:R2-Loc-Itv .
-
-_:Nce660ba9fa1c4eb390192d83e82f60bf rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
-    :origin <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#pourPoint> ;
-    :type cct:R2-Obj-Product-Reg-Nom .
-
-_:Ne3b1c7bc1c5d416bb5f21b5cc03d3a20 a :Type ;
+_:Nda902efd90df428c9ac2111ebfe3738f a tf:Type ;
     rdfs:label "R2(Loc, Loc)" ;
     rdf:_1 cct:Loc ;
     rdf:_2 cct:Loc ;
     rdfs:subClassOf cct:R2 .
 
-_:Nec30b631f984419fa134c30c2228be6d rdfs:label "(internal)" ;
-    :from _:N4b1fd8a5520f473e8f97ffc315f45f57 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b26 .
+_:Ne2585b27fe6e4e0fa2aad58b9de20919 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    tf:origin <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#pourPoint> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom .
 
-_:Nff1bc48b6d514c1ab4e189a564a6b8b6 rdfs:label "R2(Loc, Loc) via flowdirgraph" ;
-    :from _:N7f852c6cc5e743819d32e1ef310181e1 ;
-    :origin _:n51d36f44d9584dc5b33027d8002aedb7b20 ;
-    :type _:Ne3b1c7bc1c5d416bb5f21b5cc03d3a20 ;
-    :via cct:flowdirgraph .
-
-_:n51d36f44d9584dc5b33027d8002aedb7b14 rdfs:label "Slope"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb14 rdfs:label "Slope"@en ;
     rdfs:comment "A raster dataset with slope values for each raster cell"@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b23 rdfs:label "Flow directions"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb23 rdfs:label "Flow directions"@en ;
     rdfs:comment "Flow direction raster of the Stowe area clipped by the Stowe watershed."@en .
 
-_:N0b9ee2d58408458487204d2466f39f2e a :Type ;
+_:N7c2156d5d8a249e8846517096a883972 a tf:Type ;
     rdfs:label "R2(Loc, R1(Loc))" ;
     rdf:_1 cct:Loc ;
     rdf:_2 cct:R1-Loc ;
     rdfs:subClassOf cct:R2 .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b16 rdfs:label "Flow velocity"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb16 rdfs:label "Flow velocity"@en ;
     rdfs:comment "A raster with velocity values of water flow"@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b20 rdfs:label "Flow directions"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb20 rdfs:label "Flow directions"@en ;
     rdfs:comment "Flow direction raster of the Stowe area"@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b25 rdfs:label "Isochrone zones"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb25 rdfs:label "Isochrone zones"@en ;
     rdfs:comment "A raster of flow lengths to the outlet point weighted by flow impedance classified into a set of isochrone ranges incrementally increasing by 1,800 seconds"@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b17 rdfs:label "Lower-bounded flow velocity"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb17 rdfs:label "Lower-bounded flow velocity"@en ;
     rdfs:comment "A raster with velocity values of water flow with a minimum of 0.2 meters per second"@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b18 rdfs:label "Bounded flow Velocity"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb18 rdfs:label "Bounded flow Velocity"@en ;
     rdfs:comment "A raster with velocity values of water flow with a minimum of 0.2 meters per second and a maximum of 2 meters per second"@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b19 rdfs:label "Stowe flow impedances"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb19 rdfs:label "Stowe flow impedances"@en ;
     rdfs:comment "A raster with weights representing flow impedances."@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b21 rdfs:label "Outlet Point"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb21 rdfs:label "Outlet Point"@en ;
     rdfs:comment "Snapping of outlet downstream point to the stream as rendered in the DEM"@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b15 rdfs:label "Flow accumulation"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb15 rdfs:label "Flow accumulation"@en ;
     rdfs:comment "A raster layer that indicates where water is most likely to accumulate in the Stowe area"@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b22 rdfs:label "Watershed"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb22 rdfs:label "Watershed"@en ;
     rdfs:comment "All of the Stowe area that flows to the specified oulet point"@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b26 rdfs:label "Unit Hydrograph Ordinates"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb26 rdfs:label "Unit Hydrograph Ordinates"@en ;
     rdfs:comment "A standalone table containing unit hydrograph measurements"@en .
 
-_:n51d36f44d9584dc5b33027d8002aedb7b24 rdfs:label "Flow Time"@en ;
+_:n9ba28b43d9e94fee920fee69709ab9beb24 rdfs:label "Flow Time"@en ;
     rdfs:comment "A raster of flow lengths to the outlet point weighted by flow impedances."@en .
 
