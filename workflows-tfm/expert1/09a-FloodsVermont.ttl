@@ -12,60 +12,60 @@ wfexpert1:FloodsVermont a wf:Workflow,
         tf:Transformation ;
     wf:edge [ wf:applicationOf abstr:Slope ;
             wf:input1 <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb14 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b14 ;
             rdfs:comment "Calculate slopes in Glover" ],
         [ wf:applicationOf abstr:ExtractByMask ;
-            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb20 ;
-            wf:input2 _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb23 ;
+            wf:input1 _:n14ec4b9c95384dceaaa7c0921d27fa00b20 ;
+            wf:input2 _:n14ec4b9c95384dceaaa7c0921d27fa00b22 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b23 ;
             rdfs:comment "extract flow directions by watershed mask" ],
         [ wf:applicationOf abstr:FlowLength ;
-            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb19 ;
-            wf:input2 _:n9ba28b43d9e94fee920fee69709ab9beb23 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+            wf:input1 _:n14ec4b9c95384dceaaa7c0921d27fa00b19 ;
+            wf:input2 _:n14ec4b9c95384dceaaa7c0921d27fa00b23 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
             rdfs:comment "calculate the upstream or downstream distance, or weighted distance, along the flow path for each cell" ],
         [ wf:applicationOf abstr:RasterToIsoRaster ;
-            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb25 ;
+            wf:input1 _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b25 ;
             rdfs:comment "reclassify flow time values to specific ranges (Isochrones raster)" ],
         [ wf:applicationOf abstr:CreateUnitHydrograph ;
-            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb25 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+            wf:input1 _:n14ec4b9c95384dceaaa7c0921d27fa00b25 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b26 ;
             rdfs:comment "convert to unit hydrograph" ],
         [ wf:applicationOf abstr:VelocityFieldDEM ;
-            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb14 ;
-            wf:input2 _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb16 ;
+            wf:input1 _:n14ec4b9c95384dceaaa7c0921d27fa00b14 ;
+            wf:input2 _:n14ec4b9c95384dceaaa7c0921d27fa00b15 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b16 ;
             rdfs:comment "Calculate slope-area term (Maidment et al. equation)" ],
         [ wf:applicationOf abstr:con1 ;
-            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb16 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb17 ;
+            wf:input1 _:n14ec4b9c95384dceaaa7c0921d27fa00b16 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b17 ;
             rdfs:comment "set a lower bound of 0.02" ],
         [ wf:applicationOf abstr:con1 ;
-            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb17 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb18 ;
+            wf:input1 _:n14ec4b9c95384dceaaa7c0921d27fa00b17 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b18 ;
             rdfs:comment "set an upper bound of 2" ],
         [ wf:applicationOf abstr:LocalMapAlgebraInvert ;
-            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb18 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb19 ;
+            wf:input1 _:n14ec4b9c95384dceaaa7c0921d27fa00b18 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b19 ;
             rdfs:comment "Create a weight (impedance) grid" ],
         [ wf:applicationOf abstr:FlowDirection ;
             wf:input1 <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb20 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b20 ;
             rdfs:comment "get directions of water flow" ],
         [ wf:applicationOf abstr:FlowAccumulation ;
-            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb20 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
+            wf:input1 _:n14ec4b9c95384dceaaa7c0921d27fa00b20 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b15 ;
             rdfs:comment "get accumulations of water flow" ],
         [ wf:applicationOf abstr:SnapPourPoint ;
             wf:input1 <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#pourPoint> ;
-            wf:input2 _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
+            wf:input2 _:n14ec4b9c95384dceaaa7c0921d27fa00b15 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b21 ;
             rdfs:comment "snap pour point to river (Distance: 60m)" ],
         [ wf:applicationOf abstr:Watershed ;
-            wf:input1 _:n9ba28b43d9e94fee920fee69709ab9beb20 ;
-            wf:input2 _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
-            wf:output _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
+            wf:input1 _:n14ec4b9c95384dceaaa7c0921d27fa00b20 ;
+            wf:input2 _:n14ec4b9c95384dceaaa7c0921d27fa00b21 ;
+            wf:output _:n14ec4b9c95384dceaaa7c0921d27fa00b22 ;
             rdfs:comment "get watershed" ] ;
     wf:source <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#pourPoint>,
         <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> ;
@@ -101,13 +101,13 @@ wfexpert1:FloodsVermont a wf:Workflow,
         cct:slope,
         cct:subset,
         cct:swap ;
-    tf:containsType _:N44c263a6ef8f4675adda86230570b178,
-        _:N7c2156d5d8a249e8846517096a883972,
-        _:N9f5ac91deec74bb68ca3010fd5845e71,
-        _:Na3a40df6606e45138f2ad5f0b36112a6,
-        _:Nbc1c3bacde834453b6fbef1017209e6a,
-        _:Nda902efd90df428c9ac2111ebfe3738f,
-        _:Ne195d295707c4222864c6af58795ea20,
+    tf:containsType _:N318d0c9a861f475e9111f74128f795db,
+        _:N4e364a7dab9d49a3a4005919eeb428f7,
+        _:N595c2f7c189546ad9650da4d642656df,
+        _:N5f9e21e9ce3248b0931f313d1a59e348,
+        _:Na0d80e9af1db4df49d948a2b8c742c6b,
+        _:Ndf52c99f9f524d72b536481cea4eb9da,
+        _:Neadbbfa1234142038863e19f0d1f3a12,
         tf:Top,
         cct:Bool,
         cct:Itv,
@@ -193,38 +193,75 @@ wfexpert1:FloodsVermont a wf:Workflow,
         cct:Ratio,
         cct:Reg,
         cct:Val ;
-    tf:input _:N643a199499c9412b84f68e008bf987c7,
-        _:Ne2585b27fe6e4e0fa2aad58b9de20919 ;
+    tf:input _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N7182d48dbe45421a932cd6cd88bc429d ;
     tf:output [ rdfs:label "R2(Ord, Ratio) via apply1" ;
-            tf:from _:N38fa4c30452d4d1092ef9b7561eb7cef,
-                [ rdfs:label "Ratio via swap" ;
-                    tf:from _:N5a05de90cf574a6991d7cbeecd786a52,
-                        _:N62a51cb1524e4a5bb67bfbff665f911a,
-                        [ rdfs:label "Ratio via ratio" ;
-                            tf:from _:N793329aba48d40359c39433913fd1934 ;
-                            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
-                            tf:subtypeOf tf:Top,
-                                cct:Itv,
-                                cct:Nom,
-                                cct:Ord,
-                                cct:Qlt,
-                                cct:Ratio,
-                                cct:Val ;
-                            tf:type cct:Ratio ;
-                            tf:via cct:ratio ] ;
-                    tf:internal _:N793329aba48d40359c39433913fd1934 ;
-                    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
-                    tf:subtypeOf tf:Top,
-                        cct:Itv,
-                        cct:Nom,
-                        cct:Ord,
-                        cct:Qlt,
-                        cct:Ratio,
-                        cct:Val ;
-                    tf:type cct:Ratio ;
-                    tf:via cct:swap ] ;
-            tf:internal _:N62a51cb1524e4a5bb67bfbff665f911a ;
-            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+            tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+                _:N06d17ae7039f441488f1b636af158ec7,
+                _:N095e1e638b964028867f95f9acc79904,
+                _:N0cb6561e25584b87bf15b6d6049cb283,
+                _:N1cd23a84defe4ac79a1200e3edf782f8,
+                _:N1e6aa33c55174016a86b76988d371253,
+                _:N238c8e8261d440488a83c8f8f0e99be8,
+                _:N25a96ca17b1c4befb3554a0bed931b96,
+                _:N29488f9a90464bac9d4924664ce051fd,
+                _:N2963a88d8d92474e85aa3c65044abb04,
+                _:N2b043eb6aedd4aa59f637f330c7a38be,
+                _:N3bcead2119d54c65932a94c795a9eb76,
+                _:N3be2a66d9a0443ea83201170d27dd33e,
+                _:N3e3a62491510403da6864bdae056bc0d,
+                _:N3fe8aecf216447a6ab0fbc198f3a324f,
+                _:N4011a4b2ab7f44eba942b89035e52fcc,
+                _:N4453d342ee40464b8c02c4ba36b319fa,
+                _:N465c1ae174e640539198031d4b9af317,
+                _:N48b198e8813a44df8be01a2cb9ee560f,
+                _:N4b0f063cdfed469a93015ed9f200d415,
+                _:N4c276d027eb74e4bb24bb7e5361baa62,
+                _:N503e027b7d164247925464ad9deb5c08,
+                _:N56c64cf87dcf404da99a465235e36135,
+                _:N59d75904533d40018a507daf53f3494b,
+                _:N5bb9c145333946399c711da40360a5be,
+                _:N5ef306e42fcb411e94b9cbad8db8017c,
+                _:N6387c1cb49844d7cb710935cf8047ac1,
+                _:N64981102001e4ef0944ad6903cd76a42,
+                _:N71193799557f47f6943c1423aecb8f21,
+                _:N7182d48dbe45421a932cd6cd88bc429d,
+                _:N7a1d94ef726f42499f2e61583c2c2495,
+                _:N7fe8542c57c942fca4f5e097b0715f0e,
+                _:N864a0a8d17ac48f08bf799287d50f4a0,
+                _:N8bff2a7dbdd6414a8487476efbd3c98b,
+                _:N8eac878ae870457ea98765e9b2418fd7,
+                _:N9b759755f98a4f71bc0c88fc1b92eb93,
+                _:Na6e0911b46c74ab984708ffd587e6fb8,
+                _:Na81097a0d7544e7198e0271cf60be86d,
+                _:Naa285ecae1d347158776b5e30e7518bf,
+                _:Naae8c57a0273444b8f4a9f17dd2baec2,
+                _:Nae120c4f11944a1f8a427da6d4f56256,
+                _:Nb24a54b0198849c29c73d327ee3bc10a,
+                _:Nb2c78c7eb664426f8e0f6a16129a3959,
+                _:Nba0b743fed554896849285ec4249d50b,
+                _:Nbf2e08e6d9a74401842462555dd0d428,
+                _:Nc0c77302cf394427a9301fd4f6d92ce6,
+                _:Nc3cafb500d0a4324a5be0e23a647c195,
+                _:Nc5e517fde4844a5c836317b2aa4e874a,
+                _:Nc7e210ad675f4e79ab479728730d525b,
+                _:Nc83cf06d3ba145dca76c84271069cf5c,
+                _:Nca2cbefff3d2443fb0e5afb395170298,
+                _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+                _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+                _:Nd7f7600392224c638c7f022c52068948,
+                _:Ndb689c19f59247a58fbf7e80cab28a6d,
+                _:Ndea8bc3532b742c4aafcdc7e30dae26c,
+                _:Ne02ee7b410724c709e40851878db027e,
+                _:Nee86998679f5464994fdabb77ce48a9d,
+                _:Nf2c42ed5c2644774b5f40a43abe93448,
+                _:Nf4643e7647a54b10ab69c62d3b38538e,
+                _:Nf82aeb7addaf4024b67d260573145fda,
+                _:Nff5364fd470144c89b6994d9ee4b5298 ;
+            tf:from _:N503e027b7d164247925464ad9deb5c08,
+                _:Nc0c77302cf394427a9301fd4f6d92ce6 ;
+            tf:internal _:N48b198e8813a44df8be01a2cb9ee560f ;
+            tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b26 ;
             tf:subtypeOf tf:Top,
                 cct:R2-Nom-Itv,
                 cct:R2-Nom-Nom,
@@ -259,58 +296,16 @@ wfexpert1:FloodsVermont a wf:Workflow,
 <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> rdfs:label "DEM"@en ;
     rdfs:comment "Stowe, Vermont as a digital elevation model (Raster)"@en .
 
-_:N1b005a4877fb4b54b098ab6497e8d339 rdfs:label "R2(Nom, Reg) via invert" ;
-    tf:from [ rdfs:label "R2(Loc, Nom) via join" ;
-            tf:from [ rdfs:label "R2(Obj, Nom) via get_attrR" ;
-                    tf:from _:Ne2585b27fe6e4e0fa2aad58b9de20919 ;
-                    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
-                    tf:subtypeOf tf:Top,
-                        cct:R2-Obj-Nom,
-                        cct:R2-Obj-Qlt,
-                        cct:R2-Obj-Top,
-                        cct:R2-Top-Nom,
-                        cct:R2-Top-Qlt,
-                        cct:R2-Top-Top ;
-                    tf:type cct:R2-Obj-Nom ;
-                    tf:via cct:get_attrR ],
-                [ rdfs:label "R2(Loc, Obj) via revert" ;
-                    tf:from [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
-                            tf:from _:Ne2585b27fe6e4e0fa2aad58b9de20919 ;
-                            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
-                            tf:subtypeOf tf:Top,
-                                cct:R2-Obj-Reg,
-                                cct:R2-Obj-Top,
-                                cct:R2-Top-Reg,
-                                cct:R2-Top-Top ;
-                            tf:type cct:R2-Obj-Reg ;
-                            tf:via cct:get_attrL ] ;
-                    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
-                    tf:type _:Na3a40df6606e45138f2ad5f0b36112a6 ;
-                    tf:via cct:revert ] ;
-            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb21 ;
-            tf:subtypeOf tf:Top,
-                cct:R2-Loc-Nom,
-                cct:R2-Loc-Qlt,
-                cct:R2-Loc-Top,
-                cct:R2-Top-Nom,
-                cct:R2-Top-Qlt,
-                cct:R2-Top-Top ;
-            tf:type cct:R2-Loc-Nom ;
-            tf:via cct:join ] ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Nom-Reg,
-        cct:R2-Nom-Top,
-        cct:R2-Qlt-Reg,
-        cct:R2-Qlt-Top,
-        cct:R2-Top-Reg,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Nom-Reg ;
-    tf:via cct:invert .
-
-_:N1e3e31b951b042a9bfdb6789d37a3fa1 rdfs:label "Ratio via size" ;
-    tf:from _:Nb2b5a3e16bc94e23b0911a40dc582adf ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+_:N503e027b7d164247925464ad9deb5c08 rdfs:label "Ratio via swap" ;
+    tf:depends _:N48b198e8813a44df8be01a2cb9ee560f,
+        _:N4c276d027eb74e4bb24bb7e5361baa62,
+        _:N71193799557f47f6943c1423aecb8f21,
+        _:Ndea8bc3532b742c4aafcdc7e30dae26c ;
+    tf:from _:N48b198e8813a44df8be01a2cb9ee560f,
+        _:N4c276d027eb74e4bb24bb7e5361baa62,
+        _:N71193799557f47f6943c1423aecb8f21 ;
+    tf:internal _:Ndea8bc3532b742c4aafcdc7e30dae26c ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b26 ;
     tf:subtypeOf tf:Top,
         cct:Itv,
         cct:Nom,
@@ -319,127 +314,47 @@ _:N1e3e31b951b042a9bfdb6789d37a3fa1 rdfs:label "Ratio via size" ;
         cct:Ratio,
         cct:Val ;
     tf:type cct:Ratio ;
-    tf:via cct:size .
+    tf:via cct:swap .
 
-_:N2e785d5513764164a5c2c39aa6a03f8b rdfs:label "R2(Loc, Reg) via apply1" ;
-    tf:from _:Nebce5fe98e144450ba45159e932d525d,
-        [ rdfs:label "Reg via reify" ;
-            tf:from _:N9f22b936c3154b338215fe039b4126d5 ;
-            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
-            tf:subtypeOf tf:Top,
-                cct:Reg,
-                cct:Val ;
-            tf:type cct:Reg ;
-            tf:via cct:reify ] ;
-    tf:internal _:N9f22b936c3154b338215fe039b4126d5 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
-    tf:type _:Ne195d295707c4222864c6af58795ea20 ;
-    tf:via cct:apply1 .
+_:N595c2f7c189546ad9650da4d642656df a tf:Type ;
+    rdfs:label "R2(Loc, Obj)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Obj ;
+    rdfs:subClassOf cct:R2 .
 
-_:N45b984f7d1134dd5ad836dc633798b36 rdfs:label "R3(Loc, Ratio, Loc) via gridgraph" ;
-    tf:from _:N587b30de1a5f416baa5b2ab67d8b183c,
-        [ rdfs:label "R2(Loc, Ratio) via apply1" ;
-            tf:from [ rdfs:label "Ratio via ratio" ;
-                    tf:from _:N6eaa56e48aa9431886b6c6273e8bd483,
-                        [ rdfs:label "Ratio from source" ;
-                            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb19 ;
-                            tf:subtypeOf tf:Top,
-                                cct:Itv,
-                                cct:Nom,
-                                cct:Ord,
-                                cct:Qlt,
-                                cct:Ratio,
-                                cct:Val ;
-                            tf:type cct:Ratio ] ;
-                    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb19 ;
-                    tf:subtypeOf tf:Top,
-                        cct:Itv,
-                        cct:Nom,
-                        cct:Ord,
-                        cct:Qlt,
-                        cct:Ratio,
-                        cct:Val ;
-                    tf:type cct:Ratio ;
-                    tf:via cct:ratio ],
-                _:Nc18fbf76b7ed4aa0bed114b9ca3e6b5a ;
-            tf:internal _:N6eaa56e48aa9431886b6c6273e8bd483 ;
-            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb19 ;
-            tf:subtypeOf tf:Top,
-                cct:R2-Loc-Itv,
-                cct:R2-Loc-Nom,
-                cct:R2-Loc-Ord,
-                cct:R2-Loc-Qlt,
-                cct:R2-Loc-Ratio,
-                cct:R2-Loc-Top,
-                cct:R2-Top-Itv,
-                cct:R2-Top-Nom,
-                cct:R2-Top-Ord,
-                cct:R2-Top-Qlt,
-                cct:R2-Top-Ratio,
-                cct:R2-Top-Top ;
-            tf:type cct:R2-Loc-Ratio ;
-            tf:via cct:apply1 ] ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
-    tf:subtypeOf tf:Top,
-        cct:R3-Loc-Itv-Loc,
-        cct:R3-Loc-Itv-Top,
-        cct:R3-Loc-Nom-Loc,
-        cct:R3-Loc-Nom-Top,
-        cct:R3-Loc-Ord-Loc,
-        cct:R3-Loc-Ord-Top,
-        cct:R3-Loc-Qlt-Loc,
-        cct:R3-Loc-Qlt-Top,
-        cct:R3-Loc-Ratio-Loc,
-        cct:R3-Loc-Ratio-Top,
-        cct:R3-Loc-Top-Loc,
-        cct:R3-Loc-Top-Top,
-        cct:R3-Top-Itv-Loc,
-        cct:R3-Top-Itv-Top,
-        cct:R3-Top-Nom-Loc,
-        cct:R3-Top-Nom-Top,
-        cct:R3-Top-Ord-Loc,
-        cct:R3-Top-Ord-Top,
-        cct:R3-Top-Qlt-Loc,
-        cct:R3-Top-Qlt-Top,
-        cct:R3-Top-Ratio-Loc,
-        cct:R3-Top-Ratio-Top,
-        cct:R3-Top-Top-Loc,
-        cct:R3-Top-Top-Top ;
-    tf:type cct:R3-Loc-Ratio-Loc ;
-    tf:via cct:gridgraph .
+_:N5f9e21e9ce3248b0931f313d1a59e348 a tf:Type ;
+    rdfs:label "R2(Reg, Reg)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf cct:R2 .
 
-_:N5859a14410704a06aa9fb3988b1a322b rdfs:label "R2(Loc, Nom) via revert" ;
-    tf:from [ rdfs:label "R2(Nom, Reg) via join" ;
-            tf:from _:N1b005a4877fb4b54b098ab6497e8d339,
-                [ rdfs:label "R2(Reg, Reg) via invert" ;
-                    tf:from _:N2e785d5513764164a5c2c39aa6a03f8b ;
-                    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
-                    tf:type _:N9f5ac91deec74bb68ca3010fd5845e71 ;
-                    tf:via cct:invert ] ;
-            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
-            tf:subtypeOf tf:Top,
-                cct:R2-Nom-Reg,
-                cct:R2-Nom-Top,
-                cct:R2-Qlt-Reg,
-                cct:R2-Qlt-Top,
-                cct:R2-Top-Reg,
-                cct:R2-Top-Top ;
-            tf:type cct:R2-Nom-Reg ;
-            tf:via cct:join ] ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Loc-Nom,
-        cct:R2-Loc-Qlt,
-        cct:R2-Loc-Top,
-        cct:R2-Top-Nom,
-        cct:R2-Top-Qlt,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Loc-Nom ;
-    tf:via cct:revert .
+_:Na0d80e9af1db4df49d948a2b8c742c6b a tf:Type ;
+    rdfs:label "R1(R3(Loc, Ratio, Loc))" ;
+    rdf:_1 cct:R3-Loc-Ratio-Loc ;
+    rdfs:subClassOf cct:R1 .
 
-_:N5f40011a83c74b1b84da4d3ff1513f3e rdfs:label "Ratio via size" ;
-    tf:from _:N4f27905ee49a4928928eae5066ee29c9 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
+_:Ndf52c99f9f524d72b536481cea4eb9da a tf:Type ;
+    rdfs:label "R2(Loc, Reg)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Reg ;
+    rdfs:subClassOf cct:R2 .
+
+_:Neadbbfa1234142038863e19f0d1f3a12 a tf:Type ;
+    rdfs:label "R2(Loc, R3(Loc, Ratio, Loc))" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:R3-Loc-Ratio-Loc ;
+    rdfs:subClassOf cct:R2 .
+
+_:N318d0c9a861f475e9111f74128f795db a tf:Type ;
+    rdfs:label "R2(Loc, Loc)" ;
+    rdf:_1 cct:Loc ;
+    rdf:_2 cct:Loc ;
+    rdfs:subClassOf cct:R2 .
+
+_:N4c276d027eb74e4bb24bb7e5361baa62 rdfs:label "Ratio via ratio" ;
+    tf:depends _:Ndea8bc3532b742c4aafcdc7e30dae26c ;
+    tf:from _:Ndea8bc3532b742c4aafcdc7e30dae26c ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b26 ;
     tf:subtypeOf tf:Top,
         cct:Itv,
         cct:Nom,
@@ -448,166 +363,72 @@ _:N5f40011a83c74b1b84da4d3ff1513f3e rdfs:label "Ratio via size" ;
         cct:Ratio,
         cct:Val ;
     tf:type cct:Ratio ;
-    tf:via cct:size .
+    tf:via cct:ratio .
 
-_:N72de7ae04566485a9ddb8b326a0088bd rdfs:label "Ratio via product" ;
-    tf:from _:N34fd57f12e3d40aaa513460b3d86d319 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb16 ;
-    tf:subtypeOf tf:Top,
-        cct:Itv,
-        cct:Nom,
-        cct:Ord,
-        cct:Qlt,
-        cct:Ratio,
-        cct:Val ;
-    tf:type cct:Ratio ;
-    tf:via cct:product .
+_:n14ec4b9c95384dceaaa7c0921d27fa00b14 rdfs:label "Slope"@en ;
+    rdfs:comment "A raster dataset with slope values for each raster cell"@en .
 
-_:N97451b555b0c4030b063bd5ecc33437a rdfs:label "Bool via leq" ;
-    tf:from _:N1d25c988ff7447568e05675cc9802cb5 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb17 ;
-    tf:subtypeOf tf:Top,
-        cct:Bool,
-        cct:Nom,
-        cct:Qlt,
-        cct:Val ;
-    tf:type cct:Bool ;
-    tf:via cct:leq .
-
-_:Na2ce8004f73f4fdda8c3cb56832c3931 rdfs:label "Ord via classify" ;
-    tf:from _:N25ab3dd521b049e2afab4b780b31db5f ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb25 ;
-    tf:subtypeOf tf:Top,
-        cct:Nom,
-        cct:Ord,
-        cct:Qlt,
-        cct:Val ;
-    tf:type cct:Ord ;
-    tf:via cct:classify .
-
-_:Na7371e82d3794e6cbf965ddc540f335c rdfs:label "R1(Loc) via nest" ;
-    tf:from _:N0737c655c4bf4f819a71fb1002c92b60 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
-    tf:subtypeOf tf:Top,
-        cct:R1-Loc,
-        cct:R1-Top,
-        cct:R1-Val ;
-    tf:type cct:R1-Loc ;
-    tf:via cct:nest .
-
-_:Nb23368f9047a4e94b7577c286c4ba2cc rdfs:label "R2(Loc, R3(Loc, Ratio, Loc)) via apply2" ;
-    tf:from _:N510fc54c81024ccc8e8c038e47803231,
-        _:Na47107eb5e58424a9c2d45e3784923dd,
-        [ rdfs:label "R3(Loc, Ratio, Loc) via lgDist" ;
-            tf:from _:N45b984f7d1134dd5ad836dc633798b36,
-                _:N922d427d4a624feea669b0148300541c ;
-            tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
-            tf:subtypeOf tf:Top,
-                cct:R3-Loc-Itv-Loc,
-                cct:R3-Loc-Itv-Top,
-                cct:R3-Loc-Nom-Loc,
-                cct:R3-Loc-Nom-Top,
-                cct:R3-Loc-Ord-Loc,
-                cct:R3-Loc-Ord-Top,
-                cct:R3-Loc-Qlt-Loc,
-                cct:R3-Loc-Qlt-Top,
-                cct:R3-Loc-Ratio-Loc,
-                cct:R3-Loc-Ratio-Top,
-                cct:R3-Loc-Top-Loc,
-                cct:R3-Loc-Top-Top,
-                cct:R3-Top-Itv-Loc,
-                cct:R3-Top-Itv-Top,
-                cct:R3-Top-Nom-Loc,
-                cct:R3-Top-Nom-Top,
-                cct:R3-Top-Ord-Loc,
-                cct:R3-Top-Ord-Top,
-                cct:R3-Top-Qlt-Loc,
-                cct:R3-Top-Qlt-Top,
-                cct:R3-Top-Ratio-Loc,
-                cct:R3-Top-Ratio-Top,
-                cct:R3-Top-Top-Loc,
-                cct:R3-Top-Top-Top ;
-            tf:type cct:R3-Loc-Ratio-Loc ;
-            tf:via cct:lgDist ] ;
-    tf:internal _:N922d427d4a624feea669b0148300541c ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
-    tf:type _:N44c263a6ef8f4675adda86230570b178 ;
-    tf:via cct:apply2 .
-
-_:Nb554b97d932a426e9dda62f3d4d966b5 rdfs:label "Ratio via max" ;
-    tf:from _:N8def8e2a255e4aab98c9eba4c592d483 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
-    tf:subtypeOf tf:Top,
-        cct:Itv,
-        cct:Nom,
-        cct:Ord,
-        cct:Qlt,
-        cct:Ratio,
-        cct:Val ;
-    tf:type cct:Ratio ;
-    tf:via cct:max .
-
-_:Nc313c545a1634a9e99abcd07eb4dbec3 rdfs:label "Bool via leq" ;
-    tf:from _:N39468dfa3ce140efac59644bc72cb685 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb18 ;
-    tf:subtypeOf tf:Top,
-        cct:Bool,
-        cct:Nom,
-        cct:Qlt,
-        cct:Val ;
-    tf:type cct:Bool ;
-    tf:via cct:leq .
-
-_:Ncb6b1e8820024a1d9767c10578119a61 rdfs:label "R1(Loc) via pi1" ;
-    tf:from _:N5859a14410704a06aa9fb3988b1a322b ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb23 ;
-    tf:subtypeOf tf:Top,
-        cct:R1-Loc,
-        cct:R1-Top,
-        cct:R1-Val ;
-    tf:type cct:R1-Loc ;
-    tf:via cct:pi1 .
-
-_:Ne330958130b54166ae3c3284fb56afbc rdfs:label "R1(R3(Loc, Ratio, Loc)) via pi2" ;
-    tf:from _:Nb23368f9047a4e94b7577c286c4ba2cc ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
-    tf:type _:Nbc1c3bacde834453b6fbef1017209e6a ;
-    tf:via cct:pi2 .
-
-_:N00ff6ade30b64ed8af59ba887940cbd9 rdfs:label "Ratio from source" ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb17 ;
-    tf:subtypeOf tf:Top,
-        cct:Itv,
-        cct:Nom,
-        cct:Ord,
-        cct:Qlt,
-        cct:Ratio,
-        cct:Val ;
-    tf:type cct:Ratio .
-
-_:N0737c655c4bf4f819a71fb1002c92b60 rdfs:label "(internal)" ;
-    tf:from _:Naf6006ab0afc414d8804858a2b7c6921 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 .
-
-_:N1d25c988ff7447568e05675cc9802cb5 rdfs:label "(internal)" ;
-    tf:from _:N00ff6ade30b64ed8af59ba887940cbd9,
-        _:Na2f5bc40d6744933b85cbb63dfa1edc3 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb17 .
-
-_:N25ab3dd521b049e2afab4b780b31db5f rdfs:label "(internal)" ;
-    tf:from _:N7360088c978a42778198e56a6b768258 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb25 .
-
-_:N34fd57f12e3d40aaa513460b3d86d319 rdfs:label "(internal)" ;
-    tf:from _:Nacc5758bc99f43a29a7d2d9da0e67774,
-        _:Ne454986d82a643f99c3a3bb6b3b879b7 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb16 .
-
-_:N38fa4c30452d4d1092ef9b7561eb7cef rdfs:label "R2(Ord, Ratio) via groupby" ;
-    tf:from _:N1e3e31b951b042a9bfdb6789d37a3fa1,
-        _:Nf2b917f010ca43c5945f2d132609e515 ;
-    tf:internal _:Nb2b5a3e16bc94e23b0911a40dc582adf ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+_:Nc0c77302cf394427a9301fd4f6d92ce6 rdfs:label "R2(Ord, Ratio) via groupby" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N1cd23a84defe4ac79a1200e3edf782f8,
+        _:N1e6aa33c55174016a86b76988d371253,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3be2a66d9a0443ea83201170d27dd33e,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N59d75904533d40018a507daf53f3494b,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N64981102001e4ef0944ad6903cd76a42,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N7fe8542c57c942fca4f5e097b0715f0e,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N8eac878ae870457ea98765e9b2418fd7,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc5e517fde4844a5c836317b2aa4e874a,
+        _:Nc7e210ad675f4e79ab479728730d525b,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Nd7f7600392224c638c7f022c52068948,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Ne02ee7b410724c709e40851878db027e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Nc7e210ad675f4e79ab479728730d525b,
+        _:Nd7f7600392224c638c7f022c52068948 ;
+    tf:internal _:N7fe8542c57c942fca4f5e097b0715f0e ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b26 ;
     tf:subtypeOf tf:Top,
         cct:R2-Nom-Itv,
         cct:R2-Nom-Nom,
@@ -636,31 +457,31 @@ _:N38fa4c30452d4d1092ef9b7561eb7cef rdfs:label "R2(Ord, Ratio) via groupby" ;
     tf:type cct:R2-Ord-Ratio ;
     tf:via cct:groupby .
 
-_:N39468dfa3ce140efac59644bc72cb685 rdfs:label "(internal)" ;
-    tf:from _:N633e63b5c49941a7841468a82292d1ec,
-        _:Na696d336d04e42568d2a4c4fb7f8f6af ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb18 .
+_:Nd7f7600392224c638c7f022c52068948 rdfs:label "Ratio via size" ;
+    tf:depends _:N7fe8542c57c942fca4f5e097b0715f0e ;
+    tf:from _:N7fe8542c57c942fca4f5e097b0715f0e ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b26 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:size .
 
-_:N44c263a6ef8f4675adda86230570b178 a tf:Type ;
-    rdfs:label "R2(Loc, R3(Loc, Ratio, Loc))" ;
+_:n14ec4b9c95384dceaaa7c0921d27fa00b23 rdfs:label "Flow directions"@en ;
+    rdfs:comment "Flow direction raster of the Stowe area clipped by the Stowe watershed."@en .
+
+_:N4e364a7dab9d49a3a4005919eeb428f7 a tf:Type ;
+    rdfs:label "R2(Loc, R1(Loc))" ;
     rdf:_1 cct:Loc ;
-    rdf:_2 cct:R3-Loc-Ratio-Loc ;
+    rdf:_2 cct:R1-Loc ;
     rdfs:subClassOf cct:R2 .
 
-_:N4f27905ee49a4928928eae5066ee29c9 rdfs:label "(internal)" ;
-    tf:from _:Nbc0b21a7646c41fd9a5e9ce65f69528b ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb15 .
-
-_:N510fc54c81024ccc8e8c038e47803231 rdfs:label "R2(Loc, R1(Loc)) via apply" ;
-    tf:from _:Na7371e82d3794e6cbf965ddc540f335c,
-        _:Naf6006ab0afc414d8804858a2b7c6921 ;
-    tf:internal _:N0737c655c4bf4f819a71fb1002c92b60 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
-    tf:type _:N7c2156d5d8a249e8846517096a883972 ;
-    tf:via cct:apply .
-
-_:N5a05de90cf574a6991d7cbeecd786a52 rdfs:label "Ratio from source" ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 ;
+_:N71193799557f47f6943c1423aecb8f21 rdfs:label "Ratio from source" ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b26 ;
     tf:subtypeOf tf:Top,
         cct:Itv,
         cct:Nom,
@@ -670,37 +491,293 @@ _:N5a05de90cf574a6991d7cbeecd786a52 rdfs:label "Ratio from source" ;
         cct:Val ;
     tf:type cct:Ratio .
 
-_:N633e63b5c49941a7841468a82292d1ec rdfs:label "R2(Loc, Ratio) via select" ;
-    tf:from _:N00ff6ade30b64ed8af59ba887940cbd9,
-        _:N97451b555b0c4030b063bd5ecc33437a,
-        _:Na2f5bc40d6744933b85cbb63dfa1edc3 ;
-    tf:internal _:N1d25c988ff7447568e05675cc9802cb5 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb17 ;
+_:Ndea8bc3532b742c4aafcdc7e30dae26c rdfs:label "(internal)" ;
+    tf:depends _:N48b198e8813a44df8be01a2cb9ee560f,
+        _:N71193799557f47f6943c1423aecb8f21 ;
+    tf:from _:N48b198e8813a44df8be01a2cb9ee560f,
+        _:N71193799557f47f6943c1423aecb8f21 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b26 .
+
+_:n14ec4b9c95384dceaaa7c0921d27fa00b16 rdfs:label "Flow velocity"@en ;
+    rdfs:comment "A raster with velocity values of water flow"@en .
+
+_:n14ec4b9c95384dceaaa7c0921d27fa00b20 rdfs:label "Flow directions"@en ;
+    rdfs:comment "Flow direction raster of the Stowe area"@en .
+
+_:n14ec4b9c95384dceaaa7c0921d27fa00b25 rdfs:label "Isochrone zones"@en ;
+    rdfs:comment "A raster of flow lengths to the outlet point weighted by flow impedance classified into a set of isochrone ranges incrementally increasing by 1,800 seconds"@en .
+
+_:N48b198e8813a44df8be01a2cb9ee560f rdfs:label "(internal)" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N1cd23a84defe4ac79a1200e3edf782f8,
+        _:N1e6aa33c55174016a86b76988d371253,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3be2a66d9a0443ea83201170d27dd33e,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N59d75904533d40018a507daf53f3494b,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N64981102001e4ef0944ad6903cd76a42,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N7fe8542c57c942fca4f5e097b0715f0e,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N8eac878ae870457ea98765e9b2418fd7,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nc0c77302cf394427a9301fd4f6d92ce6,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc5e517fde4844a5c836317b2aa4e874a,
+        _:Nc7e210ad675f4e79ab479728730d525b,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Nd7f7600392224c638c7f022c52068948,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Ne02ee7b410724c709e40851878db027e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Nc0c77302cf394427a9301fd4f6d92ce6 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b26 .
+
+_:N64981102001e4ef0944ad6903cd76a42 rdfs:label "Ord via classify" ;
+    tf:depends _:Nc5e517fde4844a5c836317b2aa4e874a ;
+    tf:from _:Nc5e517fde4844a5c836317b2aa4e874a ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b25 ;
     tf:subtypeOf tf:Top,
-        cct:R2-Loc-Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Ord ;
+    tf:via cct:classify .
+
+_:N7fe8542c57c942fca4f5e097b0715f0e rdfs:label "(internal)" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N1cd23a84defe4ac79a1200e3edf782f8,
+        _:N1e6aa33c55174016a86b76988d371253,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3be2a66d9a0443ea83201170d27dd33e,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N59d75904533d40018a507daf53f3494b,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N64981102001e4ef0944ad6903cd76a42,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N8eac878ae870457ea98765e9b2418fd7,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc5e517fde4844a5c836317b2aa4e874a,
+        _:Nc7e210ad675f4e79ab479728730d525b,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Ne02ee7b410724c709e40851878db027e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Nc7e210ad675f4e79ab479728730d525b ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b26 .
+
+_:Nc7e210ad675f4e79ab479728730d525b rdfs:label "R2(Loc, Ord) via apply1" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N1cd23a84defe4ac79a1200e3edf782f8,
+        _:N1e6aa33c55174016a86b76988d371253,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3be2a66d9a0443ea83201170d27dd33e,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N59d75904533d40018a507daf53f3494b,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N64981102001e4ef0944ad6903cd76a42,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N8eac878ae870457ea98765e9b2418fd7,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc5e517fde4844a5c836317b2aa4e874a,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Ne02ee7b410724c709e40851878db027e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N1e6aa33c55174016a86b76988d371253,
+        _:N64981102001e4ef0944ad6903cd76a42 ;
+    tf:internal _:Nc5e517fde4844a5c836317b2aa4e874a ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b25 ;
+    tf:subtypeOf tf:Top,
         cct:R2-Loc-Nom,
         cct:R2-Loc-Ord,
         cct:R2-Loc-Qlt,
-        cct:R2-Loc-Ratio,
         cct:R2-Loc-Top,
-        cct:R2-Top-Itv,
         cct:R2-Top-Nom,
         cct:R2-Top-Ord,
         cct:R2-Top-Qlt,
-        cct:R2-Top-Ratio,
         cct:R2-Top-Top ;
-    tf:type cct:R2-Loc-Ratio ;
-    tf:via cct:select .
+    tf:type cct:R2-Loc-Ord ;
+    tf:via cct:apply1 .
 
-_:N6eaa56e48aa9431886b6c6273e8bd483 rdfs:label "(internal)" ;
-    tf:from _:Nc18fbf76b7ed4aa0bed114b9ca3e6b5a ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb19 .
+_:n14ec4b9c95384dceaaa7c0921d27fa00b17 rdfs:label "Lower-bounded flow velocity"@en ;
+    rdfs:comment "A raster with velocity values of water flow with a minimum of 0.2 meters per second"@en .
 
-_:N7360088c978a42778198e56a6b768258 rdfs:label "R2(Loc, Ratio) via groupbyL" ;
-    tf:from _:N89d06658fc214885a5e1a241ecd2be8d,
-        _:Nb554b97d932a426e9dda62f3d4d966b5 ;
-    tf:internal _:N8def8e2a255e4aab98c9eba4c592d483 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+_:n14ec4b9c95384dceaaa7c0921d27fa00b18 rdfs:label "Bounded flow Velocity"@en ;
+    rdfs:comment "A raster with velocity values of water flow with a minimum of 0.2 meters per second and a maximum of 2 meters per second"@en .
+
+_:n14ec4b9c95384dceaaa7c0921d27fa00b19 rdfs:label "Stowe flow impedances"@en ;
+    rdfs:comment "A raster with weights representing flow impedances."@en .
+
+_:n14ec4b9c95384dceaaa7c0921d27fa00b21 rdfs:label "Outlet Point"@en ;
+    rdfs:comment "Snapping of outlet downstream point to the stream as rendered in the DEM"@en .
+
+_:n14ec4b9c95384dceaaa7c0921d27fa00b15 rdfs:label "Flow accumulation"@en ;
+    rdfs:comment "A raster layer that indicates where water is most likely to accumulate in the Stowe area"@en .
+
+_:N1e6aa33c55174016a86b76988d371253 rdfs:label "R2(Loc, Ratio) via groupbyL" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N1cd23a84defe4ac79a1200e3edf782f8,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3be2a66d9a0443ea83201170d27dd33e,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N59d75904533d40018a507daf53f3494b,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N8eac878ae870457ea98765e9b2418fd7,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Ne02ee7b410724c709e40851878db027e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N3be2a66d9a0443ea83201170d27dd33e,
+        _:N8eac878ae870457ea98765e9b2418fd7 ;
+    tf:internal _:N59d75904533d40018a507daf53f3494b ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
     tf:subtypeOf tf:Top,
         cct:R2-Loc-Itv,
         cct:R2-Loc-Nom,
@@ -717,14 +794,125 @@ _:N7360088c978a42778198e56a6b768258 rdfs:label "R2(Loc, Ratio) via groupbyL" ;
     tf:type cct:R2-Loc-Ratio ;
     tf:via cct:groupbyL .
 
-_:N793329aba48d40359c39433913fd1934 rdfs:label "(internal)" ;
-    tf:from _:N5a05de90cf574a6991d7cbeecd786a52,
-        _:N62a51cb1524e4a5bb67bfbff665f911a ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 .
+_:N8eac878ae870457ea98765e9b2418fd7 rdfs:label "Ratio via max" ;
+    tf:depends _:N59d75904533d40018a507daf53f3494b ;
+    tf:from _:N59d75904533d40018a507daf53f3494b ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:max .
 
-_:N89d06658fc214885a5e1a241ecd2be8d rdfs:label "R3(Loc, Ratio, Loc) via relunion" ;
-    tf:from _:Ne330958130b54166ae3c3284fb56afbc ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+_:Nc5e517fde4844a5c836317b2aa4e874a rdfs:label "(internal)" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N1cd23a84defe4ac79a1200e3edf782f8,
+        _:N1e6aa33c55174016a86b76988d371253,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3be2a66d9a0443ea83201170d27dd33e,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N59d75904533d40018a507daf53f3494b,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N8eac878ae870457ea98765e9b2418fd7,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Ne02ee7b410724c709e40851878db027e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N1e6aa33c55174016a86b76988d371253 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b25 .
+
+_:N3be2a66d9a0443ea83201170d27dd33e rdfs:label "R3(Loc, Ratio, Loc) via relunion" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N1cd23a84defe4ac79a1200e3edf782f8,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Ne02ee7b410724c709e40851878db027e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Ne02ee7b410724c709e40851878db027e ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
     tf:subtypeOf tf:Top,
         cct:R3-Loc-Itv-Loc,
         cct:R3-Loc-Itv-Top,
@@ -753,75 +941,425 @@ _:N89d06658fc214885a5e1a241ecd2be8d rdfs:label "R3(Loc, Ratio, Loc) via relunion
     tf:type cct:R3-Loc-Ratio-Loc ;
     tf:via cct:relunion .
 
-_:N8def8e2a255e4aab98c9eba4c592d483 rdfs:label "(internal)" ;
-    tf:from _:N89d06658fc214885a5e1a241ecd2be8d ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 .
+_:N59d75904533d40018a507daf53f3494b rdfs:label "(internal)" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N1cd23a84defe4ac79a1200e3edf782f8,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3be2a66d9a0443ea83201170d27dd33e,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Ne02ee7b410724c709e40851878db027e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N3be2a66d9a0443ea83201170d27dd33e ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 .
 
-_:N922d427d4a624feea669b0148300541c rdfs:label "(internal)" ;
-    tf:from _:N510fc54c81024ccc8e8c038e47803231,
-        _:Na47107eb5e58424a9c2d45e3784923dd ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 .
+_:Ne02ee7b410724c709e40851878db027e rdfs:label "R1(R3(Loc, Ratio, Loc)) via pi2" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N1cd23a84defe4ac79a1200e3edf782f8,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N1cd23a84defe4ac79a1200e3edf782f8 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
+    tf:type _:Na0d80e9af1db4df49d948a2b8c742c6b ;
+    tf:via cct:pi2 .
 
-_:N9f22b936c3154b338215fe039b4126d5 rdfs:label "(internal)" ;
-    tf:from _:Nebce5fe98e144450ba45159e932d525d ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 .
+_:n14ec4b9c95384dceaaa7c0921d27fa00b22 rdfs:label "Watershed"@en ;
+    rdfs:comment "All of the Stowe area that flows to the specified oulet point"@en .
 
-_:N9f5ac91deec74bb68ca3010fd5845e71 a tf:Type ;
-    rdfs:label "R2(Reg, Reg)" ;
-    rdf:_1 cct:Reg ;
-    rdf:_2 cct:Reg ;
-    rdfs:subClassOf cct:R2 .
+_:n14ec4b9c95384dceaaa7c0921d27fa00b26 rdfs:label "Unit Hydrograph Ordinates"@en ;
+    rdfs:comment "A standalone table containing unit hydrograph measurements"@en .
 
-_:Na2f5bc40d6744933b85cbb63dfa1edc3 rdfs:label "R2(Loc, Ratio) via apply2" ;
-    tf:from _:N72de7ae04566485a9ddb8b326a0088bd,
-        _:Nacc5758bc99f43a29a7d2d9da0e67774,
-        _:Ne454986d82a643f99c3a3bb6b3b879b7 ;
-    tf:internal _:N34fd57f12e3d40aaa513460b3d86d319 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb16 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Loc-Itv,
-        cct:R2-Loc-Nom,
-        cct:R2-Loc-Ord,
-        cct:R2-Loc-Qlt,
-        cct:R2-Loc-Ratio,
-        cct:R2-Loc-Top,
-        cct:R2-Top-Itv,
-        cct:R2-Top-Nom,
-        cct:R2-Top-Ord,
-        cct:R2-Top-Qlt,
-        cct:R2-Top-Ratio,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Loc-Ratio ;
+_:N1cd23a84defe4ac79a1200e3edf782f8 rdfs:label "R2(Loc, R3(Loc, Ratio, Loc)) via apply2" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N56c64cf87dcf404da99a465235e36135,
+        _:N5bb9c145333946399c711da40360a5be ;
+    tf:internal _:N9b759755f98a4f71bc0c88fc1b92eb93 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
+    tf:type _:Neadbbfa1234142038863e19f0d1f3a12 ;
     tf:via cct:apply2 .
 
-_:Na3a40df6606e45138f2ad5f0b36112a6 a tf:Type ;
-    rdfs:label "R2(Loc, Obj)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Obj ;
-    rdfs:subClassOf cct:R2 .
+_:N56c64cf87dcf404da99a465235e36135 rdfs:label "R3(Loc, Ratio, Loc) via lgDist" ;
+    tf:depends _:N021073a9aa364f38898e8c152a323e5d,
+        _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N021073a9aa364f38898e8c152a323e5d,
+        _:N9b759755f98a4f71bc0c88fc1b92eb93 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Loc-Itv-Loc,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Loc,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Loc,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Loc,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Ratio-Loc ;
+    tf:via cct:lgDist .
 
-_:Na47107eb5e58424a9c2d45e3784923dd rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
-    tf:from _:N587b30de1a5f416baa5b2ab67d8b183c ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
-    tf:type _:N7c2156d5d8a249e8846517096a883972 ;
+_:N021073a9aa364f38898e8c152a323e5d rdfs:label "R3(Loc, Ratio, Loc) via gridgraph" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N095e1e638b964028867f95f9acc79904,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nc3cafb500d0a4324a5be0e23a647c195,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:Nc3cafb500d0a4324a5be0e23a647c195 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Loc-Itv-Loc,
+        cct:R3-Loc-Itv-Top,
+        cct:R3-Loc-Nom-Loc,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Ord-Loc,
+        cct:R3-Loc-Ord-Top,
+        cct:R3-Loc-Qlt-Loc,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Ratio-Loc,
+        cct:R3-Loc-Ratio-Top,
+        cct:R3-Loc-Top-Loc,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Itv-Loc,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Loc,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Loc,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Loc,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Loc,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Loc,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Ratio-Loc ;
+    tf:via cct:gridgraph .
+
+_:N238c8e8261d440488a83c8f8f0e99be8 rdfs:label "R2(Loc, R1(Loc)) via apply" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Nf4643e7647a54b10ab69c62d3b38538e ;
+    tf:internal _:Ndb689c19f59247a58fbf7e80cab28a6d ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
+    tf:type _:N4e364a7dab9d49a3a4005919eeb428f7 ;
+    tf:via cct:apply .
+
+_:N5bb9c145333946399c711da40360a5be rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N5ef306e42fcb411e94b9cbad8db8017c ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
+    tf:type _:N4e364a7dab9d49a3a4005919eeb428f7 ;
     tf:via cct:accumulate .
 
-_:Na696d336d04e42568d2a4c4fb7f8f6af rdfs:label "Ratio from source" ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb18 ;
-    tf:subtypeOf tf:Top,
-        cct:Itv,
-        cct:Nom,
-        cct:Ord,
-        cct:Qlt,
-        cct:Ratio,
-        cct:Val ;
-    tf:type cct:Ratio .
+_:N9b759755f98a4f71bc0c88fc1b92eb93 rdfs:label "(internal)" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N5bb9c145333946399c711da40360a5be,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nbf2e08e6d9a74401842462555dd0d428,
+        _:Ndb689c19f59247a58fbf7e80cab28a6d,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N238c8e8261d440488a83c8f8f0e99be8,
+        _:N5bb9c145333946399c711da40360a5be ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 .
 
-_:Nacc5758bc99f43a29a7d2d9da0e67774 rdfs:label "R2(Loc, Ratio) via apply1" ;
-    tf:from _:N5f40011a83c74b1b84da4d3ff1513f3e,
-        _:Nbc0b21a7646c41fd9a5e9ce65f69528b ;
-    tf:internal _:N4f27905ee49a4928928eae5066ee29c9 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
+_:Nbf2e08e6d9a74401842462555dd0d428 rdfs:label "R1(Loc) via nest" ;
+    tf:depends _:Ndb689c19f59247a58fbf7e80cab28a6d ;
+    tf:from _:Ndb689c19f59247a58fbf7e80cab28a6d ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Loc ;
+    tf:via cct:nest .
+
+_:Nc3cafb500d0a4324a5be0e23a647c195 rdfs:label "R2(Loc, Ratio) via apply1" ;
+    tf:depends _:N095e1e638b964028867f95f9acc79904,
+        _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N095e1e638b964028867f95f9acc79904,
+        _:N3bcead2119d54c65932a94c795a9eb76 ;
+    tf:internal _:Na6e0911b46c74ab984708ffd587e6fb8 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b19 ;
     tf:subtypeOf tf:Top,
         cct:R2-Loc-Itv,
         cct:R2-Loc-Nom,
@@ -838,9 +1376,75 @@ _:Nacc5758bc99f43a29a7d2d9da0e67774 rdfs:label "R2(Loc, Ratio) via apply1" ;
     tf:type cct:R2-Loc-Ratio ;
     tf:via cct:apply1 .
 
-_:Naf6006ab0afc414d8804858a2b7c6921 rdfs:label "R1(Loc) via pi1" ;
-    tf:from _:N587b30de1a5f416baa5b2ab67d8b183c ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb24 ;
+_:N095e1e638b964028867f95f9acc79904 rdfs:label "Ratio via ratio" ;
+    tf:depends _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e ;
+    tf:from _:Na6e0911b46c74ab984708ffd587e6fb8,
+        _:Nd7f29737ca4143e5ab0a25c6eb57279e ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b19 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:ratio .
+
+_:Nd7f29737ca4143e5ab0a25c6eb57279e rdfs:label "Ratio from source" ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b19 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio .
+
+_:Ndb689c19f59247a58fbf7e80cab28a6d rdfs:label "(internal)" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nf4643e7647a54b10ab69c62d3b38538e,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Nf4643e7647a54b10ab69c62d3b38538e ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 .
+
+_:Nf4643e7647a54b10ab69c62d3b38538e rdfs:label "R1(Loc) via pi1" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N5ef306e42fcb411e94b9cbad8db8017c,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N5ef306e42fcb411e94b9cbad8db8017c ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b24 ;
     tf:subtypeOf tf:Top,
         cct:R1-Loc,
         cct:R1-Top,
@@ -848,27 +1452,32 @@ _:Naf6006ab0afc414d8804858a2b7c6921 rdfs:label "R1(Loc) via pi1" ;
     tf:type cct:R1-Loc ;
     tf:via cct:pi1 .
 
-_:Nb2b5a3e16bc94e23b0911a40dc582adf rdfs:label "(internal)" ;
-    tf:from _:Nf2b917f010ca43c5945f2d132609e515 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 .
+_:n14ec4b9c95384dceaaa7c0921d27fa00b24 rdfs:label "Flow Time"@en ;
+    rdfs:comment "A raster of flow lengths to the outlet point weighted by flow impedances."@en .
 
-_:Nbc0b21a7646c41fd9a5e9ce65f69528b rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
-    tf:from _:N028c521563e142d781b5b28649a80b0e ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb15 ;
-    tf:type _:N7c2156d5d8a249e8846517096a883972 ;
-    tf:via cct:accumulate .
-
-_:Nbc1c3bacde834453b6fbef1017209e6a a tf:Type ;
-    rdfs:label "R1(R3(Loc, Ratio, Loc))" ;
-    rdf:_1 cct:R3-Loc-Ratio-Loc ;
-    rdfs:subClassOf cct:R1 .
-
-_:Nc18fbf76b7ed4aa0bed114b9ca3e6b5a rdfs:label "R2(Loc, Ratio) via select" ;
-    tf:from _:N633e63b5c49941a7841468a82292d1ec,
-        _:Na696d336d04e42568d2a4c4fb7f8f6af,
-        _:Nc313c545a1634a9e99abcd07eb4dbec3 ;
-    tf:internal _:N39468dfa3ce140efac59644bc72cb685 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb18 ;
+_:N3bcead2119d54c65932a94c795a9eb76 rdfs:label "R2(Loc, Ratio) via select" ;
+    tf:depends _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Nee86998679f5464994fdabb77ce48a9d ;
+    tf:internal _:Nb2c78c7eb664426f8e0f6a16129a3959 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b18 ;
     tf:subtypeOf tf:Top,
         cct:R2-Loc-Itv,
         cct:R2-Loc-Nom,
@@ -885,15 +1494,364 @@ _:Nc18fbf76b7ed4aa0bed114b9ca3e6b5a rdfs:label "R2(Loc, Ratio) via select" ;
     tf:type cct:R2-Loc-Ratio ;
     tf:via cct:select .
 
-_:Ne195d295707c4222864c6af58795ea20 a tf:Type ;
-    rdfs:label "R2(Loc, Reg)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Reg ;
-    rdfs:subClassOf cct:R2 .
+_:Na6e0911b46c74ab984708ffd587e6fb8 rdfs:label "(internal)" ;
+    tf:depends _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N3bcead2119d54c65932a94c795a9eb76,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nb2c78c7eb664426f8e0f6a16129a3959,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nee86998679f5464994fdabb77ce48a9d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N3bcead2119d54c65932a94c795a9eb76 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b19 .
 
-_:Ne454986d82a643f99c3a3bb6b3b879b7 rdfs:label "R2(Loc, Ratio) via slope" ;
-    tf:from _:N643a199499c9412b84f68e008bf987c7 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb14 ;
+_:Nee86998679f5464994fdabb77ce48a9d rdfs:label "Bool via leq" ;
+    tf:depends _:Nb2c78c7eb664426f8e0f6a16129a3959 ;
+    tf:from _:Nb2c78c7eb664426f8e0f6a16129a3959 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b18 ;
+    tf:subtypeOf tf:Top,
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Bool ;
+    tf:via cct:leq .
+
+_:N6387c1cb49844d7cb710935cf8047ac1 rdfs:label "R2(Loc, Ratio) via select" ;
+    tf:depends _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N3e3a62491510403da6864bdae056bc0d,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nf2c42ed5c2644774b5f40a43abe93448 ;
+    tf:internal _:Nae120c4f11944a1f8a427da6d4f56256 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b17 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Ratio ;
+    tf:via cct:select .
+
+_:Nb24a54b0198849c29c73d327ee3bc10a rdfs:label "Bool via leq" ;
+    tf:depends _:Nae120c4f11944a1f8a427da6d4f56256 ;
+    tf:from _:Nae120c4f11944a1f8a427da6d4f56256 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b17 ;
+    tf:subtypeOf tf:Top,
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Bool ;
+    tf:via cct:leq .
+
+_:Nb2c78c7eb664426f8e0f6a16129a3959 rdfs:label "(internal)" ;
+    tf:depends _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nae120c4f11944a1f8a427da6d4f56256,
+        _:Nb24a54b0198849c29c73d327ee3bc10a,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Nca2cbefff3d2443fb0e5afb395170298,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N6387c1cb49844d7cb710935cf8047ac1,
+        _:Nca2cbefff3d2443fb0e5afb395170298 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b18 .
+
+_:Nca2cbefff3d2443fb0e5afb395170298 rdfs:label "Ratio from source" ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b18 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio .
+
+_:N4453d342ee40464b8c02c4ba36b319fa rdfs:label "R1(Loc) via pi1" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N29488f9a90464bac9d4924664ce051fd ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b23 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Loc ;
+    tf:via cct:pi1 .
+
+_:N29488f9a90464bac9d4924664ce051fd rdfs:label "R2(Loc, Nom) via revert" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Na81097a0d7544e7198e0271cf60be86d ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b22 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Nom ;
+    tf:via cct:revert .
+
+_:N3e3a62491510403da6864bdae056bc0d rdfs:label "Ratio from source" ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b17 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio .
+
+_:N5ef306e42fcb411e94b9cbad8db8017c rdfs:label "R2(Loc, Loc) via subset" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N29488f9a90464bac9d4924664ce051fd,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:Na81097a0d7544e7198e0271cf60be86d,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N4453d342ee40464b8c02c4ba36b319fa,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b23 ;
+    tf:type _:N318d0c9a861f475e9111f74128f795db ;
+    tf:via cct:subset .
+
+_:N7a1d94ef726f42499f2e61583c2c2495 rdfs:label "Ratio via product" ;
+    tf:depends _:Naae8c57a0273444b8f4a9f17dd2baec2 ;
+    tf:from _:Naae8c57a0273444b8f4a9f17dd2baec2 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b16 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:product .
+
+_:Nae120c4f11944a1f8a427da6d4f56256 rdfs:label "(internal)" ;
+    tf:depends _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N3e3a62491510403da6864bdae056bc0d,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nf2c42ed5c2644774b5f40a43abe93448,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N3e3a62491510403da6864bdae056bc0d,
+        _:Nf2c42ed5c2644774b5f40a43abe93448 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b17 .
+
+_:Nf2c42ed5c2644774b5f40a43abe93448 rdfs:label "R2(Loc, Ratio) via apply2" ;
+    tf:depends _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Naae8c57a0273444b8f4a9f17dd2baec2,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N465c1ae174e640539198031d4b9af317,
+        _:N7a1d94ef726f42499f2e61583c2c2495,
+        _:Nc83cf06d3ba145dca76c84271069cf5c ;
+    tf:internal _:Naae8c57a0273444b8f4a9f17dd2baec2 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b16 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Ratio ;
+    tf:via cct:apply2 .
+
+_:Na81097a0d7544e7198e0271cf60be86d rdfs:label "R2(Nom, Reg) via join" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nf82aeb7addaf4024b67d260573145fda,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N25a96ca17b1c4befb3554a0bed931b96,
+        _:N8bff2a7dbdd6414a8487476efbd3c98b ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b22 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Nom-Reg ;
+    tf:via cct:join .
+
+_:N25a96ca17b1c4befb3554a0bed931b96 rdfs:label "R2(Reg, Reg) via invert" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N3fe8aecf216447a6ab0fbc198f3a324f,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N3fe8aecf216447a6ab0fbc198f3a324f ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b22 ;
+    tf:type _:N5f9e21e9ce3248b0931f313d1a59e348 ;
+    tf:via cct:invert .
+
+_:N465c1ae174e640539198031d4b9af317 rdfs:label "R2(Loc, Ratio) via apply1" ;
+    tf:depends _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4 ;
+    tf:internal _:N2963a88d8d92474e85aa3c65044abb04 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b15 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Ratio,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Ratio ;
+    tf:via cct:apply1 .
+
+_:N8bff2a7dbdd6414a8487476efbd3c98b rdfs:label "R2(Nom, Reg) via invert" ;
+    tf:depends _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:N864a0a8d17ac48f08bf799287d50f4a0,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nf82aeb7addaf4024b67d260573145fda ;
+    tf:from _:N864a0a8d17ac48f08bf799287d50f4a0 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b22 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Nom-Reg ;
+    tf:via cct:invert .
+
+_:Naae8c57a0273444b8f4a9f17dd2baec2 rdfs:label "(internal)" ;
+    tf:depends _:N2963a88d8d92474e85aa3c65044abb04,
+        _:N465c1ae174e640539198031d4b9af317,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Nc83cf06d3ba145dca76c84271069cf5c,
+        _:Ncdc3a8f9aa5644bc9a365c961e47b2e4,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N465c1ae174e640539198031d4b9af317,
+        _:Nc83cf06d3ba145dca76c84271069cf5c ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b16 .
+
+_:Nc83cf06d3ba145dca76c84271069cf5c rdfs:label "R2(Loc, Ratio) via slope" ;
+    tf:depends _:N4b0f063cdfed469a93015ed9f200d415 ;
+    tf:from _:N4b0f063cdfed469a93015ed9f200d415 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b14 ;
     tf:subtypeOf tf:Top,
         cct:R2-Loc-Itv,
         cct:R2-Loc-Nom,
@@ -910,68 +1868,126 @@ _:Ne454986d82a643f99c3a3bb6b3b879b7 rdfs:label "R2(Loc, Ratio) via slope" ;
     tf:type cct:R2-Loc-Ratio ;
     tf:via cct:slope .
 
-_:Nebce5fe98e144450ba45159e932d525d rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
-    tf:from _:N028c521563e142d781b5b28649a80b0e ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb22 ;
-    tf:type _:N7c2156d5d8a249e8846517096a883972 ;
-    tf:via cct:accumulate .
-
-_:Nf2b917f010ca43c5945f2d132609e515 rdfs:label "R2(Loc, Ord) via apply1" ;
-    tf:from _:N7360088c978a42778198e56a6b768258,
-        _:Na2ce8004f73f4fdda8c3cb56832c3931 ;
-    tf:internal _:N25ab3dd521b049e2afab4b780b31db5f ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb25 ;
+_:Ncdc3a8f9aa5644bc9a365c961e47b2e4 rdfs:label "Ratio via size" ;
+    tf:depends _:N2963a88d8d92474e85aa3c65044abb04 ;
+    tf:from _:N2963a88d8d92474e85aa3c65044abb04 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b15 ;
     tf:subtypeOf tf:Top,
-        cct:R2-Loc-Nom,
-        cct:R2-Loc-Ord,
-        cct:R2-Loc-Qlt,
-        cct:R2-Loc-Top,
-        cct:R2-Top-Nom,
-        cct:R2-Top-Ord,
-        cct:R2-Top-Qlt,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Loc-Ord ;
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:size .
+
+_:N3fe8aecf216447a6ab0fbc198f3a324f rdfs:label "R2(Loc, Reg) via apply1" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N0cb6561e25584b87bf15b6d6049cb283,
+        _:N4011a4b2ab7f44eba942b89035e52fcc,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N06d17ae7039f441488f1b636af158ec7,
+        _:N4011a4b2ab7f44eba942b89035e52fcc ;
+    tf:internal _:N0cb6561e25584b87bf15b6d6049cb283 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b22 ;
+    tf:type _:Ndf52c99f9f524d72b536481cea4eb9da ;
     tf:via cct:apply1 .
 
-_:N028c521563e142d781b5b28649a80b0e rdfs:label "R2(Loc, Loc) via flowdirgraph" ;
-    tf:from _:N643a199499c9412b84f68e008bf987c7 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb20 ;
-    tf:type _:Nda902efd90df428c9ac2111ebfe3738f ;
-    tf:via cct:flowdirgraph .
-
-_:N587b30de1a5f416baa5b2ab67d8b183c rdfs:label "R2(Loc, Loc) via subset" ;
-    tf:from _:N028c521563e142d781b5b28649a80b0e,
-        _:Ncb6b1e8820024a1d9767c10578119a61 ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb23 ;
-    tf:type _:Nda902efd90df428c9ac2111ebfe3738f ;
-    tf:via cct:subset .
-
-_:N62a51cb1524e4a5bb67bfbff665f911a rdfs:label "(internal)" ;
-    tf:from _:N38fa4c30452d4d1092ef9b7561eb7cef ;
-    tf:origin _:n9ba28b43d9e94fee920fee69709ab9beb26 .
-
-_:N643a199499c9412b84f68e008bf987c7 rdfs:label "R2(Loc, Itv) from source" ;
-    tf:origin <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> ;
+_:N864a0a8d17ac48f08bf799287d50f4a0 rdfs:label "R2(Loc, Nom) via join" ;
+    tf:depends _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N7182d48dbe45421a932cd6cd88bc429d,
+        _:Nba0b743fed554896849285ec4249d50b,
+        _:Nf82aeb7addaf4024b67d260573145fda ;
+    tf:from _:Nba0b743fed554896849285ec4249d50b,
+        _:Nf82aeb7addaf4024b67d260573145fda ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b21 ;
     tf:subtypeOf tf:Top,
-        cct:R2-Loc-Itv,
         cct:R2-Loc-Nom,
-        cct:R2-Loc-Ord,
         cct:R2-Loc-Qlt,
         cct:R2-Loc-Top,
-        cct:R2-Top-Itv,
         cct:R2-Top-Nom,
-        cct:R2-Top-Ord,
         cct:R2-Top-Qlt,
         cct:R2-Top-Top ;
-    tf:type cct:R2-Loc-Itv .
+    tf:type cct:R2-Loc-Nom ;
+    tf:via cct:join .
 
-_:Nda902efd90df428c9ac2111ebfe3738f a tf:Type ;
-    rdfs:label "R2(Loc, Loc)" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:Loc ;
-    rdfs:subClassOf cct:R2 .
+_:N2963a88d8d92474e85aa3c65044abb04 rdfs:label "(internal)" ;
+    tf:depends _:N4b0f063cdfed469a93015ed9f200d415,
+        _:Naa285ecae1d347158776b5e30e7518bf,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Naa285ecae1d347158776b5e30e7518bf ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b15 .
 
-_:Ne2585b27fe6e4e0fa2aad58b9de20919 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+_:N4011a4b2ab7f44eba942b89035e52fcc rdfs:label "Reg via reify" ;
+    tf:depends _:N0cb6561e25584b87bf15b6d6049cb283 ;
+    tf:from _:N0cb6561e25584b87bf15b6d6049cb283 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b22 ;
+    tf:subtypeOf tf:Top,
+        cct:Reg,
+        cct:Val ;
+    tf:type cct:Reg ;
+    tf:via cct:reify .
+
+_:Naa285ecae1d347158776b5e30e7518bf rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
+    tf:depends _:N4b0f063cdfed469a93015ed9f200d415,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b15 ;
+    tf:type _:N4e364a7dab9d49a3a4005919eeb428f7 ;
+    tf:via cct:accumulate .
+
+_:Nba0b743fed554896849285ec4249d50b rdfs:label "R2(Loc, Obj) via revert" ;
+    tf:depends _:N2b043eb6aedd4aa59f637f330c7a38be,
+        _:N7182d48dbe45421a932cd6cd88bc429d ;
+    tf:from _:N2b043eb6aedd4aa59f637f330c7a38be ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b21 ;
+    tf:type _:N595c2f7c189546ad9650da4d642656df ;
+    tf:via cct:revert .
+
+_:Nf82aeb7addaf4024b67d260573145fda rdfs:label "R2(Obj, Nom) via get_attrR" ;
+    tf:depends _:N7182d48dbe45421a932cd6cd88bc429d ;
+    tf:from _:N7182d48dbe45421a932cd6cd88bc429d ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b21 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Nom,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Nom ;
+    tf:via cct:get_attrR .
+
+_:N2b043eb6aedd4aa59f637f330c7a38be rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N7182d48dbe45421a932cd6cd88bc429d ;
+    tf:from _:N7182d48dbe45421a932cd6cd88bc429d ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b21 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
+
+_:N06d17ae7039f441488f1b636af158ec7 rdfs:label "R2(Loc, R1(Loc)) via accumulate" ;
+    tf:depends _:N4b0f063cdfed469a93015ed9f200d415,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b22 ;
+    tf:type _:N4e364a7dab9d49a3a4005919eeb428f7 ;
+    tf:via cct:accumulate .
+
+_:N0cb6561e25584b87bf15b6d6049cb283 rdfs:label "(internal)" ;
+    tf:depends _:N06d17ae7039f441488f1b636af158ec7,
+        _:N4b0f063cdfed469a93015ed9f200d415,
+        _:Nff5364fd470144c89b6994d9ee4b5298 ;
+    tf:from _:N06d17ae7039f441488f1b636af158ec7 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b22 .
+
+_:N7182d48dbe45421a932cd6cd88bc429d rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
     tf:origin <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#pourPoint> ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Product-Reg-Nom,
@@ -990,48 +2006,25 @@ _:Ne2585b27fe6e4e0fa2aad58b9de20919 rdfs:label "R2(Obj, (Reg * Nom)) from source
         cct:R2-Top-Top ;
     tf:type cct:R2-Obj-Product-Reg-Nom .
 
-_:n9ba28b43d9e94fee920fee69709ab9beb14 rdfs:label "Slope"@en ;
-    rdfs:comment "A raster dataset with slope values for each raster cell"@en .
+_:Nff5364fd470144c89b6994d9ee4b5298 rdfs:label "R2(Loc, Loc) via flowdirgraph" ;
+    tf:depends _:N4b0f063cdfed469a93015ed9f200d415 ;
+    tf:from _:N4b0f063cdfed469a93015ed9f200d415 ;
+    tf:origin _:n14ec4b9c95384dceaaa7c0921d27fa00b20 ;
+    tf:type _:N318d0c9a861f475e9111f74128f795db ;
+    tf:via cct:flowdirgraph .
 
-_:n9ba28b43d9e94fee920fee69709ab9beb23 rdfs:label "Flow directions"@en ;
-    rdfs:comment "Flow direction raster of the Stowe area clipped by the Stowe watershed."@en .
-
-_:N7c2156d5d8a249e8846517096a883972 a tf:Type ;
-    rdfs:label "R2(Loc, R1(Loc))" ;
-    rdf:_1 cct:Loc ;
-    rdf:_2 cct:R1-Loc ;
-    rdfs:subClassOf cct:R2 .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb16 rdfs:label "Flow velocity"@en ;
-    rdfs:comment "A raster with velocity values of water flow"@en .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb20 rdfs:label "Flow directions"@en ;
-    rdfs:comment "Flow direction raster of the Stowe area"@en .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb25 rdfs:label "Isochrone zones"@en ;
-    rdfs:comment "A raster of flow lengths to the outlet point weighted by flow impedance classified into a set of isochrone ranges incrementally increasing by 1,800 seconds"@en .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb17 rdfs:label "Lower-bounded flow velocity"@en ;
-    rdfs:comment "A raster with velocity values of water flow with a minimum of 0.2 meters per second"@en .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb18 rdfs:label "Bounded flow Velocity"@en ;
-    rdfs:comment "A raster with velocity values of water flow with a minimum of 0.2 meters per second and a maximum of 2 meters per second"@en .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb19 rdfs:label "Stowe flow impedances"@en ;
-    rdfs:comment "A raster with weights representing flow impedances."@en .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb21 rdfs:label "Outlet Point"@en ;
-    rdfs:comment "Snapping of outlet downstream point to the stream as rendered in the DEM"@en .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb15 rdfs:label "Flow accumulation"@en ;
-    rdfs:comment "A raster layer that indicates where water is most likely to accumulate in the Stowe area"@en .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb22 rdfs:label "Watershed"@en ;
-    rdfs:comment "All of the Stowe area that flows to the specified oulet point"@en .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb26 rdfs:label "Unit Hydrograph Ordinates"@en ;
-    rdfs:comment "A standalone table containing unit hydrograph measurements"@en .
-
-_:n9ba28b43d9e94fee920fee69709ab9beb24 rdfs:label "Flow Time"@en ;
-    rdfs:comment "A raster of flow lengths to the outlet point weighted by flow impedances."@en .
+_:N4b0f063cdfed469a93015ed9f200d415 rdfs:label "R2(Loc, Itv) from source" ;
+    tf:origin <https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/#stoweDem> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Itv .
 

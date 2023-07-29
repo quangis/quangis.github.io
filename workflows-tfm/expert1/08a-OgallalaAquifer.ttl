@@ -11,30 +11,30 @@ wfexpert1:OgallalaAquifer a wf:Workflow,
         tf:Transformation ;
     wf:edge [ wf:applicationOf abstr:SelectFeaturesByObjectPlainRegionObjects ;
             wf:input1 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#aquifer> ;
-            wf:output _:nafbc69522b08458ab302620184793ebfb7 ;
+            wf:output _:n63181340307a4b9389d6e1666342133fb7 ;
             rdfs:comment "select Oogallala aquifer" ],
         [ wf:applicationOf abstr:SelectFeaturesCoverageToExistenceVector ;
             wf:input1 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#precipitation> ;
-            wf:output _:nafbc69522b08458ab302620184793ebfb8 ;
+            wf:output _:n63181340307a4b9389d6e1666342133fb8 ;
             rdfs:comment "select areas with low precipitation" ],
         [ wf:applicationOf abstr:SelectFeaturesCoverageToExistenceVector ;
             wf:input1 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#irrigation> ;
-            wf:output _:nafbc69522b08458ab302620184793ebfb9 ;
+            wf:output _:n63181340307a4b9389d6e1666342133fb9 ;
             rdfs:comment "select areas with high irrigation" ],
         [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsDist ;
             wf:input1 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#UrbanAreas> ;
-            wf:input2 _:nafbc69522b08458ab302620184793ebfb7 ;
-            wf:output _:nafbc69522b08458ab302620184793ebfb10 ;
+            wf:input2 _:n63181340307a4b9389d6e1666342133fb7 ;
+            wf:output _:n63181340307a4b9389d6e1666342133fb10 ;
             rdfs:comment "select urban areas within 150 miles (geodesic) of the aquifer" ],
         [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsFieldDist ;
-            wf:input1 _:nafbc69522b08458ab302620184793ebfb10 ;
-            wf:input2 _:nafbc69522b08458ab302620184793ebfb8 ;
-            wf:output _:nafbc69522b08458ab302620184793ebfb11 ;
+            wf:input1 _:n63181340307a4b9389d6e1666342133fb10 ;
+            wf:input2 _:n63181340307a4b9389d6e1666342133fb8 ;
+            wf:output _:n63181340307a4b9389d6e1666342133fb11 ;
             rdfs:comment "further select urban areas within the area with low precipitation" ],
         [ wf:applicationOf abstr:SelectLayerByLocationPlainRegionObjectsFieldDist ;
-            wf:input1 _:nafbc69522b08458ab302620184793ebfb11 ;
-            wf:input2 _:nafbc69522b08458ab302620184793ebfb9 ;
-            wf:output _:nafbc69522b08458ab302620184793ebfb12 ;
+            wf:input1 _:n63181340307a4b9389d6e1666342133fb11 ;
+            wf:input2 _:n63181340307a4b9389d6e1666342133fb9 ;
+            wf:output _:n63181340307a4b9389d6e1666342133fb12 ;
             rdfs:comment "further select urban areas that intersect with the irrigation region dataset" ] ;
     wf:source <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#UrbanAreas>,
         <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#aquifer>,
@@ -129,51 +129,58 @@ wfexpert1:OgallalaAquifer a wf:Workflow,
         cct:R3-Top-Top-Top,
         cct:Ratio,
         cct:Val ;
-    tf:input _:N00b1f221a3a949cdb18c2ba3620e3e56,
-        _:N24a6226225a843a7828681774a614cfc,
-        _:N7822bfb02c404a42baf75e2045522d48,
-        _:Naa3a9ce8e8754a8884df198bf8df43ae ;
+    tf:input _:N7fb0f01d257a421e9481298a4a3ce0b3,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Nef6c78986232403089d805cd925ce0a1 ;
     tf:output [ rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
-            tf:from _:Na4d2a1350def4aafa7982ec55a346f03,
-                [ rdfs:label "R1(Obj) via pi3" ;
-                    tf:from [ rdfs:label "R3(Loc, Nom, Obj) via select" ;
-                            tf:from _:N24129579fd57466b8b3f68f599b32fbe,
-                                [ rdfs:label "Bool via eq" ;
-                                    tf:from _:N9836b64df5014c64821b1d7f4aa376ae ;
-                                    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
-                                    tf:subtypeOf tf:Top,
-                                        cct:Bool,
-                                        cct:Nom,
-                                        cct:Qlt,
-                                        cct:Val ;
-                                    tf:type cct:Bool ;
-                                    tf:via cct:eq ],
-                                _:N8c1d9c68ca8242e2afd5771f5886c579 ;
-                            tf:internal _:N9836b64df5014c64821b1d7f4aa376ae ;
-                            tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
-                            tf:subtypeOf tf:Top,
-                                cct:R3-Loc-Nom-Obj,
-                                cct:R3-Loc-Nom-Top,
-                                cct:R3-Loc-Qlt-Obj,
-                                cct:R3-Loc-Qlt-Top,
-                                cct:R3-Loc-Top-Obj,
-                                cct:R3-Loc-Top-Top,
-                                cct:R3-Top-Nom-Obj,
-                                cct:R3-Top-Nom-Top,
-                                cct:R3-Top-Qlt-Obj,
-                                cct:R3-Top-Qlt-Top,
-                                cct:R3-Top-Top-Obj,
-                                cct:R3-Top-Top-Top ;
-                            tf:type cct:R3-Loc-Nom-Obj ;
-                            tf:via cct:select ] ;
-                    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
-                    tf:subtypeOf tf:Top,
-                        cct:R1-Obj,
-                        cct:R1-Top,
-                        cct:R1-Val ;
-                    tf:type cct:R1-Obj ;
-                    tf:via cct:pi3 ] ;
-            tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
+            tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+                _:N08d4b084fa634dc998e07bae92a3577c,
+                _:N177032523a314138a88535880d0adc7d,
+                _:N1cddfd1b3779432782e83b2b4bb964d2,
+                _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+                _:N1ee7a5f1d13448acaa93f90c631611cf,
+                _:N2700b9dacd9642a4b145c0c4b3d95f38,
+                _:N3429bcb6edc84c0b98d182a55614253f,
+                _:N3548394930d247f9aa4e6dfefc9f073e,
+                _:N3afe5377c827460a9484a44cecf22538,
+                _:N4c61a2edf9c64bcebb4c83b3e29db43b,
+                _:N52693ae24692445ba66bdd2bf07976e6,
+                _:N5831529b3b9a4b01892cc1c1543ecf47,
+                _:N594d5e43b87c4c509d7f8041c94bd477,
+                _:N597668a76def43fa8fc6f5a45e77cb07,
+                _:N60022e129e9d43028a12a6c143809975,
+                _:N61bc1340e1054fb090ca07da5ff51bab,
+                _:N62c59a9964c84e849ac535ebfc6d958a,
+                _:N678f0e31e5194ee5ad7fc4dd6823b58d,
+                _:N7089320d791d4201aceae5fbdfc14b9b,
+                _:N73015537f57843a98f1d24c30e25132c,
+                _:N7d1c98854911480fb2d15c7f882f0a84,
+                _:N7fb0f01d257a421e9481298a4a3ce0b3,
+                _:N90bb8e94ce6542c58fd6a23638e41681,
+                _:N91c3bb6358a64819bbfd032c6f9ac174,
+                _:N96417926b9ce4dd5853a26898edf46c1,
+                _:N9d6acb0e05f14eefbecfd00c737c3526,
+                _:Na411201ee57846809225a8419e0c681e,
+                _:Nab0e247c36f14943a3d516969cc9cffe,
+                _:Nad10927043594a8bb18ebb5da34b09a2,
+                _:Nafdfb3af8b254f3d9f042fbeea58b786,
+                _:Nb80a3c6e27554573972ddd304dc98b98,
+                _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+                _:Nc4360354f40b433087e270fec74273ae,
+                _:Nc636dbe683344b249486317a1f75b61c,
+                _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+                _:Nd98ad6830768417f8cd6ee6d0d82366a,
+                _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+                _:Ne22b88a1e20c4917b4d016383b9a21fc,
+                _:Ne2d09ce959174c49b91a43f395237c14,
+                _:Ne3b1d8b000b548058422f6d15979e2af,
+                _:Nef6c78986232403089d805cd925ce0a1,
+                _:Nf6f0212784c242c69b1b4d13309d6346,
+                _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+            tf:from _:N678f0e31e5194ee5ad7fc4dd6823b58d,
+                _:Nd98ad6830768417f8cd6ee6d0d82366a ;
+            tf:origin _:n63181340307a4b9389d6e1666342133fb12 ;
             tf:subtypeOf tf:Top,
                 cct:R2-Obj-Product-Reg-Nom,
                 cct:R2-Obj-Product-Reg-Qlt,
@@ -204,220 +211,107 @@ wfexpert1:OgallalaAquifer a wf:Workflow,
 <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#precipitation> rdfs:label "Average annual precipitation"@en ;
     rdfs:comment "Polygons of average annual precipitation in the contiguous United States, for the climatological period 1990-2009"@en .
 
-_:N16306acf9e3346c1a99d16729e0c2f6f rdfs:label "R1(Loc) via pi1" ;
-    tf:from [ rdfs:label "R2(Loc, Itv) via revert" ;
-            tf:from [ rdfs:label "R2(Itv, Reg) via select" ;
-                    tf:from [ rdfs:label "Bool via eq" ;
-                            tf:from _:Nd5d589a985ff48cbb3400d18004c0f11 ;
-                            tf:origin _:nafbc69522b08458ab302620184793ebfb8 ;
-                            tf:subtypeOf tf:Top,
-                                cct:Bool,
-                                cct:Nom,
-                                cct:Qlt,
-                                cct:Val ;
-                            tf:type cct:Bool ;
-                            tf:via cct:eq ],
-                        _:N76d32bed0c334ce2b80695514ec4e803,
-                        _:N7703c35cb7c54659a5ec629e0f3a17e7 ;
-                    tf:internal _:Nd5d589a985ff48cbb3400d18004c0f11 ;
-                    tf:origin _:nafbc69522b08458ab302620184793ebfb8 ;
-                    tf:subtypeOf tf:Top,
-                        cct:R2-Itv-Reg,
-                        cct:R2-Itv-Top,
-                        cct:R2-Nom-Reg,
-                        cct:R2-Nom-Top,
-                        cct:R2-Ord-Reg,
-                        cct:R2-Ord-Top,
-                        cct:R2-Qlt-Reg,
-                        cct:R2-Qlt-Top,
-                        cct:R2-Top-Reg,
-                        cct:R2-Top-Top ;
-                    tf:type cct:R2-Itv-Reg ;
-                    tf:via cct:select ] ;
-            tf:origin _:nafbc69522b08458ab302620184793ebfb8 ;
-            tf:subtypeOf tf:Top,
-                cct:R2-Loc-Itv,
-                cct:R2-Loc-Nom,
-                cct:R2-Loc-Ord,
-                cct:R2-Loc-Qlt,
-                cct:R2-Loc-Top,
-                cct:R2-Top-Itv,
-                cct:R2-Top-Nom,
-                cct:R2-Top-Ord,
-                cct:R2-Top-Qlt,
-                cct:R2-Top-Top ;
-            tf:type cct:R2-Loc-Itv ;
-            tf:via cct:revert ] ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
-    tf:subtypeOf tf:Top,
-        cct:R1-Loc,
-        cct:R1-Top,
-        cct:R1-Val ;
-    tf:type cct:R1-Loc ;
-    tf:via cct:pi1 .
-
-_:N1752acc0cd434b32b01f7bfa6126f96f rdfs:label "R1(Obj) from source" ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb7 ;
-    tf:subtypeOf tf:Top,
-        cct:R1-Obj,
-        cct:R1-Top,
-        cct:R1-Val ;
-    tf:type cct:R1-Obj .
-
-_:N332c352859ff4468bc2f06dafa5da6cc rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    tf:from [ rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
-            tf:from _:N1752acc0cd434b32b01f7bfa6126f96f,
-                _:N24a6226225a843a7828681774a614cfc ;
-            tf:origin _:nafbc69522b08458ab302620184793ebfb7 ;
-            tf:subtypeOf tf:Top,
-                cct:R2-Obj-Product-Reg-Nom,
-                cct:R2-Obj-Product-Reg-Qlt,
-                cct:R2-Obj-Product-Reg-Top,
-                cct:R2-Obj-Product-Top-Nom,
-                cct:R2-Obj-Product-Top-Qlt,
-                cct:R2-Obj-Product-Top-Top,
-                cct:R2-Obj-Top,
-                cct:R2-Top-Product-Reg-Nom,
-                cct:R2-Top-Product-Reg-Qlt,
-                cct:R2-Top-Product-Reg-Top,
-                cct:R2-Top-Product-Top-Nom,
-                cct:R2-Top-Product-Top-Qlt,
-                cct:R2-Top-Product-Top-Top,
-                cct:R2-Top-Top ;
-            tf:type cct:R2-Obj-Product-Reg-Nom ;
-            tf:via cct:subset ] ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Obj-Reg,
-        cct:R2-Obj-Top,
-        cct:R2-Top-Reg,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Obj-Reg ;
-    tf:via cct:get_attrL .
-
-_:N57ef650f1bdc4165b4d2d78f66dfe7d2 rdfs:label "R2(Loc, Itv) via revert" ;
-    tf:from [ rdfs:label "R2(Itv, Reg) via select" ;
-            tf:from _:N1ab47777b65349f990fce8a048294b0c,
-                _:N63d524aa3be54b9997a131a5ca0960e6,
-                [ rdfs:label "Bool via eq" ;
-                    tf:from _:N899c8378fcf0435e8ce30739d2a3e91c ;
-                    tf:origin _:nafbc69522b08458ab302620184793ebfb9 ;
-                    tf:subtypeOf tf:Top,
-                        cct:Bool,
-                        cct:Nom,
-                        cct:Qlt,
-                        cct:Val ;
-                    tf:type cct:Bool ;
-                    tf:via cct:eq ] ;
-            tf:internal _:N899c8378fcf0435e8ce30739d2a3e91c ;
-            tf:origin _:nafbc69522b08458ab302620184793ebfb9 ;
-            tf:subtypeOf tf:Top,
-                cct:R2-Itv-Reg,
-                cct:R2-Itv-Top,
-                cct:R2-Nom-Reg,
-                cct:R2-Nom-Top,
-                cct:R2-Ord-Reg,
-                cct:R2-Ord-Top,
-                cct:R2-Qlt-Reg,
-                cct:R2-Qlt-Top,
-                cct:R2-Top-Reg,
-                cct:R2-Top-Top ;
-            tf:type cct:R2-Itv-Reg ;
-            tf:via cct:select ] ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb9 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Loc-Itv,
-        cct:R2-Loc-Nom,
-        cct:R2-Loc-Ord,
-        cct:R2-Loc-Qlt,
-        cct:R2-Loc-Top,
-        cct:R2-Top-Itv,
-        cct:R2-Top-Nom,
-        cct:R2-Top-Ord,
-        cct:R2-Top-Qlt,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Loc-Itv ;
-    tf:via cct:revert .
-
-_:N581610dfd73144068660208b33fda6e6 rdfs:label "R1(Obj) via pi1" ;
-    tf:from [ rdfs:label "R3(Obj, Ratio, Obj) via select" ;
-            tf:from _:N5866d9f816b44c52ab881ba97e360301,
-                _:N7eb4dd5b5c7d4b298fc6eb205699ec90,
-                [ rdfs:label "Bool via leq" ;
-                    tf:from _:Nf8f0376d5276402dba2bf89b426a8ea2 ;
-                    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
-                    tf:subtypeOf tf:Top,
-                        cct:Bool,
-                        cct:Nom,
-                        cct:Qlt,
-                        cct:Val ;
-                    tf:type cct:Bool ;
-                    tf:via cct:leq ] ;
-            tf:internal _:Nf8f0376d5276402dba2bf89b426a8ea2 ;
-            tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
-            tf:subtypeOf tf:Top,
-                cct:R3-Obj-Itv-Obj,
-                cct:R3-Obj-Itv-Top,
-                cct:R3-Obj-Nom-Obj,
-                cct:R3-Obj-Nom-Top,
-                cct:R3-Obj-Ord-Obj,
-                cct:R3-Obj-Ord-Top,
-                cct:R3-Obj-Qlt-Obj,
-                cct:R3-Obj-Qlt-Top,
-                cct:R3-Obj-Ratio-Obj,
-                cct:R3-Obj-Ratio-Top,
-                cct:R3-Obj-Top-Obj,
-                cct:R3-Obj-Top-Top,
-                cct:R3-Top-Itv-Obj,
-                cct:R3-Top-Itv-Top,
-                cct:R3-Top-Nom-Obj,
-                cct:R3-Top-Nom-Top,
-                cct:R3-Top-Ord-Obj,
-                cct:R3-Top-Ord-Top,
-                cct:R3-Top-Qlt-Obj,
-                cct:R3-Top-Qlt-Top,
-                cct:R3-Top-Ratio-Obj,
-                cct:R3-Top-Ratio-Top,
-                cct:R3-Top-Top-Obj,
-                cct:R3-Top-Top-Top ;
-            tf:type cct:R3-Obj-Ratio-Obj ;
-            tf:via cct:select ] ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+_:N678f0e31e5194ee5ad7fc4dd6823b58d rdfs:label "R1(Obj) via pi3" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N08d4b084fa634dc998e07bae92a3577c,
+        _:N177032523a314138a88535880d0adc7d,
+        _:N1cddfd1b3779432782e83b2b4bb964d2,
+        _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:N1ee7a5f1d13448acaa93f90c631611cf,
+        _:N2700b9dacd9642a4b145c0c4b3d95f38,
+        _:N3429bcb6edc84c0b98d182a55614253f,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N3afe5377c827460a9484a44cecf22538,
+        _:N4c61a2edf9c64bcebb4c83b3e29db43b,
+        _:N52693ae24692445ba66bdd2bf07976e6,
+        _:N5831529b3b9a4b01892cc1c1543ecf47,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:N7fb0f01d257a421e9481298a4a3ce0b3,
+        _:N90bb8e94ce6542c58fd6a23638e41681,
+        _:N91c3bb6358a64819bbfd032c6f9ac174,
+        _:N96417926b9ce4dd5853a26898edf46c1,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Na411201ee57846809225a8419e0c681e,
+        _:Nab0e247c36f14943a3d516969cc9cffe,
+        _:Nad10927043594a8bb18ebb5da34b09a2,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Nc636dbe683344b249486317a1f75b61c,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Nd98ad6830768417f8cd6ee6d0d82366a,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Ne3b1d8b000b548058422f6d15979e2af,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nf6f0212784c242c69b1b4d13309d6346,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:N4c61a2edf9c64bcebb4c83b3e29db43b ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb12 ;
     tf:subtypeOf tf:Top,
         cct:R1-Obj,
         cct:R1-Top,
         cct:R1-Val ;
     tf:type cct:R1-Obj ;
-    tf:via cct:pi1 .
+    tf:via cct:pi3 .
 
-_:N8722f42e2ec84852b7b23c1b1d6a7670 rdfs:label "Bool via eq" ;
-    tf:from _:Nd3482f129e9545f182f8c575f4e053f5 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
-    tf:subtypeOf tf:Top,
-        cct:Bool,
-        cct:Nom,
-        cct:Qlt,
-        cct:Val ;
-    tf:type cct:Bool ;
-    tf:via cct:eq .
-
-_:Na393283a0ffe4ff4a416148d15ed419a rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    tf:from _:Na4d2a1350def4aafa7982ec55a346f03 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Obj-Reg,
-        cct:R2-Obj-Top,
-        cct:R2-Top-Reg,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Obj-Reg ;
-    tf:via cct:get_attrL .
-
-_:Ncb3ba742453f4256a5753c18a5c13fc1 rdfs:label "R3(Loc, Nom, Obj) via select" ;
-    tf:from _:N28b4b580d8c245ac903cd0af5543b82a,
-        _:N8722f42e2ec84852b7b23c1b1d6a7670,
-        _:Nf2a718536c264cb7a6aad538b5f9629a ;
-    tf:internal _:Nd3482f129e9545f182f8c575f4e053f5 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+_:N4c61a2edf9c64bcebb4c83b3e29db43b rdfs:label "R3(Loc, Nom, Obj) via select" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N08d4b084fa634dc998e07bae92a3577c,
+        _:N177032523a314138a88535880d0adc7d,
+        _:N1cddfd1b3779432782e83b2b4bb964d2,
+        _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:N1ee7a5f1d13448acaa93f90c631611cf,
+        _:N2700b9dacd9642a4b145c0c4b3d95f38,
+        _:N3429bcb6edc84c0b98d182a55614253f,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N3afe5377c827460a9484a44cecf22538,
+        _:N52693ae24692445ba66bdd2bf07976e6,
+        _:N5831529b3b9a4b01892cc1c1543ecf47,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:N7fb0f01d257a421e9481298a4a3ce0b3,
+        _:N90bb8e94ce6542c58fd6a23638e41681,
+        _:N91c3bb6358a64819bbfd032c6f9ac174,
+        _:N96417926b9ce4dd5853a26898edf46c1,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Na411201ee57846809225a8419e0c681e,
+        _:Nab0e247c36f14943a3d516969cc9cffe,
+        _:Nad10927043594a8bb18ebb5da34b09a2,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Nc636dbe683344b249486317a1f75b61c,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Nd98ad6830768417f8cd6ee6d0d82366a,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Ne3b1d8b000b548058422f6d15979e2af,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nf6f0212784c242c69b1b4d13309d6346,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:N08d4b084fa634dc998e07bae92a3577c,
+        _:N1ee7a5f1d13448acaa93f90c631611cf,
+        _:N91c3bb6358a64819bbfd032c6f9ac174 ;
+    tf:internal _:N2700b9dacd9642a4b145c0c4b3d95f38 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb12 ;
     tf:subtypeOf tf:Top,
         cct:R3-Loc-Nom-Obj,
         cct:R3-Loc-Nom-Top,
@@ -434,19 +328,156 @@ _:Ncb3ba742453f4256a5753c18a5c13fc1 rdfs:label "R3(Loc, Nom, Obj) via select" ;
     tf:type cct:R3-Loc-Nom-Obj ;
     tf:via cct:select .
 
-_:Nccaa9dce21904b9f86b3b50eac699afb rdfs:label "R1(Obj) via pi3" ;
-    tf:from _:Ncb3ba742453f4256a5753c18a5c13fc1 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+_:N1ee7a5f1d13448acaa93f90c631611cf rdfs:label "Bool via eq" ;
+    tf:depends _:N2700b9dacd9642a4b145c0c4b3d95f38 ;
+    tf:from _:N2700b9dacd9642a4b145c0c4b3d95f38 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb12 ;
     tf:subtypeOf tf:Top,
-        cct:R1-Obj,
-        cct:R1-Top,
-        cct:R1-Val ;
-    tf:type cct:R1-Obj ;
-    tf:via cct:pi3 .
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Bool ;
+    tf:via cct:eq .
 
-_:Nd31789aba1954f00b99a052c6f9c3842 rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    tf:from _:Nfa8260b1ad0d49ea8c03ce2bd2823a96 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+_:n63181340307a4b9389d6e1666342133fb7 rdfs:label "Oogallala aquifer"@en ;
+    rdfs:comment "A vector polygon representing the oogallala aquifer"@en .
+
+_:N08d4b084fa634dc998e07bae92a3577c rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N177032523a314138a88535880d0adc7d,
+        _:N1cddfd1b3779432782e83b2b4bb964d2,
+        _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:N3429bcb6edc84c0b98d182a55614253f,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N3afe5377c827460a9484a44cecf22538,
+        _:N52693ae24692445ba66bdd2bf07976e6,
+        _:N5831529b3b9a4b01892cc1c1543ecf47,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:N7fb0f01d257a421e9481298a4a3ce0b3,
+        _:N90bb8e94ce6542c58fd6a23638e41681,
+        _:N96417926b9ce4dd5853a26898edf46c1,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Na411201ee57846809225a8419e0c681e,
+        _:Nab0e247c36f14943a3d516969cc9cffe,
+        _:Nad10927043594a8bb18ebb5da34b09a2,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Nc636dbe683344b249486317a1f75b61c,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Nd98ad6830768417f8cd6ee6d0d82366a,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Ne3b1d8b000b548058422f6d15979e2af,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nf6f0212784c242c69b1b4d13309d6346,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:N5831529b3b9a4b01892cc1c1543ecf47,
+        _:N90bb8e94ce6542c58fd6a23638e41681 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb12 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Nom-Obj ;
+    tf:via cct:loTopo .
+
+_:N2700b9dacd9642a4b145c0c4b3d95f38 rdfs:label "(internal)" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N08d4b084fa634dc998e07bae92a3577c,
+        _:N177032523a314138a88535880d0adc7d,
+        _:N1cddfd1b3779432782e83b2b4bb964d2,
+        _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:N3429bcb6edc84c0b98d182a55614253f,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N3afe5377c827460a9484a44cecf22538,
+        _:N52693ae24692445ba66bdd2bf07976e6,
+        _:N5831529b3b9a4b01892cc1c1543ecf47,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:N7fb0f01d257a421e9481298a4a3ce0b3,
+        _:N90bb8e94ce6542c58fd6a23638e41681,
+        _:N91c3bb6358a64819bbfd032c6f9ac174,
+        _:N96417926b9ce4dd5853a26898edf46c1,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Na411201ee57846809225a8419e0c681e,
+        _:Nab0e247c36f14943a3d516969cc9cffe,
+        _:Nad10927043594a8bb18ebb5da34b09a2,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Nc636dbe683344b249486317a1f75b61c,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Nd98ad6830768417f8cd6ee6d0d82366a,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Ne3b1d8b000b548058422f6d15979e2af,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nf6f0212784c242c69b1b4d13309d6346,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:N08d4b084fa634dc998e07bae92a3577c,
+        _:N91c3bb6358a64819bbfd032c6f9ac174 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb12 .
+
+_:N5831529b3b9a4b01892cc1c1543ecf47 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N177032523a314138a88535880d0adc7d,
+        _:N1cddfd1b3779432782e83b2b4bb964d2,
+        _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:N3429bcb6edc84c0b98d182a55614253f,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Nc636dbe683344b249486317a1f75b61c,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Nd98ad6830768417f8cd6ee6d0d82366a,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Ne3b1d8b000b548058422f6d15979e2af,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nf6f0212784c242c69b1b4d13309d6346,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:Nd98ad6830768417f8cd6ee6d0d82366a ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb12 ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Reg,
         cct:R2-Obj-Top,
@@ -455,20 +486,16 @@ _:Nd31789aba1954f00b99a052c6f9c3842 rdfs:label "R2(Obj, Reg) via get_attrL" ;
     tf:type cct:R2-Obj-Reg ;
     tf:via cct:get_attrL .
 
-_:Nd5261876216042938793ebcef0fd17f0 rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    tf:from _:N00b1f221a3a949cdb18c2ba3620e3e56 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Obj-Reg,
-        cct:R2-Obj-Top,
-        cct:R2-Top-Reg,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Obj-Reg ;
-    tf:via cct:get_attrL .
-
-_:Nf08afd9ba315454f8445a1020a6b7c1f rdfs:label "R1(Loc) via pi1" ;
-    tf:from _:N57ef650f1bdc4165b4d2d78f66dfe7d2 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
+_:N90bb8e94ce6542c58fd6a23638e41681 rdfs:label "R1(Loc) via pi1" ;
+    tf:depends _:N3afe5377c827460a9484a44cecf22538,
+        _:N52693ae24692445ba66bdd2bf07976e6,
+        _:N7fb0f01d257a421e9481298a4a3ce0b3,
+        _:N96417926b9ce4dd5853a26898edf46c1,
+        _:Na411201ee57846809225a8419e0c681e,
+        _:Nab0e247c36f14943a3d516969cc9cffe,
+        _:Nad10927043594a8bb18ebb5da34b09a2 ;
+    tf:from _:N52693ae24692445ba66bdd2bf07976e6 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb12 ;
     tf:subtypeOf tf:Top,
         cct:R1-Loc,
         cct:R1-Top,
@@ -476,9 +503,85 @@ _:Nf08afd9ba315454f8445a1020a6b7c1f rdfs:label "R1(Loc) via pi1" ;
     tf:type cct:R1-Loc ;
     tf:via cct:pi1 .
 
-_:N1ab47777b65349f990fce8a048294b0c rdfs:label "R2(Itv, Reg) via invert" ;
-    tf:from _:N7822bfb02c404a42baf75e2045522d48 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb9 ;
+_:N91c3bb6358a64819bbfd032c6f9ac174 rdfs:label "Nom from source" ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb12 ;
+    tf:subtypeOf tf:Top,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Nom .
+
+_:N52693ae24692445ba66bdd2bf07976e6 rdfs:label "R2(Loc, Itv) via revert" ;
+    tf:depends _:N3afe5377c827460a9484a44cecf22538,
+        _:N7fb0f01d257a421e9481298a4a3ce0b3,
+        _:N96417926b9ce4dd5853a26898edf46c1,
+        _:Na411201ee57846809225a8419e0c681e,
+        _:Nab0e247c36f14943a3d516969cc9cffe,
+        _:Nad10927043594a8bb18ebb5da34b09a2 ;
+    tf:from _:Na411201ee57846809225a8419e0c681e ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb9 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Itv ;
+    tf:via cct:revert .
+
+_:N177032523a314138a88535880d0adc7d rdfs:label "R1(Obj) via pi3" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N1cddfd1b3779432782e83b2b4bb964d2,
+        _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:N3429bcb6edc84c0b98d182a55614253f,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Nc636dbe683344b249486317a1f75b61c,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Ne3b1d8b000b548058422f6d15979e2af,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nf6f0212784c242c69b1b4d13309d6346,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:Nc636dbe683344b249486317a1f75b61c ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Obj,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Obj ;
+    tf:via cct:pi3 .
+
+_:Na411201ee57846809225a8419e0c681e rdfs:label "R2(Itv, Reg) via select" ;
+    tf:depends _:N3afe5377c827460a9484a44cecf22538,
+        _:N7fb0f01d257a421e9481298a4a3ce0b3,
+        _:N96417926b9ce4dd5853a26898edf46c1,
+        _:Nab0e247c36f14943a3d516969cc9cffe,
+        _:Nad10927043594a8bb18ebb5da34b09a2 ;
+    tf:from _:N3afe5377c827460a9484a44cecf22538,
+        _:N96417926b9ce4dd5853a26898edf46c1,
+        _:Nab0e247c36f14943a3d516969cc9cffe ;
+    tf:internal _:Nad10927043594a8bb18ebb5da34b09a2 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb9 ;
     tf:subtypeOf tf:Top,
         cct:R2-Itv-Reg,
         cct:R2-Itv-Top,
@@ -491,18 +594,40 @@ _:N1ab47777b65349f990fce8a048294b0c rdfs:label "R2(Itv, Reg) via invert" ;
         cct:R2-Top-Reg,
         cct:R2-Top-Top ;
     tf:type cct:R2-Itv-Reg ;
-    tf:via cct:invert .
+    tf:via cct:select .
 
-_:N24129579fd57466b8b3f68f599b32fbe rdfs:label "Nom from source" ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
-    tf:subtypeOf tf:Top,
-        cct:Nom,
-        cct:Qlt,
-        cct:Val ;
-    tf:type cct:Nom .
-
-_:N24a6226225a843a7828681774a614cfc rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
-    tf:origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#aquifer> ;
+_:Nd98ad6830768417f8cd6ee6d0d82366a rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N177032523a314138a88535880d0adc7d,
+        _:N1cddfd1b3779432782e83b2b4bb964d2,
+        _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:N3429bcb6edc84c0b98d182a55614253f,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Nc636dbe683344b249486317a1f75b61c,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Ne3b1d8b000b548058422f6d15979e2af,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nf6f0212784c242c69b1b4d13309d6346,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N177032523a314138a88535880d0adc7d ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb11 ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Product-Reg-Nom,
         cct:R2-Obj-Product-Reg-Qlt,
@@ -518,38 +643,102 @@ _:N24a6226225a843a7828681774a614cfc rdfs:label "R2(Obj, (Reg * Nom)) from source
         cct:R2-Top-Product-Top-Qlt,
         cct:R2-Top-Product-Top-Top,
         cct:R2-Top-Top ;
-    tf:type cct:R2-Obj-Product-Reg-Nom .
+    tf:type cct:R2-Obj-Product-Reg-Nom ;
+    tf:via cct:subset .
 
-_:N28b4b580d8c245ac903cd0af5543b82a rdfs:label "Nom from source" ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+_:n63181340307a4b9389d6e1666342133fb8 rdfs:label "Low precipitation areas"@en ;
+    rdfs:comment "Areas with a low precipitation (<=20 inches of rain per year)"@en .
+
+_:n63181340307a4b9389d6e1666342133fb9 rdfs:label "High irrigation areas"@en ;
+    rdfs:comment "Areas with a high irrigation (>=20% of land being irrigated)"@en .
+
+_:Nab0e247c36f14943a3d516969cc9cffe rdfs:label "Bool via eq" ;
+    tf:depends _:Nad10927043594a8bb18ebb5da34b09a2 ;
+    tf:from _:Nad10927043594a8bb18ebb5da34b09a2 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb9 ;
+    tf:subtypeOf tf:Top,
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Bool ;
+    tf:via cct:eq .
+
+_:Nc636dbe683344b249486317a1f75b61c rdfs:label "R3(Loc, Nom, Obj) via select" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N1cddfd1b3779432782e83b2b4bb964d2,
+        _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:N3429bcb6edc84c0b98d182a55614253f,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Ne3b1d8b000b548058422f6d15979e2af,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nf6f0212784c242c69b1b4d13309d6346,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:N1cddfd1b3779432782e83b2b4bb964d2,
+        _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786 ;
+    tf:internal _:N3429bcb6edc84c0b98d182a55614253f ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Nom-Obj ;
+    tf:via cct:select .
+
+_:N1cddfd1b3779432782e83b2b4bb964d2 rdfs:label "Bool via eq" ;
+    tf:depends _:N3429bcb6edc84c0b98d182a55614253f ;
+    tf:from _:N3429bcb6edc84c0b98d182a55614253f ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb11 ;
+    tf:subtypeOf tf:Top,
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Bool ;
+    tf:via cct:eq .
+
+_:n63181340307a4b9389d6e1666342133fb12 rdfs:label "Drought-risk urban areas"@en ;
+    rdfs:comment "Urban areas that are within 150 miles of the Oogallala aquifer and have low precipitation (<=20 inches of rain per year) and high irrigation (>=20% of land being irrigated), thereby causing a risk of aquifer depletion."@en .
+
+_:N3afe5377c827460a9484a44cecf22538 rdfs:label "Nom from source" ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb9 ;
     tf:subtypeOf tf:Top,
         cct:Nom,
         cct:Qlt,
         cct:Val ;
     tf:type cct:Nom .
 
-_:N5866d9f816b44c52ab881ba97e360301 rdfs:label "Ratio from source" ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
-    tf:subtypeOf tf:Top,
-        cct:Itv,
-        cct:Nom,
-        cct:Ord,
-        cct:Qlt,
-        cct:Ratio,
-        cct:Val ;
-    tf:type cct:Ratio .
-
-_:N63d524aa3be54b9997a131a5ca0960e6 rdfs:label "Nom from source" ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb9 ;
-    tf:subtypeOf tf:Top,
-        cct:Nom,
-        cct:Qlt,
-        cct:Val ;
-    tf:type cct:Nom .
-
-_:N76d32bed0c334ce2b80695514ec4e803 rdfs:label "R2(Itv, Reg) via invert" ;
-    tf:from _:Naa3a9ce8e8754a8884df198bf8df43ae ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb8 ;
+_:N96417926b9ce4dd5853a26898edf46c1 rdfs:label "R2(Itv, Reg) via invert" ;
+    tf:depends _:N7fb0f01d257a421e9481298a4a3ce0b3 ;
+    tf:from _:N7fb0f01d257a421e9481298a4a3ce0b3 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb9 ;
     tf:subtypeOf tf:Top,
         cct:R2-Itv-Reg,
         cct:R2-Itv-Top,
@@ -564,15 +753,116 @@ _:N76d32bed0c334ce2b80695514ec4e803 rdfs:label "R2(Itv, Reg) via invert" ;
     tf:type cct:R2-Itv-Reg ;
     tf:via cct:invert .
 
-_:N7703c35cb7c54659a5ec629e0f3a17e7 rdfs:label "Nom from source" ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb8 ;
-    tf:subtypeOf tf:Top,
-        cct:Nom,
-        cct:Qlt,
-        cct:Val ;
-    tf:type cct:Nom .
+_:Nad10927043594a8bb18ebb5da34b09a2 rdfs:label "(internal)" ;
+    tf:depends _:N3afe5377c827460a9484a44cecf22538,
+        _:N7fb0f01d257a421e9481298a4a3ce0b3,
+        _:N96417926b9ce4dd5853a26898edf46c1 ;
+    tf:from _:N3afe5377c827460a9484a44cecf22538,
+        _:N96417926b9ce4dd5853a26898edf46c1 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb9 .
 
-_:N7822bfb02c404a42baf75e2045522d48 rdfs:label "R2(Loc, Itv) from source" ;
+_:n63181340307a4b9389d6e1666342133fb10 rdfs:label "Urban areas near Oogallala"@en ;
+    rdfs:comment "Urban areas that are within 150 miles of the Oogallala aquifer"@en .
+
+_:n63181340307a4b9389d6e1666342133fb11 rdfs:label "Low precipitation urban areas"@en ;
+    rdfs:comment "Urban areas that are within 150 miles of the Oogallala aquifer and have low precipitation (<=20 inches of rain per year)."@en .
+
+_:N1dd5b7a1918e42bb9f642c39a14c07b0 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:N0887dd9d26914636a25d5a579d6ee1de ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
+
+_:N3429bcb6edc84c0b98d182a55614253f rdfs:label "(internal)" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Ne3b1d8b000b548058422f6d15979e2af,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nf6f0212784c242c69b1b4d13309d6346,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:N597668a76def43fa8fc6f5a45e77cb07,
+        _:Nafdfb3af8b254f3d9f042fbeea58b786 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb11 .
+
+_:N597668a76def43fa8fc6f5a45e77cb07 rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
+    tf:depends _:N0887dd9d26914636a25d5a579d6ee1de,
+        _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Ne3b1d8b000b548058422f6d15979e2af,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nf6f0212784c242c69b1b4d13309d6346,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:N1dd5b7a1918e42bb9f642c39a14c07b0,
+        _:Ne3b1d8b000b548058422f6d15979e2af ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Nom-Obj ;
+    tf:via cct:loTopo .
+
+_:N7fb0f01d257a421e9481298a4a3ce0b3 rdfs:label "R2(Loc, Itv) from source" ;
     tf:origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#irrigation> ;
     tf:subtypeOf tf:Top,
         cct:R2-Loc-Itv,
@@ -587,10 +877,285 @@ _:N7822bfb02c404a42baf75e2045522d48 rdfs:label "R2(Loc, Itv) from source" ;
         cct:R2-Top-Top ;
     tf:type cct:R2-Loc-Itv .
 
-_:N7eb4dd5b5c7d4b298fc6eb205699ec90 rdfs:label "R3(Obj, Ratio, Obj) via oDist" ;
-    tf:from _:N332c352859ff4468bc2f06dafa5da6cc,
-        _:Nd5261876216042938793ebcef0fd17f0 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+_:Nafdfb3af8b254f3d9f042fbeea58b786 rdfs:label "Nom from source" ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb11 ;
+    tf:subtypeOf tf:Top,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Nom .
+
+_:Ne3b1d8b000b548058422f6d15979e2af rdfs:label "R1(Loc) via pi1" ;
+    tf:depends _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:Nb80a3c6e27554573972ddd304dc98b98,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Nf6f0212784c242c69b1b4d13309d6346 ;
+    tf:from _:Nb80a3c6e27554573972ddd304dc98b98 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb11 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Loc ;
+    tf:via cct:pi1 .
+
+_:Nb80a3c6e27554573972ddd304dc98b98 rdfs:label "R2(Loc, Itv) via revert" ;
+    tf:depends _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N73015537f57843a98f1d24c30e25132c,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Nf6f0212784c242c69b1b4d13309d6346 ;
+    tf:from _:N73015537f57843a98f1d24c30e25132c ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb8 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Itv,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Ord,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Itv ;
+    tf:via cct:revert .
+
+_:N0887dd9d26914636a25d5a579d6ee1de rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+    tf:depends _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Nc4360354f40b433087e270fec74273ae,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:Nc4360354f40b433087e270fec74273ae,
+        _:Nef6c78986232403089d805cd925ce0a1 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb10 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom ;
+    tf:via cct:subset .
+
+_:N73015537f57843a98f1d24c30e25132c rdfs:label "R2(Itv, Reg) via select" ;
+    tf:depends _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:Nb88ae908d1ab4504b2e1739b17dcf0fe,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8,
+        _:Nf6f0212784c242c69b1b4d13309d6346 ;
+    tf:from _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:Nf6f0212784c242c69b1b4d13309d6346 ;
+    tf:internal _:Nb88ae908d1ab4504b2e1739b17dcf0fe ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb8 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Itv-Reg,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Reg,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Itv-Reg ;
+    tf:via cct:select .
+
+_:Nc4360354f40b433087e270fec74273ae rdfs:label "R1(Obj) via pi1" ;
+    tf:depends _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Nef6c78986232403089d805cd925ce0a1,
+        _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:from _:Nfd6fc90ef65d41db82dd105ba8ed0663 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb10 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Obj,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Obj ;
+    tf:via cct:pi1 .
+
+_:Nf6f0212784c242c69b1b4d13309d6346 rdfs:label "Bool via eq" ;
+    tf:depends _:Nb88ae908d1ab4504b2e1739b17dcf0fe ;
+    tf:from _:Nb88ae908d1ab4504b2e1739b17dcf0fe ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb8 ;
+    tf:subtypeOf tf:Top,
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Bool ;
+    tf:via cct:eq .
+
+_:Nfd6fc90ef65d41db82dd105ba8ed0663 rdfs:label "R3(Obj, Ratio, Obj) via select" ;
+    tf:depends _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N60022e129e9d43028a12a6c143809975,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N7089320d791d4201aceae5fbdfc14b9b,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Nef6c78986232403089d805cd925ce0a1 ;
+    tf:from _:N60022e129e9d43028a12a6c143809975,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Ne2d09ce959174c49b91a43f395237c14 ;
+    tf:internal _:N7089320d791d4201aceae5fbdfc14b9b ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb10 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Obj-Itv-Obj,
+        cct:R3-Obj-Itv-Top,
+        cct:R3-Obj-Nom-Obj,
+        cct:R3-Obj-Nom-Top,
+        cct:R3-Obj-Ord-Obj,
+        cct:R3-Obj-Ord-Top,
+        cct:R3-Obj-Qlt-Obj,
+        cct:R3-Obj-Qlt-Top,
+        cct:R3-Obj-Ratio-Obj,
+        cct:R3-Obj-Ratio-Top,
+        cct:R3-Obj-Top-Obj,
+        cct:R3-Obj-Top-Top,
+        cct:R3-Top-Itv-Obj,
+        cct:R3-Top-Itv-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Ord-Obj,
+        cct:R3-Top-Ord-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Ratio-Obj,
+        cct:R3-Top-Ratio-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Obj-Ratio-Obj ;
+    tf:via cct:select .
+
+_:N60022e129e9d43028a12a6c143809975 rdfs:label "Bool via leq" ;
+    tf:depends _:N7089320d791d4201aceae5fbdfc14b9b ;
+    tf:from _:N7089320d791d4201aceae5fbdfc14b9b ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb10 ;
+    tf:subtypeOf tf:Top,
+        cct:Bool,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Bool ;
+    tf:via cct:leq .
+
+_:N61bc1340e1054fb090ca07da5ff51bab rdfs:label "R2(Itv, Reg) via invert" ;
+    tf:depends _:Nc95b977ad34e4ce39d2021eaf5e337d8 ;
+    tf:from _:Nc95b977ad34e4ce39d2021eaf5e337d8 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb8 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Itv-Reg,
+        cct:R2-Itv-Top,
+        cct:R2-Nom-Reg,
+        cct:R2-Nom-Top,
+        cct:R2-Ord-Reg,
+        cct:R2-Ord-Top,
+        cct:R2-Qlt-Reg,
+        cct:R2-Qlt-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Itv-Reg ;
+    tf:via cct:invert .
+
+_:N7d1c98854911480fb2d15c7f882f0a84 rdfs:label "Nom from source" ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb8 ;
+    tf:subtypeOf tf:Top,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Nom .
+
+_:Nb88ae908d1ab4504b2e1739b17dcf0fe rdfs:label "(internal)" ;
+    tf:depends _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N7d1c98854911480fb2d15c7f882f0a84,
+        _:Nc95b977ad34e4ce39d2021eaf5e337d8 ;
+    tf:from _:N61bc1340e1054fb090ca07da5ff51bab,
+        _:N7d1c98854911480fb2d15c7f882f0a84 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb8 .
+
+_:N3548394930d247f9aa4e6dfefc9f073e rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:Nef6c78986232403089d805cd925ce0a1 ;
+    tf:from _:Nef6c78986232403089d805cd925ce0a1 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb10 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
+
+_:N62c59a9964c84e849ac535ebfc6d958a rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc ;
+    tf:from _:Ne22b88a1e20c4917b4d016383b9a21fc ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb10 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
+
+_:N7089320d791d4201aceae5fbdfc14b9b rdfs:label "(internal)" ;
+    tf:depends _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Ne2d09ce959174c49b91a43f395237c14,
+        _:Nef6c78986232403089d805cd925ce0a1 ;
+    tf:from _:N9d6acb0e05f14eefbecfd00c737c3526,
+        _:Ne2d09ce959174c49b91a43f395237c14 ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb10 .
+
+_:N9d6acb0e05f14eefbecfd00c737c3526 rdfs:label "R3(Obj, Ratio, Obj) via oDist" ;
+    tf:depends _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:N62c59a9964c84e849ac535ebfc6d958a,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c,
+        _:Ne22b88a1e20c4917b4d016383b9a21fc,
+        _:Nef6c78986232403089d805cd925ce0a1 ;
+    tf:from _:N3548394930d247f9aa4e6dfefc9f073e,
+        _:N62c59a9964c84e849ac535ebfc6d958a ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb10 ;
     tf:subtypeOf tf:Top,
         cct:R3-Obj-Itv-Obj,
         cct:R3-Obj-Itv-Top,
@@ -619,59 +1184,7 @@ _:N7eb4dd5b5c7d4b298fc6eb205699ec90 rdfs:label "R3(Obj, Ratio, Obj) via oDist" ;
     tf:type cct:R3-Obj-Ratio-Obj ;
     tf:via cct:oDist .
 
-_:N899c8378fcf0435e8ce30739d2a3e91c rdfs:label "(internal)" ;
-    tf:from _:N1ab47777b65349f990fce8a048294b0c,
-        _:N63d524aa3be54b9997a131a5ca0960e6 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb9 .
-
-_:N8c1d9c68ca8242e2afd5771f5886c579 rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
-    tf:from _:Na393283a0ffe4ff4a416148d15ed419a,
-        _:Nf08afd9ba315454f8445a1020a6b7c1f ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb12 ;
-    tf:subtypeOf tf:Top,
-        cct:R3-Loc-Nom-Obj,
-        cct:R3-Loc-Nom-Top,
-        cct:R3-Loc-Qlt-Obj,
-        cct:R3-Loc-Qlt-Top,
-        cct:R3-Loc-Top-Obj,
-        cct:R3-Loc-Top-Top,
-        cct:R3-Top-Nom-Obj,
-        cct:R3-Top-Nom-Top,
-        cct:R3-Top-Qlt-Obj,
-        cct:R3-Top-Qlt-Top,
-        cct:R3-Top-Top-Obj,
-        cct:R3-Top-Top-Top ;
-    tf:type cct:R3-Loc-Nom-Obj ;
-    tf:via cct:loTopo .
-
-_:N9836b64df5014c64821b1d7f4aa376ae rdfs:label "(internal)" ;
-    tf:from _:N24129579fd57466b8b3f68f599b32fbe,
-        _:N8c1d9c68ca8242e2afd5771f5886c579 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb12 .
-
-_:Na4d2a1350def4aafa7982ec55a346f03 rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
-    tf:from _:Nccaa9dce21904b9f86b3b50eac699afb,
-        _:Nfa8260b1ad0d49ea8c03ce2bd2823a96 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Obj-Product-Reg-Nom,
-        cct:R2-Obj-Product-Reg-Qlt,
-        cct:R2-Obj-Product-Reg-Top,
-        cct:R2-Obj-Product-Top-Nom,
-        cct:R2-Obj-Product-Top-Qlt,
-        cct:R2-Obj-Product-Top-Top,
-        cct:R2-Obj-Top,
-        cct:R2-Top-Product-Reg-Nom,
-        cct:R2-Top-Product-Reg-Qlt,
-        cct:R2-Top-Product-Reg-Top,
-        cct:R2-Top-Product-Top-Nom,
-        cct:R2-Top-Product-Top-Qlt,
-        cct:R2-Top-Product-Top-Top,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Obj-Product-Reg-Nom ;
-    tf:via cct:subset .
-
-_:Naa3a9ce8e8754a8884df198bf8df43ae rdfs:label "R2(Loc, Itv) from source" ;
+_:Nc95b977ad34e4ce39d2021eaf5e337d8 rdfs:label "R2(Loc, Itv) from source" ;
     tf:origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#precipitation> ;
     tf:subtypeOf tf:Top,
         cct:R2-Loc-Itv,
@@ -686,45 +1199,23 @@ _:Naa3a9ce8e8754a8884df198bf8df43ae rdfs:label "R2(Loc, Itv) from source" ;
         cct:R2-Top-Top ;
     tf:type cct:R2-Loc-Itv .
 
-_:Nd3482f129e9545f182f8c575f4e053f5 rdfs:label "(internal)" ;
-    tf:from _:N28b4b580d8c245ac903cd0af5543b82a,
-        _:Nf2a718536c264cb7a6aad538b5f9629a ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb11 .
-
-_:Nd5d589a985ff48cbb3400d18004c0f11 rdfs:label "(internal)" ;
-    tf:from _:N76d32bed0c334ce2b80695514ec4e803,
-        _:N7703c35cb7c54659a5ec629e0f3a17e7 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb8 .
-
-_:Nf2a718536c264cb7a6aad538b5f9629a rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
-    tf:from _:N16306acf9e3346c1a99d16729e0c2f6f,
-        _:Nd31789aba1954f00b99a052c6f9c3842 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb11 ;
+_:Ne2d09ce959174c49b91a43f395237c14 rdfs:label "Ratio from source" ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb10 ;
     tf:subtypeOf tf:Top,
-        cct:R3-Loc-Nom-Obj,
-        cct:R3-Loc-Nom-Top,
-        cct:R3-Loc-Qlt-Obj,
-        cct:R3-Loc-Qlt-Top,
-        cct:R3-Loc-Top-Obj,
-        cct:R3-Loc-Top-Top,
-        cct:R3-Top-Nom-Obj,
-        cct:R3-Top-Nom-Top,
-        cct:R3-Top-Qlt-Obj,
-        cct:R3-Top-Qlt-Top,
-        cct:R3-Top-Top-Obj,
-        cct:R3-Top-Top-Top ;
-    tf:type cct:R3-Loc-Nom-Obj ;
-    tf:via cct:loTopo .
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio .
 
-_:Nf8f0376d5276402dba2bf89b426a8ea2 rdfs:label "(internal)" ;
-    tf:from _:N5866d9f816b44c52ab881ba97e360301,
-        _:N7eb4dd5b5c7d4b298fc6eb205699ec90 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb10 .
-
-_:Nfa8260b1ad0d49ea8c03ce2bd2823a96 rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
-    tf:from _:N00b1f221a3a949cdb18c2ba3620e3e56,
-        _:N581610dfd73144068660208b33fda6e6 ;
-    tf:origin _:nafbc69522b08458ab302620184793ebfb10 ;
+_:Ne22b88a1e20c4917b4d016383b9a21fc rdfs:label "R2(Obj, (Reg * Nom)) via subset" ;
+    tf:depends _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c ;
+    tf:from _:N594d5e43b87c4c509d7f8041c94bd477,
+        _:Ndfa8465c9e7e4a9bb6de4dccbfcd553c ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb7 ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Product-Reg-Nom,
         cct:R2-Obj-Product-Reg-Qlt,
@@ -743,8 +1234,16 @@ _:Nfa8260b1ad0d49ea8c03ce2bd2823a96 rdfs:label "R2(Obj, (Reg * Nom)) via subset"
     tf:type cct:R2-Obj-Product-Reg-Nom ;
     tf:via cct:subset .
 
-_:N00b1f221a3a949cdb18c2ba3620e3e56 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
-    tf:origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#UrbanAreas> ;
+_:N594d5e43b87c4c509d7f8041c94bd477 rdfs:label "R1(Obj) from source" ;
+    tf:origin _:n63181340307a4b9389d6e1666342133fb7 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Obj,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Obj .
+
+_:Ndfa8465c9e7e4a9bb6de4dccbfcd553c rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    tf:origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#aquifer> ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Product-Reg-Nom,
         cct:R2-Obj-Product-Reg-Qlt,
@@ -762,21 +1261,22 @@ _:N00b1f221a3a949cdb18c2ba3620e3e56 rdfs:label "R2(Obj, (Reg * Nom)) from source
         cct:R2-Top-Top ;
     tf:type cct:R2-Obj-Product-Reg-Nom .
 
-_:nafbc69522b08458ab302620184793ebfb7 rdfs:label "Oogallala aquifer"@en ;
-    rdfs:comment "A vector polygon representing the oogallala aquifer"@en .
-
-_:nafbc69522b08458ab302620184793ebfb8 rdfs:label "Low precipitation areas"@en ;
-    rdfs:comment "Areas with a low precipitation (<=20 inches of rain per year)"@en .
-
-_:nafbc69522b08458ab302620184793ebfb9 rdfs:label "High irrigation areas"@en ;
-    rdfs:comment "Areas with a high irrigation (>=20% of land being irrigated)"@en .
-
-_:nafbc69522b08458ab302620184793ebfb12 rdfs:label "Drought-risk urban areas"@en ;
-    rdfs:comment "Urban areas that are within 150 miles of the Oogallala aquifer and have low precipitation (<=20 inches of rain per year) and high irrigation (>=20% of land being irrigated), thereby causing a risk of aquifer depletion."@en .
-
-_:nafbc69522b08458ab302620184793ebfb10 rdfs:label "Urban areas near Oogallala"@en ;
-    rdfs:comment "Urban areas that are within 150 miles of the Oogallala aquifer"@en .
-
-_:nafbc69522b08458ab302620184793ebfb11 rdfs:label "Low precipitation urban areas"@en ;
-    rdfs:comment "Urban areas that are within 150 miles of the Oogallala aquifer and have low precipitation (<=20 inches of rain per year)."@en .
+_:Nef6c78986232403089d805cd925ce0a1 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    tf:origin <https://learn.arcgis.com/en/projects/find-areas-at-risk-from-aquifer-depletion/#UrbanAreas> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom .
 

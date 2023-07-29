@@ -10,15 +10,15 @@
 wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.RasterA.PlainIntervalA--ObjectQ.VectorTessellationA.ERA1 a wf:Workflow,
         tf:Transformation ;
     wf:edge [ wf:applicationOf abstr:ZonalStatisticsSize ;
-            wf:input1 _:n3f357b1987c547f3a01e2cefb0d6350fb2 ;
-            wf:input2 _:n3f357b1987c547f3a01e2cefb0d6350fb3 ;
-            wf:output _:n3f357b1987c547f3a01e2cefb0d6350fb4 ],
+            wf:input1 _:n3fad445b02314ce9ae00bd2bfff079b2b2 ;
+            wf:input2 _:n3fad445b02314ce9ae00bd2bfff079b2b3 ;
+            wf:output _:n3fad445b02314ce9ae00bd2bfff079b2b4 ],
         [ wf:applicationOf abstr:SpatialJoinSumTessRatio ;
-            wf:input1 _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
-            wf:input2 _:n3f357b1987c547f3a01e2cefb0d6350fb3 ;
-            wf:output _:n3f357b1987c547f3a01e2cefb0d6350fb6 ] ;
-    wf:source _:n3f357b1987c547f3a01e2cefb0d6350fb2,
-        _:n3f357b1987c547f3a01e2cefb0d6350fb3 ;
+            wf:input1 _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
+            wf:input2 _:n3fad445b02314ce9ae00bd2bfff079b2b3 ;
+            wf:output _:n3fad445b02314ce9ae00bd2bfff079b2b6 ] ;
+    wf:source _:n3fad445b02314ce9ae00bd2bfff079b2b2,
+        _:n3fad445b02314ce9ae00bd2bfff079b2b3 ;
     tf:containsOperator cct:eq,
         cct:fcover,
         cct:get_attrL,
@@ -33,8 +33,8 @@ wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.RasterA.PlainIntervalA--ObjectQ.Vector
         cct:select,
         cct:size,
         cct:sum ;
-    tf:containsType _:N1c25b6efb18943568471eaa3c4d4aa25,
-        _:N5f686604c9e241eb96544acf0bd29333,
+    tf:containsType _:N98feade2385d4e49be425e5bd5e7c3a0,
+        _:Na6700d5dcc1c495b932e25c833260288,
         tf:Top,
         cct:Bool,
         cct:Itv,
@@ -108,78 +108,44 @@ wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.RasterA.PlainIntervalA--ObjectQ.Vector
         cct:R3-Top-Top-Top,
         cct:Ratio,
         cct:Val ;
-    tf:input _:N180e243300c14c34a7e28a79b6582a01,
-        _:Naebafc53670a4f1eaf46ee58b3c98294 ;
+    tf:input _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0 ;
     tf:output [ rdfs:label "R2(Obj, (Reg * Ratio)) via join_attr" ;
-            tf:from [ rdfs:label "R2(Obj, Ratio) via join" ;
-                    tf:from [ rdfs:label "R2(Reg, Ratio) via groupbyR" ;
-                            tf:from _:N2d96fea14cb54520aed3874ed0c03c43,
-                                [ rdfs:label "Ratio via sum" ;
-                                    tf:from _:Nc4e00af663d44a8b9c098ba414aa057f ;
-                                    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-                                    tf:subtypeOf tf:Top,
-                                        cct:Itv,
-                                        cct:Nom,
-                                        cct:Ord,
-                                        cct:Qlt,
-                                        cct:Ratio,
-                                        cct:Val ;
-                                    tf:type cct:Ratio ;
-                                    tf:via cct:sum ] ;
-                            tf:internal _:Nc4e00af663d44a8b9c098ba414aa057f ;
-                            tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-                            tf:subtypeOf tf:Top,
-                                cct:R2-Reg-Itv,
-                                cct:R2-Reg-Nom,
-                                cct:R2-Reg-Ord,
-                                cct:R2-Reg-Qlt,
-                                cct:R2-Reg-Ratio,
-                                cct:R2-Reg-Top,
-                                cct:R2-Top-Itv,
-                                cct:R2-Top-Nom,
-                                cct:R2-Top-Ord,
-                                cct:R2-Top-Qlt,
-                                cct:R2-Top-Ratio,
-                                cct:R2-Top-Top ;
-                            tf:type cct:R2-Reg-Ratio ;
-                            tf:via cct:groupbyR ],
-                        [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
-                            tf:from _:Naebafc53670a4f1eaf46ee58b3c98294 ;
-                            tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-                            tf:subtypeOf tf:Top,
-                                cct:R2-Obj-Reg,
-                                cct:R2-Obj-Top,
-                                cct:R2-Top-Reg,
-                                cct:R2-Top-Top ;
-                            tf:type cct:R2-Obj-Reg ;
-                            tf:via cct:get_attrL ] ;
-                    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-                    tf:subtypeOf tf:Top,
-                        cct:R2-Obj-Itv,
-                        cct:R2-Obj-Nom,
-                        cct:R2-Obj-Ord,
-                        cct:R2-Obj-Qlt,
-                        cct:R2-Obj-Ratio,
-                        cct:R2-Obj-Top,
-                        cct:R2-Top-Itv,
-                        cct:R2-Top-Nom,
-                        cct:R2-Top-Ord,
-                        cct:R2-Top-Qlt,
-                        cct:R2-Top-Ratio,
-                        cct:R2-Top-Top ;
-                    tf:type cct:R2-Obj-Ratio ;
-                    tf:via cct:join ],
-                [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
-                    tf:from _:Naebafc53670a4f1eaf46ee58b3c98294 ;
-                    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-                    tf:subtypeOf tf:Top,
-                        cct:R2-Obj-Reg,
-                        cct:R2-Obj-Top,
-                        cct:R2-Top-Reg,
-                        cct:R2-Top-Top ;
-                    tf:type cct:R2-Obj-Reg ;
-                    tf:via cct:get_attrL ] ;
-            tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
+            tf:depends _:N02a50564811a4b609009b133fac400fe,
+                _:N04b1d1deeabd419e81f0895f623e2c4d,
+                _:N16c5a51244a6441ead1303d882d71748,
+                _:N2e456e080c6e40509b31059000902feb,
+                _:N2fd634d8e3f640bc806ee7b9a15d6c95,
+                _:N373a6572e15c4595b0b4d51789da87c0,
+                _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+                _:N447b7bd8f55f439cbf58758f9a889898,
+                _:N630776c8e0634bb2982eee3a53af04cb,
+                _:N63822762ccef4a7095293e1b97c2a921,
+                _:N768ba4f7af1143378048482704b35b5a,
+                _:N83129ba7419643f08e0744646ec96b31,
+                _:N86a782f6d2cd41d4b2183019f716ebc8,
+                _:N8c46c5e72dfe424897f2b86195d27aa6,
+                _:N9ddedac21a624d298201519e3634acbe,
+                _:N9f4d795e84bc43cd834d522734140e7a,
+                _:N9f8b38e41ae8459f8435f94b04c7ff4d,
+                _:Na292a8b8749e47bbb54e667f14420327,
+                _:Na467aad9e70448d4b025232e7f3d6abc,
+                _:Nae3e705bf9534cba85ad019db07ec9e1,
+                _:Nb1e5312835be47879651ae5fbac26b6f,
+                _:Nbb7129b5cace42e3bc45dd4007de8344,
+                _:Nbc49773054bb4de5aff23f00d48b0977,
+                _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+                _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+                _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+                _:Nc7709a744c3a40a0a3f3b02a3e7aed98,
+                _:Ne8afe3d871924bc5af9135e8330623a8,
+                _:Ne925f32a94af460c8162f4f1e04e8b3e,
+                _:Nef1df066316b4d4c9edd72b322b3fc85,
+                _:Nf0598c44b21b47d0add4cdda130562f3,
+                _:Nf0d6fe302c55498e946f89ac12c29879 ;
+            tf:from _:N2fd634d8e3f640bc806ee7b9a15d6c95,
+                _:N86a782f6d2cd41d4b2183019f716ebc8 ;
+            tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
             tf:subtypeOf tf:Top,
                 cct:R2-Obj-Product-Reg-Itv,
                 cct:R2-Obj-Product-Reg-Nom,
@@ -210,27 +176,10 @@ wfgen:CoreConceptQ.LayerA.NominalA-FieldQ.RasterA.PlainIntervalA--ObjectQ.Vector
             tf:type cct:R2-Obj-Product-Reg-Ratio ;
             tf:via cct:join_attr ] .
 
-_:N1003759ce1fe44bdbd7a0b5d4c6318ce rdfs:label "R1(Loc) via fcover" ;
-    tf:from _:N180e243300c14c34a7e28a79b6582a01,
-        [ rdfs:label "R1(Nom) from source" ;
-            tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
-            tf:subtypeOf tf:Top,
-                cct:R1-Nom,
-                cct:R1-Qlt,
-                cct:R1-Top,
-                cct:R1-Val ;
-            tf:type cct:R1-Nom ] ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
-    tf:subtypeOf tf:Top,
-        cct:R1-Loc,
-        cct:R1-Top,
-        cct:R1-Val ;
-    tf:type cct:R1-Loc ;
-    tf:via cct:fcover .
-
-_:N15dfb11141e0437e9cd6d69746591615 rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    tf:from _:Naebafc53670a4f1eaf46ee58b3c98294 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
+_:N2fd634d8e3f640bc806ee7b9a15d6c95 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d ;
+    tf:from _:N04b1d1deeabd419e81f0895f623e2c4d ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Reg,
         cct:R2-Obj-Top,
@@ -239,9 +188,74 @@ _:N15dfb11141e0437e9cd6d69746591615 rdfs:label "R2(Obj, Reg) via get_attrL" ;
     tf:type cct:R2-Obj-Reg ;
     tf:via cct:get_attrL .
 
-_:N189e28224b8840abac017b70acbd010d rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    tf:from _:Na93ed9c2c1a2413eb1e31437633e3a06 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
+_:N86a782f6d2cd41d4b2183019f716ebc8 rdfs:label "R2(Obj, Ratio) via join" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N2e456e080c6e40509b31059000902feb,
+        _:N373a6572e15c4595b0b4d51789da87c0,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N630776c8e0634bb2982eee3a53af04cb,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N768ba4f7af1143378048482704b35b5a,
+        _:N83129ba7419643f08e0744646ec96b31,
+        _:N8c46c5e72dfe424897f2b86195d27aa6,
+        _:N9ddedac21a624d298201519e3634acbe,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:N9f8b38e41ae8459f8435f94b04c7ff4d,
+        _:Na292a8b8749e47bbb54e667f14420327,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nb1e5312835be47879651ae5fbac26b6f,
+        _:Nbb7129b5cace42e3bc45dd4007de8344,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98,
+        _:Ne8afe3d871924bc5af9135e8330623a8,
+        _:Ne925f32a94af460c8162f4f1e04e8b3e,
+        _:Nef1df066316b4d4c9edd72b322b3fc85,
+        _:Nf0598c44b21b47d0add4cdda130562f3,
+        _:Nf0d6fe302c55498e946f89ac12c29879 ;
+    tf:from _:Ne8afe3d871924bc5af9135e8330623a8,
+        _:Nef1df066316b4d4c9edd72b322b3fc85 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Itv,
+        cct:R2-Obj-Nom,
+        cct:R2-Obj-Ord,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Ratio,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Ratio ;
+    tf:via cct:join .
+
+_:Na6700d5dcc1c495b932e25c833260288 a tf:Type ;
+    rdfs:label "R3(Reg, Ratio, Reg)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Ratio ;
+    rdf:_3 cct:Reg ;
+    rdfs:subClassOf cct:R3 .
+
+_:N98feade2385d4e49be425e5bd5e7c3a0 a tf:Type ;
+    rdfs:label "R3(Reg, Nom, Reg)" ;
+    rdf:_1 cct:Reg ;
+    rdf:_2 cct:Nom ;
+    rdf:_3 cct:Reg ;
+    rdfs:subClassOf cct:R3 .
+
+_:Ne8afe3d871924bc5af9135e8330623a8 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d ;
+    tf:from _:N04b1d1deeabd419e81f0895f623e2c4d ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Reg,
         cct:R2-Obj-Top,
@@ -250,69 +264,191 @@ _:N189e28224b8840abac017b70acbd010d rdfs:label "R2(Obj, Reg) via get_attrL" ;
     tf:type cct:R2-Obj-Reg ;
     tf:via cct:get_attrL .
 
-_:N20e9f14df97d4a50bc9f21e9c2ce3342 rdfs:label "R3(Reg, Nom, Reg) via select" ;
-    tf:from _:N5bf034cd61ee41998b17188f0a37bdca,
-        _:Nc128786d024a4eb8a390430b8d751b5e,
-        [ rdfs:label "Bool via eq" ;
-            tf:from _:N79d043d915664b548707d74115a84303 ;
-            tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-            tf:subtypeOf tf:Top,
-                cct:Bool,
-                cct:Nom,
-                cct:Qlt,
-                cct:Val ;
-            tf:type cct:Bool ;
-            tf:via cct:eq ] ;
-    tf:internal _:N79d043d915664b548707d74115a84303 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-    tf:type _:N1c25b6efb18943568471eaa3c4d4aa25 ;
+_:Nef1df066316b4d4c9edd72b322b3fc85 rdfs:label "R2(Reg, Ratio) via groupbyR" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N2e456e080c6e40509b31059000902feb,
+        _:N373a6572e15c4595b0b4d51789da87c0,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N630776c8e0634bb2982eee3a53af04cb,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N768ba4f7af1143378048482704b35b5a,
+        _:N83129ba7419643f08e0744646ec96b31,
+        _:N8c46c5e72dfe424897f2b86195d27aa6,
+        _:N9ddedac21a624d298201519e3634acbe,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:N9f8b38e41ae8459f8435f94b04c7ff4d,
+        _:Na292a8b8749e47bbb54e667f14420327,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nb1e5312835be47879651ae5fbac26b6f,
+        _:Nbb7129b5cace42e3bc45dd4007de8344,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98,
+        _:Ne925f32a94af460c8162f4f1e04e8b3e,
+        _:Nf0598c44b21b47d0add4cdda130562f3,
+        _:Nf0d6fe302c55498e946f89ac12c29879 ;
+    tf:from _:N373a6572e15c4595b0b4d51789da87c0,
+        _:Nb1e5312835be47879651ae5fbac26b6f ;
+    tf:internal _:N768ba4f7af1143378048482704b35b5a ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Reg-Itv,
+        cct:R2-Reg-Nom,
+        cct:R2-Reg-Ord,
+        cct:R2-Reg-Qlt,
+        cct:R2-Reg-Ratio,
+        cct:R2-Reg-Top,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Reg-Ratio ;
+    tf:via cct:groupbyR .
+
+_:n3fad445b02314ce9ae00bd2bfff079b2b2 a ccd:FieldQ,
+        ccd:PlainIntervalA,
+        ccd:RasterA ;
+    rdfs:label "FieldQ, RasterA, PlainIntervalA" .
+
+_:N373a6572e15c4595b0b4d51789da87c0 rdfs:label "Ratio via sum" ;
+    tf:depends _:N768ba4f7af1143378048482704b35b5a ;
+    tf:from _:N768ba4f7af1143378048482704b35b5a ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:sum .
+
+_:n3fad445b02314ce9ae00bd2bfff079b2b3 a ccd:NominalA,
+        ccd:ObjectQ,
+        ccd:VectorTessellationA ;
+    rdfs:label "ObjectQ, VectorTessellationA, NominalA" .
+
+_:N768ba4f7af1143378048482704b35b5a rdfs:label "(internal)" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N2e456e080c6e40509b31059000902feb,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N630776c8e0634bb2982eee3a53af04cb,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N83129ba7419643f08e0744646ec96b31,
+        _:N8c46c5e72dfe424897f2b86195d27aa6,
+        _:N9ddedac21a624d298201519e3634acbe,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:N9f8b38e41ae8459f8435f94b04c7ff4d,
+        _:Na292a8b8749e47bbb54e667f14420327,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nb1e5312835be47879651ae5fbac26b6f,
+        _:Nbb7129b5cace42e3bc45dd4007de8344,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98,
+        _:Ne925f32a94af460c8162f4f1e04e8b3e,
+        _:Nf0598c44b21b47d0add4cdda130562f3,
+        _:Nf0d6fe302c55498e946f89ac12c29879 ;
+    tf:from _:Nb1e5312835be47879651ae5fbac26b6f ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 .
+
+_:N9ddedac21a624d298201519e3634acbe rdfs:label "R3(Reg, Nom, Reg) via select" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N2e456e080c6e40509b31059000902feb,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N630776c8e0634bb2982eee3a53af04cb,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N83129ba7419643f08e0744646ec96b31,
+        _:N8c46c5e72dfe424897f2b86195d27aa6,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:N9f8b38e41ae8459f8435f94b04c7ff4d,
+        _:Na292a8b8749e47bbb54e667f14420327,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbb7129b5cace42e3bc45dd4007de8344,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98,
+        _:Nf0598c44b21b47d0add4cdda130562f3,
+        _:Nf0d6fe302c55498e946f89ac12c29879 ;
+    tf:from _:N8c46c5e72dfe424897f2b86195d27aa6,
+        _:N9f8b38e41ae8459f8435f94b04c7ff4d,
+        _:Nf0d6fe302c55498e946f89ac12c29879 ;
+    tf:internal _:Nbb7129b5cace42e3bc45dd4007de8344 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:type _:N98feade2385d4e49be425e5bd5e7c3a0 ;
     tf:via cct:select .
 
-_:N25dc4410e6634b1f92838c6c9cccb1ac rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    tf:from _:Naebafc53670a4f1eaf46ee58b3c98294 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Obj-Reg,
-        cct:R2-Obj-Top,
-        cct:R2-Top-Reg,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Obj-Reg ;
-    tf:via cct:get_attrL .
+_:Nb1e5312835be47879651ae5fbac26b6f rdfs:label "R3(Reg, Ratio, Reg) via join_key" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N2e456e080c6e40509b31059000902feb,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N630776c8e0634bb2982eee3a53af04cb,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N83129ba7419643f08e0744646ec96b31,
+        _:N8c46c5e72dfe424897f2b86195d27aa6,
+        _:N9ddedac21a624d298201519e3634acbe,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:N9f8b38e41ae8459f8435f94b04c7ff4d,
+        _:Na292a8b8749e47bbb54e667f14420327,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbb7129b5cace42e3bc45dd4007de8344,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98,
+        _:Ne925f32a94af460c8162f4f1e04e8b3e,
+        _:Nf0598c44b21b47d0add4cdda130562f3,
+        _:Nf0d6fe302c55498e946f89ac12c29879 ;
+    tf:from _:N9ddedac21a624d298201519e3634acbe,
+        _:Ne925f32a94af460c8162f4f1e04e8b3e ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:type _:Na6700d5dcc1c495b932e25c833260288 ;
+    tf:via cct:join_key .
 
-_:N426a28dfaf1449b2aa258228969788de rdfs:label "R1(Reg) via pi2" ;
-    tf:from _:N189e28224b8840abac017b70acbd010d ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-    tf:subtypeOf tf:Top,
-        cct:R1-Reg,
-        cct:R1-Top,
-        cct:R1-Val ;
-    tf:type cct:R1-Reg ;
-    tf:via cct:pi2 .
-
-_:N597dba59e55e406a8f9d094dbf95f4a9 rdfs:label "R1(Reg) via pi2" ;
-    tf:from _:N25dc4410e6634b1f92838c6c9cccb1ac ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-    tf:subtypeOf tf:Top,
-        cct:R1-Reg,
-        cct:R1-Top,
-        cct:R1-Val ;
-    tf:type cct:R1-Reg ;
-    tf:via cct:pi2 .
-
-_:N77f6e5fc658c43a9b831a34d26108c53 rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    tf:from _:Naebafc53670a4f1eaf46ee58b3c98294 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Obj-Reg,
-        cct:R2-Obj-Top,
-        cct:R2-Top-Reg,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Obj-Reg ;
-    tf:via cct:get_attrL .
-
-_:Na51dbffb43ad4873a27e8ff59de585f0 rdfs:label "R2(Reg, Ratio) via getamounts" ;
-    tf:from _:Na93ed9c2c1a2413eb1e31437633e3a06 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
+_:Ne925f32a94af460c8162f4f1e04e8b3e rdfs:label "R2(Reg, Ratio) via getamounts" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Na292a8b8749e47bbb54e667f14420327,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98 ;
+    tf:from _:Na292a8b8749e47bbb54e667f14420327 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
     tf:subtypeOf tf:Top,
         cct:R2-Reg-Itv,
         cct:R2-Reg-Nom,
@@ -329,9 +465,10 @@ _:Na51dbffb43ad4873a27e8ff59de585f0 rdfs:label "R2(Reg, Ratio) via getamounts" ;
     tf:type cct:R2-Reg-Ratio ;
     tf:via cct:getamounts .
 
-_:Na78e6a8103594b4bbf06004a5a94abcc rdfs:label "Bool via eq" ;
-    tf:from _:N70bc158c51184c44868676faeb96af3c ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
+_:N9f8b38e41ae8459f8435f94b04c7ff4d rdfs:label "Bool via eq" ;
+    tf:depends _:Nbb7129b5cace42e3bc45dd4007de8344 ;
+    tf:from _:Nbb7129b5cace42e3bc45dd4007de8344 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
     tf:subtypeOf tf:Top,
         cct:Bool,
         cct:Nom,
@@ -340,22 +477,159 @@ _:Na78e6a8103594b4bbf06004a5a94abcc rdfs:label "Bool via eq" ;
     tf:type cct:Bool ;
     tf:via cct:eq .
 
-_:Nc1693f12422146f386b61e409f25e57c rdfs:label "R2(Obj, Ratio) via groupbyR" ;
-    tf:from _:Nca56203ec0204c3eba8c8ea8e05e1ceb,
-        [ rdfs:label "Ratio via size" ;
-            tf:from _:N3271f9fdb68741a9946945e6e5a39629 ;
-            tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
-            tf:subtypeOf tf:Top,
-                cct:Itv,
-                cct:Nom,
-                cct:Ord,
-                cct:Qlt,
-                cct:Ratio,
-                cct:Val ;
-            tf:type cct:Ratio ;
-            tf:via cct:size ] ;
-    tf:internal _:N3271f9fdb68741a9946945e6e5a39629 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
+_:N630776c8e0634bb2982eee3a53af04cb rdfs:label "R1(Reg) via pi2" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N2e456e080c6e40509b31059000902feb,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Na292a8b8749e47bbb54e667f14420327,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98 ;
+    tf:from _:N2e456e080c6e40509b31059000902feb ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Reg,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Reg ;
+    tf:via cct:pi2 .
+
+_:N83129ba7419643f08e0744646ec96b31 rdfs:label "R1(Reg) via pi2" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:Nf0598c44b21b47d0add4cdda130562f3 ;
+    tf:from _:Nf0598c44b21b47d0add4cdda130562f3 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Reg,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Reg ;
+    tf:via cct:pi2 .
+
+_:N8c46c5e72dfe424897f2b86195d27aa6 rdfs:label "Nom from source" ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:subtypeOf tf:Top,
+        cct:Nom,
+        cct:Qlt,
+        cct:Val ;
+    tf:type cct:Nom .
+
+_:Nbb7129b5cace42e3bc45dd4007de8344 rdfs:label "(internal)" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N2e456e080c6e40509b31059000902feb,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N630776c8e0634bb2982eee3a53af04cb,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N83129ba7419643f08e0744646ec96b31,
+        _:N8c46c5e72dfe424897f2b86195d27aa6,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Na292a8b8749e47bbb54e667f14420327,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98,
+        _:Nf0598c44b21b47d0add4cdda130562f3,
+        _:Nf0d6fe302c55498e946f89ac12c29879 ;
+    tf:from _:N8c46c5e72dfe424897f2b86195d27aa6,
+        _:Nf0d6fe302c55498e946f89ac12c29879 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 .
+
+_:Nf0d6fe302c55498e946f89ac12c29879 rdfs:label "R3(Reg, Nom, Reg) via rTopo" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N2e456e080c6e40509b31059000902feb,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N630776c8e0634bb2982eee3a53af04cb,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N83129ba7419643f08e0744646ec96b31,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Na292a8b8749e47bbb54e667f14420327,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98,
+        _:Nf0598c44b21b47d0add4cdda130562f3 ;
+    tf:from _:N630776c8e0634bb2982eee3a53af04cb,
+        _:N83129ba7419643f08e0744646ec96b31 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:type _:N98feade2385d4e49be425e5bd5e7c3a0 ;
+    tf:via cct:rTopo .
+
+_:N2e456e080c6e40509b31059000902feb rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Na292a8b8749e47bbb54e667f14420327,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98 ;
+    tf:from _:Na292a8b8749e47bbb54e667f14420327 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
+
+_:Nf0598c44b21b47d0add4cdda130562f3 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d ;
+    tf:from _:N04b1d1deeabd419e81f0895f623e2c4d ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b6 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
+
+_:N02a50564811a4b609009b133fac400fe rdfs:label "R2(Obj, Ratio) via groupbyR" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98 ;
+    tf:from _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e ;
+    tf:internal _:N447b7bd8f55f439cbf58758f9a889898 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Itv,
         cct:R2-Obj-Nom,
@@ -372,56 +646,24 @@ _:Nc1693f12422146f386b61e409f25e57c rdfs:label "R2(Obj, Ratio) via groupbyR" ;
     tf:type cct:R2-Obj-Ratio ;
     tf:via cct:groupbyR .
 
-_:N180e243300c14c34a7e28a79b6582a01 rdfs:label "R2(Loc, Nom) from source" ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb2 ;
-    tf:subtypeOf tf:Top,
-        cct:R2-Loc-Nom,
-        cct:R2-Loc-Qlt,
-        cct:R2-Loc-Top,
-        cct:R2-Top-Nom,
-        cct:R2-Top-Qlt,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Loc-Nom .
-
-_:N2d96fea14cb54520aed3874ed0c03c43 rdfs:label "R3(Reg, Ratio, Reg) via join_key" ;
-    tf:from _:N20e9f14df97d4a50bc9f21e9c2ce3342,
-        _:Na51dbffb43ad4873a27e8ff59de585f0 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-    tf:type _:N5f686604c9e241eb96544acf0bd29333 ;
-    tf:via cct:join_key .
-
-_:N3271f9fdb68741a9946945e6e5a39629 rdfs:label "(internal)" ;
-    tf:from _:Nca56203ec0204c3eba8c8ea8e05e1ceb ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 .
-
-_:N5bf034cd61ee41998b17188f0a37bdca rdfs:label "R3(Reg, Nom, Reg) via rTopo" ;
-    tf:from _:N426a28dfaf1449b2aa258228969788de,
-        _:N597dba59e55e406a8f9d094dbf95f4a9 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
-    tf:type _:N1c25b6efb18943568471eaa3c4d4aa25 ;
-    tf:via cct:rTopo .
-
-_:N5f686604c9e241eb96544acf0bd29333 a tf:Type ;
-    rdfs:label "R3(Reg, Ratio, Reg)" ;
-    rdf:_1 cct:Reg ;
-    rdf:_2 cct:Ratio ;
-    rdf:_3 cct:Reg ;
-    rdfs:subClassOf cct:R3 .
-
-_:N70bc158c51184c44868676faeb96af3c rdfs:label "(internal)" ;
-    tf:from _:Nc85b341e79614237893aa4e2ff50a695,
-        _:Ne5c2974be5c64647833f87f431b4f0c9 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 .
-
-_:N79d043d915664b548707d74115a84303 rdfs:label "(internal)" ;
-    tf:from _:N5bf034cd61ee41998b17188f0a37bdca,
-        _:Nc128786d024a4eb8a390430b8d751b5e ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 .
-
-_:Na93ed9c2c1a2413eb1e31437633e3a06 rdfs:label "R2(Obj, (Reg * Ratio)) via join_attr" ;
-    tf:from _:N77f6e5fc658c43a9b831a34d26108c53,
-        _:Nc1693f12422146f386b61e409f25e57c ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
+_:Na292a8b8749e47bbb54e667f14420327 rdfs:label "R2(Obj, (Reg * Ratio)) via join_attr" ;
+    tf:depends _:N02a50564811a4b609009b133fac400fe,
+        _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N447b7bd8f55f439cbf58758f9a889898,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Na467aad9e70448d4b025232e7f3d6abc,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbc49773054bb4de5aff23f00d48b0977,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98 ;
+    tf:from _:N02a50564811a4b609009b133fac400fe,
+        _:Na467aad9e70448d4b025232e7f3d6abc ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Product-Reg-Itv,
         cct:R2-Obj-Product-Reg-Nom,
@@ -452,44 +694,78 @@ _:Na93ed9c2c1a2413eb1e31437633e3a06 rdfs:label "R2(Obj, (Reg * Ratio)) via join_
     tf:type cct:R2-Obj-Product-Reg-Ratio ;
     tf:via cct:join_attr .
 
-_:Nc128786d024a4eb8a390430b8d751b5e rdfs:label "Nom from source" ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 ;
+_:Na467aad9e70448d4b025232e7f3d6abc rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d ;
+    tf:from _:N04b1d1deeabd419e81f0895f623e2c4d ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
     tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
+
+_:Nbc49773054bb4de5aff23f00d48b0977 rdfs:label "Ratio via size" ;
+    tf:depends _:N447b7bd8f55f439cbf58758f9a889898 ;
+    tf:from _:N447b7bd8f55f439cbf58758f9a889898 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
+    tf:subtypeOf tf:Top,
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:size .
+
+_:n3fad445b02314ce9ae00bd2bfff079b2b4 a ccd:ERA,
+        ccd:ObjectQ,
+        ccd:VectorRegionA ;
+    rdfs:label "ObjectQ, VectorRegionA, ERA" .
+
+_:N16c5a51244a6441ead1303d882d71748 rdfs:label "Bool via eq" ;
+    tf:depends _:N63822762ccef4a7095293e1b97c2a921 ;
+    tf:from _:N63822762ccef4a7095293e1b97c2a921 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
+    tf:subtypeOf tf:Top,
+        cct:Bool,
         cct:Nom,
         cct:Qlt,
         cct:Val ;
-    tf:type cct:Nom .
+    tf:type cct:Bool ;
+    tf:via cct:eq .
 
-_:Nc4e00af663d44a8b9c098ba414aa057f rdfs:label "(internal)" ;
-    tf:from _:N2d96fea14cb54520aed3874ed0c03c43 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb6 .
+_:N447b7bd8f55f439cbf58758f9a889898 rdfs:label "(internal)" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98 ;
+    tf:from _:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 .
 
-_:Nc85b341e79614237893aa4e2ff50a695 rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
-    tf:from _:N1003759ce1fe44bdbd7a0b5d4c6318ce,
-        _:N15dfb11141e0437e9cd6d69746591615 ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
-    tf:subtypeOf tf:Top,
-        cct:R3-Loc-Nom-Obj,
-        cct:R3-Loc-Nom-Top,
-        cct:R3-Loc-Qlt-Obj,
-        cct:R3-Loc-Qlt-Top,
-        cct:R3-Loc-Top-Obj,
-        cct:R3-Loc-Top-Top,
-        cct:R3-Top-Nom-Obj,
-        cct:R3-Top-Nom-Top,
-        cct:R3-Top-Qlt-Obj,
-        cct:R3-Top-Qlt-Top,
-        cct:R3-Top-Top-Obj,
-        cct:R3-Top-Top-Top ;
-    tf:type cct:R3-Loc-Nom-Obj ;
-    tf:via cct:loTopo .
-
-_:Nca56203ec0204c3eba8c8ea8e05e1ceb rdfs:label "R3(Loc, Nom, Obj) via select" ;
-    tf:from _:Na78e6a8103594b4bbf06004a5a94abcc,
-        _:Nc85b341e79614237893aa4e2ff50a695,
-        _:Ne5c2974be5c64647833f87f431b4f0c9 ;
-    tf:internal _:N70bc158c51184c44868676faeb96af3c ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
+_:Nbebaf6a4bdf04e9a81cf6f23aecf8c6e rdfs:label "R3(Loc, Nom, Obj) via select" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N16c5a51244a6441ead1303d882d71748,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N63822762ccef4a7095293e1b97c2a921,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98 ;
+    tf:from _:N16c5a51244a6441ead1303d882d71748,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Nae3e705bf9534cba85ad019db07ec9e1 ;
+    tf:internal _:N63822762ccef4a7095293e1b97c2a921 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
     tf:subtypeOf tf:Top,
         cct:R3-Loc-Nom-Obj,
         cct:R3-Loc-Nom-Top,
@@ -506,33 +782,103 @@ _:Nca56203ec0204c3eba8c8ea8e05e1ceb rdfs:label "R3(Loc, Nom, Obj) via select" ;
     tf:type cct:R3-Loc-Nom-Obj ;
     tf:via cct:select .
 
-_:Ne5c2974be5c64647833f87f431b4f0c9 rdfs:label "Nom from source" ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb4 ;
+_:N63822762ccef4a7095293e1b97c2a921 rdfs:label "(internal)" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Nae3e705bf9534cba85ad019db07ec9e1,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98 ;
+    tf:from _:N9f4d795e84bc43cd834d522734140e7a,
+        _:Nae3e705bf9534cba85ad019db07ec9e1 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 .
+
+_:N9f4d795e84bc43cd834d522734140e7a rdfs:label "R3(Loc, Nom, Obj) via loTopo" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d,
+        _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98 ;
+    tf:from _:Nbd4d2cae824f40cb9cfe14f6d165d44c,
+        _:Nc7709a744c3a40a0a3f3b02a3e7aed98 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
+    tf:subtypeOf tf:Top,
+        cct:R3-Loc-Nom-Obj,
+        cct:R3-Loc-Nom-Top,
+        cct:R3-Loc-Qlt-Obj,
+        cct:R3-Loc-Qlt-Top,
+        cct:R3-Loc-Top-Obj,
+        cct:R3-Loc-Top-Top,
+        cct:R3-Top-Nom-Obj,
+        cct:R3-Top-Nom-Top,
+        cct:R3-Top-Qlt-Obj,
+        cct:R3-Top-Qlt-Top,
+        cct:R3-Top-Top-Obj,
+        cct:R3-Top-Top-Top ;
+    tf:type cct:R3-Loc-Nom-Obj ;
+    tf:via cct:loTopo .
+
+_:Nae3e705bf9534cba85ad019db07ec9e1 rdfs:label "Nom from source" ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
     tf:subtypeOf tf:Top,
         cct:Nom,
         cct:Qlt,
         cct:Val ;
     tf:type cct:Nom .
 
-_:N1c25b6efb18943568471eaa3c4d4aa25 a tf:Type ;
-    rdfs:label "R3(Reg, Nom, Reg)" ;
-    rdf:_1 cct:Reg ;
-    rdf:_2 cct:Nom ;
-    rdf:_3 cct:Reg ;
-    rdfs:subClassOf cct:R3 .
+_:Nbd4d2cae824f40cb9cfe14f6d165d44c rdfs:label "R1(Loc) via fcover" ;
+    tf:depends _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69 ;
+    tf:from _:N399f3a5c3e6b48bb84638ffcb278c2e0,
+        _:Nbe80526a1ddf47a79b4c7f40ca985d69 ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Loc,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Loc ;
+    tf:via cct:fcover .
 
-_:n3f357b1987c547f3a01e2cefb0d6350fb2 a ccd:FieldQ,
-        ccd:PlainIntervalA,
-        ccd:RasterA ;
-    rdfs:label "FieldQ, RasterA, PlainIntervalA" .
+_:Nc7709a744c3a40a0a3f3b02a3e7aed98 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N04b1d1deeabd419e81f0895f623e2c4d ;
+    tf:from _:N04b1d1deeabd419e81f0895f623e2c4d ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
 
-_:n3f357b1987c547f3a01e2cefb0d6350fb3 a ccd:NominalA,
+_:Nbe80526a1ddf47a79b4c7f40ca985d69 rdfs:label "R1(Nom) from source" ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b4 ;
+    tf:subtypeOf tf:Top,
+        cct:R1-Nom,
+        cct:R1-Qlt,
+        cct:R1-Top,
+        cct:R1-Val ;
+    tf:type cct:R1-Nom .
+
+_:n3fad445b02314ce9ae00bd2bfff079b2b6 a ccd:ERA,
         ccd:ObjectQ,
         ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, NominalA" .
+    rdfs:label "ObjectQ, VectorTessellationA, ERA" .
 
-_:Naebafc53670a4f1eaf46ee58b3c98294 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
-    tf:origin _:n3f357b1987c547f3a01e2cefb0d6350fb3 ;
+_:N399f3a5c3e6b48bb84638ffcb278c2e0 rdfs:label "R2(Loc, Nom) from source" ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b2 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Loc-Nom,
+        cct:R2-Loc-Qlt,
+        cct:R2-Loc-Top,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Loc-Nom .
+
+_:N04b1d1deeabd419e81f0895f623e2c4d rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    tf:origin _:n3fad445b02314ce9ae00bd2bfff079b2b3 ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Product-Reg-Nom,
         cct:R2-Obj-Product-Reg-Qlt,
@@ -549,14 +895,4 @@ _:Naebafc53670a4f1eaf46ee58b3c98294 rdfs:label "R2(Obj, (Reg * Nom)) from source
         cct:R2-Top-Product-Top-Top,
         cct:R2-Top-Top ;
     tf:type cct:R2-Obj-Product-Reg-Nom .
-
-_:n3f357b1987c547f3a01e2cefb0d6350fb4 a ccd:ERA,
-        ccd:ObjectQ,
-        ccd:VectorRegionA ;
-    rdfs:label "ObjectQ, VectorRegionA, ERA" .
-
-_:n3f357b1987c547f3a01e2cefb0d6350fb6 a ccd:ERA,
-        ccd:ObjectQ,
-        ccd:VectorTessellationA ;
-    rdfs:label "ObjectQ, VectorTessellationA, ERA" .
 

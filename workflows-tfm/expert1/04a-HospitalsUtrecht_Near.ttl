@@ -12,7 +12,7 @@ wfexpert1:HospitalsUtrecht_Near a wf:Workflow,
     wf:edge [ wf:applicationOf abstr:NearPointObjects ;
             wf:input1 <https://pro.arcgis.com/en/pro-app/latest/help/analysis/networks/closest-facility-tutorial.htm#incident> ;
             wf:input2 <https://pro.arcgis.com/en/pro-app/latest/help/analysis/networks/closest-facility-tutorial.htm#hospitals> ;
-            wf:output _:n943ceabf14094b59b2716ecec89db104b2 ;
+            wf:output _:n3a555576c8254cf292bfbf75f6620011b2 ;
             rdfs:comment "Search for the three closest hospitals using Euclidean distance" ] ;
     wf:source <https://pro.arcgis.com/en/pro-app/latest/help/analysis/networks/closest-facility-tutorial.htm#hospitals>,
         <https://pro.arcgis.com/en/pro-app/latest/help/analysis/networks/closest-facility-tutorial.htm#incident> ;
@@ -93,51 +93,21 @@ wfexpert1:HospitalsUtrecht_Near a wf:Workflow,
         cct:R3-Top-Top-Top,
         cct:Ratio,
         cct:Val ;
-    tf:input _:N11cfb6d0a34841ca87cf31807cab9302,
-        _:N367bfebdec614ca1ab416939c34be42e ;
+    tf:input _:N4fffe3a5b182471e80456b1342cdd70e,
+        _:N58cc7c57945f4f29a844b57844ec0a11 ;
     tf:output [ rdfs:label "R2(Obj, (Reg * Ratio)) via join_attr" ;
-            tf:from [ rdfs:label "R2(Obj, Ratio) via groupbyL" ;
-                    tf:from _:N347c9288cb104187a058b0aeb3dead56,
-                        [ rdfs:label "Ratio via min" ;
-                            tf:from _:N5dc7486d5bbb4c4c8e3665ff7fb6e1db ;
-                            tf:origin _:n943ceabf14094b59b2716ecec89db104b2 ;
-                            tf:subtypeOf tf:Top,
-                                cct:Itv,
-                                cct:Nom,
-                                cct:Ord,
-                                cct:Qlt,
-                                cct:Ratio,
-                                cct:Val ;
-                            tf:type cct:Ratio ;
-                            tf:via cct:min ] ;
-                    tf:internal _:N5dc7486d5bbb4c4c8e3665ff7fb6e1db ;
-                    tf:origin _:n943ceabf14094b59b2716ecec89db104b2 ;
-                    tf:subtypeOf tf:Top,
-                        cct:R2-Obj-Itv,
-                        cct:R2-Obj-Nom,
-                        cct:R2-Obj-Ord,
-                        cct:R2-Obj-Qlt,
-                        cct:R2-Obj-Ratio,
-                        cct:R2-Obj-Top,
-                        cct:R2-Top-Itv,
-                        cct:R2-Top-Nom,
-                        cct:R2-Top-Ord,
-                        cct:R2-Top-Qlt,
-                        cct:R2-Top-Ratio,
-                        cct:R2-Top-Top ;
-                    tf:type cct:R2-Obj-Ratio ;
-                    tf:via cct:groupbyL ],
-                [ rdfs:label "R2(Obj, Reg) via get_attrL" ;
-                    tf:from _:N367bfebdec614ca1ab416939c34be42e ;
-                    tf:origin _:n943ceabf14094b59b2716ecec89db104b2 ;
-                    tf:subtypeOf tf:Top,
-                        cct:R2-Obj-Reg,
-                        cct:R2-Obj-Top,
-                        cct:R2-Top-Reg,
-                        cct:R2-Top-Top ;
-                    tf:type cct:R2-Obj-Reg ;
-                    tf:via cct:get_attrL ] ;
-            tf:origin _:n943ceabf14094b59b2716ecec89db104b2 ;
+            tf:depends _:N4fffe3a5b182471e80456b1342cdd70e,
+                _:N58cc7c57945f4f29a844b57844ec0a11,
+                _:N5dc7f58d152c45389ebb5d91b1f48164,
+                _:N738472a8039e49c6a416e82171f4bccf,
+                _:N7410826f840546f8b2817256d72aa234,
+                _:N9b9fabbb07f04e30bd03c63b06a231e9,
+                _:Nb33c553598f542779d5e42698fc37d91,
+                _:Nc80dae9a83234db98d3609076cc4c6c0,
+                _:Nc990a3005ed14477830ac8c410f200ad ;
+            tf:from _:N9b9fabbb07f04e30bd03c63b06a231e9,
+                _:Nb33c553598f542779d5e42698fc37d91 ;
+            tf:origin _:n3a555576c8254cf292bfbf75f6620011b2 ;
             tf:subtypeOf tf:Top,
                 cct:R2-Obj-Product-Reg-Itv,
                 cct:R2-Obj-Product-Reg-Nom,
@@ -174,9 +144,10 @@ wfexpert1:HospitalsUtrecht_Near a wf:Workflow,
 <https://pro.arcgis.com/en/pro-app/latest/help/analysis/networks/closest-facility-tutorial.htm#incident> rdfs:label "2350 Pine St location"@en ;
     rdfs:comment "Geocoded location point of 2350 Pine St, San Francisco, where an incident occurred"@en .
 
-_:N344456bd587b4a88877504d8dd891cdc rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    tf:from _:N367bfebdec614ca1ab416939c34be42e ;
-    tf:origin _:n943ceabf14094b59b2716ecec89db104b2 ;
+_:N9b9fabbb07f04e30bd03c63b06a231e9 rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N4fffe3a5b182471e80456b1342cdd70e ;
+    tf:from _:N4fffe3a5b182471e80456b1342cdd70e ;
+    tf:origin _:n3a555576c8254cf292bfbf75f6620011b2 ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Reg,
         cct:R2-Obj-Top,
@@ -185,40 +156,56 @@ _:N344456bd587b4a88877504d8dd891cdc rdfs:label "R2(Obj, Reg) via get_attrL" ;
     tf:type cct:R2-Obj-Reg ;
     tf:via cct:get_attrL .
 
-_:N9013d82a003b4a9583f30089e024642b rdfs:label "R2(Obj, Reg) via get_attrL" ;
-    tf:from _:N11cfb6d0a34841ca87cf31807cab9302 ;
-    tf:origin _:n943ceabf14094b59b2716ecec89db104b2 ;
+_:Nb33c553598f542779d5e42698fc37d91 rdfs:label "R2(Obj, Ratio) via groupbyL" ;
+    tf:depends _:N4fffe3a5b182471e80456b1342cdd70e,
+        _:N58cc7c57945f4f29a844b57844ec0a11,
+        _:N5dc7f58d152c45389ebb5d91b1f48164,
+        _:N738472a8039e49c6a416e82171f4bccf,
+        _:N7410826f840546f8b2817256d72aa234,
+        _:Nc80dae9a83234db98d3609076cc4c6c0,
+        _:Nc990a3005ed14477830ac8c410f200ad ;
+    tf:from _:N5dc7f58d152c45389ebb5d91b1f48164,
+        _:Nc80dae9a83234db98d3609076cc4c6c0 ;
+    tf:internal _:N7410826f840546f8b2817256d72aa234 ;
+    tf:origin _:n3a555576c8254cf292bfbf75f6620011b2 ;
     tf:subtypeOf tf:Top,
-        cct:R2-Obj-Reg,
+        cct:R2-Obj-Itv,
+        cct:R2-Obj-Nom,
+        cct:R2-Obj-Ord,
+        cct:R2-Obj-Qlt,
+        cct:R2-Obj-Ratio,
         cct:R2-Obj-Top,
-        cct:R2-Top-Reg,
+        cct:R2-Top-Itv,
+        cct:R2-Top-Nom,
+        cct:R2-Top-Ord,
+        cct:R2-Top-Qlt,
+        cct:R2-Top-Ratio,
         cct:R2-Top-Top ;
-    tf:type cct:R2-Obj-Reg ;
-    tf:via cct:get_attrL .
+    tf:type cct:R2-Obj-Ratio ;
+    tf:via cct:groupbyL .
 
-_:N11cfb6d0a34841ca87cf31807cab9302 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
-    tf:origin <https://pro.arcgis.com/en/pro-app/latest/help/analysis/networks/closest-facility-tutorial.htm#hospitals> ;
+_:Nc80dae9a83234db98d3609076cc4c6c0 rdfs:label "Ratio via min" ;
+    tf:depends _:N7410826f840546f8b2817256d72aa234 ;
+    tf:from _:N7410826f840546f8b2817256d72aa234 ;
+    tf:origin _:n3a555576c8254cf292bfbf75f6620011b2 ;
     tf:subtypeOf tf:Top,
-        cct:R2-Obj-Product-Reg-Nom,
-        cct:R2-Obj-Product-Reg-Qlt,
-        cct:R2-Obj-Product-Reg-Top,
-        cct:R2-Obj-Product-Top-Nom,
-        cct:R2-Obj-Product-Top-Qlt,
-        cct:R2-Obj-Product-Top-Top,
-        cct:R2-Obj-Top,
-        cct:R2-Top-Product-Reg-Nom,
-        cct:R2-Top-Product-Reg-Qlt,
-        cct:R2-Top-Product-Reg-Top,
-        cct:R2-Top-Product-Top-Nom,
-        cct:R2-Top-Product-Top-Qlt,
-        cct:R2-Top-Product-Top-Top,
-        cct:R2-Top-Top ;
-    tf:type cct:R2-Obj-Product-Reg-Nom .
+        cct:Itv,
+        cct:Nom,
+        cct:Ord,
+        cct:Qlt,
+        cct:Ratio,
+        cct:Val ;
+    tf:type cct:Ratio ;
+    tf:via cct:min .
 
-_:N347c9288cb104187a058b0aeb3dead56 rdfs:label "R3(Obj, Ratio, Obj) via oDist" ;
-    tf:from _:N344456bd587b4a88877504d8dd891cdc,
-        _:N9013d82a003b4a9583f30089e024642b ;
-    tf:origin _:n943ceabf14094b59b2716ecec89db104b2 ;
+_:N5dc7f58d152c45389ebb5d91b1f48164 rdfs:label "R3(Obj, Ratio, Obj) via oDist" ;
+    tf:depends _:N4fffe3a5b182471e80456b1342cdd70e,
+        _:N58cc7c57945f4f29a844b57844ec0a11,
+        _:N738472a8039e49c6a416e82171f4bccf,
+        _:Nc990a3005ed14477830ac8c410f200ad ;
+    tf:from _:N738472a8039e49c6a416e82171f4bccf,
+        _:Nc990a3005ed14477830ac8c410f200ad ;
+    tf:origin _:n3a555576c8254cf292bfbf75f6620011b2 ;
     tf:subtypeOf tf:Top,
         cct:R3-Obj-Itv-Obj,
         cct:R3-Obj-Itv-Top,
@@ -247,11 +234,59 @@ _:N347c9288cb104187a058b0aeb3dead56 rdfs:label "R3(Obj, Ratio, Obj) via oDist" ;
     tf:type cct:R3-Obj-Ratio-Obj ;
     tf:via cct:oDist .
 
-_:N5dc7486d5bbb4c4c8e3665ff7fb6e1db rdfs:label "(internal)" ;
-    tf:from _:N347c9288cb104187a058b0aeb3dead56 ;
-    tf:origin _:n943ceabf14094b59b2716ecec89db104b2 .
+_:N738472a8039e49c6a416e82171f4bccf rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N4fffe3a5b182471e80456b1342cdd70e ;
+    tf:from _:N4fffe3a5b182471e80456b1342cdd70e ;
+    tf:origin _:n3a555576c8254cf292bfbf75f6620011b2 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
 
-_:N367bfebdec614ca1ab416939c34be42e rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+_:N7410826f840546f8b2817256d72aa234 rdfs:label "(internal)" ;
+    tf:depends _:N4fffe3a5b182471e80456b1342cdd70e,
+        _:N58cc7c57945f4f29a844b57844ec0a11,
+        _:N5dc7f58d152c45389ebb5d91b1f48164,
+        _:N738472a8039e49c6a416e82171f4bccf,
+        _:Nc990a3005ed14477830ac8c410f200ad ;
+    tf:from _:N5dc7f58d152c45389ebb5d91b1f48164 ;
+    tf:origin _:n3a555576c8254cf292bfbf75f6620011b2 .
+
+_:Nc990a3005ed14477830ac8c410f200ad rdfs:label "R2(Obj, Reg) via get_attrL" ;
+    tf:depends _:N58cc7c57945f4f29a844b57844ec0a11 ;
+    tf:from _:N58cc7c57945f4f29a844b57844ec0a11 ;
+    tf:origin _:n3a555576c8254cf292bfbf75f6620011b2 ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Reg,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Reg,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Reg ;
+    tf:via cct:get_attrL .
+
+_:N58cc7c57945f4f29a844b57844ec0a11 rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
+    tf:origin <https://pro.arcgis.com/en/pro-app/latest/help/analysis/networks/closest-facility-tutorial.htm#hospitals> ;
+    tf:subtypeOf tf:Top,
+        cct:R2-Obj-Product-Reg-Nom,
+        cct:R2-Obj-Product-Reg-Qlt,
+        cct:R2-Obj-Product-Reg-Top,
+        cct:R2-Obj-Product-Top-Nom,
+        cct:R2-Obj-Product-Top-Qlt,
+        cct:R2-Obj-Product-Top-Top,
+        cct:R2-Obj-Top,
+        cct:R2-Top-Product-Reg-Nom,
+        cct:R2-Top-Product-Reg-Qlt,
+        cct:R2-Top-Product-Reg-Top,
+        cct:R2-Top-Product-Top-Nom,
+        cct:R2-Top-Product-Top-Qlt,
+        cct:R2-Top-Product-Top-Top,
+        cct:R2-Top-Top ;
+    tf:type cct:R2-Obj-Product-Reg-Nom .
+
+_:N4fffe3a5b182471e80456b1342cdd70e rdfs:label "R2(Obj, (Reg * Nom)) from source" ;
     tf:origin <https://pro.arcgis.com/en/pro-app/latest/help/analysis/networks/closest-facility-tutorial.htm#incident> ;
     tf:subtypeOf tf:Top,
         cct:R2-Obj-Product-Reg-Nom,
@@ -270,6 +305,6 @@ _:N367bfebdec614ca1ab416939c34be42e rdfs:label "R2(Obj, (Reg * Nom)) from source
         cct:R2-Top-Top ;
     tf:type cct:R2-Obj-Product-Reg-Nom .
 
-_:n943ceabf14094b59b2716ecec89db104b2 rdfs:label "nearTable"@en ;
+_:n3a555576c8254cf292bfbf75f6620011b2 rdfs:label "nearTable"@en ;
     rdfs:comment "A table with entries for each of three closest hospitals to the incident location"@en .
 
